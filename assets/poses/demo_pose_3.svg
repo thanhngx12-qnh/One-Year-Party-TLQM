@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <filter id="glow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" rx="36" fill="url(#bgGrad3)" />
+
+  <!-- Ambient Light Circles -->
+  <circle cx="220" cy="220" r="160" fill="#34d399" opacity="0.2" filter="url(#glow3)" />
+  <circle cx="600" cy="600" r="170" fill="#60a5fa" opacity="0.2" filter="url(#glow3)" />
+
+  <!-- Top Demo Warning Pill -->
+  <g transform="translate(400, 80)">
+    <rect x="-180" y="-24" width="360" height="48" rx="24" fill="#10b981" opacity="0.95" />
+    <text x="0" y="8" fill="#064e3b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" text-anchor="middle" letter-spacing="1">
+      🧪 BẢN TẬP DƯỢT THỬ NGHIỆM
+    </text>
+  </g>
+
+  <!-- Center Card Illustration -->
+  <g transform="translate(400, 380)">
+    <!-- Decorative Frame -->
+    <rect x="-260" y="-210" width="520" height="420" rx="28" fill="#ffffff" opacity="0.08" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+
+    <!-- Big Center Graphic: Team Connect -->
+    <circle cx="0" cy="-40" r="110" fill="url(#emeraldGrad)" opacity="0.2" filter="url(#glow3)" />
+    
+    <!-- Team People Silhouette / Hug -->
+    <circle cx="-60" cy="-60" r="34" fill="#a7f3d0" />
+    <circle cx="60" cy="-60" r="34" fill="#a7f3d0" />
+    <circle cx="0" cy="-80" r="38" fill="#6ee7b7" />
+    <path d="M -110 30 C -110 -20, -10 -20, -10 30 Z" fill="#34d399" />
+    <path d="M 10 30 C 10 -20, 110 -20, 110 30 Z" fill="#34d399" />
+    <path d="M -50 30 C -50 -40, 50 -40, 50 30 Z" fill="#10b981" />
+
+    <!-- Pose Title inside card -->
+    <text x="0" y="115" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="900" text-anchor="middle" letter-spacing="0.5">
+      DÁNG TẬP DƯỢT 3: TINH THẦN ĐỒNG ĐỘI
+    </text>
+    <text x="0" y="155" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" text-anchor="middle">
+      Cả đội đứng sát nhau, khoác vai và hô to khẩu hiệu TLQM!
+    </text>
+  </g>
+
+  <!-- Bottom Notice -->
+  <g transform="translate(400, 715)">
+    <rect x="-240" y="-20" width="480" height="40" rx="12" fill="#0f172a" opacity="0.8" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+    <text x="0" y="6" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+      🔒 Nhập mật khẩu Ban Tổ Chức để mở khóa 5 dáng chụp thật
+    </text>
+  </g>
+</svg>

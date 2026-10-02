@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#0d9488" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+    <filter id="glow1" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" rx="36" fill="url(#bgGrad1)" />
+
+  <!-- Ambient Light Circles -->
+  <circle cx="200" cy="200" r="150" fill="#38bdf8" opacity="0.15" filter="url(#glow1)" />
+  <circle cx="620" cy="580" r="180" fill="#f59e0b" opacity="0.15" filter="url(#glow1)" />
+
+  <!-- Top Demo Warning Pill -->
+  <g transform="translate(400, 80)">
+    <rect x="-180" y="-24" width="360" height="48" rx="24" fill="#ef4444" opacity="0.95" />
+    <text x="0" y="8" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" text-anchor="middle" letter-spacing="1">
+      🧪 BẢN TẬP DƯỢT THỬ NGHIỆM
+    </text>
+  </g>
+
+  <!-- Center Card Illustration -->
+  <g transform="translate(400, 380)">
+    <!-- Decorative Frame -->
+    <rect x="-260" y="-210" width="520" height="420" rx="28" fill="#ffffff" opacity="0.08" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+
+    <!-- Big Center Heart Icon & Pose Graphics -->
+    <circle cx="0" cy="-40" r="110" fill="url(#goldGrad)" opacity="0.2" filter="url(#glow1)" />
+    
+    <!-- Heart Icon -->
+    <path d="M 0 50 C -80 -30, -110 -110, 0 -150 C 110 -110, 80 -30, 0 50 Z" fill="#ef4444" filter="url(#glow1)" />
+    
+    <!-- Cartoon Hands forming heart -->
+    <circle cx="-130" cy="-30" r="42" fill="#fed7aa" stroke="#f97316" stroke-width="4" />
+    <circle cx="130" cy="-30" r="42" fill="#fed7aa" stroke="#f97316" stroke-width="4" />
+    <text x="-130" y="-20" font-size="34" text-anchor="middle">🫰</text>
+    <text x="130" y="-20" font-size="34" text-anchor="middle">🫰</text>
+
+    <!-- Pose Title inside card -->
+    <text x="0" y="115" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="900" text-anchor="middle" letter-spacing="0.5">
+      DÁNG TẬP DƯỢT 1: THẢ TIM ĐỒNG ĐỘI
+    </text>
+    <text x="0" y="155" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" text-anchor="middle">
+      Cả đội cùng đưa tay tạo hình trái tim lớn và cười thật tươi!
+    </text>
+  </g>
+
+  <!-- Bottom Notice -->
+  <g transform="translate(400, 715)">
+    <rect x="-240" y="-20" width="480" height="40" rx="12" fill="#0f172a" opacity="0.8" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+    <text x="0" y="6" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+      🔒 Nhập mật khẩu Ban Tổ Chức để mở khóa 5 dáng chụp thật
+    </text>
+  </g>
+</svg>

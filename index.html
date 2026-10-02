@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tà Lùng Quang Minh (TLQM) - One-Year Anniversary Gala & Gameshow</title>
+  <meta name="description" content="Chương trình Gala Kỷ niệm 1 năm Công ty Cổ phần Tà Lùng Quang Minh. Trình chiếu giới thiệu hệ sinh thái Logistics và Gameshow tương tác sân khấu Vua Tiếng Việt, Tạo Dáng Thần Tốc.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo-tlqm.png" type="image/png">
+
+  <!-- Google Fonts: Montserrat, Inter, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Stage Ambient Particles Canvas -->
+  <canvas id="stage-ambient-canvas" class="stage-ambient-canvas"></canvas>
+
+  <!-- Camera Flash Overlay for Speed Posing game -->
+  <div id="camera-flash-overlay"></div>
+
+  <!-- Stage Urgent Vignette Pulse for Last 3 Seconds -->
+  <div id="stage-urgent-vignette" class="stage-urgent-vignette"></div>
+  <!-- =================================================================
+       STICKY GALA NAVBAR
+       ================================================================= -->
+  <header class="gala-header">
+    <div class="header-container">
+      <a href="#" class="brand-wrapper" data-target-section="home">
+        <img src="assets/images/logo-tlqm.png" alt="Logo Tà Lùng Quang Minh" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-title">TÀ LÙNG QUANG MINH</span>
+          <span class="brand-subtitle">ONE-YEAR ANNIVERSARY GALA</span>
+        </div>
+      </a>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-target-section="home">
+          <i class="fas fa-home"></i> Trang Chủ <span class="kbd-hint">F1</span>
+        </button>
+        <button class="nav-btn" data-target-section="showcase">
+          <i class="fas fa-gift"></i> Quà Tặng <span class="kbd-hint">F2</span>
+        </button>
+        <button class="nav-btn" data-target-section="king">
+          <i class="fas fa-crown"></i> Vua Tiếng Việt <span class="kbd-hint">F3</span>
+        </button>
+        <button class="nav-btn" data-target-section="pose">
+          <i class="fas fa-camera-retro"></i> Tạo Dáng <span class="kbd-hint">F4</span>
+        </button>
+      </nav>
+
+      <!-- Control Action Buttons -->
+      <div class="header-actions">
+        <!-- Data Security Mode Toggle (Demo vs Official Talung@2026) -->
+        <button id="btn-mode-toggle" class="action-btn mode-status-btn demo" title="Trạng thái dữ liệu Gala (Bấm để Mở khóa F9)">
+          <i class="fas fa-lock" id="mode-status-icon"></i> <span class="btn-label" id="mode-status-label">Bản Demo</span> <span class="kbd-hint" id="mode-status-hint">Mở F9</span>
+        </button>
+        <button id="btn-shortcuts-help" class="action-btn" title="Bảng phím tắt (?)">
+          <i class="fas fa-keyboard"></i> <span class="btn-label">Phím Tắt</span> <span class="kbd-hint">?</span>
+        </button>
+        <button id="btn-sound-toggle" class="action-btn" title="Bật/Tắt âm thanh (M)">
+          <i class="fas fa-volume-up"></i> <span class="btn-label">Âm Thanh</span> <span class="kbd-hint">M</span>
+        </button>
+        <button id="btn-bgm-toggle" class="action-btn" title="Bật/Tắt Nhạc Nền Sự Kiện (B)">
+          <i class="fas fa-music"></i> <span class="btn-label">Nhạc Nền</span> <span class="kbd-hint">B</span>
+        </button>
+        <button id="btn-stage-window" class="action-btn" title="Mở Cửa Sổ Màn LED Sân Khấu (F8)">
+          <i class="fas fa-desktop"></i> <span class="btn-label">Màn LED</span> <span class="kbd-hint">F8</span>
+        </button>
+        <button id="btn-fullscreen" class="action-btn" title="Toàn màn hình (F)">
+          <i class="fas fa-expand"></i> <span class="btn-label">Toàn Màn</span> <span class="kbd-hint">F</span>
+        </button>
+        <button id="btn-celebrate-gala" class="action-btn celebrate-btn" title="Bắn pháo hoa ăn mừng (C)">
+          <i class="fas fa-sparkles"></i> <span class="btn-label">Pháo Hoa</span> <span class="kbd-hint">C</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================================================================
+       SECTION 1: HOME & GALA HUB
+       ================================================================= -->
+  <main id="section-home" class="app-section active">
+    <!-- Hero Banner -->
+    <div class="hero-gala-banner">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-anniversary-badge">
+          <i class="fas fa-award"></i> KỶ NIỆM 1 NĂM CHUYỂN MÌNH & BỨT PHÁ (2025 - 2026)
+        </div>
+        <h1 class="hero-title">KẾT NỐI BIÊN GIỚI<br>VƯƠN TỚI TOÀN CẦU</h1>
+        <p class="hero-tagline">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH (TLQM)</p>
+        <p class="hero-desc">
+          Chào mừng toàn thể Ban lãnh đạo và Cán bộ nhân viên đến với Đêm tiệc Gala Dinner kỷ niệm 1 năm thành lập! 
+          Khám phá 17 phần quà bốc thăm may mắn giá trị và hòa mình vào các minigame bùng nổ, gay cấn tối nay.
+        </p>
+        <div class="hero-btn-group">
+          <button class="btn-gala btn-gala-gold" data-target-section="showcase">
+            <i class="fas fa-gift"></i> Cơ Cấu Giải Thưởng & Quà Tặng <span class="kbd-hint">1 / S</span>
+          </button>
+          <button class="btn-gala btn-gala-green" data-target-section="king">
+            <i class="fas fa-crown"></i> Vào Game Vua Tiếng Việt <span class="kbd-hint">2 / V</span>
+          </button>
+          <button class="btn-gala btn-gala-outline" data-target-section="pose">
+            <i class="fas fa-camera"></i> Vào Game Tạo Dáng Thần Tốc <span class="kbd-hint">3 / T</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Core Gala Hub Cards -->
+    <div class="home-cards-grid">
+      <!-- Card 1: Showcase Prizes -->
+      <a href="#" class="home-hub-card card-1" data-target-section="showcase">
+        <div>
+          <span class="card-badge">Phần 1 • Giới Thiệu Quà Tặng</span>
+          <div class="card-icon-box">
+            <i class="fas fa-gift"></i>
+          </div>
+          <h2 class="hub-card-title">Cơ Cấu Quà Tặng & Bốc Thăm</h2>
+          <p class="hub-card-desc">
+            Khám phá 17 phần quà giá trị: Giải Đặc Biệt chăn ga Everon Monstera, Nồi chiên không dầu Toshiba, Bộ 3 nồi Elmich, Bếp từ Pramie cùng các phần quà may mắn!
+          </p>
+        </div>
+        <div class="hub-card-action">
+          <span>Xem cơ cấu giải thưởng <span class="kbd-hint">1 / S</span></span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- Card 2: Game King -->
+      <a href="#" class="home-hub-card card-2" data-target-section="king">
+        <div>
+          <span class="card-badge">Phần 2 • Minigame Cá Nhân</span>
+          <div class="card-icon-box">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h2 class="hub-card-title">Vua Tiếng Việt</h2>
+          <p class="hub-card-desc">
+            Thử tài nhanh trí sắp xếp nhóm chữ cái xáo trộn thành các từ khóa gắn liền với Tà Lùng Quang Minh trong vòng 15 giây. Nhận ngay những phần quà hấp dẫn!
+          </p>
+        </div>
+        <div class="hub-card-action">
+          <span>Khởi động trò chơi <span class="kbd-hint">2 / V</span></span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- Card 3: Game Pose -->
+      <a href="#" class="home-hub-card card-3" data-target-section="pose">
+        <div>
+          <span class="card-badge">Phần 3 • Thử Thách Đồng Đội</span>
+          <div class="card-icon-box">
+            <i class="fas fa-users-viewfinder"></i>
+          </div>
+          <h2 class="hub-card-title">Tạo Dáng Thần Tốc</h2>
+          <p class="hub-card-desc">
+            Cuộc đối đầu kịch tính giữa 2 Đội qua 5 dáng chụp ảnh cực độc lạ trong 15 giây. Khán giả bình chọn bằng tiếng vỗ tay, tranh cúp và 2 thùng quà to bánh kẹo!
+          </p>
+        </div>
+        <div class="hub-card-action">
+          <span>Bắt đầu đấu tạo dáng <span class="kbd-hint">3 / T</span></span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <!-- =================================================================
+       SECTION 2: SHOWCASE - CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN
+       ================================================================= -->
+  <section id="section-showcase" class="app-section">
+    <!-- Header bar -->
+    <div class="showcase-header-bar">
+      <div class="showcase-header-top">
+        <div class="showcase-title-group">
+          <h2 class="section-headline"><i class="fas fa-gift" style="color: var(--tlqm-gold); margin-right: 8px;"></i> CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN</h2>
+          <p class="section-subheadline">17 Phần Quà Giá Trị Chào Đón 2026 • Tiệc Tất Niên & Kỷ Niệm 1 Năm TLQM</p>
+        </div>
+
+        <!-- Controls & Actions -->
+        <div class="showcase-control-actions">
+          <button id="btn-prize-start" class="action-btn prize-btn-start" title="Bắt đầu / Tiếp tục (Space / Enter)">
+            <i class="fas fa-play"></i> Bắt Đầu <span class="kbd-hint">Space</span>
+          </button>
+          <button id="btn-prize-lucky" class="action-btn" title="Âm thanh Trống Dồn Bốc Thăm (L)">
+            <i class="fas fa-drum"></i> Trống <span class="kbd-hint">L</span>
+          </button>
+          <button id="btn-prize-voice" class="action-btn active" title="Bật/Tắt Giọng Thuyết Minh MC (V)">
+            <i class="fas fa-microphone"></i> MC <span class="kbd-hint">V</span>
+          </button>
+          <button id="btn-prize-auto" class="action-btn" title="Bật/Tắt Tự Động Chuyển Slide (A)">
+            <i class="fas fa-forward"></i> Auto <span class="kbd-hint">A</span>
+          </button>
+          <button id="btn-prize-music" class="action-btn active" title="Bật/Tắt Nhạc Nền Sự Kiện (B)">
+            <i class="fas fa-music"></i> Nhạc <span class="kbd-hint">B</span>
+          </button>
+          <button id="btn-prize-config-modal" class="action-btn" title="Cấu hình danh sách sản phẩm & ghép file giọng đọc MC (O)">
+            <i class="fas fa-sliders"></i> Cấu Hình <span class="kbd-hint">O</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Navigator (11 Slide Pills) -->
+      <div class="showcase-tab-nav" id="prize-tab-nav">
+        <!-- Rendered dynamically by showcase.js -->
+      </div>
+    </div>
+
+    <!-- Presentation Stage Area -->
+    <div class="prize-stage-wrapper">
+      <!-- Flash Bang Overlay for Grand Prize -->
+      <div id="prize-flash-overlay" class="prize-flash-overlay"></div>
+
+      <!-- Top Slide Progress Bar -->
+      <div class="prize-progress-container">
+        <div id="prize-progress-bar" class="prize-progress-bar" style="width: 9.09%;"></div>
+      </div>
+
+      <!-- Audio Element for Event Background Music -->
+      <audio id="prize-bg-music" loop src="assets/voices/sound-background.mp3"></audio>
+
+      <!-- Slide Container -->
+      <div class="prize-slides-container">
+
+        <!-- SLIDE 1: BRAND OPENING -->
+        <div class="prize-slide active" id="prize-slide-1">
+          <div class="prize-slide-inner">
+            <div class="prize-brand-header">
+              <img src="assets/images/logo-tlqm.png" alt="TLQM Logo" class="prize-logo-hero">
+              <span class="prize-subtext-pill">TIỆC TẤT NIÊN 2025 & KỶ NIỆM 1 NĂM</span>
+            </div>
+            <h2 class="prize-company-name">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</h2>
+            <h1 class="prize-main-title gold-shimmer">TÀ LÙNG QUANG MINH LOGISTICS</h1>
+            <div class="prize-gold-divider"></div>
+            <p class="prize-lead-caption">Đồng Hành Phát Triển • Kết Nối Vững Bền • May Mắn Ngập Tràn</p>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: TRANSITION CHÀO 2026 -->
+        <div class="prize-slide" id="prize-slide-2">
+          <div class="prize-slide-inner">
+            <span class="prize-badge-lg">GALA XUÂN BỨT PHÁ</span>
+            <h2 class="prize-welcome-text">CHÀO ĐÓN NĂM MỚI 2026</h2>
+            <h1 class="prize-main-title gold-shimmer huge-gala-title">BỐC THĂM MAY MẮN</h1>
+            <p class="prize-slogan-quote">“MAY MẮN ĐANG CHỜ ĐÓN BẠN”</p>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: 17 PHẦN QUÀ GIÁ TRỊ -->
+        <div class="prize-slide" id="prize-slide-3">
+          <div class="prize-slide-inner">
+            <div class="prize-stats-header">
+              <span class="prize-huge-counter count-up" id="prize-counter-17" data-target="17">0</span>
+              <h2 class="prize-stats-label">PHẦN QUÀ GIÁ TRỊ</h2>
+            </div>
+            <div class="prize-summary-cards">
+              <div class="prize-card-pill">
+                <span class="card-pill-tag tag-bronze">10 Giải Khuyến Khích</span>
+                <span class="card-pill-desc">5 Thùng Bia Hạ Long Sapphire + 5 Thùng Coca Cola</span>
+              </div>
+              <div class="prize-card-pill">
+                <span class="card-pill-tag tag-silver">03 Giải Ba</span>
+                <span class="card-pill-desc">Bếp Từ Đơn Cao Cấp Pramie</span>
+              </div>
+              <div class="prize-card-pill">
+                <span class="card-pill-tag tag-gold">02 Giải Nhì</span>
+                <span class="card-pill-desc">Bộ 3 Nồi Inox 304 Elmich 3 Đáy</span>
+              </div>
+              <div class="prize-card-pill">
+                <span class="card-pill-tag tag-primary">01 Giải Nhất</span>
+                <span class="card-pill-desc">Nồi Chiên Không Dầu Toshiba 7.4L</span>
+              </div>
+              <div class="prize-card-pill highlight-gold">
+                <span class="card-pill-tag tag-special">01 Giải Đặc Biệt</span>
+                <span class="card-pill-desc">Bộ Chăn Ga Gối Cao Cấp Everon Monstera</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: GIẢI KHUYẾN KHÍCH (1/2) - BIA HẠ LONG SAPPHIRE -->
+        <div class="prize-slide" id="prize-slide-4">
+          <div class="prize-slide-inner">
+            <span class="prize-category-tag tag-bronze">GIẢI KHUYẾN KHÍCH (1/2)</span>
+            <h1 class="prize-product-name">THÙNG BIA HẠ LONG SAPPHIRE</h1>
+            <div class="prize-showcase-frame">
+              <img src="assets/prizes/bia_halong.jpg" alt="Bia Hạ Long Sapphire" class="prize-product-img">
+            </div>
+            <div class="prize-quantity-badge">
+              <span class="badge-count">5 GIẢI</span>
+              <span class="badge-sub">(Mỗi giải 01 thùng bia Hạ Long Sapphire hảo hạng)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 5: GIẢI KHUYẾN KHÍCH (2/2) - COCA COLA -->
+        <div class="prize-slide" id="prize-slide-5">
+          <div class="prize-slide-inner">
+            <span class="prize-category-tag tag-bronze">GIẢI KHUYẾN KHÍCH (2/2)</span>
+            <h1 class="prize-product-name">THÙNG NƯỚC NGỌT COCA COLA</h1>
+            <div class="prize-showcase-frame">
+              <img src="assets/prizes/coca_cola.jpg" alt="Coca Cola" class="prize-product-img">
+            </div>
+            <div class="prize-quantity-badge">
+              <span class="badge-count">5 GIẢI</span>
+              <span class="badge-sub">(Mỗi giải 01 thùng nước ngọt Coca Cola Tết)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 6: 3 GIẢI BA - BẾP TỪ ĐƠN PRAMIE -->
+        <div class="prize-slide" id="prize-slide-6">
+          <div class="prize-slide-inner">
+            <span class="prize-category-tag tag-silver">GIẢI BA</span>
+            <h1 class="prize-product-name gold-shimmer">BẾP TỪ ĐƠN CAO CẤP PRAMIE</h1>
+            <div class="prize-showcase-frame">
+              <img src="assets/prizes/bep_tu.jpg" alt="Bếp từ đơn Pramie" class="prize-product-img">
+            </div>
+            <div class="prize-quantity-badge">
+              <span class="badge-count">3 GIẢI</span>
+              <span class="badge-sub">(Mặt kính Ceramic cao cấp, cảm ứng siêu nhạy)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 7: 2 GIẢI NHÌ - BỘ 3 NỒI ELMICH INOX 304 -->
+        <div class="prize-slide" id="prize-slide-7">
+          <div class="prize-slide-inner">
+            <span class="prize-category-tag tag-gold">GIẢI NHÌ</span>
+            <h1 class="prize-product-name gold-shimmer">BỘ 3 NỒI INOX 304 ELMICH 3 ĐÁY</h1>
+            <div class="prize-showcase-frame">
+              <img src="assets/prizes/noi_elmich.jpg" alt="Bộ 3 nồi Inox Elmich" class="prize-product-img">
+            </div>
+            <div class="prize-quantity-badge">
+              <span class="badge-count">2 GIẢI</span>
+              <span class="badge-sub">(Chất liệu Inox 304 an toàn chuẩn Châu Âu, bắt từ siêu bền)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 8: 1 GIẢI NHẤT - NỒI CHIÊN KHÔNG DẦU TOSHIBA 7.4L -->
+        <div class="prize-slide" id="prize-slide-8">
+          <div class="prize-slide-inner">
+            <span class="prize-category-tag tag-primary">GIẢI NHẤT</span>
+            <h1 class="prize-product-name gold-shimmer">NỒI CHIÊN KHÔNG DẦU TOSHIBA 7.4L</h1>
+            <div class="prize-showcase-frame">
+              <img src="assets/prizes/noi_chien.jpg" alt="Nồi chiên không dầu Toshiba" class="prize-product-img">
+            </div>
+            <div class="prize-quantity-badge">
+              <span class="badge-count">1 GIẢI</span>
+              <span class="badge-sub">(Dung tích khủng 7.4 lít, công nghệ nhiệt đối lưu 360 độ)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 9: DRAMA / KỊCH TÍNH -->
+        <div class="prize-slide prize-slide-drama" id="prize-slide-9">
+          <div class="prize-slide-inner">
+            <div class="drama-card">
+              <div class="drama-icon">🧧</div>
+              <h1 class="gold-shimmer drama-headline">AI SẼ LÀ NGƯỜI MAY MẮN?</h1>
+              <p class="drama-subhead">Phần quà danh giá và bất ngờ nhất của Gala TLQM đang đến gần...</p>
+              <div class="drama-pulse-btn-wrap">
+                <button class="action-btn prize-btn-reveal" onclick="window.showcaseManager.nextSlide()">
+                  <i class="fas fa-sparkles"></i> KHÁM PHÁ GIẢI ĐẶC BIỆT <span class="kbd-hint">Space / Enter</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 10: GIẢI ĐẶC BIỆT - BỘ CHĂN GA EVERON MONSTERA -->
+        <div class="prize-slide prize-slide-grand" id="prize-slide-10">
+          <div class="prize-slide-inner">
+            <span class="prize-category-tag tag-special">🏆 GIẢI ĐẶC BIỆT GALA TLQM 🏆</span>
+            <h1 class="prize-product-name gold-shimmer grand-title">BỘ CHĂN GA CAO CẤP EVERON MONSTERA</h1>
+            <div class="prize-showcase-frame grand-frame">
+              <img src="assets/prizes/chan_ga_everon.jpg" alt="Bộ Chăn Ga Cao Cấp Everon Monstera" class="prize-product-img">
+            </div>
+            <div class="prize-quantity-badge">
+              <span class="badge-count grand-count">1 GIẢI DUY NHẤT</span>
+              <span class="badge-sub">(Chất liệu Tencel sinh học thượng hạng, họa tiết Monstera tinh tế)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 11: BACKDROP BỐC THĂM VIP & VÒNG QUAY SỐ MAY MẮN -->
+        <div class="prize-slide prize-slide-backdrop" id="prize-slide-11">
+          <div class="prize-slide-inner">
+            <div class="backdrop-brand-top">
+              <img src="assets/images/logo-tlqm.png" alt="TLQM Logo" class="backdrop-logo">
+              <p class="backdrop-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</p>
+            </div>
+            <h1 class="gold-shimmer backdrop-title">BỐC THĂM MAY MẮN 2026</h1>
+            
+            <div class="backdrop-invitation-box">
+              <h2 class="invitation-main">KÍNH MỜI BAN LÃNH ĐẠO</h2>
+              <h3 class="invitation-sub">LÊN SÂN KHẤU TIẾN HÀNH BỐC THĂM</h3>
+            </div>
+
+            <!-- Digital Lucky Draw Arena -->
+            <div class="lucky-draw-arena">
+              <div class="lucky-slot-display">
+                <div class="lucky-slot-box" id="slot-digit-1"><span class="slot-digit-val">0</span></div>
+                <div class="lucky-slot-box" id="slot-digit-2"><span class="slot-digit-val">0</span></div>
+                <div class="lucky-slot-box" id="slot-digit-3"><span class="slot-digit-val">0</span></div>
+              </div>
+              <div id="lucky-winner-announcement" class="lucky-winner-card hidden">
+                <span class="winner-trophy-badge">🎉 CHÚC MỪNG VÉ MAY MẮN!</span>
+                <span id="lucky-winner-number" class="winner-number-highlight">SỐ 088</span>
+              </div>
+              <div class="lucky-range-settings">
+                <span>Dải vé:</span>
+                <input type="number" id="lucky-min" value="1" min="1" max="999" class="lucky-input-num" title="Số nhỏ nhất">
+                <span>➔</span>
+                <input type="number" id="lucky-max" value="150" min="1" max="999" class="lucky-input-num" title="Số lớn nhất">
+                <button id="btn-lucky-reset-history" class="action-btn" title="Xóa danh sách các số đã trúng">Xóa Lịch Sử</button>
+              </div>
+              <div id="lucky-history-list" class="lucky-history-bar">
+                <span class="history-label">Đã trúng:</span>
+                <div id="lucky-history-pills" class="history-pills-row">Chưa có</div>
+              </div>
+            </div>
+
+            <div class="backdrop-lucky-controls">
+              <button id="btn-lucky-spin" class="btn-gala btn-gala-gold lucky-spin-btn">
+                <i class="fas fa-play"></i> QUAY SỐ MAY MẮN <span class="kbd-hint">Space / L</span>
+              </button>
+              <button id="btn-backdrop-lucky" class="action-btn lucky-drum-btn" onclick="window.showcaseManager.toggleLuckySound()">
+                <i class="fas fa-drum"></i> Trống Dồn <span class="kbd-hint">L</span>
+              </button>
+              <button class="action-btn" onclick="window.confettiEngine && window.confettiEngine.celebrate(); window.soundEngine && window.soundEngine.playCheer();">
+                <i class="fas fa-trophy"></i> Vỗ Tay & Pháo Hoa <span class="kbd-hint">C</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Showcase Slide Footer Nav -->
+    <div class="showcase-footer-controls">
+      <div style="display: flex; gap: 8px;">
+        <button id="showcase-prev" class="action-btn" title="Slide trước (← / P)">
+          <i class="fas fa-arrow-left"></i> Slide Trước <span class="kbd-hint">← / P</span>
+        </button>
+        <button id="showcase-replay-voice" class="action-btn" title="Phát lại thuyết minh slide này (R)">
+          <i class="fas fa-volume-high"></i> Nghe Lại MC <span class="kbd-hint">R</span>
+        </button>
+      </div>
+
+      <div class="prize-dots-indicator" id="prize-dots-nav">
+        <!-- 11 Dots generated via JS -->
+      </div>
+
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span id="showcase-indicator" class="prize-indicator-text">
+          1 / 11
+        </span>
+        <button id="showcase-next" class="action-btn prize-next-btn" title="Slide tiếp theo (→ / N / Space)">
+          Slide Tiếp Theo <i class="fas fa-arrow-right"></i> <span class="kbd-hint">Space / →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       SECTION 3: GAME 1 - VUA TIẾNG VIỆT
+       ================================================================= -->
+  <section id="section-king" class="app-section">
+    <div class="game-container">
+      <!-- Top Bar -->
+      <div class="game-top-bar">
+        <div class="game-title-group">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <h2>👑 VUA TIẾNG VIỆT • GALA TLQM</h2>
+            <span id="king-mode-badge" class="game-data-badge demo"><i class="fas fa-flask"></i> BẢN TẬP DƯỢT DEMO (3 CÂU)</span>
+          </div>
+          <p class="game-subtitle" id="king-sub-desc">Bản tập dượt thử nghiệm với 3 câu mẫu vui nhộn để làm quen luật chơi & âm thanh. Dữ liệu thật cần mật mã Ban Tổ Chức.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="king-prev-btn" class="action-btn" title="Câu trước (← / P)"><i class="fas fa-chevron-left"></i> Câu Trước <span class="kbd-hint">← / P</span></button>
+          <button id="king-next-btn" class="action-btn" title="Câu sau (→ / N)">Câu Sau <span class="kbd-hint">→ / N</span> <i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Question Selector Bar -->
+      <div id="king-question-selector" class="question-selector-bar">
+        <!-- Dynamically rendered pills -->
+      </div>
+
+      <!-- Stage Question Card -->
+      <div class="king-stage-card">
+        <div class="king-card-header">
+          <span id="king-question-number" class="question-round-tag">CÂU ĐỐ SỐ 1 / 9</span>
+          
+          <!-- Circular Countdown Timer 15s -->
+          <div class="circular-timer-wrapper">
+            <svg class="circular-timer-svg">
+              <circle class="timer-circle-bg" cx="45" cy="45" r="40"></circle>
+              <circle id="king-timer-circle" class="timer-circle-progress" cx="45" cy="45" r="40"></circle>
+            </svg>
+            <span id="king-timer-text" class="timer-number-display">15</span>
+          </div>
+        </div>
+
+        <p class="stage-instruction">
+          <i class="fas fa-wand-magic-sparkles" style="color: var(--gold-light); margin-right: 8px;"></i>
+          Nhiệm vụ: Sắp xếp các chữ cái dưới đây thành từ/cụm từ có nghĩa hoàn chỉnh!
+        </p>
+
+        <!-- Scrambled Letters Tiles Container -->
+        <div id="king-tiles-container" class="letter-tiles-container">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Hint Display Box -->
+        <div id="king-hint-box" class="hint-display-box"></div>
+
+        <!-- Answer Revealed Box -->
+        <div id="king-answer-box" class="answer-display-box"></div>
+
+        <!-- Game Stage Controls -->
+        <div class="game-controls-bar">
+          <button id="king-start-timer" class="btn-gala btn-gala-gold">
+            <i class="fas fa-play"></i> Bắt Đầu 15 Giây <span class="kbd-hint">Space</span>
+          </button>
+          <button id="king-show-hint" class="btn-gala btn-gala-amber">
+            <i class="fas fa-lightbulb"></i> Gợi Ý Của MC <span class="kbd-hint">H / G</span>
+          </button>
+          <button id="king-reveal-answer" class="btn-gala btn-gala-green">
+            <i class="fas fa-check-double"></i> Mở Đáp Án <span class="kbd-hint">Enter</span>
+          </button>
+          <button id="king-reset" class="action-btn" title="Đặt lại câu hỏi (R)">
+            <i class="fas fa-rotate-right"></i> Đặt Lại <span class="kbd-hint">R</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       SECTION 4: GAME 2 - TẠO DÁNG THẦN TỐC (SPEED POSING)
+       ================================================================= -->
+  <section id="section-pose" class="app-section">
+    <div class="game-container">
+      <!-- Top Bar -->
+      <div class="game-top-bar">
+        <div class="game-title-group">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <h2 id="pose-main-title">📸 TẠO DÁNG THẦN TỐC • ĐỐI ĐẦU <span id="pose-team-count-display">2</span> ĐỘI</h2>
+            <span id="pose-mode-badge" class="game-data-badge demo"><i class="fas fa-flask"></i> BẢN TẬP DƯỢT DEMO (3 DÁNG)</span>
+          </div>
+          <p class="game-subtitle" id="pose-main-desc">Bản tập dượt thử nghiệm với 3 dáng vui nhộn. Toàn bộ 5 dáng chụp bí mật của Gala đang được bảo mật bằng mật khẩu!</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="pose-prev-btn" class="action-btn" title="Dáng trước (← / P)"><i class="fas fa-chevron-left"></i> Dáng Trước <span class="kbd-hint">← / P</span></button>
+          <button id="pose-next-btn" class="action-btn" title="Dáng sau (→ / N)">Dáng Sau <span class="kbd-hint">→ / N</span> <i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Pose Selector Bar -->
+      <div id="pose-selector" class="pose-selector-bar">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Main Pose Stage Layout -->
+      <div class="pose-layout-grid">
+        <!-- Left Stage Card -->
+        <div class="pose-stage-card">
+          <div class="pose-card-top">
+            <div>
+              <span id="pose-round-badge" class="question-round-tag">VÒNG THI 1 / 5</span>
+              <h3 id="pose-current-title" class="pose-stage-title" style="margin-top: 8px;">Dáng 1: Đỉnh Cao Đồng Đội</h3>
+            </div>
+            <p id="pose-current-desc" class="pose-stage-desc"></p>
+          </div>
+
+          <!-- Camera Frame -->
+          <div class="pose-camera-frame">
+            <!-- Viewfinder corners -->
+            <div class="viewfinder-corner corner-tl"></div>
+            <div class="viewfinder-corner corner-tr"></div>
+            <div class="viewfinder-corner corner-bl"></div>
+            <div class="viewfinder-corner corner-br"></div>
+
+            <!-- In-frame timer badge -->
+            <div class="pose-timer-overlay">
+              <i class="fas fa-stopwatch" style="color: var(--gold-light); font-size: 1.6rem;"></i>
+              <span id="pose-timer-text" class="pose-timer-text">15s</span>
+            </div>
+
+            <!-- Snapshot Banner on 0s -->
+            <div id="pose-snapshot-banner" class="snapshot-banner">
+              <h3>📸 GIỮ NGUYÊN DÁNG! TÁCH TÁCH!</h3>
+              <p>Hết giờ! Khán giả hãy chuẩn bị vỗ tay bình chọn đội tạo dáng chuẩn nhất!</p>
+            </div>
+
+            <!-- Mystery Cover Card (Khi chưa mở dáng chụp) -->
+            <div id="pose-cover-overlay" class="pose-cover-overlay">
+              <div class="pose-cover-content">
+                <div class="pose-lock-icon"><i class="fas fa-lock"></i></div>
+                <h4 class="pose-lock-title">DÁNG CHỤP ĐANG ĐƯỢC GIẤU KÍN</h4>
+                <p class="pose-lock-subtitle" id="pose-lock-subtitle">2 Đội hãy chuẩn bị sẵn sàng vị trí trên sân khấu!</p>
+                <button id="pose-reveal-btn" class="btn-gala btn-gala-gold" style="margin-top: 8px; font-size: 0.78rem; padding: 5px 14px; border-radius: 4px;">
+                  <i class="fas fa-eye"></i> MỞ DÁNG CHỤP & BẮT ĐẦU <span class="kbd-hint">Space / Enter</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Actual Pose Image (Demo default) -->
+            <img id="pose-display-image" src="assets/poses/demo_pose_1.svg" alt="Dáng chụp thử thách" class="pose-camera-img">
+          </div>
+
+          <!-- Linear Timer Bar -->
+          <div class="pose-timer-bar-wrapper">
+            <div id="pose-timer-bar" class="pose-timer-bar-fill"></div>
+          </div>
+
+          <!-- Pose Controls -->
+          <div class="game-controls-bar">
+            <button id="pose-reveal-toggle-btn" class="btn-gala btn-gala-amber">
+              <i class="fas fa-eye"></i> Mở Dáng Chụp <span class="kbd-hint">O / Enter</span>
+            </button>
+            <button id="pose-start-timer" class="btn-gala btn-gala-gold">
+              <i class="fas fa-play"></i> Bắt Đầu 15 Giây <span class="kbd-hint">Space</span>
+            </button>
+            <button id="pose-reset-timer" class="action-btn">
+              <i class="fas fa-rotate-right"></i> Đặt Lại <span class="kbd-hint">R</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Side Live Scoreboard -->
+        <div class="scoreboard-sidebar">
+          <div class="scoreboard-card">
+            <div class="scoreboard-top-row">
+              <h3 class="scoreboard-header" style="margin: 0;">
+                <i class="fas fa-trophy" style="color: var(--gold-light); margin-right: 5px;"></i> BẢNG ĐIỂM
+              </h3>
+              <button id="btn-reset-scores" class="action-btn score-reset-action-btn" title="Đặt lại điểm các đội về 0 (Phím 0 / Shift+R)">
+                <i class="fas fa-rotate"></i> Reset <span class="kbd-hint">0</span>
+              </button>
+            </div>
+
+            <!-- Team Count Toolbar: Direct 2/3/4 Team Pills + / - buttons -->
+            <div class="team-count-toolbar" title="Tùy chọn số lượng đội thi đấu">
+              <span class="team-count-label"><i class="fas fa-users"></i> Đội:</span>
+              <div class="team-count-pills">
+                <button class="team-count-pill-btn active" data-teams="2" title="2 Đội thi đấu (Alt+2)">2 Đội</button>
+                <button class="team-count-pill-btn" data-teams="3" title="3 Đội thi đấu (Alt+3)">3 Đội</button>
+                <button class="team-count-pill-btn" data-teams="4" title="4 Đội thi đấu (Alt+4)">4 Đội</button>
+              </div>
+              <div class="team-count-adjust">
+                <button id="btn-remove-team" class="team-count-step-btn" title="Bớt 1 đội (Phím -)" disabled>-</button>
+                <button id="btn-add-team" class="team-count-step-btn" title="Thêm 1 đội (Phím +)">+</button>
+              </div>
+            </div>
+
+            <!-- Teams Container -->
+            <div id="scoreboard-teams-wrapper">
+              <!-- Team 1 -->
+              <div class="team-score-box team-1" id="team1-box">
+                <div id="team1-name-display" class="team-name-editable" contenteditable="true" title="Bấm để sửa tên đội">
+                  ĐỘI 1 (ÁO ĐỎ)
+                </div>
+                <div id="team1-score-display" class="team-score-number">0</div>
+                <div class="score-btn-group">
+                  <button id="team1-minus" class="score-btn score-btn-minus" title="Trừ 1 điểm (Q / Z)">- <span class="kbd-hint">Q</span></button>
+                  <button id="team1-plus" class="score-btn score-btn-plus" title="Cộng 1 điểm (Phím 1 / A)">+1 ĐIỂM <span class="kbd-hint">1</span></button>
+                </div>
+              </div>
+
+              <!-- Team 2 -->
+              <div class="team-score-box team-2" id="team2-box">
+                <div id="team2-name-display" class="team-name-editable" contenteditable="true" title="Bấm để sửa tên đội">
+                  ĐỘI 2 (ÁO XANH)
+                </div>
+                <div id="team2-score-display" class="team-score-number">0</div>
+                <div class="score-btn-group">
+                  <button id="team2-minus" class="score-btn score-btn-minus" title="Trừ 1 điểm (W / X)">- <span class="kbd-hint">W</span></button>
+                  <button id="team2-plus" class="score-btn score-btn-plus" title="Cộng 1 điểm (Phím 2 / B)">+1 ĐIỂM <span class="kbd-hint">2</span></button>
+                </div>
+              </div>
+
+              <!-- Team 3 (Dynamic) -->
+              <div class="team-score-box team-3 hidden" id="team3-box" style="display: none !important;">
+                <div id="team3-name-display" class="team-name-editable" contenteditable="true" title="Bấm để sửa tên đội">
+                  ĐỘI 3 (ÁO VÀNG)
+                </div>
+                <div id="team3-score-display" class="team-score-number">0</div>
+                <div class="score-btn-group">
+                  <button id="team3-minus" class="score-btn score-btn-minus" title="Trừ 1 điểm (E)">- <span class="kbd-hint">E</span></button>
+                  <button id="team3-plus" class="score-btn score-btn-plus" title="Cộng 1 điểm (Phím 3)">+1 ĐIỂM <span class="kbd-hint">3</span></button>
+                </div>
+              </div>
+
+              <!-- Team 4 (Dynamic) -->
+              <div class="team-score-box team-4 hidden" id="team4-box" style="display: none !important;">
+                <div id="team4-name-display" class="team-name-editable" contenteditable="true" title="Bấm để sửa tên đội">
+                  ĐỘI 4 (ÁO TÍM)
+                </div>
+                <div id="team4-score-display" class="team-score-number">0</div>
+                <div class="score-btn-group">
+                  <button id="team4-minus" class="score-btn score-btn-minus" title="Trừ 1 điểm (R)">- <span class="kbd-hint">U</span></button>
+                  <button id="team4-plus" class="score-btn score-btn-plus" title="Cộng 1 điểm (Phím 4)">+1 ĐIỂM <span class="kbd-hint">4</span></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Celebrate Winner Button -->
+            <button id="pose-celebrate-winner" class="btn-gala btn-gala-gold" style="width: 100%; justify-content: center; margin-top: 8px;">
+              <i class="fas fa-award"></i> Trao Giải Vô Địch! <span class="kbd-hint">T</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       MODALS: WINNER CELEBRATION & SHORTCUTS HELP
+       ================================================================= -->
+  <!-- Winner Celebration Modal -->
+  <div id="winner-modal" class="gala-modal">
+    <div class="modal-content-card">
+      <div class="modal-trophy-icon">🏆</div>
+      <h2 id="winner-modal-title" class="modal-headline">ĐỘI VÔ ĐỊCH!</h2>
+      <p id="winner-modal-sub" class="modal-subheadline">
+        Chúc mừng đội chiến thắng đã xuất sắc chinh phục thử thách Tạo Dáng Thần Tốc!
+      </p>
+      <button id="winner-modal-close" class="btn-gala btn-gala-gold">
+        <i class="fas fa-check"></i> Tuyệt Vời! Đóng <span class="kbd-hint">ESC</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Security Unlock Modal -->
+  <div id="unlock-modal" class="gala-modal">
+    <div class="modal-content-card unlock-modal-card">
+      <button id="unlock-modal-close" class="action-btn modal-close-corner" title="Đóng (ESC)">✕</button>
+      <div class="unlock-icon-circle">
+        <i class="fas fa-shield-halved"></i>
+      </div>
+      <h2 class="modal-headline" style="font-size: 1.45rem; color: var(--tlqm-navy); margin-bottom: 6px;">
+        XÁC THỰC DỮ LIỆU GALA THẬT
+      </h2>
+      <p class="modal-subheadline" style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5;">
+        Nhập mật mã quản trị của Ban Tổ Chức để nạp toàn bộ câu hỏi và 5 dáng chụp chính thức đêm tiệc Gala TLQM.
+      </p>
+
+      <form id="unlock-form" style="margin-bottom: 12px;">
+        <div class="unlock-input-wrapper">
+          <i class="fas fa-lock unlock-input-icon"></i>
+          <input type="password" id="unlock-password-input" class="unlock-password-input" placeholder="Nhập mật khẩu mở khóa..." autocomplete="off" />
+          <button type="button" id="unlock-toggle-eye" class="unlock-eye-btn" title="Ẩn/Hiện mật khẩu">
+            <i class="fas fa-eye" id="unlock-eye-icon"></i>
+          </button>
+        </div>
+        <div id="unlock-error-msg" class="unlock-error-msg hidden">
+          <i class="fas fa-circle-exclamation"></i> Mật khẩu không chính xác, vui lòng thử lại!
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 14px;">
+          <button type="button" id="unlock-cancel-btn" class="action-btn" style="padding: 7px 18px; font-weight: 700; font-size: 0.85rem;">
+            Hủy Bỏ
+          </button>
+          <button type="submit" id="unlock-submit-btn" class="btn-gala btn-gala-gold" style="padding: 7px 22px; font-weight: 800; font-size: 0.85rem;">
+            <i class="fas fa-unlock"></i> Mở Khóa Ngay <span class="kbd-hint">Enter</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="unlock-mode-footer" id="unlock-mode-footer"></div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Help Modal -->
+  <div id="shortcuts-modal" class="gala-modal">
+    <div class="modal-content-card" style="max-width: 660px; text-align: left; max-height: 88vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: var(--tlqm-navy); margin: 0;">
+          <i class="fas fa-keyboard" style="color: var(--tlqm-amber); margin-right: 8px;"></i> BẢNG PHÍM TẮT ĐIỀU KHIỂN
+        </h3>
+        <button id="shortcuts-modal-close" class="action-btn" style="padding: 4px 10px; font-size: 1.1rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div class="shortcuts-category-header">🌐 1. Chuyển Tab Màn Hình & Hệ Thống</div>
+      <table class="shortcuts-table">
+        <tbody>
+          <tr>
+            <td><span class="kbd-key">F1</span> / <span class="kbd-key">F2</span> / <span class="kbd-key">F3</span> / <span class="kbd-key">F4</span></td>
+            <td>Chuyển nhanh: Trang Chủ (F1) • Hệ Sinh Thái (F2) • Vua TV (F3) • Tạo Dáng (F4)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">F8</span></td>
+            <td>Mở cửa sổ <strong>Màn LED Sân Khấu Riêng Biệt</strong> (Đồng bộ 2 màn hình)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">F9</span></td>
+            <td><strong>Mở khóa dữ liệu Gala thật</strong> (Nhập mật khẩu <code>Talung@2026</code>) / Khóa lại Demo</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">F</span> / <span class="kbd-key">F11</span></td>
+            <td>Bật / Thoát chế độ <strong>Toàn màn hình sân khấu</strong></td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">B</span></td>
+            <td>Bật / Tắt <strong>Nhạc Nền Hội Nghị Gala</strong> (Festive Gala BGM)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">M</span></td>
+            <td>Bật / Tắt âm thanh hiệu ứng (Mute / Unmute)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">C</span></td>
+            <td>Bắn pháo hoa ăn mừng Gala (Confetti Fireworks)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">?</span> / <span class="kbd-key">/</span> / <span class="kbd-key">K</span></td>
+            <td>Mở / Đóng bảng phím tắt này</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">ESC</span></td>
+            <td>Đóng cửa sổ thông báo / Bảng phím tắt / Thoát toàn màn hình</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="shortcuts-category-header">🏠 2. Tại Trang Chủ (Gala Hub)</div>
+      <table class="shortcuts-table">
+        <tbody>
+          <tr>
+            <td><span class="kbd-key">1</span> hoặc <span class="kbd-key">S</span></td>
+            <td>Vào nhanh: <strong>Hệ Sinh Thái & Dịch Vụ TLQM</strong></td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">2</span> hoặc <span class="kbd-key">V</span></td>
+            <td>Vào nhanh: Game 1 - <strong>Vua Tiếng Việt</strong></td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">3</span> hoặc <span class="kbd-key">T</span></td>
+            <td>Vào nhanh: Game 2 - <strong>Tạo Dáng Thần Tốc</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="shortcuts-category-header">🎁 3. Cơ Cấu Quà Tặng & Bốc Thăm (Gala Prizes)</div>
+      <table class="shortcuts-table">
+        <tbody>
+          <tr>
+            <td><span class="kbd-key">1</span> ➔ <span class="kbd-key">9</span>, <span class="kbd-key">0</span></td>
+            <td>Nhảy trực tiếp đến Slide 1 ➔ Slide 10</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">Space</span> / <span class="kbd-key">Enter</span> / <span class="kbd-key">L</span></td>
+            <td>Tiến Slide tiếp theo (Tại Slide 11: <strong>Quay Số May Mắn 3 Số</strong>)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">←</span> / <span class="kbd-key">P</span></td>
+            <td>Quay lại slide trước (Previous)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">V</span></td>
+            <td>Bật / Tắt giọng đọc MC thuyết minh từng giải thưởng</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">A</span></td>
+            <td>Bật / Tắt Tự động chuyển slide (Auto-play)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">R</span></td>
+            <td>Nghe lại MC thuyết minh slide hiện tại</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">O</span></td>
+            <td>Mở bảng <strong>Cấu Hình Quà Tặng & Ghép File Giọng Đọc MC</strong></td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">Home</span> / <span class="kbd-key">End</span></td>
+            <td>Về Slide đầu tiên (1) / Đến Backdrop Bốc Thăm VIP (11)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="shortcuts-category-header">👑 4. Game 1: Vua Tiếng Việt</div>
+      <table class="shortcuts-table">
+        <tbody>
+          <tr>
+            <td><span class="kbd-key">1</span> ➔ <span class="kbd-key">9</span></td>
+            <td>Nhảy trực tiếp đến Câu đố 1 ➔ Câu đố 9</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">Space</span></td>
+            <td>Bắt đầu / Tạm dừng đồng hồ đếm ngược 15 giây</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">H</span> hoặc <span class="kbd-key">G</span></td>
+            <td>Mở gợi ý của MC (💡 Hé lộ chữ cái đầu)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">Enter</span> hoặc <span class="kbd-key">A</span></td>
+            <td>Mở đáp án chính thức & Bắn pháo hoa ăn mừng</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">R</span></td>
+            <td>Đặt lại câu đố (Đếm lại 15s từ đầu)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">←</span> / <span class="kbd-key">P</span></td>
+            <td>Chuyển về câu đố Trước</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">→</span> / <span class="kbd-key">N</span></td>
+            <td>Chuyển sang câu đố Sau</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="shortcuts-category-header">📸 5. Game 2: Tạo Dáng Thần Tốc (2–4 Đội)</div>
+      <table class="shortcuts-table">
+        <tbody>
+          <tr>
+            <td><span class="kbd-key">Space</span></td>
+            <td>Mở dáng chụp & Bắt đầu đếm 15 giây (hoặc Tạm dừng đồng hồ)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">O</span> hoặc <span class="kbd-key">Enter</span></td>
+            <td>Mở / Che giấu ảnh dáng chụp bí mật</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">1</span> / <span class="kbd-key">Q</span></td>
+            <td><strong>+1 / -1 Điểm</strong>: Đội 1 (Áo Đỏ)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">2</span> / <span class="kbd-key">W</span></td>
+            <td><strong>+1 / -1 Điểm</strong>: Đội 2 (Áo Xanh)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">3</span> / <span class="kbd-key">E</span></td>
+            <td><strong>+1 / -1 Điểm</strong>: Đội 3 (Áo Vàng)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">4</span> / <span class="kbd-key">U</span></td>
+            <td><strong>+1 / -1 Điểm</strong>: Đội 4 (Áo Tím)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">0</span> hoặc <span class="kbd-key">Shift + R</span></td>
+            <td><strong>Đặt lại điểm</strong> của tất cả các đội về 0</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">Alt + 1..5</span></td>
+            <td>Nhảy nhanh đến Dáng 1 ➔ Dáng 5</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">←</span> / <span class="kbd-key">P</span> hoặc <span class="kbd-key">[</span></td>
+            <td>Chuyển Dáng chụp Trước</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">→</span> / <span class="kbd-key">N</span> hoặc <span class="kbd-key">]</span></td>
+            <td>Chuyển Dáng chụp Sau</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">R</span></td>
+            <td>Đặt lại vòng này (Giấu ảnh & Đếm lại 15s)</td>
+          </tr>
+          <tr>
+            <td><span class="kbd-key">T</span></td>
+            <td>Công bố <strong>Đội Vô Địch</strong> & Trao Cúp Vàng</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Prize & Voice Mapping Config Modal -->
+  <div id="prize-config-modal" class="gala-modal">
+    <div class="modal-content-card" style="max-width: 920px; text-align: left; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-light); padding-bottom: 12px;">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: var(--tlqm-navy); margin: 0;">
+            <i class="fas fa-sliders" style="color: var(--tlqm-gold); margin-right: 8px;"></i> CẤU HÌNH QUÀ TẶNG & GHÉP GIỌNG MC
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 4px 0 0;">
+            Kiểm tra và nghe thử giọng đọc cho từng slide quà tặng. Để thêm/sửa sản phẩm chỉ cần chỉnh sửa file <code>js/prizes-config.js</code>.
+          </p>
+        </div>
+        <button id="prize-config-modal-close" class="action-btn" style="padding: 6px 12px; font-size: 1.1rem; cursor: pointer;">✕</button>
+      </div>
+
+      <!-- Quick Action Bar in Modal -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(34, 56, 115, 0.04); padding: 10px 16px; border-radius: 8px;">
+        <span id="prize-config-total-info" style="font-weight: 700; color: var(--tlqm-navy); font-size: 0.95rem;">
+          Đang tải danh sách slide...
+        </span>
+        <div style="display: flex; gap: 8px;">
+          <button id="btn-stop-audition" class="action-btn" style="display: none; background: #dc2626; color: #fff;">
+            <i class="fas fa-stop"></i> Dừng Nghe Thử
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamic Voice Mapping Table -->
+      <div style="overflow-x: auto;">
+        <table class="shortcuts-table" id="prize-config-table">
+          <thead>
+            <tr style="background: rgba(34, 56, 115, 0.08);">
+              <th style="padding: 10px 14px; text-align: center; width: 70px;">Slide</th>
+              <th style="padding: 10px 14px; text-align: left;">Sản Phẩm / Tiêu Đề</th>
+              <th style="padding: 10px 14px; text-align: center; width: 110px;">Hạng Mục</th>
+              <th style="padding: 10px 14px; text-align: left; width: 200px;">File Giọng Đọc</th>
+              <th style="padding: 10px 14px; text-align: center; width: 180px;">Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody id="prize-config-table-body">
+            <!-- Rendered dynamically by ShowcaseManager -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Instructions & Documentation Callout -->
+      <div style="margin-top: 20px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 16px; font-size: 0.9rem; line-height: 1.6; color: #166534;">
+        <div style="font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-circle-info"></i> Hướng Dẫn Thêm Quà Tặng Mới & Ghép File Giọng Đọc:
+        </div>
+        <ol style="margin-left: 20px; padding: 0;">
+          <li>Mở file <code>js/prizes-config.js</code> trong thư mục mã nguồn.</li>
+          <li>Thêm 1 block sản phẩm mới với tên, hình ảnh (<code>assets/prizes/...</code>) và file ghi âm MC (<code>assets/voices/...</code>).</li>
+          <li>Lưu file và tải lại trang: Giao diện sân khấu, tab điều hướng, số lượng quà, hiệu ứng và giọng đọc sẽ <strong>tự động đồng bộ 100%</strong> mà không cần sửa code HTML!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage HUD Toast Notification Container -->
+  <div id="gala-hud-toast" class="gala-hud-toast"></div>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/ambient.js"></script>
+  <script src="js/stage-sync.js"></script>
+  <script src="js/lucky-draw.js"></script>
+  <script src="js/prizes-config.js"></script>
+  <script src="js/showcase.js"></script>
+  <script src="js/game-king.js"></script>
+  <script src="js/game-pose.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
