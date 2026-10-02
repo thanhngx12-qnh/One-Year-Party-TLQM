@@ -1675,40 +1675,41 @@ body {
 
 .question-round-tag {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--tlqm-navy);
   letter-spacing: 1px;
   text-transform: uppercase;
   background: #eef3f9;
-  padding: 4px 12px;
-  border-radius: 5px;
-  border: 1px solid rgba(34, 56, 115, 0.2);
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(34, 56, 115, 0.25);
 }
 
-/* Circular SVG Timer */
+/* Circular SVG Timer (Enlarged for Stage Prominence) */
 .circular-timer-wrapper {
   position: relative;
-  width: 76px;
-  height: 76px;
+  width: 104px;
+  height: 104px;
+  flex-shrink: 0;
 }
 
 .circular-timer-svg {
   transform: rotate(-90deg);
-  width: 76px;
-  height: 76px;
+  width: 104px;
+  height: 104px;
 }
 
 .timer-circle-bg {
   fill: none;
   stroke: #e2e8f0;
-  stroke-width: 7;
+  stroke-width: 8;
 }
 
 .timer-circle-progress {
   fill: none;
   stroke: var(--tlqm-amber);
-  stroke-width: 7;
+  stroke-width: 8;
   stroke-dasharray: 251.3;
   stroke-dashoffset: 0;
   stroke-linecap: round;
@@ -1717,7 +1718,7 @@ body {
 
 .timer-circle-progress.urgent {
   stroke: var(--accent-red);
-  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5));
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.65));
 }
 
 .timer-number-display {
@@ -1726,9 +1727,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: var(--text-heading);
+  letter-spacing: -1px;
 }
 
 .timer-number-display.urgent {
@@ -1738,49 +1740,50 @@ body {
 
 @keyframes pulseUrgent {
   from { transform: translate(-50%, -50%) scale(1); }
-  to { transform: translate(-50%, -50%) scale(1.12); }
+  to { transform: translate(-50%, -50%) scale(1.15); }
 }
 
 .stage-instruction {
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   color: var(--text-secondary);
-  font-weight: 600;
-  margin-bottom: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-/* Scrambled Letter Tiles (Light Theme: Crisp White & Navy Border) */
+/* Scrambled Letter Tiles (Enlarged & Bold for High Visibility) */
 .letter-tiles-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 22px 0;
-  min-height: 80px;
+  gap: 14px;
+  margin: 26px 0;
+  min-height: 96px;
 }
 
 .letter-tile {
-  width: 66px;
-  height: 72px;
+  min-width: 82px;
+  height: 90px;
+  padding: 0 12px;
   background: #ffffff;
-  border: 1.5px solid var(--tlqm-navy);
-  border-radius: 8px;
+  border: 2.5px solid var(--tlqm-navy);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 2.85rem;
   font-weight: 900;
   color: var(--tlqm-navy);
-  box-shadow: 0 4px 12px rgba(34, 56, 115, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 16px rgba(34, 56, 115, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
   user-select: none;
   animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .letter-tile:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 8px 18px rgba(34, 56, 115, 0.18);
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 10px 22px rgba(34, 56, 115, 0.22);
   border-color: var(--tlqm-blue);
   color: var(--tlqm-blue);
 }
@@ -1790,19 +1793,20 @@ body {
   100% { opacity: 1; transform: scale(1) rotate(0); }
 }
 
-/* Hint Box */
+/* Hint Box (Enlarged & Clear) */
 .hint-display-box {
   display: none;
   background: #fff8eb;
-  border: 1.5px dashed var(--tlqm-amber);
-  border-radius: 8px;
-  padding: 12px 18px;
-  margin: 16px auto;
-  max-width: 820px;
-  font-size: 1rem;
+  border: 2px dashed var(--tlqm-amber);
+  border-radius: 12px;
+  padding: 16px 26px;
+  margin: 18px auto;
+  max-width: 900px;
+  font-size: 1.35rem;
+  font-weight: 600;
   color: #7c2d12;
-  box-shadow: 0 3px 12px rgba(232, 148, 19, 0.12);
-  line-height: 1.5;
+  box-shadow: 0 4px 16px rgba(232, 148, 19, 0.15);
+  line-height: 1.6;
   animation: fadeIn 0.3s ease;
 }
 
@@ -1812,15 +1816,16 @@ body {
 
 .hint-display-box strong {
   color: #c2410c;
+  font-size: 1.4rem;
 }
 
-/* Answer Box (Revealed: Bright Brand Green) */
+/* Answer Box (Revealed: Bright Brand Green, Extra Big) */
 .answer-display-box {
   display: none;
-  margin: 22px auto 10px;
+  margin: 26px auto 14px;
   justify-content: center;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
@@ -1836,23 +1841,24 @@ body {
 
 .answer-word-group {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .answer-letter-tile {
-  width: 70px;
-  height: 76px;
+  min-width: 86px;
+  height: 94px;
+  padding: 0 12px;
   background: var(--green-gradient);
-  border: 2px solid #15803d;
-  border-radius: 8px;
+  border: 2.5px solid #15803d;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 2.1rem;
+  font-size: 2.9rem;
   font-weight: 900;
   color: #ffffff;
-  box-shadow: 0 6px 18px rgba(11, 148, 68, 0.28);
+  box-shadow: 0 8px 22px rgba(11, 148, 68, 0.32);
   animation: bounceLetter 0.5s ease;
 }
 
@@ -1918,27 +1924,30 @@ body {
 
 .pose-stage-title {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1.65rem;
+  font-weight: 900;
   color: var(--text-heading);
+  letter-spacing: 0.3px;
 }
 
 .pose-stage-desc {
-  font-size: 0.88rem;
+  font-size: 1.15rem;
+  font-weight: 600;
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 /* Camera Frame Display - Perfectly Sized for Square 1:1 Pose Photos */
 .pose-camera-frame {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   aspect-ratio: 1 / 1;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   background: #0b1120;
-  border: 2px solid var(--tlqm-gold);
+  border: 2.5px solid var(--tlqm-gold);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2), 0 0 16px rgba(212, 160, 23, 0.15);
   display: flex;
   align-items: center;
@@ -1977,72 +1986,79 @@ body {
 }
 
 .pose-cover-content {
-  max-width: 440px;
+  max-width: 480px;
   animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .pose-lock-icon {
-  font-size: 3.2rem;
+  font-size: 3.6rem;
   color: var(--tlqm-amber);
   margin-bottom: 12px;
-  filter: drop-shadow(0 3px 12px rgba(232, 148, 19, 0.35));
+  filter: drop-shadow(0 3px 14px rgba(232, 148, 19, 0.4));
   animation: bounceLetter 1.2s infinite alternate;
 }
 
 .pose-lock-title {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.85rem;
   font-weight: 900;
   color: #ffffff;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   letter-spacing: 0.5px;
 }
 
 .pose-lock-subtitle {
-  font-size: 0.95rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: #d6e1e8;
   line-height: 1.5;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 /* Camera Viewfinder Overlays */
 .viewfinder-corner {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  border: 2.5px solid var(--tlqm-gold);
+  width: 26px;
+  height: 26px;
+  border: 3px solid var(--tlqm-gold);
   pointer-events: none;
   z-index: 5;
   filter: drop-shadow(0 0 4px rgba(212, 160, 23, 0.6));
 }
-.corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-top-left-radius: 4px; }
-.corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-top-right-radius: 4px; }
-.corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-bottom-left-radius: 4px; }
-.corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-bottom-right-radius: 4px; }
+.corner-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; border-top-left-radius: 4px; }
+.corner-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; border-top-right-radius: 4px; }
+.corner-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; border-bottom-left-radius: 4px; }
+.corner-br { bottom: 12px; right: 12px; border-left: none; border-top: none; border-bottom-right-radius: 4px; }
 
-/* In-Frame 15s Timer */
+/* In-Frame 15s Timer (Enlarged & High-Contrast) */
 .pose-timer-overlay {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 14px;
+  right: 14px;
   background: rgba(255, 255, 255, 0.96);
-  border: 1.5px solid var(--tlqm-gold);
-  border-radius: 6px;
-  padding: 4px 12px;
+  border: 2.5px solid var(--tlqm-gold);
+  border-radius: 10px;
+  padding: 6px 18px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   z-index: 6;
+}
+
+.pose-timer-overlay i {
+  color: var(--gold-light);
+  font-size: 2.2rem;
 }
 
 .pose-timer-text {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: 2.85rem;
   font-weight: 900;
   color: var(--tlqm-navy);
-  min-width: 50px;
+  min-width: 80px;
   text-align: center;
+  line-height: 1;
 }
 
 .pose-timer-text.urgent {
@@ -2053,9 +2069,9 @@ body {
 /* Linear Timer Bar below frame */
 .pose-timer-bar-wrapper {
   width: 100%;
-  height: 8px;
+  height: 12px;
   background: #e2e8f0;
-  border-radius: 4px;
+  border-radius: 6px;
   margin: 14px 0;
   overflow: hidden;
   position: relative;
@@ -2335,8 +2351,8 @@ body.stage-pure-led #section-pose .team-score-box.hidden,
 }
 
 #section-pose.teams-3 .team-score-number {
-  font-size: 2.3rem;
-  margin: 2px 0 6px;
+  font-size: 2.6rem;
+  margin: 2px 0 4px;
 }
 
 #section-pose.teams-4 #scoreboard-teams-wrapper {
@@ -2357,8 +2373,8 @@ body.stage-pure-led #section-pose .team-score-box.hidden,
 }
 
 #section-pose.teams-4 .team-score-number {
-  font-size: 1.8rem;
-  margin: 1px 0 4px;
+  font-size: 2.2rem;
+  margin: 1px 0 2px;
 }
 
 #section-pose.teams-4 .score-btn {
@@ -3119,35 +3135,78 @@ body.stage-fullscreen #section-king .game-container {
 }
 
 body.stage-fullscreen .king-stage-card {
-  padding: 18px 32px !important;
+  padding: 20px 36px !important;
   margin-bottom: 0 !important;
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-around !important;
-  border-width: 2px !important;
-  border-radius: 12px !important;
+  border-width: 2.5px !important;
+  border-radius: 14px !important;
+}
+
+body.stage-fullscreen .circular-timer-wrapper,
+body.stage-fullscreen .circular-timer-svg {
+  width: 124px !important;
+  height: 124px !important;
+}
+
+body.stage-fullscreen .timer-number-display {
+  font-size: 3.4rem !important;
+  font-weight: 900 !important;
+}
+
+body.stage-fullscreen #king-question-number {
+  font-size: 1.35rem !important;
+  padding: 8px 24px !important;
+  font-weight: 900 !important;
+  border-radius: 8px !important;
+  letter-spacing: 1.5px !important;
+}
+
+body.stage-fullscreen .letter-tiles-container {
+  gap: 16px !important;
+  margin: 28px 0 !important;
 }
 
 body.stage-fullscreen .letter-tile {
-  width: 90px !important;
-  height: 98px !important;
-  font-size: 3rem !important;
-  border-width: 2.5px !important;
-  border-radius: 8px !important;
-  box-shadow: 0 6px 0 rgba(23, 39, 84, 0.15), 0 10px 20px rgba(23, 39, 84, 0.1) !important;
+  min-width: 105px !important;
+  height: 114px !important;
+  padding: 0 14px !important;
+  font-size: 3.6rem !important;
+  border-width: 3.5px !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 0 rgba(23, 39, 84, 0.18), 0 12px 24px rgba(23, 39, 84, 0.12) !important;
 }
 
 body.stage-fullscreen .answer-letter-tile {
-  width: 92px !important;
-  height: 100px !important;
-  font-size: 3rem !important;
-  border-radius: 8px !important;
+  min-width: 108px !important;
+  height: 116px !important;
+  padding: 0 14px !important;
+  font-size: 3.6rem !important;
+  border-width: 3.5px !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 0 #15803d, 0 12px 24px rgba(11, 148, 68, 0.3) !important;
 }
 
 body.stage-fullscreen .stage-instruction {
-  font-size: 1.25rem !important;
-  margin-bottom: 10px !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+body.stage-fullscreen .hint-display-box {
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  padding: 18px 30px !important;
+  border-width: 3px !important;
+  border-radius: 14px !important;
+  line-height: 1.6 !important;
+  max-width: 1100px !important;
+}
+
+body.stage-fullscreen .hint-display-box strong {
+  font-size: 1.65rem !important;
 }
 
 /* Section 4: Tạo Dáng Thần Tốc in Stage Fullscreen - Zero Scrolling 100vh */
@@ -3197,7 +3256,7 @@ body.stage-fullscreen #section-pose .game-title-group {
 }
 
 body.stage-fullscreen #section-pose .game-title-group h2 {
-  font-size: 1.05rem !important;
+  font-size: 1.15rem !important;
   margin: 0 !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
@@ -3272,20 +3331,23 @@ body.stage-fullscreen #section-pose .pose-card-top {
 }
 
 body.stage-fullscreen #section-pose .question-round-tag {
-  font-size: 0.78rem !important;
-  padding: 2px 8px !important;
-  border-radius: 4px !important;
+  font-size: 1.1rem !important;
+  padding: 3px 12px !important;
+  border-radius: 6px !important;
+  font-weight: 800 !important;
 }
 
 body.stage-fullscreen #section-pose .pose-stage-title {
-  font-size: 1.05rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 900 !important;
   margin-top: 0 !important;
   display: inline-block !important;
-  margin-left: 8px !important;
+  margin-left: 10px !important;
 }
 
 body.stage-fullscreen #section-pose .pose-stage-desc {
-  font-size: 0.82rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
   margin: 0 !important;
 }
 
@@ -3297,7 +3359,7 @@ body.stage-fullscreen #section-pose .pose-camera-frame {
   width: auto !important;
   max-width: 100% !important;
   margin: 0 auto !important;
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   border: 2.5px solid var(--tlqm-gold) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 18px rgba(212, 160, 23, 0.2) !important;
   overflow: hidden !important;
@@ -3314,28 +3376,70 @@ body.stage-fullscreen #section-pose .pose-camera-img {
   display: block !important;
 }
 
+body.stage-fullscreen #section-pose .pose-timer-overlay {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 2.5px solid var(--tlqm-gold) !important;
+  border-radius: 10px !important;
+  padding: 6px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3) !important;
+  z-index: 6 !important;
+}
+
+body.stage-fullscreen #section-pose .pose-timer-overlay i {
+  color: var(--gold-light) !important;
+  font-size: 2.4rem !important;
+}
+
+body.stage-fullscreen #section-pose .pose-timer-text {
+  font-family: var(--font-heading) !important;
+  font-size: 3.2rem !important;
+  font-weight: 900 !important;
+  color: var(--tlqm-navy) !important;
+  min-width: 85px !important;
+  text-align: center !important;
+  line-height: 1 !important;
+}
+
 body.stage-fullscreen #section-pose .pose-lock-title {
-  font-size: 1.2rem !important;
-  margin-bottom: 2px !important;
+  font-size: 1.85rem !important;
+  font-weight: 900 !important;
+  margin-bottom: 6px !important;
 }
 
 body.stage-fullscreen #section-pose .pose-lock-subtitle {
-  font-size: 0.85rem !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
 }
 
 body.stage-fullscreen #section-pose #pose-reveal-btn {
-  font-size: 0.76rem !important;
-  padding: 5px 14px !important;
-  margin-top: 4px !important;
-  border-radius: 4px !important;
+  font-size: 0.85rem !important;
+  padding: 6px 16px !important;
+  margin-top: 6px !important;
+  border-radius: 5px !important;
+}
+
+body.stage-fullscreen #section-pose .snapshot-banner h3 {
+  font-size: 2.2rem !important;
+  font-weight: 900 !important;
+}
+
+body.stage-fullscreen #section-pose .snapshot-banner p {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
 }
 
 body.stage-fullscreen #section-pose .pose-timer-bar-wrapper {
   width: 100% !important;
   max-width: 580px !important;
-  margin: 3px auto !important;
-  height: 5px !important;
-  border-radius: 3px !important;
+  margin: 4px auto !important;
+  height: 10px !important;
+  border-radius: 5px !important;
 }
 
 body.stage-fullscreen #section-pose .game-controls-bar {
@@ -3454,7 +3558,7 @@ body.stage-fullscreen #section-pose .score-btn-minus {
 }
 
 body.stage-fullscreen #section-pose.teams-3 .team-score-number {
-  font-size: 2.1rem !important;
+  font-size: 2.35rem !important;
 }
 
 body.stage-fullscreen #section-pose.teams-4 .scoreboard-card {
@@ -3476,7 +3580,7 @@ body.stage-fullscreen #section-pose.teams-4 .team-name-editable {
 }
 
 body.stage-fullscreen #section-pose.teams-4 .team-score-number {
-  font-size: 1.55rem !important;
+  font-size: 1.85rem !important;
   margin: 0 !important;
   line-height: 1 !important;
 }
@@ -3637,6 +3741,61 @@ body.stage-pure-led #section-pose .pose-layout-grid {
 
 body.stage-pure-led #section-pose .pose-camera-frame {
   max-height: calc(100vh - 80px) !important;
+}
+
+/* Stage Pure LED: Vua Tiếng Việt Full Stage Mode */
+body.stage-pure-led #section-king.active {
+  top: 0 !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  padding: 24px 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.stage-pure-led #section-king .game-container {
+  max-width: 1620px !important;
+  width: 100% !important;
+  height: calc(100vh - 48px) !important;
+}
+
+body.stage-pure-led .circular-timer-wrapper,
+body.stage-pure-led .circular-timer-svg {
+  width: 136px !important;
+  height: 136px !important;
+}
+
+body.stage-pure-led .timer-number-display {
+  font-size: 3.8rem !important;
+  font-weight: 900 !important;
+}
+
+body.stage-pure-led .letter-tile {
+  min-width: 112px !important;
+  height: 122px !important;
+  font-size: 3.8rem !important;
+  border-width: 3.5px !important;
+  border-radius: 14px !important;
+}
+
+body.stage-pure-led .answer-letter-tile {
+  min-width: 115px !important;
+  height: 125px !important;
+  font-size: 3.8rem !important;
+  border-width: 3.5px !important;
+  border-radius: 14px !important;
+}
+
+body.stage-pure-led .stage-instruction {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
+body.stage-pure-led .hint-display-box {
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  padding: 20px 32px !important;
 }
 
 
