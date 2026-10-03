@@ -45,17 +45,17 @@ window.GALA_PRIZES_CONFIG = {
     },
 
     // -------------------------------------------------------------
-    // SLIDE 2: CHÀO ĐÓN NĂM MỚI 2026
+    // SLIDE 2: BỐC THĂM MAY MẮN - KỶ NIỆM THƯƠNG HIỆU TLQM
     // -------------------------------------------------------------
     {
-      id: 'slide-welcome-2026',
+      id: 'slide-welcome-gala',
       type: 'transition',
-      tabTitle: '2. Chào 2026',
+      tabTitle: '2. Bốc Thăm',
       tabIcon: 'fas fa-champagne-glasses',
       voice: 'assets/voices/2.mp3',
       content: {
-        badge: 'GALA XUÂN BỨT PHÁ',
-        welcomeText: 'CHÀO ĐÓN NĂM MỚI 2026',
+        badge: 'KỶ NIỆM THƯƠNG HIỆU TLQM',
+        welcomeText: 'CHÀO MỪNG ĐÊM TIỆC KỶ NIỆM',
         mainTitle: 'BỐC THĂM MAY MẮN',
         quote: '“MAY MẮN ĐANG CHỜ ĐÓN BẠN”'
       }
@@ -193,7 +193,7 @@ window.GALA_PRIZES_CONFIG = {
       content: {
         logo: 'assets/images/logo-tlqm.png',
         company: 'CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH',
-        title: 'BỐC THĂM MAY MẮN 2026',
+        title: 'BỐC THĂM MAY MẮN • GALA TLQM',
         invitationMain: 'KÍNH MỜI BAN LÃNH ĐẠO',
         invitationSub: 'LÊN SÂN KHẤU TIẾN HÀNH BỐC THĂM',
         drumButtonText: 'BẬT / DỪNG TRỐNG DỒN BỐC THĂM'
