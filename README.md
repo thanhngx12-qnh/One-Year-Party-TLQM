@@ -1,6 +1,6 @@
-# 🎉 Tà Lùng Quang Minh (TLQM) - One-Year Anniversary Gala & Gameshow
+# 🎉 Tà Lùng Quang Minh (TLQM) - Gala Kỷ Niệm Ra Mắt Thương Hiệu & Gameshow
 
-Ứng dụng Web tương tác cao cấp phục vụ Lễ Kỷ Niệm 1 Năm Thành Lập Công Ty TNHH Xuất Nhập Khẩu Quang Minh (TLQM). Tích hợp đầy đủ các tính năng trình diễn sân khấu, minigame tương tác, bảng điểm thích ứng và đồng bộ màn hình LED thời gian thực.
+Ứng dụng Web tương tác cao cấp phục vụ Lễ Kỷ Niệm Ra Mắt Thương Hiệu & Chúc Mừng Ngày Thành Lập Công Ty Cổ Phần Tà Lùng Quang Minh (TLQM). Tích hợp đầy đủ các tính năng trình diễn sân khấu, minigame tương tác, bảng điểm thích ứng và đồng bộ màn hình LED thời gian thực.
 
 ---
 

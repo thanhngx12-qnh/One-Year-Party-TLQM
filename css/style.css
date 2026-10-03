@@ -1,5 +1,5 @@
 /* ===================================================================
-   TÀ LÙNG QUANG MINH (TLQM) - ONE-YEAR ANNIVERSARY GALA & GAMESHOW
+   TÀ LÙNG QUANG MINH (TLQM) - GALA KỶ NIỆM RA MẮT THƯƠNG HIỆU & GAMESHOW
    LIGHT THEME (GIAO DIỆN SÁNG CHUẨN THƯƠNG HIỆU THEO Docs/color-design.md)
    =================================================================== */
 
@@ -717,6 +717,247 @@ body {
 .home-hub-card:hover .hub-card-action {
   transform: translateX(4px);
   color: var(--tlqm-green);
+}
+
+/* Company Milestone & Event Countdown Showcase (Light & Elegant Theme) */
+.company-milestone-card {
+  margin-top: 24px;
+  background: #ffffff;
+  border: 1.5px solid rgba(34, 56, 115, 0.15);
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(23, 39, 84, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.company-milestone-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--tlqm-navy), var(--tlqm-amber), var(--tlqm-green));
+}
+
+.milestone-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.milestone-countdown-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff8eb;
+  color: #b45309;
+  border: 1.5px solid var(--tlqm-amber);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+}
+
+.milestone-countdown-pill i {
+  color: var(--tlqm-amber);
+  font-size: 1.05rem;
+}
+
+.milestone-hashtag-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.milestone-hashtag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tlqm-blue);
+  background: #eef3f9;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.milestone-content-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.milestone-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--tlqm-navy);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.milestone-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.milestone-quote-box {
+  display: flex;
+  gap: 12px;
+  background: #f8fafc;
+  border-left: 4px solid var(--tlqm-navy);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 16px;
+  font-style: italic;
+  color: var(--tlqm-navy-dark);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.milestone-quote-box i {
+  color: var(--tlqm-amber);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.milestone-quote-box p {
+  margin: 0;
+}
+
+.milestone-checklist-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.milestone-check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.milestone-check-item .check-icon {
+  font-size: 1.1rem;
+}
+
+.milestone-callout-banner {
+  background: linear-gradient(135deg, var(--tlqm-navy), var(--tlqm-navy-dark));
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(23, 39, 84, 0.2);
+}
+
+/* Company Profile Sidebar inside Card */
+.company-profile-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.company-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-light);
+}
+
+.company-profile-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.company-profile-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--tlqm-navy);
+  margin: 0 0 2px 0;
+}
+
+.company-slogan {
+  font-size: 0.8rem;
+  color: var(--tlqm-green);
+  font-weight: 700;
+  font-style: italic;
+  margin: 0;
+}
+
+.company-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.company-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.company-meta-item i {
+  color: var(--tlqm-navy);
+  font-size: 0.95rem;
+  margin-top: 3px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.company-meta-item .meta-label {
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-right: 4px;
+}
+
+.company-meta-item .meta-val {
+  color: var(--text-secondary);
+}
+
+.company-meta-item a.meta-val {
+  color: var(--tlqm-blue);
+  text-decoration: none;
+}
+
+.company-meta-item a.meta-val:hover {
+  text-decoration: underline;
+}
+
+.company-meta-item .hotline-highlight {
+  font-weight: 800;
+  color: var(--tlqm-amber) !important;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 992px) {
+  .milestone-content-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* -------------------------------------------------------------------

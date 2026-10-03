@@ -924,7 +924,7 @@ class App {
       } else {
         footer.innerHTML = `
           <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
-            <i class="fas fa-shield-alt"></i> Bản quyền nội dung Gala Dinner Kỷ Niệm 1 Năm Tà Lùng Quang Minh.
+            <i class="fas fa-shield-alt"></i> Bản quyền nội dung Gala Kỷ Niệm Ra Mắt Thương Hiệu - Công ty Cổ phần Tà Lùng Quang Minh.
           </div>
         `;
       }

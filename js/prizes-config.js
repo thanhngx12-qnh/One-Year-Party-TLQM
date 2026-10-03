@@ -26,7 +26,7 @@ window.GALA_PRIZES_CONFIG = {
   // Cài đặt chung âm thanh & thời gian
   settings: {
     sectionTitle: 'CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN',
-    sectionSubtitle: '17 Phần Quà Giá Trị Chào Đón 2026 • Tiệc Tất Niên & Kỷ Niệm 1 Năm TLQM',
+    sectionSubtitle: '17 Phần Quà Giá Trị Chào Đón 2026 • Gala Kỷ Niệm Ra Mắt Thương Hiệu TLQM',
     bgMusicSrc: 'assets/voices/sound-background.mp3',
     luckyDrumSrc: 'assets/voices/luckydraw.mp3',
     defaultVolume: 0.55,
@@ -47,10 +47,10 @@ window.GALA_PRIZES_CONFIG = {
       voice: 'assets/voices/1.mp3',
       content: {
         logo: 'assets/images/logo-tlqm.png',
-        badge: 'TIỆC TẤT NIÊN 2025 & KỶ NIỆM 1 NĂM',
+        badge: 'KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM',
         companyName: 'CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH',
         mainTitle: 'TÀ LÙNG QUANG MINH LOGISTICS',
-        caption: 'Đồng Hành Phát Triển • Kết Nối Vững Bền • May Mắn Ngập Tràn'
+        caption: 'Kết Nối Biên Giới - Vươn Tới Toàn Cầu • Đồng Hành Phát Triển'
       }
     },
 
