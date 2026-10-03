@@ -397,8 +397,13 @@ class App {
         const winnerModal = document.getElementById('winner-modal');
         const shortcutsModal = document.getElementById('shortcuts-modal');
         if (winnerModal && winnerModal.classList.contains('show')) {
-          winnerModal.classList.remove('show');
-          this.showToast('Đã đóng bảng chiến thắng', 'ESC');
+          const game = window.poseGame || window.gamePose;
+          if (game && typeof game.closeAwardModal === 'function') {
+            game.closeAwardModal(true);
+          } else {
+            winnerModal.classList.remove('show');
+          }
+          this.showToast('Đã đóng bảng trao giải', 'ESC');
           return;
         }
         if (shortcutsModal && shortcutsModal.classList.contains('show')) {

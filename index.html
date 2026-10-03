@@ -102,7 +102,7 @@
         <p class="hero-tagline">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH (TLQM)</p>
         <p class="hero-desc">
           Chào mừng toàn thể Ban lãnh đạo và Cán bộ nhân viên đến với sự kiện Kỷ niệm ra mắt & Chúc mừng ngày thành lập thương hiệu TLQM! 
-          Khám phá 17 phần quà bốc thăm may mắn giá trị và hòa mình vào các minigame bùng nổ, gay cấn tối nay.
+          Khám phá 26 phần quà bốc thăm may mắn giá trị và hòa mình vào các minigame bùng nổ, gay cấn tối nay.
         </p>
         <div class="hero-btn-group">
           <button class="btn-gala btn-gala-gold" data-target-section="showcase">
@@ -129,7 +129,7 @@
           </div>
           <h2 class="hub-card-title">Cơ Cấu Quà Tặng & Bốc Thăm</h2>
           <p class="hub-card-desc">
-            Khám phá 17 phần quà giá trị: Giải Đặc Biệt chăn ga Everon Monstera, Nồi chiên không dầu Toshiba, Bộ 3 nồi Elmich, Bếp từ Pramie cùng các phần quà may mắn!
+            Khám phá 26 phần quà giá trị: Quạt sưởi gốm Kangaroo cao cấp, Bàn là hơi nước Tefal, Ấm đun siêu tốc Bear, Pin sạc dự phòng Delites cùng quà tặng Gameshow!
           </p>
         </div>
         <div class="hub-card-action">
@@ -280,7 +280,7 @@
       <div class="showcase-header-top">
         <div class="showcase-title-group">
           <h2 class="section-headline"><i class="fas fa-gift" style="color: var(--tlqm-gold); margin-right: 8px;"></i> CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN</h2>
-          <p class="section-subheadline">17 Phần Quà Giá Trị Chào Đón 2026 • Gala Kỷ Niệm Ra Mắt Thương Hiệu TLQM</p>
+          <p class="section-subheadline">26 Phần Quà Giá Trị Chào Đón 2026 • Gala Kỷ Niệm Ra Mắt Thương Hiệu TLQM</p>
         </div>
 
         <!-- Controls & Actions -->
@@ -828,17 +828,91 @@
   <!-- =================================================================
        MODALS: WINNER CELEBRATION & SHORTCUTS HELP
        ================================================================= -->
-  <!-- Winner Celebration Modal -->
-  <div id="winner-modal" class="gala-modal">
-    <div class="modal-content-card">
-      <div class="modal-trophy-icon">🏆</div>
-      <h2 id="winner-modal-title" class="modal-headline">ĐỘI VÔ ĐỊCH!</h2>
-      <p id="winner-modal-sub" class="modal-subheadline">
-        Chúc mừng đội chiến thắng đã xuất sắc chinh phục thử thách Tạo Dáng Thần Tốc!
+  <!-- Winner Celebration & Award Ceremony Modal -->
+  <div id="winner-modal" class="gala-modal award-ceremony-modal">
+    <div class="modal-content-card award-modal-card">
+      <button id="winner-modal-close-corner" class="action-btn modal-close-corner" title="Đóng (ESC)">✕</button>
+
+      <!-- Header -->
+      <div class="award-modal-header">
+        <div class="award-trophy-badge">🏆</div>
+        <div>
+          <span class="award-subtitle-tag">LỄ TRAO GIẢI GAMESHOW • GALA TLQM</span>
+          <h2 id="winner-modal-title" class="award-modal-headline">VINH DANH CÁC ĐỘI CHIẾN THẮNG</h2>
+        </div>
+      </div>
+      <p id="winner-modal-sub" class="award-modal-subheadline">
+        Chúc mừng các đội xuất sắc đã cống hiến những phần thi bùng nổ trong Gala TLQM!
       </p>
-      <button id="winner-modal-close" class="btn-gala btn-gala-gold">
-        <i class="fas fa-check"></i> Tuyệt Vời! Đóng <span class="kbd-hint">ESC</span>
-      </button>
+
+      <!-- Rankings & Awards Grid -->
+      <div id="award-rankings-container" class="award-rankings-container">
+        <!-- Dynamically rendered ranking cards with gifts (Thùng Secret 1, Thùng Secret 2, Ô TLQM...) -->
+      </div>
+
+      <!-- Custom Awards Added by Lead Game -->
+      <div class="custom-awards-section">
+        <div class="custom-awards-header">
+          <span class="custom-awards-title">
+            <i class="fas fa-medal" style="color: var(--tlqm-amber); margin-right: 6px;"></i> Giải Thưởng Bổ Sung (Lead Game Thêm):
+          </span>
+          <button id="btn-toggle-add-award" class="action-btn" title="Lead game bấm để thêm giải thưởng mới tại chỗ">
+            <i class="fas fa-plus"></i> Thêm Giải Thưởng
+          </button>
+        </div>
+
+        <div id="custom-awards-list" class="custom-awards-list">
+          <!-- Dynamically rendered custom awards -->
+        </div>
+
+        <!-- Add Award Form (Collapsible) -->
+        <div id="add-award-form-wrapper" class="add-award-form-wrapper" style="display: none;">
+          <div class="add-award-form">
+            <div class="form-grid-3cols">
+              <div class="form-group-field">
+                <label for="input-award-title">Tên giải thưởng:</label>
+                <input type="text" id="input-award-title" placeholder="VD: Giải Tạo Dáng Sáng Tạo Nhất..." list="default-award-presets" />
+                <datalist id="default-award-presets">
+                  <option value="Giải Tạo Dáng Sáng Tạo Nhất" />
+                  <option value="Giải Đội Trưởng Ấn Tượng" />
+                  <option value="Giải Phong Cách Ấn Tượng" />
+                  <option value="Giải Cổ Động Viên Nhiệt Tình" />
+                  <option value="Giải Triển Vọng Bứt Phá" />
+                  <option value="Giải Đội Đồng Lòng Nhất" />
+                </datalist>
+              </div>
+              <div class="form-group-field">
+                <label for="select-award-recipient">Đội / Cá nhân nhận giải:</label>
+                <select id="select-award-recipient">
+                  <!-- Dynamically populated team list -->
+                </select>
+              </div>
+              <div class="form-group-field">
+                <label for="input-award-prize">Phần quà trao tặng:</label>
+                <input type="text" id="input-award-prize" placeholder="VD: 1 Thùng quà bánh kẹo, Ô TLQM, Lì xì..." />
+              </div>
+            </div>
+            <div class="form-actions-row">
+              <button type="button" id="btn-submit-add-award" class="btn-gala btn-gala-green">
+                <i class="fas fa-check"></i> Xác Nhận Thêm Giải
+              </button>
+              <button type="button" id="btn-cancel-add-award" class="action-btn">
+                Hủy Bỏ
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="award-modal-actions">
+        <button id="btn-re-cheer" class="btn-gala btn-gala-gold" title="Bắn pháo hoa và phát âm thanh reo hò vinh danh">
+          <i class="fas fa-champagne-glasses"></i> Bắn Pháo Hoa & Vinh Danh Sân Khấu
+        </button>
+        <button id="winner-modal-close" class="btn-gala btn-gala-outline">
+          <i class="fas fa-check"></i> Hoàn Tất / Đóng <span class="kbd-hint">ESC</span>
+        </button>
+      </div>
     </div>
   </div>
 

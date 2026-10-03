@@ -97,6 +97,30 @@ class StageSync {
         case 'SOUND_CHEER':
           if (window.soundEngine) window.soundEngine.playCheer();
           break;
+        case 'AWARD_CEREMONY':
+          {
+            const p = window.gamePose || window.poseGame;
+            if (p) {
+              if (msg.customAwards) p.customAwards = msg.customAwards;
+              p.celebrateWinner(false);
+            }
+          }
+          break;
+        case 'CUSTOM_AWARDS_UPDATE':
+          {
+            const p = window.gamePose || window.poseGame;
+            if (p) {
+              p.customAwards = msg.customAwards || [];
+              p.renderCustomAwards();
+            }
+          }
+          break;
+        case 'AWARD_MODAL_CLOSE':
+          {
+            const p = window.gamePose || window.poseGame;
+            if (p) p.closeAwardModal(false);
+          }
+          break;
         case 'DATA_MODE_CHANGE':
           if (window.app && typeof window.app.applyDataMode === 'function') {
             window.app.applyDataMode(msg.isOfficial, false);

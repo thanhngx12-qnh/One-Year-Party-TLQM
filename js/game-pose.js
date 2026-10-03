@@ -71,6 +71,7 @@ class PoseGame {
     this.teamCount = 2;
     this.scores = [0, 0, 0, 0];
     this.teamNames = ['ĐỘI 1 (ÁO ĐỎ)', 'ĐỘI 2 (ÁO XANH)', 'ĐỘI 3 (ÁO VÀNG)', 'ĐỘI 4 (ÁO TÍM)'];
+    this.customAwards = this.loadCustomAwards();
 
     this.init();
   }
@@ -181,12 +182,67 @@ class PoseGame {
       btnResetScores.addEventListener('click', () => this.resetScores());
     }
 
-    // Modal close button
+    // Award ceremony & custom prizes setup
+    this.setupAwardEvents();
+  }
+
+  setupAwardEvents() {
+    // Modal close buttons (bottom button and top-right corner)
     const modalClose = document.getElementById('winner-modal-close');
+    const cornerClose = document.getElementById('winner-modal-close-corner');
     const modal = document.getElementById('winner-modal');
-    if (modalClose && modal) {
-      modalClose.addEventListener('click', () => {
-        modal.classList.remove('show');
+
+    if (modalClose) {
+      modalClose.addEventListener('click', () => this.closeAwardModal(true));
+    }
+    if (cornerClose) {
+      cornerClose.addEventListener('click', () => this.closeAwardModal(true));
+    }
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) this.closeAwardModal(true);
+      });
+    }
+
+    // Toggle Add Award Form
+    const btnToggleAdd = document.getElementById('btn-toggle-add-award');
+    const formWrapper = document.getElementById('add-award-form-wrapper');
+    const btnCancelAdd = document.getElementById('btn-cancel-add-award');
+
+    if (btnToggleAdd && formWrapper) {
+      btnToggleAdd.addEventListener('click', () => {
+        const isHidden = formWrapper.style.display === 'none' || !formWrapper.style.display;
+        formWrapper.style.display = isHidden ? 'block' : 'none';
+        if (isHidden) {
+          this.populateRecipientOptions();
+          const inputTitle = document.getElementById('input-award-title');
+          if (inputTitle) inputTitle.focus();
+        }
+      });
+    }
+
+    if (btnCancelAdd && formWrapper) {
+      btnCancelAdd.addEventListener('click', () => {
+        formWrapper.style.display = 'none';
+      });
+    }
+
+    // Submit New Award
+    const btnSubmitAdd = document.getElementById('btn-submit-add-award');
+    if (btnSubmitAdd) {
+      btnSubmitAdd.addEventListener('click', () => this.submitNewAward());
+    }
+
+    // Re-cheer & Confetti burst
+    const btnReCheer = document.getElementById('btn-re-cheer');
+    if (btnReCheer) {
+      btnReCheer.addEventListener('click', () => {
+        if (window.confettiEngine) window.confettiEngine.celebrate();
+        if (window.soundEngine) window.soundEngine.playCheer();
+        if (window.stageSync) {
+          window.stageSync.broadcast('CONFETTI');
+          window.stageSync.broadcast('SOUND_CHEER');
+        }
       });
     }
   }
@@ -563,18 +619,195 @@ class PoseGame {
     this.updateScores();
   }
 
-  celebrateWinner() {
-    let maxScore = -1;
-    let winners = [];
-
-    for (let i = 0; i < this.teamCount; i++) {
-      if (this.scores[i] > maxScore) {
-        maxScore = this.scores[i];
-        winners = [i];
-      } else if (this.scores[i] === maxScore && maxScore > 0) {
-        winners.push(i);
-      }
+  // =========================================================================
+  // AWARD CEREMONY & DYNAMIC CUSTOM PRIZES MANAGEMENT (LEAD GAME)
+  // =========================================================================
+  loadCustomAwards() {
+    try {
+      const saved = localStorage.getItem('tlqm_custom_awards');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.error('Error loading custom awards:', e);
     }
+    // Default preset awards
+    return [
+      {
+        id: 'award-default-1',
+        title: 'Giải Đội Trưởng Ấn Tượng',
+        recipient: 'Đội Trưởng Xuất Sắc Nhất',
+        prize: 'Ô Cầm Tay Cao Cấp TLQM'
+      },
+      {
+        id: 'award-default-2',
+        title: 'Giải Tạo Dáng Bùng Nổ & Sáng Tạo',
+        recipient: 'Đội Trình Diễn Cười Nghiêng Ngả Nhất',
+        prize: 'Phần Quà Lưu Niệm Độc Đáo TLQM'
+      }
+    ];
+  }
+
+  saveCustomAwards() {
+    try {
+      localStorage.setItem('tlqm_custom_awards', JSON.stringify(this.customAwards));
+    } catch (e) {
+      console.error('Error saving custom awards:', e);
+    }
+  }
+
+  submitNewAward() {
+    const inputTitle = document.getElementById('input-award-title');
+    const selectRecipient = document.getElementById('select-award-recipient');
+    const inputPrize = document.getElementById('input-award-prize');
+    const formWrapper = document.getElementById('add-award-form-wrapper');
+
+    const title = inputTitle ? inputTitle.value.trim() : '';
+    const recipient = selectRecipient ? selectRecipient.value.trim() : '';
+    const prize = inputPrize ? inputPrize.value.trim() : '';
+
+    if (!title) {
+      if (inputTitle) {
+        inputTitle.focus();
+        inputTitle.classList.add('error');
+        setTimeout(() => inputTitle.classList.remove('error'), 800);
+      }
+      if (window.app && window.app.showToast) {
+        window.app.showToast('⚠️ Vui lòng nhập tên giải thưởng!');
+      }
+      return;
+    }
+
+    const newAward = {
+      id: 'award-' + Date.now(),
+      title: title,
+      recipient: recipient || 'Đội chơi xuất sắc',
+      prize: prize || 'Phần Quà Kỷ Niệm TLQM'
+    };
+
+    this.customAwards.push(newAward);
+    this.saveCustomAwards();
+    this.renderCustomAwards();
+
+    if (inputTitle) inputTitle.value = '';
+    if (inputPrize) inputPrize.value = '';
+    if (formWrapper) formWrapper.style.display = 'none';
+
+    if (window.soundEngine) window.soundEngine.playCorrect();
+    if (window.app && window.app.showToast) {
+      window.app.showToast(`🎖️ Lead Game đã thêm: ${newAward.title}!`);
+    }
+
+    if (window.stageSync) {
+      window.stageSync.broadcast('CUSTOM_AWARDS_UPDATE', { customAwards: this.customAwards });
+    }
+  }
+
+  deleteCustomAward(id) {
+    this.customAwards = this.customAwards.filter(a => a.id !== id);
+    this.saveCustomAwards();
+    this.renderCustomAwards();
+
+    if (window.soundEngine) window.soundEngine.playClick();
+    if (window.app && window.app.showToast) {
+      window.app.showToast('🗑️ Đã xóa giải thưởng');
+    }
+
+    if (window.stageSync) {
+      window.stageSync.broadcast('CUSTOM_AWARDS_UPDATE', { customAwards: this.customAwards });
+    }
+  }
+
+  populateRecipientOptions() {
+    const select = document.getElementById('select-award-recipient');
+    if (!select) return;
+    const currentVal = select.value;
+    select.innerHTML = '';
+
+    // Active teams first
+    for (let i = 0; i < this.teamCount; i++) {
+      const opt = document.createElement('option');
+      opt.value = this.teamNames[i];
+      opt.textContent = `${this.teamNames[i]} (${this.scores[i]} điểm)`;
+      select.appendChild(opt);
+    }
+
+    // Special categories
+    const specialCategories = [
+      'Cá nhân xuất sắc nhất / Đội trưởng',
+      'Cổ động viên / Khán giả nhiệt tình nhất',
+      'Toàn thể các Đội chơi',
+      'Thành viên trẻ tuổi / Năng động nhất',
+      'Ban Trọng tài / Ban Tổ chức'
+    ];
+    specialCategories.forEach(txt => {
+      const opt = document.createElement('option');
+      opt.value = txt;
+      opt.textContent = `★ ${txt}`;
+      select.appendChild(opt);
+    });
+
+    if (currentVal) {
+      select.value = currentVal;
+    }
+  }
+
+  renderCustomAwards() {
+    const list = document.getElementById('custom-awards-list');
+    if (!list) return;
+
+    if (!this.customAwards || this.customAwards.length === 0) {
+      list.innerHTML = `
+        <div style="color: var(--text-secondary); font-size: 0.85rem; font-style: italic; padding: 6px 4px;">
+          Chưa có giải thưởng bổ sung nào. Lead Game có thể bấm <strong>"+ Thêm Giải Thưởng"</strong> để tạo thêm các giải phong cách, MVP, hoặc cổ động viên...
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = this.customAwards.map(a => `
+      <div class="custom-award-item" data-id="${a.id}">
+        <div class="custom-award-info">
+          <span class="custom-award-title-tag">🎖️ ${this.escapeHtml(a.title)}</span>
+          <span class="custom-award-recipient"><i class="fas fa-user-check"></i> ${this.escapeHtml(a.recipient)}</span>
+          <span class="custom-award-prize"><i class="fas fa-gift"></i> ${this.escapeHtml(a.prize)}</span>
+        </div>
+        <button type="button" class="btn-delete-award" title="Xóa giải này" onclick="window.poseGame.deleteCustomAward('${a.id}')">
+          <i class="fas fa-trash-can"></i>
+        </button>
+      </div>
+    `).join('');
+  }
+
+  escapeHtml(text) {
+    if (!text) return '';
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return String(text).replace(/[&<>"']/g, m => map[m]);
+  }
+
+  closeAwardModal(broadcast = true) {
+    const modal = document.getElementById('winner-modal');
+    if (modal) modal.classList.remove('show');
+
+    if (broadcast && window.stageSync) {
+      window.stageSync.broadcast('AWARD_MODAL_CLOSE');
+    }
+  }
+
+  celebrateWinner(broadcast = true) {
+    // 1. Collect active teams
+    const activeTeams = [];
+    for (let i = 0; i < this.teamCount; i++) {
+      activeTeams.push({
+        index: i,
+        name: this.teamNames[i],
+        score: this.scores[i]
+      });
+    }
+
+    // 2. Sort by score descending
+    activeTeams.sort((a, b) => b.score - a.score);
+
+    const maxScore = activeTeams[0].score;
+    const winners = activeTeams.filter(t => t.score === maxScore && maxScore > 0);
 
     let winnerText = '';
     let winnerSubtitle = '';
@@ -583,32 +816,102 @@ class PoseGame {
       winnerText = '🤝 CÁC ĐỘI ĐỒNG HẠNG!';
       winnerSubtitle = 'Chưa đội nào ghi điểm, cùng bứt phá ở các vòng thi tiếp theo!';
     } else if (winners.length === 1) {
-      const wIdx = winners[0];
-      winnerText = `🏆 ${this.teamNames[wIdx]} XUẤT SẮC CHIẾN THẮNG!`;
-      winnerSubtitle = `Dẫn đầu với số điểm ấn tượng: ${this.scores[wIdx]} điểm! Nhận ngay phần quà vô địch từ Gala TLQM! 🎁`;
+      const w = winners[0];
+      winnerText = `🏆 ${w.name} XUẤT SẮC CHIẾN THẮNG!`;
+      winnerSubtitle = `Dẫn đầu với số điểm ấn tượng: ${w.score} điểm! Nhận ngay phần quà Quán quân danh giá từ Gala TLQM! 🎁`;
     } else {
-      const winNames = winners.map(w => this.teamNames[w]).join(' & ');
+      const winNames = winners.map(w => w.name).join(' & ');
       winnerText = `🤝 ĐỒNG QUÁN QUÂN: ${winNames}!`;
-      winnerSubtitle = `Các đội xuất sắc bằng điểm nhau (${maxScore} điểm)! Chia đều phần thưởng danh giá! 🎉`;
+      winnerSubtitle = `Các đội xuất sắc bằng điểm nhau (${maxScore} điểm)! Cùng nhận phần thưởng danh giá của Ban Tổ Chức! 🎉`;
     }
 
     const modalTitle = document.getElementById('winner-modal-title');
     const modalSub = document.getElementById('winner-modal-sub');
-    const modal = document.getElementById('winner-modal');
-
     if (modalTitle) modalTitle.textContent = winnerText;
     if (modalSub) modalSub.textContent = winnerSubtitle;
+
+    // 3. Render Rankings Cards with official Excel gifts
+    const rankingsContainer = document.getElementById('award-rankings-container');
+    if (rankingsContainer) {
+      rankingsContainer.innerHTML = '';
+
+      activeTeams.forEach((team, idx) => {
+        let rankClass = `rank-${idx + 1}`;
+        let rankTitle = '';
+        let badgeEmoji = '';
+        let prizeName = '';
+        let prizeSub = '';
+        let prizeImg = '';
+
+        if (team.score === maxScore && maxScore > 0) {
+          rankClass = 'rank-1';
+          badgeEmoji = '🥇';
+          rankTitle = winners.length > 1 ? 'ĐỒNG QUÁN QUÂN' : 'QUÁN QUÂN';
+          prizeName = '1 Thùng quà Secret 200k (Bánh kẹo/Bia ngoại)';
+          prizeSub = 'Phần quà Vô Địch chính thức Gameshow Gala TLQM';
+          prizeImg = 'assets/prizes/thung_qua_secret.svg';
+        } else if (idx === 1 || (winners.length > 1 && team.score < maxScore && idx === winners.length)) {
+          rankClass = 'rank-2';
+          badgeEmoji = '🥈';
+          rankTitle = 'Á QUÂN';
+          prizeName = '1 Thùng quà Secret 100k (Bánh kẹo)';
+          prizeSub = 'Phần quà Á Quân chính thức Gameshow Gala TLQM';
+          prizeImg = 'assets/prizes/thung_qua_secret.svg';
+        } else {
+          rankClass = 'rank-3';
+          badgeEmoji = idx === 2 ? '🥉' : '🎖️';
+          rankTitle = 'ĐỒNG ĐỘI / KHUYẾN KHÍCH';
+          prizeName = 'Ô Cầm Tay Cao Cấp TLQM';
+          prizeSub = 'Trao tặng các thành viên kỷ niệm ngày thành lập';
+          prizeImg = 'assets/prizes/o_cam_tay_tlqm.svg';
+        }
+
+        const card = document.createElement('div');
+        card.className = `award-rank-card ${rankClass}`;
+        card.innerHTML = `
+          <div class="award-rank-top">
+            <div class="award-rank-badge">${badgeEmoji}</div>
+            <div>
+              <div class="award-team-name">${this.escapeHtml(team.name)}</div>
+              <div class="award-team-score">${team.score} Điểm • ${rankTitle}</div>
+            </div>
+          </div>
+          <div class="award-gift-box">
+            <img src="${prizeImg}" alt="${prizeName}" class="award-gift-img" onerror="this.src='assets/prizes/thung_qua_secret.svg'" />
+            <div>
+              <div class="award-gift-name">${prizeName}</div>
+              <div class="award-gift-sub">${prizeSub}</div>
+            </div>
+          </div>
+        `;
+        rankingsContainer.appendChild(card);
+      });
+    }
+
+    // 4. Render Custom Awards and populate form dropdown
+    this.populateRecipientOptions();
+    this.renderCustomAwards();
+
+    // Hide add form by default
+    const formWrapper = document.getElementById('add-award-form-wrapper');
+    if (formWrapper) formWrapper.style.display = 'none';
+
+    // 5. Open modal
+    const modal = document.getElementById('winner-modal');
     if (modal) modal.classList.add('show');
 
-    if (window.soundEngine) {
-      window.soundEngine.playCheer();
-    }
+    // 6. Sound & Effects
+    if (window.soundEngine) window.soundEngine.playCheer();
     if (window.confettiEngine) {
       window.confettiEngine.celebrate();
       setTimeout(() => window.confettiEngine.celebrate(), 700);
     }
 
-    if (window.stageSync) {
+    // 7. Broadcast to stage LED screen
+    if (broadcast && window.stageSync) {
+      window.stageSync.broadcast('AWARD_CEREMONY', {
+        customAwards: this.customAwards
+      });
       window.stageSync.broadcast('CONFETTI');
       window.stageSync.broadcast('SOUND_CHEER');
     }
