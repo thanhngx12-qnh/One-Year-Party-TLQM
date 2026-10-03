@@ -1652,13 +1652,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #15803d 0%, #0b9444 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: #ffffff;
-  padding: 6px 18px;
-  border-radius: 6px;
-  border: 1.5px solid #86efac;
-  box-shadow: 0 6px 20px rgba(11, 148, 68, 0.35);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid var(--tlqm-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 160, 23, 0.3);
   animation: winnerCardPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 4px;
+  text-align: center;
+  max-width: 620px;
+  width: 95%;
 }
 
 .lucky-winner-card.hidden {
@@ -1667,18 +1671,46 @@ body {
 
 .winner-trophy-badge {
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   color: #fef08a;
+  text-transform: uppercase;
+  margin-bottom: 2px;
 }
 
 .winner-number-highlight {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 900;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: #fbbf24;
+  text-shadow: 0 0 16px rgba(251, 191, 36, 0.6);
+  line-height: 1.1;
+}
+
+.winner-name-highlight {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 2px 0;
+}
+
+.winner-dept-text {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+}
+
+.winner-prize-badge {
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.90rem;
+  padding: 4px 14px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #86efac;
 }
 
 @keyframes winnerCardPop {
@@ -1686,67 +1718,235 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 
-.lucky-range-settings {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.74rem;
-  color: var(--text-secondary);
-  font-family: var(--font-heading);
-  font-weight: 600;
+/* Lucky Draw Recording Console (Ban Tổng Giám Đốc Bốc Thăm Bên Ngoài) */
+.lucky-record-console {
   background: #ffffff;
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 4px 16px rgba(23, 39, 84, 0.08);
+  margin-top: 6px;
+  text-align: left;
+}
+
+.lucky-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lucky-record-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.90rem;
+  color: var(--tlqm-navy);
+}
+
+.lucky-participants-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px solid var(--border-light);
 }
 
-.lucky-input-num {
-  width: 48px;
-  padding: 2px 4px;
-  font-size: 0.72rem;
-  border: 1px solid var(--border-light);
-  border-radius: 3px;
-  text-align: center;
+.lucky-record-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .lucky-record-inputs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lucky-field-col label {
+  display: block;
+  font-size: 0.76rem;
   font-weight: 700;
-  color: var(--tlqm-navy);
+  color: var(--text-heading);
+  margin-bottom: 3px;
 }
 
-.lucky-history-bar {
+.lucky-input-with-icon {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  max-width: 100%;
-  overflow-x: auto;
-  font-size: 0.70rem;
 }
 
-.history-label {
-  font-family: var(--font-heading);
-  font-weight: 700;
+.lucky-input-with-icon i {
+  position: absolute;
+  left: 10px;
   color: var(--text-secondary);
-  white-space: nowrap;
+  font-size: 0.85rem;
+  pointer-events: none;
 }
 
-.history-pills-row {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-}
-
-.history-pill-badge {
-  background: rgba(34, 56, 115, 0.08);
-  border: 1px solid rgba(34, 56, 115, 0.2);
+.lucky-input-with-icon input,
+.lucky-input-with-icon select {
+  width: 100%;
+  padding: 7px 10px 7px 30px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--tlqm-navy);
-  font-family: monospace;
-  font-size: 0.70rem;
+  background: #f8fafc;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.lucky-input-with-icon input:focus,
+.lucky-input-with-icon select:focus {
+  border-color: var(--tlqm-amber);
+  background: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(232, 148, 19, 0.15);
+}
+
+/* Live Employee Preview Card */
+.lucky-emp-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  animation: fadeIn 0.2s ease;
+}
+
+.lucky-emp-preview.hidden {
+  display: none;
+}
+
+.preview-avatar {
+  font-size: 1.3rem;
+  color: var(--tlqm-green);
+}
+
+.preview-details {
+  flex: 1;
+}
+
+.preview-name {
+  font-family: var(--font-heading);
   font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--tlqm-navy);
+}
+
+.preview-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.preview-status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.preview-status.preview-status-warn {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.preview-status.preview-status-neutral {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.lucky-record-actions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Live Recorded Winners Board Table */
+.lucky-winners-board {
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  border-radius: 12px;
+  padding: 10px 14px;
+  width: 100%;
+  max-width: 680px;
+  margin-top: 8px;
+  text-align: left;
+}
+
+.lucky-winners-board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.board-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--tlqm-navy);
+}
+
+.lucky-winners-table-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+}
+
+.lucky-winners-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.80rem;
+}
+
+.lucky-winners-table th {
+  background: #f1f5f9;
+  color: var(--text-heading);
+  font-weight: 700;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-size: 0.76rem;
+}
+
+.lucky-winners-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.lucky-winners-table tr:hover {
+  background: #f8fafc;
+}
+
+.badge-winner-code {
+  font-family: monospace;
+  font-weight: 800;
+  background: #eff6ff;
+  color: #1d4ed8;
   padding: 1px 5px;
   border-radius: 3px;
-}
-
-.lucky-spin-btn {
-  font-size: 0.80rem !important;
-  padding: 4px 12px !important;
+  border: 1px solid #bfdbfe;
 }
 
 .backdrop-lucky-controls {

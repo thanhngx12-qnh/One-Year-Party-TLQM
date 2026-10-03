@@ -206,38 +206,102 @@ class ShowcaseManager {
 
               <!-- Digital Lucky Draw Arena -->
               <div class="lucky-draw-arena">
+                <!-- 3-Digit Slot Display -->
                 <div class="lucky-slot-display">
                   <div class="lucky-slot-box" id="slot-digit-1"><span class="slot-digit-val">0</span></div>
                   <div class="lucky-slot-box" id="slot-digit-2"><span class="slot-digit-val">0</span></div>
                   <div class="lucky-slot-box" id="slot-digit-3"><span class="slot-digit-val">0</span></div>
                 </div>
-                <div id="lucky-winner-announcement" class="lucky-winner-card hidden">
-                  <span class="winner-trophy-badge">🎉 CHÚC MỪNG VÉ MAY MẮN!</span>
-                  <span id="lucky-winner-number" class="winner-number-highlight">SỐ 088</span>
-                </div>
-                <div class="lucky-range-settings">
-                  <span>Dải vé:</span>
-                  <input type="number" id="lucky-min" value="1" min="1" max="999" class="lucky-input-num" title="Số nhỏ nhất">
-                  <span>➔</span>
-                  <input type="number" id="lucky-max" value="150" min="1" max="999" class="lucky-input-num" title="Số lớn nhất">
-                  <button id="btn-lucky-reset-history" class="action-btn" title="Xóa danh sách các số đã trúng">Xóa Lịch Sử</button>
-                </div>
-                <div id="lucky-history-list" class="lucky-history-bar">
-                  <span class="history-label">Đã trúng:</span>
-                  <div id="lucky-history-pills" class="history-pills-row">Chưa có</div>
-                </div>
-              </div>
 
-              <div class="backdrop-lucky-controls">
-                <button id="btn-lucky-spin" class="btn-gala btn-gala-gold lucky-spin-btn">
-                  <i class="fas fa-play"></i> QUAY SỐ MAY MẮN <span class="kbd-hint">Space / L</span>
-                </button>
-                <button id="btn-backdrop-lucky" class="action-btn lucky-drum-btn" onclick="window.showcaseManager.toggleLuckySound()">
-                  <i class="fas fa-drum"></i> ${slide.content.drumButtonText || 'Trống Dồn'} <span class="kbd-hint">L</span>
-                </button>
-                <button class="action-btn" onclick="window.confettiEngine && window.confettiEngine.celebrate(); window.soundEngine && window.soundEngine.playCheer();">
-                  <i class="fas fa-trophy"></i> Vỗ Tay & Pháo Hoa <span class="kbd-hint">C</span>
-                </button>
+                <!-- Grand Winner Announcement Banner (High Impact for Stage LED) -->
+                <div id="lucky-winner-announcement" class="lucky-winner-card hidden">
+                  <div class="winner-trophy-badge">🏆 CHÚC MỪNG VÉ MAY MẮN TRÚNG GIẢI!</div>
+                  <div id="lucky-winner-number" class="winner-number-highlight">MÃ SỐ 000</div>
+                  <div id="lucky-winner-name" class="winner-name-highlight">HỌ VÀ TÊN</div>
+                  <div id="lucky-winner-dept" class="winner-dept-text">Phòng Ban • Chức Vụ</div>
+                  <div id="lucky-winner-prize" class="winner-prize-badge">GIẢI THƯỞNG</div>
+                </div>
+
+                <!-- Operator Recording Console (Ban Tổng Giám đốc bốc phiếu bên ngoài -> Ghi nhận vào hệ thống) -->
+                <div class="lucky-record-console">
+                  <div class="lucky-record-header">
+                    <span class="lucky-record-title">
+                      <i class="fas fa-pen-to-square" style="color: var(--tlqm-amber); margin-right: 6px;"></i>
+                      Ghi Nhận Kết Quả Bốc Thăm (Ban Tổng Giám Đốc Bốc Phiếu Bên Ngoài):
+                    </span>
+                    <span class="lucky-participants-tag" id="lucky-participants-badge">
+                      <i class="fas fa-users"></i> 65 Nhân sự dự tiệc / 111 CBCNV
+                    </span>
+                  </div>
+
+                  <div class="lucky-record-inputs-grid">
+                    <div class="lucky-field-col">
+                      <label for="input-lucky-emp-code">Mã / Tên nhân viên trúng thăm:</label>
+                      <div class="lucky-input-with-icon">
+                        <i class="fas fa-id-badge"></i>
+                        <input type="text" id="input-lucky-emp-code" placeholder="Gõ mã NV (VD: 066, 005...) hoặc họ tên" list="lucky-emp-datalist" autocomplete="off" />
+                        <datalist id="lucky-emp-datalist"></datalist>
+                      </div>
+                    </div>
+
+                    <div class="lucky-field-col">
+                      <label for="select-lucky-prize">Hạng giải thưởng trao tặng:</label>
+                      <div class="lucky-input-with-icon">
+                        <i class="fas fa-award"></i>
+                        <select id="select-lucky-prize">
+                          <option value="nhat">🏆 01 Giải Nhất - Quạt Sưởi Gốm Kangaroo (1.250k)</option>
+                          <option value="nhi">🥈 05 Giải Nhì - Bàn Là Hơi Nước Tefal (499k)</option>
+                          <option value="ba">🥉 08 Giải Ba - Ấm Đun Siêu Tốc Bear 1.5L (299k)</option>
+                          <option value="mayman" selected>🎁 12 Giải May Mắn - Pin Sạc Dự Phòng Delites (199k)</option>
+                          <option value="dacbiet">⭐ Giải Đặc Biệt / Bổ Sung Ban Lãnh Đạo</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Live Employee Info Card (Auto-populated when code is typed) -->
+                  <div id="lucky-emp-preview" class="lucky-emp-preview hidden">
+                    <div class="preview-avatar"><i class="fas fa-user-check"></i></div>
+                    <div class="preview-details">
+                      <div class="preview-name" id="preview-emp-name">Nguyễn Quang Đạt</div>
+                      <div class="preview-sub" id="preview-emp-sub">Trưởng ban Quản lý dự án • Phòng Kế hoạch - Dự án</div>
+                    </div>
+                    <div class="preview-status" id="preview-emp-status">🟢 Có mặt tại Gala</div>
+                  </div>
+
+                  <!-- Action Buttons Row -->
+                  <div class="lucky-record-actions-row">
+                    <button type="button" id="btn-lucky-record-submit" class="btn-gala btn-gala-gold" title="Vinh danh mã số này lên màn hình LED và ghi vào danh sách">
+                      <i class="fas fa-bullhorn"></i> Vinh Danh Màn LED & Ghi Nhận
+                    </button>
+                    <button type="button" id="btn-lucky-random-pick" class="action-btn" title="Quay ngẫu nhiên 1 người tham dự Gala chưa trúng giải (Dự phòng)">
+                      <i class="fas fa-shuffle"></i> Quay Ngẫu Nhiên
+                    </button>
+                    <button type="button" id="btn-backdrop-lucky" class="action-btn lucky-drum-btn" onclick="window.showcaseManager.toggleLuckySound()" title="Âm thanh Trống Dồn (Phím L)">
+                      <i class="fas fa-drum"></i> Trống Dồn <span class="kbd-hint">L</span>
+                    </button>
+                    <button type="button" class="action-btn" onclick="window.confettiEngine && window.confettiEngine.celebrate(); window.soundEngine && window.soundEngine.playCheer();" title="Bắn pháo hoa vỗ tay (Phím C)">
+                      <i class="fas fa-trophy"></i> Pháo Hoa <span class="kbd-hint">C</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Live Recorded Winners Table (Danh sách đã trao thưởng) -->
+                <div class="lucky-winners-board">
+                  <div class="lucky-winners-board-header">
+                    <span class="board-title">
+                      <i class="fas fa-list-check" style="color: var(--tlqm-gold); margin-right: 6px;"></i>
+                      Bảng Kết Quả Bốc Thăm Đã Trao (<span id="lucky-winners-count">0</span> giải):
+                    </span>
+                    <button type="button" id="btn-lucky-reset-all" class="action-btn text-danger" title="Xóa toàn bộ lịch sử trúng thưởng">
+                      <i class="fas fa-rotate-left"></i> Đặt Lại
+                    </button>
+                  </div>
+
+                  <div id="lucky-winners-table-container" class="lucky-winners-table-container">
+                    <!-- Populated dynamically by luckyDrawManager -->
+                  </div>
+                </div>
               </div>
             </div>
           `;
@@ -448,16 +512,11 @@ class ShowcaseManager {
       });
     }
 
-    // Start / MC trigger button
+    // Start / MC trigger button (Play / Pause toggle)
     const startBtn = document.getElementById('btn-prize-start');
     if (startBtn) {
       startBtn.addEventListener('click', () => {
-        if (!this.hasStarted) {
-          this.startProgram();
-        } else {
-          this.playVoiceForSlide(this.currentSlide);
-          if (window.app) window.app.showToast('🗣️ Đang phát thuyết minh MC', 'Space');
-        }
+        this.togglePlayPauseProgram();
       });
     }
 
@@ -493,14 +552,22 @@ class ShowcaseManager {
   }
 
   setupAudioHandlers() {
-    // When MC voice begins: duck bg music
+    // When MC voice begins: duck bg music & update button to Pause
     this.voiceAudio.addEventListener('play', () => {
       this.duckMusic(true);
+      this.updateStartButton(true);
+    });
+
+    // When MC voice pauses: restore bg music & update button to Play
+    this.voiceAudio.addEventListener('pause', () => {
+      this.duckMusic(false);
+      this.updateStartButton(false);
     });
 
     // When MC voice finishes: restore bg music, auto advance if enabled
     this.voiceAudio.addEventListener('ended', () => {
       this.duckMusic(false);
+      this.updateStartButton(false);
       if (this.settingAuto) {
         clearTimeout(this.autoPlayTimer);
         const delay = this.settings.autoAdvanceDelay || 1800;
@@ -512,6 +579,7 @@ class ShowcaseManager {
 
     this.voiceAudio.addEventListener('error', () => {
       this.duckMusic(false);
+      this.updateStartButton(false);
       if (this.settingAuto) {
         clearTimeout(this.autoPlayTimer);
         this.autoPlayTimer = setTimeout(() => {
@@ -526,23 +594,59 @@ class ShowcaseManager {
     });
   }
 
-  startProgram() {
-    this.hasStarted = true;
-    const startBtn = document.getElementById('btn-prize-start');
-    if (startBtn) {
-      startBtn.innerHTML = '<i class="fas fa-play"></i> Tiếp Tục <span class="kbd-hint">Space</span>';
-      startBtn.classList.add('program-running');
+  togglePlayPauseProgram() {
+    const isPlaying = this.voiceAudio && !this.voiceAudio.paused && !this.voiceAudio.ended;
+    if (isPlaying) {
+      this.pauseProgram();
+    } else {
+      this.resumeOrStartProgram();
     }
+  }
 
-    if (this.settingMusic && this.bgMusic) {
-      this.bgMusic.currentTime = 0;
+  pauseProgram() {
+    if (this.voiceAudio) {
+      this.voiceAudio.pause();
+    }
+    clearTimeout(this.autoPlayTimer);
+    this.updateStartButton(false);
+    if (window.app) {
+      window.app.showToast('⏸️ Đã tạm dừng giọng đọc MC & trình chiếu', 'Space');
+    }
+  }
+
+  resumeOrStartProgram() {
+    this.hasStarted = true;
+    if (this.settingMusic && this.bgMusic && this.bgMusic.paused) {
       this.bgMusic.play().catch(e => console.warn('Background music auto-play blocked', e));
     }
-
-    this.playVoiceForSlide(this.currentSlide);
-    if (window.app) {
-      window.app.showToast('🚀 Khởi động trình chiếu Quà Tặng & Bốc Thăm!', 'Space');
+    if (this.voiceAudio && this.voiceAudio.src && this.voiceAudio.paused && this.voiceAudio.currentTime > 0 && !this.voiceAudio.ended) {
+      this.voiceAudio.play().catch(e => console.warn('Voice resume blocked', e));
+    } else {
+      this.playVoiceForSlide(this.currentSlide);
     }
+    this.updateStartButton(true);
+    if (window.app) {
+      window.app.showToast('▶️ Đang phát thuyết minh quà tặng', 'Space');
+    }
+  }
+
+  updateStartButton(isPlaying) {
+    const startBtn = document.getElementById('btn-prize-start');
+    if (!startBtn) return;
+    if (isPlaying) {
+      startBtn.innerHTML = '<i class="fas fa-pause"></i> Tạm Dừng <span class="kbd-hint">Space</span>';
+      startBtn.classList.add('program-running');
+      startBtn.title = 'Tạm dừng giọng đọc & trình chiếu (Space)';
+    } else {
+      const label = this.hasStarted ? 'Tiếp Tục' : 'Bắt Đầu';
+      startBtn.innerHTML = `<i class="fas fa-play"></i> ${label} <span class="kbd-hint">Space</span>`;
+      startBtn.classList.remove('program-running');
+      startBtn.title = 'Bắt đầu / Tiếp tục trình chiếu (Space)';
+    }
+  }
+
+  startProgram() {
+    this.resumeOrStartProgram();
   }
 
   goToSlide(index) {
@@ -819,6 +923,7 @@ class ShowcaseManager {
     if (this.bgMusic) this.bgMusic.pause();
     this.stopAudition();
     this.updateLuckyBtnVisuals(false);
+    this.updateStartButton(false);
   }
 }
 

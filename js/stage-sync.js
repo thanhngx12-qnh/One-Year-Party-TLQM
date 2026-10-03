@@ -121,6 +121,23 @@ class StageSync {
             if (p) p.closeAwardModal(false);
           }
           break;
+        case 'LUCKY_SHOW_WINNER':
+          if (window.luckyDrawManager) {
+            window.luckyDrawManager.celebrateAndRecordWinner(msg.emp, msg.prizeKey, false);
+          }
+          break;
+        case 'LUCKY_DELETE_WINNER':
+          if (window.luckyDrawManager) {
+            window.luckyDrawManager.deleteWinner(msg.id, false);
+          }
+          break;
+        case 'LUCKY_RESET_WINNERS':
+          if (window.luckyDrawManager) {
+            window.luckyDrawManager.recordedWinners = [];
+            window.luckyDrawManager.saveRecordedWinners();
+            window.luckyDrawManager.renderWinnersTable();
+          }
+          break;
         case 'DATA_MODE_CHANGE':
           if (window.app && typeof window.app.applyDataMode === 'function') {
             window.app.applyDataMode(msg.isOfficial, false);

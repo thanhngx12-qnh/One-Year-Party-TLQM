@@ -471,18 +471,32 @@ class App {
           return;
         }
 
-        // Space / Enter: start program, advance next slide, or spin Lucky Draw on Slide 11
-        if (e.code === 'Space' || e.key === 'Enter') {
-          e.preventDefault();
-          if (window.showcaseManager.currentSlide === window.showcaseManager.totalSlides - 1 && window.luckyDrawManager) {
-            window.luckyDrawManager.toggleSpin();
+        // Space key: Toggle Play / Pause program, or Lucky Draw action on last slide
+        if (e.code === 'Space') {
+          // If typing in input, don't hijack Space
+          if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
             return;
           }
-          if (!window.showcaseManager.hasStarted) {
-            window.showcaseManager.startProgram();
-          } else {
-            window.showcaseManager.nextSlide();
+          e.preventDefault();
+          if (window.showcaseManager.currentSlide === window.showcaseManager.totalSlides - 1 && window.luckyDrawManager) {
+            window.luckyDrawManager.handleSpaceKey();
+            return;
           }
+          window.showcaseManager.togglePlayPauseProgram();
+          return;
+        }
+
+        // Enter: Next Slide (or trigger Lucky Draw record if on last slide and not in input)
+        if (e.key === 'Enter') {
+          if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+            return; // Let native enter/form submit work
+          }
+          e.preventDefault();
+          if (window.showcaseManager.currentSlide === window.showcaseManager.totalSlides - 1 && window.luckyDrawManager) {
+            window.luckyDrawManager.handleSpaceKey();
+            return;
+          }
+          window.showcaseManager.nextSlide();
           return;
         }
 
