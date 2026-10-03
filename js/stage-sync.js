@@ -143,6 +143,11 @@ class StageSync {
             window.app.applyDataMode(msg.isOfficial, false);
           }
           break;
+        case 'AWARDS_SUBTAB_CHANGE':
+          if (window.awardsManager) {
+            window.awardsManager.switchTab(msg.tab, false);
+          }
+          break;
       }
     });
   }

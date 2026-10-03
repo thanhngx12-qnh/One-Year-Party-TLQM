@@ -243,20 +243,30 @@ class App {
     if (sectionId !== 'pose' && window.poseGame && window.poseGame.isRunning) {
       window.poseGame.pauseTimer();
     }
+    if (sectionId === 'awards' && window.awardsManager) {
+      window.awardsManager.updateStandings();
+      window.awardsManager.renderCustomAwards();
+    }
 
     const sectionNames = {
       'home': 'Trang Chủ Gala TLQM',
-      'showcase': 'Cơ Cấu Quà Tặng & Bốc Thăm',
+      'showcase': 'Cơ Cấu Quà Tặng (7 Slide)',
       'king': 'Game 1: Vua Tiếng Việt',
-      'pose': 'Game 2: Tạo Dáng Thần Tốc'
+      'pose': 'Game 2: Tạo Dáng Thần Tốc',
+      'awards': 'Bốc Thăm May Mắn & Trao Quà Gameshow'
     };
     const keyMap = {
       'home': 'F1',
       'showcase': 'F2',
       'king': 'F3',
-      'pose': 'F4'
+      'pose': 'F4',
+      'awards': 'F5'
     };
     this.showToast(sectionNames[sectionId] || sectionId, keyMap[sectionId] || null);
+
+    if (broadcast && window.stageSync) {
+      window.stageSync.broadcast('SWITCH_SECTION', { sectionId });
+    }
   }
 
   setupControls() {
@@ -336,6 +346,11 @@ class App {
       if (e.key === 'F4' || (e.altKey && e.key === '4' && this.currentSection !== 'pose')) {
         e.preventDefault();
         this.switchSection('pose');
+        return;
+      }
+      if (e.key === 'F5' || (e.altKey && e.key === '5' && this.currentSection !== 'pose')) {
+        e.preventDefault();
+        this.switchSection('awards');
         return;
       }
 
@@ -443,13 +458,18 @@ class App {
           this.switchSection('pose');
           return;
         }
+        if (e.key === '4' || e.key.toLowerCase() === 'b') {
+          e.preventDefault();
+          this.switchSection('awards');
+          return;
+        }
       }
 
       // ==========================================
-      // 3. SHOWCASE (CƠ CẤU QUÀ TẶNG & BỐC THĂM) SHORTCUTS
+      // 3. SHOWCASE (CƠ CẤU 7 PHẦN QUÀ) SHORTCUTS
       // ==========================================
       if (this.currentSection === 'showcase' && window.showcaseManager) {
-        // Direct number keys 1 to 9 to jump to slide 1..9 (index 0..8)
+        // Direct number keys 1 to 7 to jump to slide 1..7 (index 0..6)
         if (/^[1-9]$/.test(e.key)) {
           const sIdx = parseInt(e.key, 10) - 1;
           if (sIdx < window.showcaseManager.totalSlides) {
@@ -458,12 +478,6 @@ class App {
             return;
           }
         }
-        // '0' jumps to slide 10 (index 9)
-        if (e.key === '0' && window.showcaseManager.totalSlides >= 10) {
-          e.preventDefault();
-          window.showcaseManager.goToSlide(9);
-          return;
-        }
         // '-' or '\' jumps to last slide
         if ((e.key === '-' || e.key === '\\') && window.showcaseManager.totalSlides > 1) {
           e.preventDefault();
@@ -471,31 +485,22 @@ class App {
           return;
         }
 
-        // Space key: Toggle Play / Pause program, or Lucky Draw action on last slide
+        // Space key: Toggle Play / Pause program
         if (e.code === 'Space') {
-          // If typing in input, don't hijack Space
           if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
             return;
           }
           e.preventDefault();
-          if (window.showcaseManager.currentSlide === window.showcaseManager.totalSlides - 1 && window.luckyDrawManager) {
-            window.luckyDrawManager.handleSpaceKey();
-            return;
-          }
           window.showcaseManager.togglePlayPauseProgram();
           return;
         }
 
-        // Enter: Next Slide (or trigger Lucky Draw record if on last slide and not in input)
+        // Enter: Next Slide
         if (e.key === 'Enter') {
           if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
-            return; // Let native enter/form submit work
-          }
-          e.preventDefault();
-          if (window.showcaseManager.currentSlide === window.showcaseManager.totalSlides - 1 && window.luckyDrawManager) {
-            window.luckyDrawManager.handleSpaceKey();
             return;
           }
+          e.preventDefault();
           window.showcaseManager.nextSlide();
           return;
         }
@@ -521,14 +526,10 @@ class App {
           return;
         }
 
-        // L: Spin Lucky Draw on Slide 11, or toggle drum SFX
+        // L: Toggle drum SFX
         if (e.key.toLowerCase() === 'l') {
           e.preventDefault();
-          if (window.showcaseManager.currentSlide === window.showcaseManager.totalSlides - 1 && window.luckyDrawManager) {
-            window.luckyDrawManager.toggleSpin();
-          } else {
-            window.showcaseManager.toggleLuckySound();
-          }
+          window.showcaseManager.toggleLuckySound();
           return;
         }
 
@@ -784,6 +785,44 @@ class App {
         if (e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'v') {
           e.preventDefault();
           window.poseGame.celebrateWinner();
+          return;
+        }
+      }
+
+      // ==========================================
+      // 6. BỐC THĂM & TRAO QUÀ (AWARDS) SHORTCUTS
+      // ==========================================
+      if (this.currentSection === 'awards') {
+        // Tab 1 (Lucky Draw) vs Tab 2 (Gameshow)
+        if (e.key === '1' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) {
+          e.preventDefault();
+          if (window.awardsManager) window.awardsManager.switchTab('lucky');
+          return;
+        }
+        if (e.key === '2' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) {
+          e.preventDefault();
+          if (window.awardsManager) window.awardsManager.switchTab('gameshow');
+          return;
+        }
+
+        // L: Toggle Drum SFX
+        if (e.key.toLowerCase() === 'l' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
+          e.preventDefault();
+          if (window.showcaseManager) {
+            window.showcaseManager.toggleLuckySound();
+          }
+          return;
+        }
+
+        // Space: Trigger Lucky Draw action if on Lucky tab and not inside input
+        if (e.code === 'Space') {
+          if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) {
+            return;
+          }
+          e.preventDefault();
+          if (window.awardsManager?.currentTab === 'lucky' && window.luckyDrawManager) {
+            window.luckyDrawManager.handleSpaceKey();
+          }
           return;
         }
       }

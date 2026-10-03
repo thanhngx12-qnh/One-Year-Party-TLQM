@@ -599,12 +599,24 @@ body {
   white-space: nowrap;
 }
 
-/* Home 3 Cards Selector (Light Theme) */
+/* Home 4 Cards Selector (Light Theme) */
 .home-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .home-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-cards-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .home-hub-card {
@@ -686,6 +698,16 @@ body {
   background: #e6f7f7;
   color: var(--tlqm-teal);
   border: 1px solid rgba(16, 155, 154, 0.25);
+}
+
+.card-4 .card-icon-box {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+}
+
+.card-4::before {
+  background: var(--tlqm-gold);
 }
 
 .hub-card-title {
@@ -4560,6 +4582,444 @@ body.stage-pure-led .hint-display-box {
   font-weight: 700 !important;
   padding: 20px 32px !important;
 }
+
+/* ==============================================================================
+   SECTION 5: BỐC THĂM MAY MẮN & TRAO GIẢI GAMESHOW (SECTION AWARDS)
+   Phân hệ chuyên biệt dành cho Ban Lãnh Đạo & Lead Game Sân Khấu
+   ============================================================================== */
+#section-awards {
+  padding-bottom: 40px;
+}
+
+.awards-header-bar {
+  background: #ffffff;
+  border-bottom: 2px solid var(--border-light);
+  padding: 10px 24px;
+  position: sticky;
+  top: 56px;
+  z-index: 80;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.awards-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.awards-title-group .section-headline {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--tlqm-navy);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.awards-title-group .section-subheadline {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 2px 0 0;
+}
+
+/* Awards Sub-Tabs Switcher */
+.awards-sub-tabs {
+  display: flex;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.awards-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.awards-tab-btn:hover {
+  color: var(--tlqm-navy);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.awards-tab-btn.active {
+  background: linear-gradient(135deg, var(--tlqm-navy) 0%, #1e3a8a 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.25);
+}
+
+.awards-tab-btn.active i {
+  color: var(--tlqm-gold);
+}
+
+.awards-control-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Awards Panels */
+.awards-panel {
+  display: none;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 20px;
+}
+
+.awards-panel.active {
+  display: block;
+  animation: fadeInPanel 0.3s ease;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gameshow Awards Overview */
+.gameshow-awards-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gameshow-prize-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .gameshow-prize-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gameshow-prize-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  border-radius: 12px;
+  padding: 20px 18px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.gameshow-prize-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--tlqm-gold);
+}
+
+.gameshow-prize-card.highlight-champion {
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+  border: 2px solid #f59e0b;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.15);
+}
+
+.prize-card-badge {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.gameshow-prize-img-frame {
+  height: 120px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.gameshow-prize-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+}
+
+.gameshow-prize-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--tlqm-navy);
+  margin: 0 0 6px;
+}
+
+.gameshow-prize-sub {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Gameshow Standings & Custom Awards Dual Grid */
+.gameshow-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 18px;
+}
+
+@media (max-width: 992px) {
+  .gameshow-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gameshow-standings-card,
+.gameshow-lead-awards-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.standings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.standings-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--tlqm-navy);
+}
+
+.awards-team-standings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.standing-team-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  padding: 10px 14px;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.standing-team-item:hover {
+  background: #ffffff;
+  border-color: var(--tlqm-blue);
+  box-shadow: var(--shadow-sm);
+}
+
+.standing-team-item.rank-champion {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #f59e0b;
+}
+
+.standing-team-item.rank-runnerup {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-color: #94a3b8;
+}
+
+.standing-rank-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100px;
+}
+
+.standing-medal {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.standing-rank-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  text-transform: uppercase;
+}
+
+.standing-team-details {
+  flex: 1;
+}
+
+.standing-team-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--tlqm-navy);
+}
+
+.standing-team-prize {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.standing-team-score {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+}
+
+.standing-score-num {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--tlqm-navy);
+  line-height: 1;
+}
+
+.standing-score-unit {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* Call to action button on Slide 7 to leap into Awards */
+.prize-next-to-awards {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  animation: pulseGoldGlow 1.8s infinite !important;
+}
+
+@keyframes pulseGoldGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(217, 119, 6, 0); }
+}
+
+/* ==============================================================================
+   STAGE PURE LED OVERRIDES FOR SECTION AWARDS
+   ============================================================================== */
+body.stage-pure-led #section-awards.active {
+  top: 0 !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  padding: 20px 36px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+body.stage-pure-led .awards-header-bar,
+body.stage-pure-led .lucky-record-console,
+body.stage-pure-led .lucky-winners-board,
+body.stage-pure-led .gameshow-actions-grid,
+body.stage-pure-led .awards-control-actions {
+  display: none !important;
+}
+
+body.stage-pure-led #awards-panel-lucky.active {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .lucky-slot-display {
+  margin: 20px 0 !important;
+  gap: 24px !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .lucky-slot-box {
+  width: 140px !important;
+  height: 160px !important;
+  font-size: 6.5rem !important;
+  border-width: 5px !important;
+  border-radius: 16px !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .lucky-winner-card {
+  max-width: 900px !important;
+  padding: 24px 32px !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-number-highlight {
+  font-size: 3.6rem !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-name-highlight {
+  font-size: 2.4rem !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-dept-text {
+  font-size: 1.3rem !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-prize-badge {
+  font-size: 1.35rem !important;
+  padding: 8px 24px !important;
+}
+
+body.stage-pure-led #awards-panel-gameshow.active {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+}
+
+body.stage-pure-led #awards-panel-gameshow .gameshow-prize-grid {
+  max-width: 1300px !important;
+  width: 100% !important;
+  gap: 24px !important;
+}
+
+body.stage-pure-led #awards-panel-gameshow .gameshow-prize-card {
+  padding: 32px 24px !important;
+  border-radius: 16px !important;
+}
+
+body.stage-pure-led #awards-panel-gameshow .gameshow-prize-img-frame {
+  height: 180px !important;
+}
+
+body.stage-pure-led #awards-panel-gameshow .gameshow-prize-title {
+  font-size: 1.6rem !important;
+}
+
+body.stage-pure-led #awards-panel-gameshow .gameshow-prize-sub {
+  font-size: 1.1rem !important;
+}
+
 
 
 

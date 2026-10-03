@@ -77,8 +77,7 @@ window.GALA_PRIZES_CONFIG = {
           { tag: '12 Giải May Mắn', tagClass: 'tag-bronze', desc: 'Pin Sạc Dự Phòng Delites Polymer Siêu Bền' },
           { tag: '08 Giải Ba', tagClass: 'tag-silver', desc: 'Ấm Đun Nước Siêu Tốc Bear 1.5L Cao Cấp' },
           { tag: '05 Giải Nhì', tagClass: 'tag-gold', desc: 'Bàn Là Hơi Nước Tefal Easy Steam' },
-          { tag: '01 Giải Nhất', tagClass: 'tag-special', desc: 'Quạt Sưởi Gốm Kangaroo Cao Cấp', highlight: true },
-          { tag: 'Quà Gameshow', tagClass: 'tag-primary', desc: '02 Thùng Quà Bí Mật Sân Khấu + Ô Cầm Tay TLQM' }
+          { tag: '01 Giải Nhất', tagClass: 'tag-special', desc: 'Quạt Sưởi Gốm Kangaroo Cao Cấp', highlight: true }
         ]
       }
     },
@@ -160,44 +159,7 @@ window.GALA_PRIZES_CONFIG = {
       triggerFlash: true,
       triggerConfetti: true,
       triggerCheer: true
-    },
-
-    // -------------------------------------------------------------
-    // SLIDE 8: QUÀ TẶNG GAMESHOW SÂN KHẤU
-    // -------------------------------------------------------------
-    {
-      id: 'prize-game-show-boxes',
-      type: 'prize',
-      tabTitle: '8. Quà Game',
-      tabIcon: 'fas fa-trophy',
-      voice: 'assets/voices/9.mp3',
-      category: 'QUÀ TẶNG GAMESHOW',
-      categoryClass: 'tag-primary',
-      name: 'THÙNG QUÀ BÍ MẬT & Ô CẦM TAY TLQM',
-      image: 'assets/prizes/thung_qua_secret.svg',
-      imageAlt: 'Thùng quà bí mật Gameshow',
-      badgeCount: 'GAMESHOW',
-      badgeSub: '(02 Thùng quà bí mật bánh kẹo trao Đội Nhất/Nhì & Ô cầm tay thương hiệu TLQM)',
-      goldShimmer: true
-    },
-
-    // -------------------------------------------------------------
-    // SLIDE 9: BACKDROP BỐC THĂM BAN LÃNH ĐẠO
-    // -------------------------------------------------------------
-    {
-      id: 'slide-backdrop-vip',
-      type: 'backdrop',
-      tabTitle: '9. Bốc Thăm VIP',
-      tabIcon: 'fas fa-crown',
-      voice: 'assets/voices/10.mp3',
-      content: {
-        logo: 'assets/images/logo-tlqm.png',
-        company: 'CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH',
-        title: 'BỐC THĂM MAY MẮN • GALA TLQM',
-        invitationMain: 'KÍNH MỜI BAN LÃNH ĐẠO',
-        invitationSub: 'LÊN SÂN KHẤU TIẾN HÀNH BỐC THĂM',
-        drumButtonText: 'BẬT / DỪNG TRỐNG DỒN BỐC THĂM'
-      }
     }
   ]
 };
+
