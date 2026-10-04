@@ -141,6 +141,13 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner prize-transition-layout">
+              <div class="prize-slide-brand-banner">
+                <img src="assets/images/logo-official-emblem.png" alt="Tà Lùng Quang Minh" class="slide-brand-logo">
+                <div class="slide-brand-info">
+                  <span class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</span>
+                  <span class="slide-brand-event">TÀ LÙNG QUANG MINH LOGISTICS • ĐÊM TIỆC GALA</span>
+                </div>
+              </div>
               <span class="prize-badge-lg">${slide.content.badge}</span>
               <h2 class="prize-welcome-text">${slide.content.welcomeText}</h2>
               <h1 class="prize-main-title huge-gala-title">${slide.content.mainTitle}</h1>
@@ -171,6 +178,13 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner prize-stats-layout">
+              <div class="prize-slide-brand-banner">
+                <img src="assets/images/logo-official-emblem.png" alt="Tà Lùng Quang Minh" class="slide-brand-logo">
+                <div class="slide-brand-info">
+                  <span class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</span>
+                  <span class="slide-brand-event">CƠ CẤU 29 PHẦN QUÀ MAY MẮN • GALA 2026</span>
+                </div>
+              </div>
               <div class="prize-stats-header">
                 <div class="prize-counter-wrap">
                   <span class="prize-huge-counter count-up" id="prize-counter-${target}" data-target="${target}">0</span>
@@ -210,6 +224,14 @@ class ShowcaseManager {
             <div class="prize-slide-inner prize-split-layout">
               <!-- Cột Trái: Thông tin Giải thưởng & Thông số Kỹ thuật Tinh tế -->
               <div class="prize-hero-info">
+                <div class="prize-slide-brand-banner">
+                  <img src="assets/images/logo-official-emblem.png" alt="Tà Lùng Quang Minh" class="slide-brand-logo">
+                  <div class="slide-brand-info">
+                    <span class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</span>
+                    <span class="slide-brand-event">TÀ LÙNG QUANG MINH LOGISTICS</span>
+                  </div>
+                </div>
+
                 <div class="prize-category-row">
                   <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
                   <span class="prize-round-pill"><i class="fas fa-gift"></i> ${slide.badgeCount || ''} PHẦN QUÀ</span>
@@ -266,7 +288,12 @@ class ShowcaseManager {
           html = `<div class="prize-slide-inner"><h2>${slide.name || 'Slide Quà Tặng'}</h2></div>`;
       }
 
-      slideDiv.innerHTML = html;
+      slideDiv.innerHTML = `
+        <div class="prize-slide-watermark" aria-hidden="true">
+          <img src="assets/images/logo-official-full.png" alt="" class="slide-watermark-img">
+        </div>
+        ${html}
+      `;
       container.appendChild(slideDiv);
     });
   }

@@ -1559,6 +1559,8 @@ body.theme-light .prize-progress-bar {
   max-width: 1520px;
   text-align: left;
   animation: prizeSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  overflow: hidden;
 }
 
 .prize-slide.active {
@@ -1576,6 +1578,45 @@ body.theme-light .prize-progress-bar {
   align-items: center;
   justify-content: center;
   width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   Official Centered Watermark Logo with Subtle Opacity
+   (Hiệu ứng Logo ẩn ở giữa trang - Tinh tế, Sang Trọng)
+   ========================================================= */
+.prize-slide-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(360px, 48vw, 760px);
+  max-width: 85%;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.08;
+  user-select: none;
+  transition: opacity 0.35s ease;
+}
+
+.prize-slide-watermark .slide-watermark-img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 60px rgba(16, 185, 129, 0.35));
+}
+
+body.theme-light .prize-slide-watermark {
+  opacity: 0.055;
+}
+
+body.theme-light .prize-slide-watermark .slide-watermark-img {
+  filter: none;
 }
 
 /* Gold shimmer typography */
@@ -1609,20 +1650,21 @@ body.theme-light .gold-shimmer {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: rgba(12, 22, 52, 0.88);
-  border: 1px solid rgba(255, 215, 0, 0.28);
+  background: rgba(12, 22, 52, 0.92);
+  border: 1px solid rgba(255, 215, 0, 0.32);
   border-left: 4px solid #10b981;
   border-radius: 6px;
   padding: 6px 16px 6px 8px;
   margin-bottom: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  font-family: 'Inter', sans-serif;
 }
 
 body.theme-light .prize-slide-brand-banner {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-left: 4px solid var(--tlqm-navy);
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0 1px 4px rgba(35, 56, 113, 0.04);
 }
 
@@ -1631,15 +1673,15 @@ body.theme-light .prize-slide-brand-banner {
   height: 36px;
   object-fit: contain;
   background: #FFFFFF;
-  border-radius: 4px;
+  border-radius: 50%;
   padding: 2px;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.4);
   flex-shrink: 0;
 }
 
 body.theme-light .prize-slide-brand-banner .slide-brand-logo {
   border: 1px solid #E2E8F0;
-  border-radius: 2px;
+  border-radius: 50%;
 }
 
 .prize-slide-brand-banner .slide-brand-info {
@@ -1650,9 +1692,9 @@ body.theme-light .prize-slide-brand-banner .slide-brand-logo {
 }
 
 .prize-slide-brand-banner .slide-brand-company {
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 900;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
   color: #ffffff;
   letter-spacing: 0.5px;
 }
@@ -1662,11 +1704,11 @@ body.theme-light .prize-slide-brand-banner .slide-brand-company {
 }
 
 .prize-slide-brand-banner .slide-brand-event {
-  font-family: var(--font-heading);
+  font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #ffd700;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
 }
 
