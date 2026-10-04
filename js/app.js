@@ -250,7 +250,7 @@ class App {
     }
 
     const sectionNames = {
-      'home': 'Trang Chủ Gala TLQM',
+      'home': 'Trang Chủ Gala Tà Lùng Quang Minh',
       'showcase': 'Cơ Cấu Quà Tặng (7 Slide)',
       'king': 'Game 1: Vua Tiếng Việt',
       'pose': 'Game 2: Tạo Dáng Thần Tốc',
@@ -293,7 +293,7 @@ class App {
       celebrateBtn.addEventListener('click', () => {
         if (window.soundEngine) window.soundEngine.playCheer();
         if (window.confettiEngine) window.confettiEngine.celebrate();
-        this.showToast('🎆 Pháo Hoa Ăn Mừng Gala TLQM!', 'C');
+        this.showToast('🎆 Pháo Hoa Ăn Mừng Gala Tà Lùng Quang Minh!', 'C');
       });
     }
 
@@ -917,7 +917,7 @@ class App {
         this.closeUnlockModal();
         if (window.confettiEngine) window.confettiEngine.celebrate();
         if (window.soundEngine) window.soundEngine.playCheer();
-        this.showToast('🎉 ĐÃ MỞ KHÓA DỮ LIỆU THẬT GALA TLQM!', 'Talung@2026');
+        this.showToast('🎉 ĐÃ MỞ KHÓA DỮ LIỆU THẬT GALA TÀ LÙNG QUANG MINH!', 'Talung@2026');
       } else {
         // Error shake
         if (errorMsg) errorMsg.classList.remove('hidden');

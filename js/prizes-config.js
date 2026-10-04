@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * CẤU HÌNH QUÀ TẶNG & GHÉP GIỌNG MC BỐC THĂM MAY MẮN (GALA TLQM)
+ * CẤU HÌNH QUÀ TẶNG & GHÉP GIỌNG MC BỐC THĂM MAY MẮN (GALA TÀ LÙNG QUANG MINH)
  * CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH - KỶ NIỆM RA MẮT THƯƠNG HIỆU
  * ==============================================================================
  */
@@ -9,7 +9,7 @@ window.GALA_PRIZES_CONFIG = {
   // Cài đặt chung âm thanh & thời gian
   settings: {
     sectionTitle: 'CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN',
-    sectionSubtitle: '29 Phần Quà Giá Trị Chào Đón 2026 • Gala Kỷ Niệm Ra Mắt Thương Hiệu TLQM',
+    sectionSubtitle: '29 Phần Quà Giá Trị Chào Đón 2026 • Gala Kỷ Niệm Ra Mắt Thương Hiệu Tà Lùng Quang Minh Logistics',
     bgMusicSrc: 'assets/voices/sound-background.mp3',
     luckyDrumSrc: 'assets/voices/luckydraw.mp3',
     defaultVolume: 0.55,
@@ -29,13 +29,13 @@ window.GALA_PRIZES_CONFIG = {
       tabIcon: 'fas fa-flag',
       voice: 'assets/voices/1.mp3',
       content: {
-        logo: 'assets/images/logo-tlqm.png',
-        badge: 'KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM',
+        logo: 'assets/images/logo-official-full.png',
+        badge: 'KỶ NIỆM RA MẮT THƯƠNG HIỆU TÀ LÙNG QUANG MINH',
         companyName: 'CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH',
         mainTitle: 'TÀ LÙNG QUANG MINH LOGISTICS',
         caption: 'Kết Nối Biên Giới - Vươn Tới Toàn Cầu • Đồng Hành Cùng Phát Triển',
         milestones: [
-          { icon: 'fas fa-shield-halved', num: 'TLQM', label: 'Thương Hiệu Tiên Phong Cửa Khẩu' },
+          { icon: 'fas fa-shield-halved', num: 'LOGISTICS', label: 'Thương Hiệu Tiên Phong Cửa Khẩu Tà Lùng' },
           { icon: 'fas fa-users-gear', num: '111', label: 'Cán Bộ Nhân Viên Chung Sức' },
           { icon: 'fas fa-truck-ramp-box', num: '24/7', label: 'Chuỗi Vận Hành Cửa Khẩu Thông Suốt' },
           { icon: 'fas fa-award', num: '2026', label: 'Khát Vọng Vươn Tầm Quốc Tế' }
@@ -44,7 +44,7 @@ window.GALA_PRIZES_CONFIG = {
     },
 
     // -------------------------------------------------------------
-    // SLIDE 2: BỐC THĂM MAY MẮN - KỶ NIỆM THƯƠNG HIỆU TLQM
+    // SLIDE 2: BỐC THĂM MAY MẮN - KỶ NIỆM THƯƠNG HIỆU TÀ LÙNG QUANG MINH
     // -------------------------------------------------------------
     {
       id: 'slide-welcome-gala',
@@ -53,7 +53,7 @@ window.GALA_PRIZES_CONFIG = {
       tabIcon: 'fas fa-champagne-glasses',
       voice: 'assets/voices/2.mp3',
       content: {
-        badge: 'KỶ NIỆM THƯƠNG HIỆU TLQM',
+        badge: 'KỶ NIỆM THƯƠNG HIỆU TÀ LÙNG QUANG MINH',
         welcomeText: 'CHÀO MỪNG ĐÊM TIỆC KỶ NIỆM',
         mainTitle: 'BỐC THĂM MAY MẮN',
         quote: '“MAY MẮN ĐANG CHỜ ĐÓN BẠN”',
@@ -107,7 +107,7 @@ window.GALA_PRIZES_CONFIG = {
       badgeSub: 'Lõi Polymer bền bỉ, công suất 12W, 2 cổng ra USB tiện lợi',
       awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
       quantityLabel: '12 Suất Quà Tặng May Mắn',
-      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên Tà Lùng Quang Minh',
       qualityStandard: 'Chính Hãng Nguyên Seal 100%',
       trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Nguồn năng lượng bền bỉ đồng hành cùng bạn trên mọi hành trình công tác và cuộc sống!”',
@@ -140,7 +140,7 @@ window.GALA_PRIZES_CONFIG = {
       badgeSub: 'Công suất 1500W đun sôi cực nhanh, ruột Inox 304 cao cấp an toàn, phong cách Retro',
       awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
       quantityLabel: '08 Suất Quà Tặng May Mắn',
-      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên Tà Lùng Quang Minh',
       qualityStandard: 'Chính Hãng Nguyên Seal 100%',
       trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Ấm áp mỗi ngày cùng những tách trà và cà phê thơm nồng bên gia đình!”',
@@ -173,7 +173,7 @@ window.GALA_PRIZES_CONFIG = {
       badgeSub: 'Thương hiệu Pháp, công suất 1400W, mặt đế Ceramic chống dính lướt êm ái, phun hơi mạnh',
       awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
       quantityLabel: '05 Suất Quà Tặng May Mắn',
-      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên Tà Lùng Quang Minh',
       qualityStandard: 'Chính Hãng Nguyên Seal 100%',
       trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Cho diện mạo luôn phẳng phiu tinh tươm, tự tin đón nhận những thành công mới!”',
@@ -206,7 +206,7 @@ window.GALA_PRIZES_CONFIG = {
       badgeSub: 'Động cơ mạnh mẽ, luồng gió ion âm bảo vệ tóc bóng mượt, đa cấp độ nhiệt thông minh',
       awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
       quantityLabel: '03 Suất Quà Tặng May Mắn',
-      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên Tà Lùng Quang Minh',
       qualityStandard: 'Chính Hãng Nguyên Seal 100%',
       trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Chăm sóc mái tóc bồng bềnh khỏe đẹp, rạng rỡ phong thái mỗi sớm mai!”',
@@ -229,7 +229,7 @@ window.GALA_PRIZES_CONFIG = {
       tabTitle: '8. 1 Giải Nhất',
       tabIcon: 'fas fa-fire',
       voice: 'assets/voices/8.mp3',
-      category: '🏆 GIẢI NHẤT DANH GIÁ GALA TLQM 🏆',
+      category: '🏆 GIẢI NHẤT DANH GIÁ GALA TÀ LÙNG QUANG MINH 🏆',
       categoryClass: 'tag-special',
       roundTag: '🏆 ĐỢT 5 • 01 GIẢI NHẤT DUY NHẤT 🏆',
       name: 'QUẠT SƯỞI GỐM KANGAROO KGAH06G CAO CẤP',
@@ -239,7 +239,7 @@ window.GALA_PRIZES_CONFIG = {
       badgeSub: 'Công nghệ sưởi gốm PTC 2000W không khô da, điều khiển từ xa, hẹn giờ 12h, tự ngắt an toàn',
       awardMethod: 'Bốc Thăm Tâm Điểm Đêm Gala',
       quantityLabel: '01 Giải Nhất Danh Giá Duy Nhất',
-      targetNote: 'Tâm Điểm May Mắn Nhất Đêm Gala TLQM',
+      targetNote: 'Tâm Điểm May Mắn Nhất Đêm Gala Tà Lùng Quang Minh',
       qualityStandard: 'Chính Hãng Kangaroo Nguyên Seal',
       trustHighlights: ['Bảo Hành Chính Hãng 12T', 'Đóng Gói Sang Trọng', 'Vinh Danh Sân Khấu'],
       quote: '“Món quà đỉnh cao trao trọn sự ấm áp, thịnh vượng và an lành cho gia đình bạn!”',

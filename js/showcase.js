@@ -1,5 +1,5 @@
 // =================================================================
-// SHOWCASE MANAGER: CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN (GALA TLQM)
+// SHOWCASE MANAGER: CƠ CẤU QUÀ TẶNG & BỐC THĂM MAY MẮN (GALA TÀ LÙNG QUANG MINH)
 // KIẾN TRÚC MỞ (CONFIG-DRIVEN ARCHITECTURE) - DỄ DÀNG THÊM QUÀ & GHÉP GIỌNG
 // =================================================================
 
@@ -115,7 +115,7 @@ class ShowcaseManager {
           html = `
             <div class="prize-slide-inner prize-opening-layout">
               <div class="prize-brand-header">
-                <img src="${slide.content.logo}" alt="TLQM Logo" class="prize-logo-hero">
+                <img src="${slide.content.logo}" alt="Tà Lùng Quang Minh Logo" class="prize-logo-hero">
                 <span class="prize-subtext-pill">${slide.content.badge}</span>
               </div>
               <h2 class="prize-company-name">${slide.content.companyName}</h2>
@@ -235,7 +235,7 @@ class ShowcaseManager {
                   <div class="meta-divider"></div>
                   <div class="meta-item">
                     <span class="meta-label">Đối tượng</span>
-                    <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên TLQM'}</span>
+                    <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên Tà Lùng Quang Minh'}</span>
                   </div>
                 </div>
 

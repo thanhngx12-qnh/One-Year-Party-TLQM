@@ -21,7 +21,7 @@ class KingGame {
       {
         scrambled: ['T', 'H', 'I', 'P', 'Ể', 'Á', 'R', 'N', 'T'],
         answer: 'PHÁT TRIỂN',
-        hint: 'Mục tiêu và khát vọng không ngừng vươn xa của tập thể cán bộ nhân viên TLQM.'
+        hint: 'Mục tiêu và khát vọng không ngừng vươn xa của tập thể cán bộ nhân viên Tà Lùng Quang Minh.'
       },
       {
         scrambled: ['N', 'Ế', 'Đ', 'T', 'À', 'K', 'O'],

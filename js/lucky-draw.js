@@ -1,5 +1,5 @@
 /**
- * Digital Lucky Draw Manager for Gala Dinner TLQM
+ * Digital Lucky Draw Manager for Gala Dinner Tà Lùng Quang Minh
  * 
  * Thiết kế chuẩn hóa theo quy trình thực tế của Gala:
  * 1. Ban Tổng Giám đốc bốc thăm phiếu may mắn bên ngoài sân khấu.
@@ -10,7 +10,7 @@
  * 4. Hệ thống Quota Tracker theo dõi tiến độ từng đợt giải thưởng (12/8/5/1/Phát sinh).
  * 5. Bảng Vinh Danh Sân Khấu Grand Ceremonial Stage Board (Màn LED):
  *    - Vinh danh cả đợt (12 giải May mắn cùng lúc) hoặc toàn bộ bảng vàng.
- *    - Hiển thị logo TLQM & CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH nổi bật trang trọng.
+ *    - Hiển thị logo Tà Lùng Quang Minh & CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH nổi bật trang trọng.
  * 6. Tự động đồng bộ thời gian thực 0ms sang Màn LED sân khấu qua BroadcastChannel.
  */
 
@@ -723,7 +723,7 @@ class LuckyDrawManager {
     if (this.activeFilter === 'all') {
       list = [...this.recordedWinners];
       title = `BẢNG VÀNG TOÀN BỘ KẾT QUẢ BỐC THĂM (${list.length} GIẢI)`;
-      badge = '🌟 TẤT CẢ GIẢI THƯỞNG GALA TLQM';
+      badge = '🌟 TẤT CẢ GIẢI THƯỞNG GALA TÀ LÙNG QUANG MINH';
     } else {
       list = this.recordedWinners.filter(w => w.prizeId === this.activeFilter);
       const pDef = this.prizeDefs[this.activeFilter];
@@ -744,7 +744,7 @@ class LuckyDrawManager {
       alert('⚠️ Chưa có kết quả bốc thăm nào được ghi nhận!');
       return;
     }
-    const title = `BẢNG VÀNG KẾT QUẢ BỐC THĂM MAY MẮN GALA TLQM`;
+    const title = `BẢNG VÀNG KẾT QUẢ BỐC THĂM MAY MẮN GALA TÀ LÙNG QUANG MINH`;
     const badge = `🌟 TOÀN BỘ ${this.recordedWinners.length} GIẢI THƯỞNG`;
     this.displayBatchModal(this.recordedWinners, title, badge, true);
   }
@@ -953,7 +953,7 @@ class LuckyDrawManager {
       return;
     }
 
-    let summary = `🏆 BẢNG VÀNG BỐC THĂM MAY MẮN GALA DINNER TLQM\nCÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH\n--------------------------------------------\n`;
+    let summary = `🏆 BẢNG VÀNG BỐC THĂM MAY MẮN GALA DINNER TÀ LÙNG QUANG MINH\nCÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH\n--------------------------------------------\n`;
     this.recordedWinners.forEach((w, idx) => {
       summary += `${idx + 1}. [Mã ${w.code}] ${w.name} - ${w.dept} (${w.pos}) -> ${w.prizeShort} (${w.prizeName}) [${w.time}]\n`;
     });

@@ -29,7 +29,7 @@ class PoseGame {
       },
       {
         id: 5,
-        title: 'Thử Thách Dáng 5: Chung Một Mái Nhà TLQM',
+        title: 'Thử Thách Dáng 5: Chung Một Mái Nhà Tà Lùng Quang Minh',
         desc: 'Vòng thi quyết định! Dáng chụp cực độc và hài hước nhất đêm Gala!',
         image: 'assets/poses/pose_5.webp'
       }
@@ -52,7 +52,7 @@ class PoseGame {
       {
         id: 3,
         title: 'Dáng Tập Dượt 3: Tinh Thần Đồng Đội',
-        desc: 'Cả đội đứng sát nhau, khoác vai và hô to khẩu hiệu TLQM!',
+        desc: 'Cả đội đứng sát nhau, khoác vai và hô to khẩu hiệu Tà Lùng Quang Minh!',
         image: 'assets/poses/demo_pose_3.svg'
       }
     ];
@@ -767,13 +767,13 @@ class PoseGame {
         id: 'award-default-1',
         title: 'Giải Đội Trưởng Ấn Tượng',
         recipient: 'Đội Trưởng Xuất Sắc Nhất',
-        prize: 'Ô Cầm Tay Cao Cấp TLQM'
+        prize: 'Ô Cầm Tay Cao Cấp Tà Lùng Quang Minh'
       },
       {
         id: 'award-default-2',
         title: 'Giải Tạo Dáng Bùng Nổ & Sáng Tạo',
         recipient: 'Đội Trình Diễn Cười Nghiêng Ngả Nhất',
-        prize: 'Phần Quà Lưu Niệm Độc Đáo TLQM'
+        prize: 'Phần Quà Lưu Niệm Độc Đáo Tà Lùng Quang Minh'
       }
     ];
   }
@@ -812,7 +812,7 @@ class PoseGame {
       id: 'award-' + Date.now(),
       title: title,
       recipient: recipient || 'Đội chơi xuất sắc',
-      prize: prize || 'Phần Quà Kỷ Niệm TLQM'
+      prize: prize || 'Phần Quà Kỷ Niệm Tà Lùng Quang Minh'
     };
 
     this.customAwards.push(newAward);
@@ -950,7 +950,7 @@ class PoseGame {
     } else if (winners.length === 1) {
       const w = winners[0];
       winnerText = `🏆 ${w.name} XUẤT SẮC CHIẾN THẮNG!`;
-      winnerSubtitle = `Dẫn đầu với số điểm ấn tượng: ${w.score} điểm! Nhận ngay phần quà Quán quân danh giá từ Gala TLQM! 🎁`;
+      winnerSubtitle = `Dẫn đầu với số điểm ấn tượng: ${w.score} điểm! Nhận ngay phần quà Quán quân danh giá từ Gala Tà Lùng Quang Minh! 🎁`;
     } else {
       const winNames = winners.map(w => w.name).join(' & ');
       winnerText = `🤝 ĐỒNG QUÁN QUÂN: ${winNames}!`;
@@ -979,22 +979,22 @@ class PoseGame {
           rankClass = 'rank-1';
           badgeEmoji = '🥇';
           rankTitle = winners.length > 1 ? 'ĐỒNG QUÁN QUÂN' : 'QUÁN QUÂN';
-          prizeName = '1 Thùng quà Secret 200k (Bánh kẹo/Bia ngoại)';
-          prizeSub = 'Phần quà Vô Địch chính thức Gameshow Gala TLQM';
+          prizeName = 'Thùng Quà Bí Mật Đội Quán Quân';
+          prizeSub = 'Phần quà Vô Địch chính thức Gameshow Gala Tà Lùng Quang Minh';
           prizeImg = 'assets/prizes/thung_qua_secret.svg';
         } else if (idx === 1 || (winners.length > 1 && team.score < maxScore && idx === winners.length)) {
           rankClass = 'rank-2';
           badgeEmoji = '🥈';
           rankTitle = 'Á QUÂN';
-          prizeName = '1 Thùng quà Secret 100k (Bánh kẹo)';
-          prizeSub = 'Phần quà Á Quân chính thức Gameshow Gala TLQM';
+          prizeName = 'Thùng Quà Bí Mật Đội Á Quân';
+          prizeSub = 'Phần quà Á Quân chính thức Gameshow Gala Tà Lùng Quang Minh';
           prizeImg = 'assets/prizes/thung_qua_secret.svg';
         } else {
           rankClass = 'rank-3';
           badgeEmoji = idx === 2 ? '🥉' : '🎖️';
           rankTitle = 'ĐỒNG ĐỘI / KHUYẾN KHÍCH';
-          prizeName = 'Ô Cầm Tay Cao Cấp TLQM';
-          prizeSub = 'Trao tặng các thành viên kỷ niệm ra mắt thương hiệu TLQM';
+          prizeName = 'Ô Cầm Tay Cao Cấp Tà Lùng Quang Minh';
+          prizeSub = 'Trao tặng các thành viên kỷ niệm ra mắt thương hiệu Tà Lùng Quang Minh';
           prizeImg = 'assets/prizes/o_cam_tay_tlqm.svg';
         }
 

@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * AWARDS & LUCKY DRAW TAB MANAGER (GALA TLQM)
+ * AWARDS & LUCKY DRAW TAB MANAGER (GALA TÀ LÙNG QUANG MINH)
  * Quản lý chuyên biệt phân hệ Bốc Thăm May Mắn (26 Giải) & Trao Quà Gameshow
  * Tách biệt hoàn toàn khỏi Slide trình chiếu để MC / Lead Game thao tác tiện lợi
  * ==============================================================================
@@ -116,12 +116,12 @@ class AwardsManager {
     const rankPrizes = [
       { rank: 1, medal: '🥇', tag: 'QUÁN QUÂN', prize: 'Thùng Quà Bí Mật Đội Quán Quân + Cúp Vàng', class: 'rank-champion' },
       { rank: 2, medal: '🥈', tag: 'Á QUÂN', prize: 'Thùng Quà Bí Mật Đội Á Quân', class: 'rank-runnerup' },
-      { rank: 3, medal: '🥉', tag: 'HẠNG BA', prize: 'Ô Cầm Tay Thương Hiệu TLQM', class: 'rank-third' },
-      { rank: 4, medal: '🎖️', tag: 'HẠNG BỐN', prize: 'Ô Cầm Tay Thương Hiệu TLQM', class: 'rank-fourth' }
+      { rank: 3, medal: '🥉', tag: 'HẠNG BA', prize: 'Ô Cầm Tay Thương Hiệu Tà Lùng Quang Minh', class: 'rank-third' },
+      { rank: 4, medal: '🎖️', tag: 'HẠNG BỐN', prize: 'Ô Cầm Tay Thương Hiệu Tà Lùng Quang Minh', class: 'rank-fourth' }
     ];
 
     list.innerHTML = teams.map((team, idx) => {
-      const info = rankPrizes[idx] || { rank: idx + 1, medal: '🎖️', tag: `HẠNG ${idx + 1}`, prize: 'Ô Cầm Tay TLQM', class: '' };
+      const info = rankPrizes[idx] || { rank: idx + 1, medal: '🎖️', tag: `HẠNG ${idx + 1}`, prize: 'Ô Cầm Tay Tà Lùng Quang Minh', class: '' };
       return `
         <div class="standing-team-item ${info.class}">
           <div class="standing-rank-badge">
@@ -218,7 +218,7 @@ class AwardsManager {
       id: 'award-' + Date.now(),
       title: title,
       recipient: recipient || 'Đội chơi xuất sắc',
-      prize: prize || 'Phần Quà Lưu Niệm TLQM'
+      prize: prize || 'Phần Quà Lưu Niệm Tà Lùng Quang Minh'
     };
 
     const pose = window.gamePose || window.poseGame;
@@ -288,13 +288,13 @@ class AwardsManager {
         id: 'award-default-1',
         title: 'Giải Đội Trưởng Ấn Tượng Nhất',
         recipient: 'Cá nhân xuất sắc nhất / Đội trưởng',
-        prize: 'Phần Quà Đặc Biệt TLQM'
+        prize: 'Phần Quà Đặc Biệt Tà Lùng Quang Minh'
       },
       {
         id: 'award-default-2',
         title: 'Giải Tạo Dáng Bùng Nổ & Sáng Tạo',
         recipient: 'Đội Trình Diễn Cười Nghiêng Ngả Nhất',
-        prize: 'Phần Quà Lưu Niệm Độc Đáo TLQM'
+        prize: 'Phần Quà Lưu Niệm Độc Đáo Tà Lùng Quang Minh'
       }
     ];
   }
