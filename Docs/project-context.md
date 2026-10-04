@@ -1,4 +1,5 @@
 # 📘 PROJECT CONTEXT: TÀ LÙNG QUANG MINH GALA DINNER
+
 ## Hệ Thống Ứng Dụng Web Sân Khấu Kỷ Niệm Ra Mắt Thương Hiệu Tà Lùng Quang Minh Logistics
 
 ---
@@ -7,7 +8,7 @@
 
 - **Tên Dự Án**: One-Year-Party-TLQM (Gala Kỷ Niệm 1 Năm Ra Mắt Thương Hiệu).
 - **Đơn Vị Chủ Quản**: **CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH** (TLQM Logistics).
-- **Khẩu Hiệu / Slogan**: *KẾT NỐI BIÊN GIỚI – VƯƠN TỚI TOÀN CẦU*.
+- **Khẩu Hiệu / Slogan**: _KẾT NỐI BIÊN GIỚI – VƯƠN TỚI TOÀN CẦU_.
 - **Thời Điểm Sự Kiện**: Gala Dinner Kỷ Niệm Ra Mắt Thương Hiệu.
 - **Quy Mô Nhân Sự**: 111 Cán bộ Nhân viên (CBCNV), trong đó 65 nhân sự chính thức có mặt tại đêm tiệc Gala.
 - **Mục Tiêu Hệ Thống**: Ứng dụng Web chuyên dụng phục vụ trình chiếu màn hình LED sân khấu lớn, tổ chức các gameshow sân khấu tương tác, minigames đối kháng, bốc thăm may mắn 29 giải thưởng và trao thưởng nóng theo thời gian thực với trải nghiệm thị giác chuẩn 16:9 cao cấp.
@@ -35,16 +36,18 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
 ## 3. Hệ Thống Thiết Kế & Nhận Diện Thương Hiệu (Design System)
 
 ### Bảng Mã Màu Thương Hiệu TLQM
-| Tên Màu | Mã HEX | Ứng Dụng |
-| :--- | :--- | :--- |
-| **Xanh Lá TLQM** | `#0B9444` | Màu thương hiệu chính, huy hiệu thành công, nút kích hoạt |
-| **Xanh Navy Chủ Đạo** | `#223873` | Màu nền logo, tiêu đề công ty, thanh điều hướng chính |
-| **Xanh Navy Đêm** | `#0F1833` / `#070C1B` | Nền giao diện sân khấu Gala, thẻ kính mờ |
-| **Vàng Hoàng Kim (Gold)** | `#F59E0B` / `#FBBF24` | Chữ lấp lánh (gold-shimmer), viền giải thưởng cao cấp |
-| **Xanh Ngọc (Teal)** | `#109B9A` | Thẻ tag bổ trợ, phân cấp danh mục |
-| **Nền Trắng Kính** | `#FFFFFF` / `rgba(255,255,255,0.9)` | Thẻ nổi bật, logo badge |
+
+| Tên Màu                   | Mã HEX                              | Ứng Dụng                                                  |
+| :------------------------ | :---------------------------------- | :-------------------------------------------------------- |
+| **Xanh Lá TLQM**          | `#0B9444`                           | Màu thương hiệu chính, huy hiệu thành công, nút kích hoạt |
+| **Xanh Navy Chủ Đạo**     | `#223873`                           | Màu nền logo, tiêu đề công ty, thanh điều hướng chính     |
+| **Xanh Navy Đêm**         | `#0F1833` / `#070C1B`               | Nền giao diện sân khấu Gala, thẻ kính mờ                  |
+| **Vàng Hoàng Kim (Gold)** | `#F59E0B` / `#FBBF24`               | Chữ lấp lánh (gold-shimmer), viền giải thưởng cao cấp     |
+| **Xanh Ngọc (Teal)**      | `#109B9A`                           | Thẻ tag bổ trợ, phân cấp danh mục                         |
+| **Nền Trắng Kính**        | `#FFFFFF` / `rgba(255,255,255,0.9)` | Thẻ nổi bật, logo badge                                   |
 
 ### Hình Nền Sân Khấu Chính Thức (Backdrop)
+
 - Tích hợp trực tiếp file ảnh chụp Backdrop chính thức của sự kiện: `assets/images/official-gala-backdrop.jpg` (kèm bản PNG chất lượng cao `official-gala-backdrop.png`).
 - Kết hợp với lớp phủ chuyển màu đa lớp `linear-gradient(180deg, rgba(8, 16, 40, 0.74) 0%, rgba(7, 13, 31, 0.86) 100%)` để bảo đảm độ nổi của chữ vàng và số may mắn trong mọi điều kiện ánh sáng sân khấu.
 
@@ -53,28 +56,32 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
 ## 4. Các Phân Hệ Chức Năng (Modules & Sections)
 
 ### F1 • Trang Chủ & Khởi Động Gala (`#section-home`)
+
 - Banner đại diện thương hiệu **CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH**.
 - Đồng hồ đếm ngược khai mạc chương trình, pháo hoa ăn mừng và video chào mừng.
 - Hệ thống phát âm thanh chào mừng MC AI mở màn đêm Gala.
 
 ### F2 • Trình Chiếu Cơ Cấu Giải Thưởng (`#section-showcase`)
+
 - Hệ thống 7 Slide trình chiếu giải thưởng 3D Glassmorphism sang trọng:
-  1. *Slide 1*: Giới thiệu tổng quan cơ cấu 29 giải thưởng Gala.
-  2. *Slide 2*: Quy định bốc thăm và trao quà.
-  3. *Slide 3*: Quy trình vinh danh sân khấu.
-  4. *Slide 4*: **12 Giải Đồng Hành** – Pin sạc dự phòng AVA+ 10.000 mAh.
-  5. *Slide 5*: **08 Giải May Mắn** – Ấm đun siêu tốc Bear 1.5L.
-  6. *Slide 6*: **05 Giải Ba** – Bàn là hơi nước Tefal Easy Steam.
-  7. *Slide 7*: **01 Giải Nhất** – Quạt sưởi gốm Kangaroo cao cấp.
+  1. _Slide 1_: Giới thiệu tổng quan cơ cấu 29 giải thưởng Gala.
+  2. _Slide 2_: Quy định bốc thăm và trao quà.
+  3. _Slide 3_: Quy trình vinh danh sân khấu.
+  4. _Slide 4_: **12 Giải Đồng Hành** – Pin sạc dự phòng AVA+ 10.000 mAh.
+  5. _Slide 5_: **08 Giải May Mắn** – Ấm đun siêu tốc Bear 1.5L.
+  6. _Slide 6_: **05 Giải Ba** – Bàn là hơi nước Tefal Easy Steam.
+  7. _Slide 7_: **01 Giải Nhất** – Quạt sưởi gốm Kangaroo cao cấp.
 - Mỗi slide đều tích hợp file giọng đọc MC thuyết minh lồng tiếng chuyên nghiệp, nút nghe lại (`R`), chuyển slide tiến/lùi (`Space`, `←`, `→`).
 
 ### F3 • Minigame 1: Vua Tiếng Việt (`#section-king`)
+
 - Trò chơi sắp xếp các chữ cái xáo trộn thành từ ngữ có nghĩa liên quan đến ngành Logistics, địa danh Tà Lùng và văn hóa TLQM.
 - Đồng hồ đếm ngược 15 giây dạng vòng tròn SVG với thanh tiến độ đổi màu (xanh -> vàng -> đỏ).
 - Phím tắt gợi ý MC (`H`/`G`), phím mở đáp án (`Enter`), phím đặt lại (`R`).
 - Tích hợp Chế độ Tập dượt Demo (3 câu) và Chế độ Thật Gala (9 câu) được bảo vệ bằng mật mã Ban Tổ Chức (`Talung@2026`).
 
 ### F4 • Minigame 2: Tạo Dáng Thần Tốc (`#section-posing`)
+
 - Thử thách đối kháng sân khấu giữa các đội thi cán bộ nhân viên.
 - **Tùy biến số lượng đội**: Hỗ trợ linh hoạt 2 Đội, 3 Đội hoặc 4 Đội thi đấu đồng thời.
 - **Bảng điểm tương thích thông minh**: Tự động cân đối chiều cao và bố cục theo số lượng đội tham gia.
@@ -82,7 +89,9 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
 - Phím tắt cộng/trừ điểm tức thì cho từng đội (`1`-`4`, `Q`/`W`/`E`/`U`), nút trao giải vô địch (`T`) với pháo hoa confetti chúc mừng.
 
 ### F5 • Bốc Thăm May Mắn & Trao Quà (`#section-awards`)
+
 Được thiết kế lại chuyên biệt theo chuẩn **khung hình 16:9 duy nhất không cần cuộn chuột**:
+
 1. **Dải 6 Đợt Giải Thưởng Siêu Gọn Gàng (Single-Line Mini Chips)**:
    - Đợt 1: `🎁 12 Đồng Hành (0/12)`
    - Đợt 2: `☕ 08 May Mắn (0/8)`
@@ -101,7 +110,7 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
    - Hiển thị logo Tà Lùng Quang Minh, số báo danh, họ và tên, chức vụ, phòng ban và giải thưởng đạt được.
 5. **Góc Kỹ Thuật Viên Gọn Gàng (Backstage Console - Chiếm 30%)**:
    - Tinh gọn tối đa cỡ chữ (0.58rem - 0.65rem) và độ cao nút bấm để không làm phân tâm khán giả.
-   - Hỗ trợ 2 chế độ: *1. Bốc Từng Số* (Quay slot 3 số) hoặc *2. Nhập Cả Đợt* (Ghi nhận hàng loạt mã NV cùng lúc).
+   - Hỗ trợ 2 chế độ: _1. Bốc Từng Số_ (Quay slot 3 số) hoặc _2. Nhập Cả Đợt_ (Ghi nhận hàng loạt mã NV cùng lúc).
    - Hỗ trợ giải thưởng phát sinh / thưởng nóng của Ban Tổng Giám Đốc.
    - Bảng kết quả đã trao gọn gàng với bộ lọc theo đợt, nút xuất báo cáo và nút vinh danh cả đợt lên màn hình LED.
    - **Nút Bật/Tắt [Bảng Kỹ Thuật]**: Cho phép ẩn hoàn toàn cột điều khiển bên phải để phóng to Sân Khấu đạt **100% độ rộng màn hình 16:9** khi trình diễn trước toàn thể hội trường.
@@ -137,7 +146,7 @@ One-Year-Party-TLQM/
 │   │   ├── am_sieu_toc_bear.jpg        # Đợt 2: Ấm đun siêu tốc Bear 1.5L
 │   │   ├── ban_la_tefal.jpg            # Đợt 3: Bàn là hơi nước Tefal Easy Steam
 │   │   ├── may_say_toc.jpg             # Đợt 4: Máy sấy tóc ion âm cao cấp
-│   │   └── quat_suoi_kangaroo.jpg      # Đợt 5: Quạt sưởi gốm Kangaroo cao cấp
+│   │   └── quat_suoi_kangaroo.png      # Đợt 5: Quạt sưởi gốm Kangaroo cao cấp
 │   ├── voices/                         # Giọng đọc thuyết minh MC AI ElevenLabs
 │   │   ├── 1.mp3 đến 7.mp3             # Giọng MC tương ứng với từng Slide Quà Tặng
 │   │   └── ElevenLabs_*.mp3            # Các bản ghi giọng MC gốc chất lượng cao
@@ -155,6 +164,7 @@ One-Year-Party-TLQM/
 ## 6. Danh Mục Phím Tắt Điều Khiển (Keyboard Shortcuts Map)
 
 ### Điều Hướng Phân Hệ (Navigation)
+
 - `F1`: Chuyển đến **Trang Chủ** (Home).
 - `F2`: Chuyển đến **Slide Quà Tặng** (Showcase Giải Thưởng).
 - `F3`: Chuyển đến Minigame **Vua Tiếng Việt**.
@@ -165,23 +175,27 @@ One-Year-Party-TLQM/
 - `F` / `F11`: Bật / Tắt chế độ **Toàn Màn Hình** (Fullscreen).
 
 ### Điều Khiển Hiệu Ứng & Âm Thanh (Cheer & Audio)
+
 - `C`: Bắn **Pháo Hoa** chúc mừng kèm âm thanh reo hò (Confetti & Cheer).
 - `L`: Bật / Tắt âm thanh **Trống Dồn** hồi hộp (Drum roll).
 - `B`: Bật / Tắt **Nhạc Nền** Gala (Background Music).
 - `M`: Bật / Tắt toàn bộ hiệu ứng âm thanh (Mute/Unmute).
 
 ### Slide Quà Tặng (Showcase)
+
 - `Space` / `→` / `N`: Chuyển sang Slide tiếp theo.
 - `←` / `P`: Quay lại Slide trước đó.
 - `R`: Nghe lại giọng đọc thuyết minh MC của slide hiện tại.
 
 ### Minigame Vua Tiếng Việt
+
 - `Space`: Bắt đầu đếm ngược 15 giây.
 - `H` / `G`: Hiển thị gợi ý của MC.
 - `Enter`: Mở đáp án chính xác.
 - `R`: Đặt lại câu hỏi và đồng hồ.
 
 ### Minigame Tạo Dáng Thần Tốc
+
 - `Space`: Mở khóa tư thế bí mật và bắt đầu 15 giây tạo dáng.
 - `1`, `2`, `3`, `4`: Cộng 1 điểm cho Đội 1 (Đỏ), Đội 2 (Xanh), Đội 3 (Vàng), Đội 4 (Tím).
 - `Q`, `W`, `E`, `U`: Trừ 1 điểm cho đội tương ứng.
@@ -190,6 +204,7 @@ One-Year-Party-TLQM/
 - `0` (hoặc `Shift+R`): Đặt lại điểm số các đội về 0.
 
 ### Bốc Thăm May Mắn (Lucky Draw)
+
 - `Space`: Bắt đầu quay ngẫu nhiên hoặc ghi nhận mã số đang nhập.
 - `ESC`: Đóng Modal danh sách trúng thưởng trên màn LED sân khấu.
 
@@ -213,4 +228,4 @@ One-Year-Party-TLQM/
 
 ---
 
-*Tài liệu được cập nhật ngày 04/10/2026. Bản quyền thuộc về CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH.*
+_Tài liệu được cập nhật ngày 04/10/2026. Bản quyền thuộc về CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH._

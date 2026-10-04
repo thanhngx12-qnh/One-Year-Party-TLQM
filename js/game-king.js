@@ -267,9 +267,12 @@ class KingGame {
     }, 1000);
   }
 
-  pauseTimer() {
+  pauseTimer(broadcast = true) {
     this.isRunning = false;
     clearInterval(this.timerInterval);
+    if (broadcast && window.stageSync) {
+      window.stageSync.broadcast('KING_PAUSE_TIMER', { seconds: this.remainingSeconds });
+    }
     const vignette = document.getElementById('stage-urgent-vignette');
     if (vignette) vignette.classList.remove('active');
     const btnStart = document.getElementById('king-start-timer');
@@ -310,9 +313,10 @@ class KingGame {
     }
   }
 
-  showHint() {
+  showHint(broadcast = true) {
     if (this.isHintShown) return;
     this.isHintShown = true;
+    if (broadcast && window.stageSync) window.stageSync.broadcast('KING_SHOW_HINT');
     const q = this.questions[this.currentIndex];
     const hintBox = document.getElementById('king-hint-box');
     if (hintBox) {

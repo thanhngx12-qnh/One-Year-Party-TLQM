@@ -69,6 +69,11 @@ class FullscreenManager {
   }
 
   toggle() {
+    if (document.body.classList.contains('stage-pure-led')) {
+      if (this.isNativeFullscreen()) this.exitNative();
+      else this.requestNative();
+      return;
+    }
     if (this.isActive()) {
       this.exit();
     } else {
@@ -144,7 +149,7 @@ class FullscreenManager {
 
   setStageMode(enable, showToast = true) {
     this.isStageMode = enable;
-    document.body.classList.toggle('stage-fullscreen', enable);
+    document.body.classList.toggle('stage-fullscreen', enable || document.body.classList.contains('stage-pure-led'));
 
     // Update main header button
     if (this.btn) {
@@ -184,6 +189,7 @@ class App {
   }
 
   showToast(text, keyHint = null) {
+    if (window.stageSync?.isStageScreen) return;
     let toast = document.getElementById('gala-hud-toast');
     if (!toast) {
       toast = document.createElement('div');
@@ -216,7 +222,7 @@ class App {
     });
   }
 
-  switchSection(sectionId) {
+  switchSection(sectionId, broadcast = true) {
     this.currentSection = sectionId;
 
     // Update nav buttons
@@ -321,6 +327,13 @@ class App {
 
   setupKeyboardShortcuts() {
     window.addEventListener('keydown', (e) => {
+      if (window.stageSync?.isStageScreen) {
+        if (e.key.toLowerCase() === 'f') {
+          e.preventDefault();
+          this.fullscreenManager.toggle();
+        }
+        return;
+      }
       // Ignore if typing inside an editable field or input
       if (['INPUT', 'TEXTAREA'].includes(e.target.tagName) || e.target.isContentEditable) {
         return;
@@ -1079,8 +1092,10 @@ class App {
   }
 
   applyTheme(theme, showToast = false) {
-    const isLight = theme === 'light';
-    localStorage.setItem('tlqm_app_theme', isLight ? 'light' : 'gala-luxury');
+    const isLight = theme === 'light' && !window.stageSync?.isStageScreen;
+    if (!window.stageSync?.isStageScreen) {
+      localStorage.setItem('tlqm_app_theme', isLight ? 'light' : 'gala-luxury');
+    }
 
     if (isLight) {
       document.body.classList.remove('theme-gala-luxury');

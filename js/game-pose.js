@@ -117,6 +117,10 @@ class PoseGame {
     const btnReset = document.getElementById('pose-reset-timer');
     const btnPrev = document.getElementById('pose-prev-btn');
     const btnNext = document.getElementById('pose-next-btn');
+    if (btnStart) btnStart.addEventListener('click', () => this.toggleTimer());
+    if (btnReset) btnReset.addEventListener('click', () => this.resetTimer());
+    if (btnPrev) btnPrev.addEventListener('click', () => this.prevPose());
+    if (btnNext) btnNext.addEventListener('click', () => this.nextPose());
 
     // Reveal buttons
     const btnRevealCenter = document.getElementById('pose-reveal-btn');
@@ -326,9 +330,10 @@ class PoseGame {
     }
   }
 
-  hidePose(showToast = true) {
+  hidePose(showToast = true, broadcast = true) {
     this.isRevealed = false;
     this.stopTimer();
+    if (broadcast && window.stageSync) window.stageSync.broadcast('POSE_HIDE');
 
     const cover = document.getElementById('pose-cover-overlay');
     if (cover) {
@@ -471,9 +476,12 @@ class PoseGame {
     }, 1000);
   }
 
-  pauseTimer() {
+  pauseTimer(broadcast = true) {
     this.isRunning = false;
     clearInterval(this.timerInterval);
+    if (broadcast && window.stageSync) {
+      window.stageSync.broadcast('POSE_PAUSE_TIMER', { seconds: this.remainingSeconds });
+    }
     const vignette = document.getElementById('stage-urgent-vignette');
     if (vignette) vignette.classList.remove('active');
     const btnStart = document.getElementById('pose-start-timer');

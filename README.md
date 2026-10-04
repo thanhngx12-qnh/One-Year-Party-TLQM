@@ -28,9 +28,11 @@
 - Lịch sử quay số trúng thưởng rõ ràng, hỗ trợ xuất và đặt lại.
 
 ### 5. 🖥️ Đồng Bộ 2 Màn Hình Sân Khấu (Stage Dual-Screen Realtime Sync)
-- **Zero Latency**: Sử dụng `BroadcastChannel` đồng bộ tức thì giữa **Màn hình Điều phối Laptop** và **Màn LED Sân Khấu Chiếu Khán Giả**.
+- Sử dụng `BroadcastChannel` đồng bộ giữa **Màn hình Điều phối Laptop** và **Màn LED Sân Khấu Chiếu Khán Giả** trong cùng trình duyệt, cùng địa chỉ web.
 - Mở màn LED chuyên dụng chỉ với 1 click hoặc phím `F8` (đường dẫn: `?screen=stage`).
 - Màn LED tự động ẩn toàn bộ các thanh điều khiển nhạy cảm của MC/Kỹ thuật viên.
+- Giao diện LED riêng tối ưu 1920×1080: chữ/số lớn, nền tối, vinh danh 6 người mỗi trang; tự nhận trạng thái hiện tại khi mở hoặc tải lại cửa sổ.
+- Xem [hướng dẫn mở hai màn hình riêng](Docs/LED_OPERATOR_GUIDE.md).
 
 ### 6. 🔒 Chế Độ Bảo Mật Dữ Liệu Gala Thật
 - Tích hợp cổng mật khẩu bảo mật dữ liệu chính thức đêm tiệc (`Talung@2026`).

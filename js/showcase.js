@@ -643,11 +643,14 @@ class ShowcaseManager {
     this.resumeOrStartProgram();
   }
 
-  goToSlide(index) {
+  goToSlide(index, broadcast = true) {
     clearTimeout(this.autoPlayTimer);
     if (index < 0) index = 0;
     if (index >= this.totalSlides) index = this.totalSlides - 1;
     this.currentSlide = index;
+    if (broadcast && window.stageSync) {
+      window.stageSync.broadcast('SHOWCASE_SLIDE', { slideIndex: index });
+    }
 
     const currentSlideConfig = this.slidesData[index] || {};
 

@@ -1,7 +1,7 @@
 /**
  * Stage Dual-Screen Synchronization Engine
  * Connects the Laptop Operator Console with the Audience LED Stage Screen via BroadcastChannel.
- * Zero-latency local cross-window synchronization.
+ * Local cross-window synchronization on the same browser and origin.
  */
 class StageSync {
   constructor() {
@@ -17,6 +17,74 @@ class StageSync {
     }
   }
 
+  setConnectionStatus(connected, sectionId = '') {
+    const status = document.getElementById('stage-connection-status');
+    if (!status) return;
+    const labels = { home: 'Trang chủ', showcase: 'Quà tặng', king: 'Vua Tiếng Việt', pose: 'Tạo dáng', awards: 'Trao quà' };
+    status.textContent = connected ? `LED đã kết nối · ${labels[sectionId] || 'Sẵn sàng'}` : 'LED chưa kết nối · F8';
+    status.classList.toggle('connected', connected);
+  }
+
+  // Reuse the existing game controllers; a newly opened LED receives current state.
+  sendSnapshot() {
+    if (!window.app) return;
+    const king = window.kingGame;
+    const pose = window.poseGame;
+    const lucky = window.luckyDrawManager;
+    const presentations = ['pose-cover-overlay', 'pose-snapshot-banner', 'winner-modal', 'lucky-winner-announcement', 'lucky-batch-modal'].map(id => {
+      const el = document.getElementById(id);
+      return { id, html: el.innerHTML, className: el.className };
+    });
+    this.broadcast('STAGE_SNAPSHOT', {
+      sectionId: window.app.currentSection,
+      isOfficial: window.app.isOfficialData,
+      slideIndex: window.showcaseManager.currentSlide,
+      awardsTab: window.awardsManager.currentTab,
+      king: { index: king.currentIndex, seconds: king.remainingSeconds, running: king.isRunning, hint: king.isHintShown, revealed: king.isRevealed },
+      pose: { index: pose.currentPoseIndex, teamCount: pose.teamCount, scores: pose.scores, teamNames: pose.teamNames, customAwards: pose.customAwards, phase: pose.phase, totalSeconds: pose.totalSeconds, remainingSeconds: pose.remainingSeconds, isRevealed: pose.isRevealed, isRunning: pose.isRunning },
+      tier: lucky.activeTier,
+      winners: lucky.recordedWinners,
+      batchWinners: lucky.batchWinners || [],
+      batchPage: lucky.batchPage || 0,
+      digits: [lucky.slotD1, lucky.slotD2, lucky.slotD3].map(el => el.querySelector('.slot-digit-val').textContent),
+      presentations,
+    });
+  }
+
+  applySnapshot(msg) {
+    window.app.applyDataMode(msg.isOfficial, false);
+    window.showcaseManager.goToSlide(msg.slideIndex, false);
+    window.awardsManager.switchTab(msg.awardsTab, false);
+    const king = window.kingGame;
+    king.loadQuestion(msg.king.index, false);
+    king.remainingSeconds = msg.king.seconds;
+    if (msg.king.hint) king.showHint(false);
+    if (msg.king.revealed) king.revealAnswer(false);
+    if (msg.king.running) king.startTimer(false);
+    king.updateTimerDisplay();
+    const pose = window.poseGame;
+    pose.setTeamCount(msg.pose.teamCount, false);
+    pose.loadPose(msg.pose.index, false);
+    Object.assign(pose, msg.pose);
+    pose.updateScores();
+    pose.updateTimerDisplay();
+    if (msg.pose.isRunning) pose.startTimer(false);
+    const lucky = window.luckyDrawManager;
+    lucky.recordedWinners = msg.winners;
+    lucky.batchWinners = msg.batchWinners;
+    lucky.batchPage = msg.batchPage;
+    lucky.selectTier(msg.tier, true, false);
+    lucky.updateQuotaTrackers();
+    [lucky.slotD1, lucky.slotD2, lucky.slotD3].forEach((el, i) => { el.querySelector('.slot-digit-val').textContent = msg.digits[i]; });
+    msg.presentations.forEach(({ id, html, className }) => {
+      const el = document.getElementById(id);
+      el.innerHTML = html;
+      el.className = className;
+    });
+    lucky.cacheWinnerElements();
+    window.app.switchSection(msg.sectionId, false);
+  }
+
   setupStageWindow() {
     document.body.classList.add('stage-pure-led');
     document.body.classList.add('stage-fullscreen');
@@ -28,6 +96,12 @@ class StageSync {
       if (!msg || !msg.type) return;
 
       switch (msg.type) {
+        case 'STAGE_SNAPSHOT':
+          this.applySnapshot(msg);
+          break;
+        case 'STAGE_PING':
+          this.channel.postMessage({ type: 'STAGE_CONNECTED', sectionId: window.app.currentSection });
+          break;
         case 'SWITCH_SECTION':
           if (window.app) window.app.switchSection(msg.sectionId, false);
           break;
@@ -39,6 +113,14 @@ class StageSync {
           break;
         case 'KING_START_TIMER':
           if (window.gameKing) window.gameKing.startTimer(false);
+          break;
+        case 'KING_PAUSE_TIMER':
+          window.kingGame.pauseTimer(false);
+          window.kingGame.remainingSeconds = msg.seconds;
+          window.kingGame.updateTimerDisplay();
+          break;
+        case 'KING_SHOW_HINT':
+          window.kingGame.showHint(false);
           break;
         case 'KING_REVEAL_ANSWER':
           if (window.gameKing) window.gameKing.revealAnswer(false);
@@ -61,8 +143,21 @@ class StageSync {
         case 'POSE_START_TIMER':
           {
             const p = window.gamePose || window.poseGame;
-            if (p) p.startTimer(false);
+            if (p) {
+              p.startTimer(false);
+              p.phase = msg.phase;
+              p.remainingSeconds = msg.seconds;
+              p.updateTimerDisplay();
+            }
           }
+          break;
+        case 'POSE_PAUSE_TIMER':
+          window.poseGame.pauseTimer(false);
+          window.poseGame.remainingSeconds = msg.seconds;
+          window.poseGame.updateTimerDisplay();
+          break;
+        case 'POSE_HIDE':
+          window.poseGame.hidePose(false, false);
           break;
         case 'POSE_RESET':
           {
@@ -126,34 +221,6 @@ class StageSync {
             if (p) p.closeAwardModal(false);
           }
           break;
-        case 'LUCKY_SHOW_WINNER':
-          if (window.luckyDrawManager) {
-            window.luckyDrawManager.celebrateAndRecordWinner(msg.emp, msg.prizeKey, msg.customInfo, false);
-          }
-          break;
-        case 'LUCKY_SHOW_BATCH_MODAL':
-          if (window.luckyDrawManager) {
-            window.luckyDrawManager.displayBatchModal(msg.winners, msg.batchTitle, msg.batchBadge, false);
-          }
-          break;
-        case 'LUCKY_HIDE_BATCH_MODAL':
-          if (window.luckyDrawManager) {
-            window.luckyDrawManager.closeBatchModal(false);
-          }
-          break;
-        case 'LUCKY_DELETE_WINNER':
-          if (window.luckyDrawManager) {
-            window.luckyDrawManager.deleteWinner(msg.id, false);
-          }
-          break;
-        case 'LUCKY_RESET_WINNERS':
-          if (window.luckyDrawManager) {
-            window.luckyDrawManager.recordedWinners = [];
-            window.luckyDrawManager.saveRecordedWinners();
-            window.luckyDrawManager.updateQuotaTrackers();
-            window.luckyDrawManager.renderWinnersTable();
-          }
-          break;
         case 'DATA_MODE_CHANGE':
           if (window.app && typeof window.app.applyDataMode === 'function') {
             window.app.applyDataMode(msg.isOfficial, false);
@@ -166,9 +233,28 @@ class StageSync {
           break;
       }
     });
+    // Wait until all controllers have initialized before requesting current state.
+    window.addEventListener('load', () => {
+      this.channel.postMessage({ type: 'STAGE_READY' });
+    }, { once: true });
   }
 
   setupOperatorWindow() {
+    this.setConnectionStatus(false);
+    if (this.channel) {
+      let lastSeen = 0;
+      this.channel.addEventListener('message', ({ data }) => {
+        if (data?.type === 'STAGE_READY') this.sendSnapshot();
+        if (data?.type === 'STAGE_CONNECTED') {
+          lastSeen = Date.now();
+          this.setConnectionStatus(true, data.sectionId);
+        }
+      });
+      setInterval(() => {
+        if (Date.now() - lastSeen > 5000) this.setConnectionStatus(false);
+        this.broadcast('STAGE_PING');
+      }, 2000);
+    }
     // Add "Mở Màn LED" button handler
     const btnOpenStage = document.getElementById('btn-stage-window');
     if (btnOpenStage) {
@@ -190,8 +276,10 @@ class StageSync {
     if (stageWin) {
       stageWin.focus();
       if (window.app) {
-        window.app.showToast('📺 Đã mở Màn LED sân khấu riêng biệt! Kéo cửa sổ sang màn LED và nhấn F11.', 'F8');
+        window.app.showToast('Kéo cửa sổ LED sang màn hình mở rộng rồi bấm F để toàn màn hình.', 'F8');
       }
+    } else if (window.app) {
+      window.app.showToast('Trình duyệt đang chặn cửa sổ LED. Cho phép cửa sổ bật lên rồi bấm F8 lại.');
     }
   }
 
