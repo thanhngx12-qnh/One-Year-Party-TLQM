@@ -180,6 +180,7 @@ class App {
     this.setupKeyboardShortcuts();
     this.setupHelpModal();
     this.setupSecurityMode();
+    this.setupThemeMode();
   }
 
   showToast(text, keyHint = null) {
@@ -376,6 +377,14 @@ class App {
         return;
       }
 
+      // Global T for Theme Toggle (Gala Luxury LED vs Smart Border Light)
+      if (e.key.toLowerCase() === 't' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault();
+        const themeBtn = document.getElementById('btn-theme-toggle');
+        if (themeBtn) themeBtn.click();
+        return;
+      }
+
       // Global C for Confetti Fireworks Gala Celebration
       if (e.key.toLowerCase() === 'c') {
         e.preventDefault();
@@ -453,7 +462,7 @@ class App {
           this.switchSection('king');
           return;
         }
-        if (e.key === '3' || e.key.toLowerCase() === 't') {
+        if (e.key === '3' || e.key.toLowerCase() === 'p') {
           e.preventDefault();
           this.switchSection('pose');
           return;
@@ -1047,6 +1056,67 @@ class App {
     // Broadcast to Stage Screen (?screen=stage)
     if (broadcast && window.stageSync) {
       window.stageSync.broadcast('DATA_MODE_CHANGE', { isOfficial: this.isOfficialData });
+    }
+  }
+
+  // =========================================================================
+  // THEME STYLE MANAGEMENT (GALA LUXURY LED vs SMART BORDER LIGHT)
+  // =========================================================================
+  setupThemeMode() {
+    // Default is gala-luxury
+    const savedTheme = localStorage.getItem('tlqm_app_theme') || 'gala-luxury';
+    this.applyTheme(savedTheme, false);
+
+    const themeBtn = document.getElementById('btn-theme-toggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isCurrentLight = document.body.classList.contains('theme-light');
+        const newTheme = isCurrentLight ? 'gala-luxury' : 'light';
+        this.applyTheme(newTheme, true);
+        if (window.soundEngine) window.soundEngine.playClick();
+      });
+    }
+  }
+
+  applyTheme(theme, showToast = false) {
+    const isLight = theme === 'light';
+    localStorage.setItem('tlqm_app_theme', isLight ? 'light' : 'gala-luxury');
+
+    if (isLight) {
+      document.body.classList.remove('theme-gala-luxury');
+      document.body.classList.add('theme-light');
+    } else {
+      document.body.classList.remove('theme-light');
+      document.body.classList.add('theme-gala-luxury');
+    }
+
+    const themeIcon = document.getElementById('theme-toggle-icon');
+    const themeLabel = document.getElementById('theme-toggle-label');
+    const themeBtn = document.getElementById('btn-theme-toggle');
+
+    if (themeIcon) {
+      themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-crown';
+    }
+    if (themeLabel) {
+      themeLabel.textContent = isLight ? 'Bản Sáng' : 'Gala LED';
+    }
+    if (themeBtn) {
+      themeBtn.className = `action-btn theme-toggle-btn ${isLight ? 'theme-light-active' : 'theme-gala-active'}`;
+      themeBtn.title = isLight
+        ? 'Đang dùng: Cửa Khẩu Sáng (Bấm để chuyển Gala Luxury LED Stage - Phím T)'
+        : 'Đang dùng: Gala Luxury LED Stage (Bấm để chuyển Cửa Khẩu Sáng - Phím T)';
+    }
+
+    if (showToast) {
+      this.showToast(
+        isLight ? '☀️ Đã chuyển sang Style Cửa Khẩu Sáng!' : '🌟 Đã chuyển sang Style Gala Luxury LED Sân Khấu!',
+        isLight ? 'Light' : 'Gala LED'
+      );
+    }
+
+    // Broadcast to Stage Screen if opened
+    if (window.stageSync) {
+      window.stageSync.broadcast('THEME_CHANGE', { theme: isLight ? 'light' : 'gala-luxury' });
     }
   }
 }

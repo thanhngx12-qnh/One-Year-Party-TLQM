@@ -68,6 +68,10 @@
         <button id="btn-mode-toggle" class="action-btn mode-status-btn demo" title="Trạng thái dữ liệu Gala (Bấm để Mở khóa F9)">
           <i class="fas fa-lock" id="mode-status-icon"></i> <span class="btn-label" id="mode-status-label">Bản Demo</span> <span class="kbd-hint" id="mode-status-hint">Mở F9</span>
         </button>
+        <!-- Theme Style Toggle (Gala Luxury LED vs Smart Border Light) -->
+        <button id="btn-theme-toggle" class="action-btn theme-toggle-btn" title="Đổi Style Giao Diện: Gala Luxury LED ⇄ Cửa Khẩu Sáng">
+          <i class="fas fa-moon" id="theme-toggle-icon"></i> <span class="btn-label" id="theme-toggle-label">Gala LED</span>
+        </button>
         <button id="btn-shortcuts-help" class="action-btn" title="Bảng phím tắt (?)">
           <i class="fas fa-keyboard"></i> <span class="btn-label">Phím Tắt</span> <span class="kbd-hint">?</span>
         </button>
@@ -115,7 +119,7 @@
             <i class="fas fa-crown"></i> Vào Game Vua Tiếng Việt <span class="kbd-hint">2 / V</span>
           </button>
           <button class="btn-gala btn-gala-outline" data-target-section="pose">
-            <i class="fas fa-camera"></i> Vào Game Tạo Dáng <span class="kbd-hint">3 / T</span>
+            <i class="fas fa-camera"></i> Vào Game Tạo Dáng <span class="kbd-hint">3 / P</span>
           </button>
           <button class="btn-gala btn-gala-amber" data-target-section="awards">
             <i class="fas fa-trophy"></i> Bốc Thăm & Trao Quà <span class="kbd-hint">4 / B / F5</span>
@@ -1398,6 +1402,10 @@
             <td>Bật / Thoát chế độ <strong>Toàn màn hình sân khấu</strong></td>
           </tr>
           <tr>
+            <td><span class="kbd-key">T</span></td>
+            <td>Đổi Style giao diện: <strong>Gala Luxury LED Sân Khấu</strong> ⇄ <strong>Cửa Khẩu Sáng</strong></td>
+          </tr>
+          <tr>
             <td><span class="kbd-key">B</span></td>
             <td>Bật / Tắt <strong>Nhạc Nền Hội Nghị Gala</strong> (Festive Gala BGM)</td>
           </tr>
@@ -1432,7 +1440,7 @@
             <td>Vào nhanh: Game 1 - <strong>Vua Tiếng Việt</strong></td>
           </tr>
           <tr>
-            <td><span class="kbd-key">3</span> hoặc <span class="kbd-key">T</span></td>
+            <td><span class="kbd-key">3</span> hoặc <span class="kbd-key">P</span></td>
             <td>Vào nhanh: Game 2 - <strong>Tạo Dáng Thần Tốc</strong></td>
           </tr>
           <tr>

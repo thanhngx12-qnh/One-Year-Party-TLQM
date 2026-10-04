@@ -97,6 +97,11 @@ class StageSync {
         case 'SOUND_CHEER':
           if (window.soundEngine) window.soundEngine.playCheer();
           break;
+        case 'THEME_CHANGE':
+          if (window.app && typeof window.app.applyTheme === 'function') {
+            window.app.applyTheme(msg.theme, false);
+          }
+          break;
         case 'AWARD_CEREMONY':
           {
             const p = window.gamePose || window.poseGame;
