@@ -104,8 +104,16 @@ class ShowcaseManager {
       let html = '';
       switch (slide.type) {
         case 'opening':
+          const milestonesHtml = (slide.content.milestones || []).map((m, mIdx) => `
+            <div class="milestone-card" style="animation-delay: ${0.1 + mIdx * 0.08}s">
+              <div class="milestone-icon"><i class="${m.icon}"></i></div>
+              <div class="milestone-num">${m.num}</div>
+              <div class="milestone-label">${m.label}</div>
+            </div>
+          `).join('');
+
           html = `
-            <div class="prize-slide-inner">
+            <div class="prize-slide-inner prize-opening-layout">
               <div class="prize-brand-header">
                 <img src="${slide.content.logo}" alt="TLQM Logo" class="prize-logo-hero">
                 <span class="prize-subtext-pill">${slide.content.badge}</span>
@@ -114,32 +122,25 @@ class ShowcaseManager {
               <h1 class="prize-main-title gold-shimmer">${slide.content.mainTitle}</h1>
               <div class="prize-gold-divider"></div>
               <p class="prize-lead-caption">${slide.content.caption}</p>
+
+              <div class="opening-milestones-grid">
+                ${milestonesHtml}
+              </div>
             </div>
           `;
           break;
 
         case 'transition':
-          html = `
-            <div class="prize-slide-inner">
-              <span class="prize-badge-lg">${slide.content.badge}</span>
-              <h2 class="prize-welcome-text">${slide.content.welcomeText}</h2>
-              <h1 class="prize-main-title gold-shimmer huge-gala-title">${slide.content.mainTitle}</h1>
-              <p class="prize-slogan-quote">${slide.content.quote}</p>
-            </div>
-          `;
-          break;
-
-        case 'stats':
-          const target = slide.content.totalTarget || 29;
-          const badgesHtml = (slide.content.summaryBadges || []).map(b => `
-            <div class="prize-card-pill ${b.highlight ? 'highlight-gold' : ''}">
-              <span class="card-pill-tag ${b.tagClass}">${b.tag}</span>
-              <span class="card-pill-desc">${b.desc}</span>
+          const featuresHtml = (slide.content.features || []).map((f, fIdx) => `
+            <div class="welcome-feature-card" style="animation-delay: ${0.1 + fIdx * 0.08}s">
+              <div class="feature-card-icon"><i class="${f.icon}"></i></div>
+              <h3 class="feature-card-title">${f.title}</h3>
+              <p class="feature-card-desc">${f.desc}</p>
             </div>
           `).join('');
 
           html = `
-            <div class="prize-slide-inner">
+            <div class="prize-slide-inner prize-transition-layout">
               <div class="prize-slide-brand-banner">
                 <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
                 <div class="slide-brand-info">
@@ -147,11 +148,60 @@ class ShowcaseManager {
                   <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
                 </div>
               </div>
-              <div class="prize-stats-header">
-                <span class="prize-huge-counter count-up" id="prize-counter-${target}" data-target="${target}">0</span>
-                <h2 class="prize-stats-label">${slide.content.label}</h2>
+              <span class="prize-badge-lg">${slide.content.badge}</span>
+              <h2 class="prize-welcome-text">${slide.content.welcomeText}</h2>
+              <h1 class="prize-main-title gold-shimmer huge-gala-title">${slide.content.mainTitle}</h1>
+              <p class="prize-slogan-quote">${slide.content.quote}</p>
+
+              <div class="welcome-features-grid">
+                ${featuresHtml}
               </div>
-              <div class="prize-summary-cards">
+            </div>
+          `;
+          break;
+
+        case 'stats':
+          const target = slide.content.totalTarget || 29;
+          const badgesHtml = (slide.content.summaryBadges || []).map((b, idx) => `
+            <div class="prize-card-pill ${b.highlight ? 'highlight-gold' : ''}" style="animation-delay: ${0.1 + idx * 0.08}s">
+              <div class="card-pill-icon-wrap ${b.tagClass}">
+                <i class="${b.icon || 'fas fa-gift'}"></i>
+              </div>
+              <div class="card-pill-details">
+                <div class="card-pill-top">
+                  <span class="card-pill-tag ${b.tagClass}">${b.tag}</span>
+                  <span class="card-pill-price">${b.singlePrice || ''}</span>
+                </div>
+                <div class="card-pill-desc">${b.desc}</div>
+                <div class="card-pill-val"><i class="fas fa-coins"></i> Tổng đợt: <strong>${b.value || ''}</strong></div>
+              </div>
+            </div>
+          `).join('');
+
+          html = `
+            <div class="prize-slide-inner prize-stats-layout">
+              <div class="prize-slide-brand-banner">
+                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
+                <div class="slide-brand-info">
+                  <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
+                  <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
+                </div>
+              </div>
+
+              <div class="prize-stats-header">
+                <div class="prize-counter-wrap">
+                  <span class="prize-huge-counter count-up" id="prize-counter-${target}" data-target="${target}">0</span>
+                  <span class="prize-plus-sign">+</span>
+                </div>
+                <div class="prize-stats-header-info">
+                  <h2 class="prize-stats-label">${slide.content.label}</h2>
+                  <div class="prize-odds-badge">
+                    <i class="fas fa-bullseye"></i> ${slide.content.oddsText || 'Tỉ lệ trúng thưởng ~44%'}
+                  </div>
+                </div>
+              </div>
+
+              <div class="prize-summary-cards grid-5-tiers">
                 ${badgesHtml}
               </div>
             </div>
@@ -163,31 +213,92 @@ class ShowcaseManager {
           const isGrand = slide.type === 'grand-prize';
           if (isGrand) slideDiv.classList.add('prize-slide-grand');
 
+          const specsHtml = (slide.specs || []).map((s, sIdx) => `
+            <div class="prize-spec-chip" style="animation-delay: ${0.1 + sIdx * 0.08}s">
+              <div class="spec-chip-icon"><i class="${s.icon}"></i></div>
+              <div class="spec-chip-content">
+                <div class="spec-chip-title">${s.title}</div>
+                <div class="spec-chip-desc">${s.desc}</div>
+              </div>
+            </div>
+          `).join('');
+
           html = `
-            <div class="prize-slide-inner">
-              <div class="prize-slide-brand-banner">
-                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
-                <div class="slide-brand-info">
-                  <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
-                  <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
+            <div class="prize-slide-inner prize-split-layout">
+              <!-- Cột Trái: Thông số Kỹ thuật & Giá trị Đẳng cấp -->
+              <div class="prize-hero-info">
+                <div class="prize-slide-brand-banner">
+                  <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
+                  <div class="slide-brand-info">
+                    <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
+                    <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
+                  </div>
+                </div>
+
+                <div class="prize-category-row">
+                  <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
+                  <span class="prize-round-pill">${slide.roundTag || 'VÒNG BỐC THĂM'}</span>
+                </div>
+
+                <h1 class="prize-product-name ${slide.goldShimmer ? 'gold-shimmer' : ''} ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
+                
+                <div class="prize-specs-grid">
+                  ${specsHtml}
+                </div>
+
+                <div class="prize-meta-box">
+                  <div class="meta-item meta-price">
+                    <span class="meta-label"><i class="fas fa-tag"></i> ĐƠN GIÁ THỰC TẾ</span>
+                    <span class="meta-value">${slide.priceTag || 'Quà Tặng Cao Cấp'}</span>
+                  </div>
+                  <div class="meta-divider"></div>
+                  <div class="meta-item meta-total">
+                    <span class="meta-label"><i class="fas fa-coins"></i> TỔNG GIÁ TRỊ ĐỢT</span>
+                    <span class="meta-value">${slide.totalValue || ''}</span>
+                  </div>
+                  <div class="meta-divider"></div>
+                  <div class="meta-item meta-target">
+                    <span class="meta-label"><i class="fas fa-users"></i> ĐỐI TƯỢNG TRAO TẶNG</span>
+                    <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên May Mắn'}</span>
+                  </div>
+                </div>
+
+                <div class="prize-callout-quote">
+                  <i class="fas fa-quote-left quote-icon"></i>
+                  <span>${slide.quote || slide.badgeSub}</span>
+                </div>
+
+                ${isGrand ? `
+                  <div class="grand-next-cta">
+                    <button type="button" class="btn-gala btn-gala-gold" onclick="window.app && window.app.switchSection('awards')">
+                      <i class="fas fa-trophy"></i> TIẾN HÀNH BỐC THĂM & TRAO QUÀ <span class="kbd-hint">F5</span> ➔
+                    </button>
+                  </div>
+                ` : ''}
+              </div>
+
+              <!-- Cột Phải: Bệ Đỡ 3D & Khung Kính Phát Sáng Trưng Bày -->
+              <div class="prize-hero-visual">
+                <div class="prize-stage-pedestal ${isGrand ? 'grand-pedestal' : ''}">
+                  <div class="pedestal-ambient-halo ${slide.haloClass || ''}"></div>
+                  
+                  <div class="prize-float-badge-wrapper">
+                    <div class="prize-float-badge ${isGrand ? 'grand-float-badge' : ''}">
+                      <span class="float-badge-count">${slide.badgeCount}</span>
+                      <span class="float-badge-label">TRAO TẶNG</span>
+                    </div>
+                  </div>
+
+                  <div class="prize-showcase-frame ${isGrand ? 'grand-frame' : ''}">
+                    <img src="${slide.image}" alt="${slide.imageAlt || slide.name}" class="prize-product-img">
+                    <div class="frame-glass-shine"></div>
+                  </div>
+
+                  <div class="pedestal-base">
+                    <div class="pedestal-light-ring"></div>
+                  </div>
                 </div>
               </div>
-              <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
-              <h1 class="prize-product-name ${slide.goldShimmer ? 'gold-shimmer' : ''} ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
-              <div class="prize-showcase-frame ${isGrand ? 'grand-frame' : ''}">
-                <img src="${slide.image}" alt="${slide.imageAlt || slide.name}" class="prize-product-img">
-              </div>
-              <div class="prize-quantity-badge">
-                <span class="badge-count ${isGrand ? 'grand-count' : ''}">${slide.badgeCount}</span>
-                ${slide.badgeSub ? `<span class="badge-sub">${slide.badgeSub}</span>` : ''}
-              </div>
-              ${isGrand ? `
-                <div class="grand-next-cta" style="margin-top: 14px;">
-                  <button type="button" class="btn-gala btn-gala-gold" onclick="window.app && window.app.switchSection('awards')" style="font-size: 0.98rem; padding: 9px 24px; box-shadow: 0 4px 18px rgba(212,160,23,0.35);">
-                    <i class="fas fa-trophy"></i> TIẾN HÀNH BỐC THĂM & TRAO QUÀ <span class="kbd-hint">F5</span> ➔
-                  </button>
-                </div>
-              ` : ''}
             </div>
           `;
           break;
@@ -430,6 +541,25 @@ class ShowcaseManager {
     if (replayBtn) {
       replayBtn.addEventListener('click', () => this.replayVoice());
     }
+
+    // 3D Parallax Tilt Effect on Stage Pedestal
+    const showcaseSection = document.getElementById('section-showcase');
+    if (showcaseSection) {
+      showcaseSection.addEventListener('mousemove', (e) => {
+        const activePedestal = showcaseSection.querySelector('.prize-slide.active .prize-stage-pedestal');
+        if (!activePedestal) return;
+        const rect = showcaseSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        activePedestal.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-6px)`;
+      });
+      showcaseSection.addEventListener('mouseleave', () => {
+        const activePedestal = showcaseSection.querySelector('.prize-slide.active .prize-stage-pedestal');
+        if (activePedestal) {
+          activePedestal.style.transform = '';
+        }
+      });
+    }
   }
 
   setupAudioHandlers() {
@@ -538,10 +668,17 @@ class ShowcaseManager {
 
     const currentSlideConfig = this.slidesData[index] || {};
 
-    // 1. Update slides visibility
+    // 1. Update slides visibility with morph entrance trigger
     const slides = document.querySelectorAll('.prize-slide');
     slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
+      const isActive = i === index;
+      if (isActive) {
+        slide.classList.remove('morph-enter');
+        void slide.offsetWidth; // Force reflow
+        slide.classList.add('active', 'morph-enter');
+      } else {
+        slide.classList.remove('active', 'morph-enter');
+      }
     });
 
     // 2. Update tab pills
