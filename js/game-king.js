@@ -178,6 +178,7 @@ class KingGame {
     const tilesContainer = document.getElementById('king-tiles-container');
     if (tilesContainer) {
       tilesContainer.innerHTML = '';
+      tilesContainer.classList.toggle('dense-letters', q.scrambled.length >= 8);
       q.scrambled.forEach((char, i) => {
         const tile = document.createElement('div');
         tile.className = 'letter-tile';
