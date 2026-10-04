@@ -114,8 +114,8 @@ class AwardsManager {
     teams.sort((a, b) => b.score - a.score);
 
     const rankPrizes = [
-      { rank: 1, medal: '🥇', tag: 'QUÁN QUÂN', prize: 'Thùng Quà Bí Mật 200.000đ + Cúp Vàng', class: 'rank-champion' },
-      { rank: 2, medal: '🥈', tag: 'Á QUÂN', prize: 'Thùng Quà Bí Mật 100.000đ', class: 'rank-runnerup' },
+      { rank: 1, medal: '🥇', tag: 'QUÁN QUÂN', prize: 'Thùng Quà Bí Mật Đội Quán Quân + Cúp Vàng', class: 'rank-champion' },
+      { rank: 2, medal: '🥈', tag: 'Á QUÂN', prize: 'Thùng Quà Bí Mật Đội Á Quân', class: 'rank-runnerup' },
       { rank: 3, medal: '🥉', tag: 'HẠNG BA', prize: 'Ô Cầm Tay Thương Hiệu TLQM', class: 'rank-third' },
       { rank: 4, medal: '🎖️', tag: 'HẠNG BỐN', prize: 'Ô Cầm Tay Thương Hiệu TLQM', class: 'rank-fourth' }
     ];

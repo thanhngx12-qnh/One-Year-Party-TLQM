@@ -994,7 +994,7 @@ class PoseGame {
           badgeEmoji = idx === 2 ? '🥉' : '🎖️';
           rankTitle = 'ĐỒNG ĐỘI / KHUYẾN KHÍCH';
           prizeName = 'Ô Cầm Tay Cao Cấp TLQM';
-          prizeSub = 'Trao tặng các thành viên kỷ niệm ngày thành lập';
+          prizeSub = 'Trao tặng các thành viên kỷ niệm ra mắt thương hiệu TLQM';
           prizeImg = 'assets/prizes/o_cam_tay_tlqm.svg';
         }
 

@@ -444,10 +444,10 @@ class LuckyDrawManager {
 
   getCustomPrizeInfo() {
     const customName = this.inputCustomName ? this.inputCustomName.value.trim() : 'Giải Thưởng Nóng Ban Lãnh Đạo';
-    const customVal = this.inputCustomValue ? this.inputCustomValue.value.trim() : '1.000.000 VNĐ Tiền mặt';
+    const customVal = this.inputCustomValue ? this.inputCustomValue.value.trim() : 'Phần Quà Vinh Danh Sân Khấu';
     return {
       name: customName || 'Giải Thưởng Nóng Ban Lãnh Đạo',
-      value: customVal || '1.000.000 VNĐ Tiền mặt'
+      value: customVal || 'Phần Quà Vinh Danh Sân Khấu'
     };
   }
 

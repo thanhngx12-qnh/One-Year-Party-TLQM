@@ -234,6 +234,10 @@ class ShowcaseManager {
                 </div>
 
                 <div class="prize-category-row">
+                  <div class="live-status-chip">
+                    <span class="pulse-dot"></span>
+                    <span>LIVE GALA</span>
+                  </div>
                   <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
                   <span class="prize-round-pill">${slide.roundTag || 'VÒNG BỐC THĂM'}</span>
                   <span class="prize-status-badge"><i class="fas fa-circle-check"></i> CHÍNH HÃNG 100%</span>
