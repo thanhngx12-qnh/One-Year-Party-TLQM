@@ -4,47 +4,47 @@ class KingGame {
     // Dữ liệu chính thức Gala Dinner (9 câu hỏi bảo mật)
     this.officialQuestions = [
       {
-        scrambled: ['N', 'G', 'Ô', 'Q', 'U', 'A', 'N', 'H', 'T'],
+        scrambled: ['N', 'G', 'Ô', 'U', 'N', 'A', 'Q', 'H', 'T'],
         answer: 'THÔNG QUAN',
         hint: 'Thủ tục pháp lý quan trọng nhất để hàng hóa xuất nhập khẩu hợp pháp qua biên giới.'
       },
       {
-        scrambled: ['K', 'H', 'Ử', 'A', 'Ẩ', 'U', 'C'],
+        scrambled: ['A', 'K', 'Ử', 'H', 'U', 'C', 'Ẩ'],
         answer: 'CỬA KHẨU',
         hint: 'Nơi diễn ra các hoạt động xuất nhập khẩu, xuất nhập cảnh và giao thương quốc tế.'
       },
       {
-        scrambled: ['G', 'À', 'L', 'Ù', 'N', 'T'],
+        scrambled: ['G', 'À', 'N', 'Ù', 'T', 'L'],
         answer: 'TÀ LÙNG',
         hint: 'Cửa khẩu Quốc tế trọng điểm tại Cao Bằng - địa bàn hoạt động chiến lược của công ty.'
       },
       {
-        scrambled: ['R', 'Ể', 'P', 'H', 'Á', 'T', 'T', 'I', 'N'],
+        scrambled: ['T', 'H', 'I', 'P', 'Ể', 'Á', 'R', 'N', 'T'],
         answer: 'PHÁT TRIỂN',
         hint: 'Mục tiêu và khát vọng không ngừng vươn xa của tập thể cán bộ nhân viên TLQM.'
       },
       {
-        scrambled: ['N', 'Ế', 'T', 'Đ', 'À', 'O', 'K'],
+        scrambled: ['N', 'Ế', 'Đ', 'T', 'À', 'K', 'O'],
         answer: 'ĐOÀN KẾT',
         hint: 'Sức mạnh tập thể, sự đồng lòng gắn bó keo sơn giữa tất cả các thành viên.'
       },
       {
-        scrambled: ['N', 'G', 'Ố', 'C', 'H', 'I', 'Ế', 'N'],
+        scrambled: ['N', 'G', 'Ố', 'I', 'C', 'Ế', 'H', 'N'],
         answer: 'CỐNG HIẾN',
         hint: 'Tinh thần làm việc tận tâm, trách nhiệm của mỗi nhân sự vì sự phát triển chung.'
       },
       {
-        scrambled: ['L', 'Ă', 'N', 'G', 'T', 'Ư', 'Ơ', 'N', 'G'],
+        scrambled: ['G', 'Ư', 'N', 'Ă', 'L', 'Ơ', 'T', 'G', 'N'],
         answer: 'TĂNG LƯƠNG',
         hint: 'Nguyện vọng tha thiết và được mong đợi nhất của anh chị em nhân viên cuối năm!'
       },
       {
-        scrambled: ['V', 'Ệ', 'T', 'U', 'Y', 'T', 'Ờ', 'I'],
+        scrambled: ['T', 'Ờ', 'U', 'Ệ', 'I', 'T', 'V', 'Y'],
         answer: 'TUYỆT VỜI',
         hint: 'Từ miêu tả chính xác nhất bầu không khí và tinh thần của đêm tiệc Gala hôm nay!'
       },
       {
-        scrambled: ['H', 'À', 'N', 'G', 'T', 'H', 'Ô', 'N', 'C'],
+        scrambled: ['N', 'T', 'Ô', 'H', 'N', 'À', 'G', 'C', 'H'],
         answer: 'THÀNH CÔNG',
         hint: 'Đích đến rực rỡ cho mọi nỗ lực và sứ mệnh "Kết nối biên giới - Vươn tới toàn cầu".'
       }
@@ -53,17 +53,17 @@ class KingGame {
     // Dữ liệu tập dượt / Demo (3 câu hỏi mẫu không lộ đề thi thật)
     this.demoQuestions = [
       {
-        scrambled: ['V', 'Ũ', 'C', 'Ổ'],
+        scrambled: ['Ổ', 'V', 'C', 'Ũ'],
         answer: 'CỔ VŨ',
         hint: 'Hành động nhiệt tình của khán giả tiếp thêm sức mạnh cho các đội thi!'
       },
       {
-        scrambled: ['V', 'Ẻ', 'V', 'U', 'I'],
+        scrambled: ['U', 'V', 'I', 'Ẻ', 'V'],
         answer: 'VUI VẺ',
         hint: 'Cảm xúc hân hoan, rạng rỡ của tất cả chúng ta trong đêm tiệc Gala tối nay!'
       },
       {
-        scrambled: ['Đ', 'Ộ', 'I', 'Đ', 'Ồ', 'N', 'G'],
+        scrambled: ['G', 'Đ', 'I', 'Ồ', 'Đ', 'N', 'Ộ'],
         answer: 'ĐỒNG ĐỘI',
         hint: 'Những người đồng nghiệp tuyệt vời kề vai sát cánh cùng vượt qua mọi thử thách.'
       }
