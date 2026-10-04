@@ -3181,35 +3181,51 @@ body.theme-light .awards-brand-company-title {
   margin-top: 2px;
 }
 
+.awards-brand-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1540px;
+  margin: 4px auto 8px;
+  padding: 6px 14px;
+  background: rgba(15, 24, 51, 0.82);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-light .awards-brand-hero {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 10px rgba(35, 56, 113, 0.08);
+}
+
 .awards-invitation-crest {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #0a1124;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px;
+  background: rgba(10, 17, 36, 0.7);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 6px;
-  padding: 10px 22px;
-  margin: 10px auto 12px;
-  max-width: 760px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  padding: 4px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 body.theme-light .awards-invitation-crest {
-  background: rgba(34, 56, 115, 0.04);
-  border: 1.5px dashed rgba(34, 56, 115, 0.25);
-  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
   box-shadow: none;
 }
 
 .invitation-crown-icon {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #f59e0b;
 }
 
 .invitation-main-text {
   font-family: var(--font-heading);
-  font-size: clamp(0.98rem, 1.8vw, 1.15rem);
+  font-size: 0.78rem;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: 0.4px;
@@ -3220,14 +3236,7 @@ body.theme-light .invitation-main-text {
 }
 
 .invitation-sub-text {
-  font-size: 0.80rem;
-  font-weight: 600;
-  color: #4ade80;
-  margin-top: 2px;
-}
-
-body.theme-light .invitation-sub-text {
-  color: var(--tlqm-green);
+  display: none;
 }
 
 /* Interactive Tier Progress & Round Quota Tracker (6 Đợt Cân Đối 1 Hàng) */
@@ -3235,8 +3244,8 @@ body.theme-light .invitation-sub-text {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 8px;
-  margin: 6px auto 14px;
-  max-width: 1080px;
+  margin: 0 auto 10px;
+  max-width: 1540px;
   width: 100%;
 }
 
@@ -3363,8 +3372,9 @@ body.theme-light .tier-card-gift {
 
 /* Digital Lucky Draw Arena */
 .lucky-draw-arena {
-  margin: 8px auto 12px;
-  max-width: 620px;
+  margin: 4px auto 8px;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3561,15 +3571,16 @@ body.theme-light .lucky-slot-box .slot-digit-val {
 
 /* Lucky Draw Recording Console (Ban Tổng Giám Đốc Bốc Thăm Bên Ngoài) */
 .lucky-record-console {
-  background: #0f1833;
+  background: rgba(15, 24, 51, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   width: 100%;
-  max-width: 680px;
+  max-width: 100%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  margin-top: 6px;
+  margin-top: 0;
   text-align: left;
+  backdrop-filter: blur(8px);
 }
 
 body.theme-light .lucky-record-console {
@@ -3953,15 +3964,16 @@ body.theme-light .lucky-custom-prize-wrap {
 
 /* Live Recorded Winners Board Table */
 .lucky-winners-board {
-  background: #0f1833;
+  background: rgba(15, 24, 51, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   padding: 10px 14px;
   width: 100%;
-  max-width: 680px;
-  margin-top: 8px;
+  max-width: 100%;
+  margin-top: 0;
   text-align: left;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
 }
 
 body.theme-light .lucky-winners-board {
@@ -7255,8 +7267,8 @@ body.stage-fullscreen .awards-tab-btn.active i {
 
 /* Brand Hero Banner in Fullscreen: Sits proudly at top with ZERO overlap */
 body.stage-fullscreen .awards-brand-hero {
-  margin: 0 auto 12px !important;
-  max-width: 1080px !important;
+  margin: 2px auto 8px !important;
+  max-width: 1540px !important;
   position: relative !important;
   z-index: 10 !important;
 }
@@ -7297,8 +7309,8 @@ body.stage-fullscreen .invitation-sub-text {
 
 /* Tier Tracker in Fullscreen */
 body.stage-fullscreen .awards-tier-tracker {
-  max-width: 1080px !important;
-  margin: 4px auto 14px !important;
+  max-width: 1540px !important;
+  margin: 2px auto 10px !important;
   gap: 8px !important;
 }
 
@@ -7314,32 +7326,37 @@ body.stage-fullscreen .tier-card.active {
 }
 
 /* Arena & 3-Digit Slot in Fullscreen */
+body.stage-fullscreen .awards-stage-grid-169 {
+  max-width: 1540px !important;
+  gap: 18px !important;
+}
+
 body.stage-fullscreen .lucky-draw-arena {
-  max-width: 820px !important;
-  margin: 4px auto 14px !important;
+  max-width: 100% !important;
+  margin: 2px auto 8px !important;
 }
 
 body.stage-fullscreen .lucky-slot-box {
-  width: clamp(96px, 8.5vw, 126px) !important;
-  height: clamp(116px, 10.2vw, 150px) !important;
+  width: clamp(88px, 7.5vw, 116px) !important;
+  height: clamp(108px, 9.2vw, 138px) !important;
   border-width: 3px !important;
   border-color: var(--tlqm-gold) !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(245, 158, 11, 0.3) !important;
 }
 
 body.stage-fullscreen .lucky-slot-box .slot-digit-val {
-  font-size: clamp(4.4rem, 6.4vw, 6.2rem) !important;
+  font-size: clamp(3.8rem, 5.5vw, 5.4rem) !important;
 }
 
 body.stage-fullscreen .lucky-record-console {
-  max-width: 820px !important;
-  padding: 14px 20px !important;
-  border-radius: 12px !important;
+  max-width: 100% !important;
+  padding: 12px 16px !important;
+  border-radius: 10px !important;
 }
 
 body.stage-fullscreen .lucky-winners-board {
-  max-width: 1080px !important;
-  margin: 12px auto 20px !important;
+  max-width: 100% !important;
+  margin: 0 !important;
 }
 
 /* ==============================================================================
@@ -7600,7 +7617,278 @@ body.stage-pure-led .hint-display-box strong {
    Phân hệ chuyên biệt dành cho Ban Lãnh Đạo & Lead Game Sân Khấu
    ============================================================================== */
 #section-awards {
-  padding-bottom: 40px;
+  position: relative;
+  background: url('../assets/images/official-gala-backdrop.jpg') center center / cover no-repeat;
+  min-height: calc(100vh - 42px);
+  padding-bottom: 24px;
+}
+
+#section-awards::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 16, 40, 0.74) 0%, rgba(7, 13, 31, 0.86) 100%);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#section-awards > * {
+  position: relative;
+  z-index: 2;
+}
+
+body.theme-light #section-awards {
+  background: url('../assets/images/official-gala-backdrop.jpg') center center / cover no-repeat;
+}
+
+body.theme-light #section-awards::before {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.88) 0%, rgba(241, 245, 249, 0.94) 100%);
+}
+
+/* ==============================================================================
+   16:9 SCREEN-OPTIMIZED SPLIT STAGE GRID & GRAND ACTIVE PRIZE LABEL
+   ============================================================================== */
+.awards-stage-grid-169 {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 18px;
+  max-width: 1540px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .awards-stage-grid-169 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.awards-col-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.awards-col-console {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Grand Active Prize Label (Đồng Bộ Design System Slide Quà Tặng) */
+.lucky-active-prize-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: rgba(15, 24, 51, 0.90);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  border-left: 6px solid #f59e0b;
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.15);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+body.theme-light .lucky-active-prize-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-left: 6px solid var(--tlqm-navy);
+  box-shadow: 0 6px 20px rgba(35, 56, 113, 0.08);
+}
+
+.active-prize-left-visual {
+  position: relative;
+  width: 105px;
+  height: 105px;
+  flex-shrink: 0;
+  background: #070c1b;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.6);
+}
+
+body.theme-light .active-prize-left-visual {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  box-shadow: none;
+}
+
+.active-prize-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+  transition: transform 0.25s ease;
+}
+
+.lucky-active-prize-card:hover .active-prize-img {
+  transform: scale(1.08);
+}
+
+.active-prize-badge-overlay {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: #f59e0b;
+  color: #0f172a;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+body.theme-light .active-prize-badge-overlay {
+  background: var(--tlqm-navy);
+  color: #ffffff;
+}
+
+.active-prize-right-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.active-prize-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.active-prize-tier-badge {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.active-prize-round-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+body.theme-light .active-prize-round-pill {
+  background: #eff6ff;
+  color: var(--tlqm-navy);
+  border-color: #bfdbfe;
+}
+
+.active-prize-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-size: 0.70rem;
+  font-weight: 800;
+}
+
+body.theme-light .active-prize-status-badge {
+  background: #e8f5e9;
+  color: #0c9344;
+  border-color: rgba(12, 147, 68, 0.25);
+}
+
+.active-prize-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.theme-light .active-prize-name {
+  color: var(--tlqm-navy);
+  text-shadow: none;
+}
+
+.active-prize-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.active-prize-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+body.theme-light .active-prize-progress-bar {
+  background: #e2e8f0;
+}
+
+.active-prize-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b 0%, #10b981 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.active-prize-progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+body.theme-light .active-prize-progress-text {
+  color: #64748b;
+}
+
+.active-prize-progress-text strong {
+  color: #f59e0b;
+}
+
+body.theme-light .active-prize-progress-text strong {
+  color: var(--tlqm-navy);
+}
+
+.active-prize-company-note {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  opacity: 0.8;
 }
 
 .awards-header-bar {
@@ -8062,19 +8350,63 @@ body.stage-pure-led #awards-panel-lucky.active {
   align-items: center !important;
   justify-content: center !important;
   height: 100% !important;
+  width: 100% !important;
+}
+
+body.stage-pure-led .awards-stage-grid-169 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  gap: 16px !important;
+}
+
+body.stage-pure-led .awards-col-stage {
+  align-items: center !important;
+  width: 100% !important;
+}
+
+body.stage-pure-led .awards-col-console {
+  display: none !important;
+}
+
+body.stage-pure-led .lucky-active-prize-card {
+  max-width: 920px !important;
+  padding: 16px 24px !important;
+  border-width: 2.5px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 28px rgba(245, 158, 11, 0.3) !important;
+}
+
+body.stage-pure-led .active-prize-left-visual {
+  width: 120px !important;
+  height: 120px !important;
+}
+
+body.stage-pure-led .active-prize-name {
+  font-size: 2rem !important;
+}
+
+body.stage-pure-led .active-prize-tier-badge {
+  font-size: 0.95rem !important;
 }
 
 body.stage-pure-led #awards-panel-lucky .lucky-slot-display {
-  margin: 20px 0 !important;
+  margin: 16px 0 !important;
   gap: 24px !important;
 }
 
 body.stage-pure-led #awards-panel-lucky .lucky-slot-box {
   width: 140px !important;
   height: 160px !important;
-  font-size: 6.5rem !important;
   border-width: 5px !important;
   border-radius: 16px !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .lucky-slot-box .slot-digit-val {
+  font-size: 6.5rem !important;
 }
 
 body.stage-pure-led #awards-panel-lucky .lucky-winner-card {

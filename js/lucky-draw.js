@@ -43,7 +43,8 @@ class LuckyDrawManager {
         badge: '🎁 GIẢI ĐỒNG HÀNH',
         total: 12,
         gift: 'Pin sạc dự phòng AVA+ 10.000 mAh',
-        round: 'ĐỢT 1'
+        round: 'ĐỢT 1',
+        image: 'assets/prizes/pin_sac_ava.jpg'
       },
       mayman: {
         id: 'mayman',
@@ -53,7 +54,8 @@ class LuckyDrawManager {
         badge: '☕ GIẢI MAY MẮN',
         total: 8,
         gift: 'Bình đun siêu tốc Bear 1.5L',
-        round: 'ĐỢT 2'
+        round: 'ĐỢT 2',
+        image: 'assets/prizes/am_sieu_toc_bear.jpg'
       },
       ba: {
         id: 'ba',
@@ -63,7 +65,8 @@ class LuckyDrawManager {
         badge: '🥉 GIẢI BA',
         total: 5,
         gift: 'Bàn là hơi nước Tefal Easy Steam',
-        round: 'ĐỢT 3'
+        round: 'ĐỢT 3',
+        image: 'assets/prizes/ban_la_tefal.jpg'
       },
       nhi: {
         id: 'nhi',
@@ -73,7 +76,8 @@ class LuckyDrawManager {
         badge: '🥈 GIẢI NHÌ',
         total: 3,
         gift: 'Máy sấy tóc ion âm cao cấp',
-        round: 'ĐỢT 4'
+        round: 'ĐỢT 4',
+        image: 'assets/prizes/may_say_toc.jpg'
       },
       nhat: {
         id: 'nhat',
@@ -83,7 +87,8 @@ class LuckyDrawManager {
         badge: '🏆 GIẢI NHẤT',
         total: 1,
         gift: 'Quạt sưởi gốm Kangaroo cao cấp',
-        round: 'ĐỢT 5'
+        round: 'ĐỢT 5',
+        image: 'assets/prizes/quat_suoi_kangaroo.jpg'
       },
       dacbiet: {
         id: 'dacbiet',
@@ -93,7 +98,8 @@ class LuckyDrawManager {
         badge: '⭐ PHÁT SINH',
         total: 99,
         gift: 'Thưởng nóng & quà tặng bất ngờ',
-        round: 'PHÁT SINH'
+        round: 'PHÁT SINH',
+        image: 'assets/images/logo-official-full.png'
       }
     };
   }
@@ -156,6 +162,7 @@ class LuckyDrawManager {
     this.bindTierEvents();
     this.bindFilterEvents();
     this.updateQuotaTrackers();
+    this.updateActivePrizeLabel();
     this.renderWinnersTable();
     this.setupBroadcastReceiver();
   }
@@ -253,7 +260,7 @@ class LuckyDrawManager {
     });
   }
 
-  selectTier(tierKey, updateSelect = true) {
+  selectTier(tierKey, updateSelect = true, shouldBroadcast = true) {
     this.activeTier = tierKey;
 
     // Update active class on tier cards
@@ -275,7 +282,53 @@ class LuckyDrawManager {
     // Filter table to current tier for convenience
     this.filterTable(tierKey);
 
+    // Update Grand Active Prize Label on Stage
+    this.updateActivePrizeLabel();
+
+    // Broadcast tier change to stage LED window
+    if (shouldBroadcast && this.channel) {
+      this.channel.postMessage({
+        type: 'LUCKY_SELECT_TIER',
+        tierKey
+      });
+    }
+
     if (window.soundEngine) window.soundEngine.playClick();
+  }
+
+  updateActivePrizeLabel() {
+    const def = this.prizeDefs[this.activeTier] || this.prizeDefs['donghanh'];
+    const imgEl = document.getElementById('active-prize-img');
+    const badgeOverlayEl = document.getElementById('active-prize-badge-overlay');
+    const tierBadgeEl = document.getElementById('active-prize-tier-badge');
+    const roundPillEl = document.getElementById('active-prize-round-pill');
+    const nameEl = document.getElementById('active-prize-name');
+    const fillEl = document.getElementById('active-prize-progress-fill');
+    const quotaEl = document.getElementById('active-prize-progress-quota');
+
+    const awarded = this.recordedWinners.filter(w => (w.prizeId === this.activeTier) || (this.activeTier === 'dacbiet' && !['donghanh','mayman','ba','nhi','nhat'].includes(w.prizeId))).length;
+    const total = def.total;
+    const pct = total === 99 ? 100 : Math.min(100, Math.round((awarded / total) * 100));
+
+    if (imgEl) {
+      imgEl.src = def.image || 'assets/images/logo-official-full.png';
+      imgEl.alt = def.gift;
+    }
+    if (badgeOverlayEl) badgeOverlayEl.textContent = def.round;
+    if (tierBadgeEl) {
+      tierBadgeEl.textContent = def.badge;
+      tierBadgeEl.className = `active-prize-tier-badge ${def.tagClass || 'tag-gold'}`;
+    }
+    if (roundPillEl) {
+      roundPillEl.innerHTML = `<i class="fas fa-gift"></i> ${def.total === 99 ? 'TÙY CHỌN' : def.total + ' SUẤT QUÀ'}`;
+    }
+    if (nameEl) nameEl.textContent = def.gift || def.name;
+    if (fillEl) fillEl.style.width = `${pct}%`;
+    if (quotaEl) {
+      quotaEl.innerHTML = def.total === 99 
+        ? `Đã trao: <strong>${awarded}</strong> giải phát sinh`
+        : `Đã trao: <strong>${awarded} / ${total}</strong> giải (${pct}%)`;
+    }
   }
 
   setEntryMode(mode) {
@@ -321,6 +374,10 @@ class LuckyDrawManager {
         this.displayBatchModal(msg.winners, msg.batchTitle, msg.batchBadge, false);
       } else if (msg.type === 'LUCKY_HIDE_BATCH_MODAL') {
         this.closeBatchModal(false);
+      } else if (msg.type === 'LUCKY_SELECT_TIER') {
+        if (msg.tierKey) {
+          this.selectTier(msg.tierKey, true, false);
+        }
       } else if (msg.type === 'LUCKY_DELETE_WINNER') {
         this.deleteWinner(msg.id, false);
       } else if (msg.type === 'LUCKY_RESET_WINNERS') {
@@ -870,6 +927,9 @@ class LuckyDrawManager {
     if (btnBa) btnBa.classList.toggle('tier-complete', counts.ba >= 5);
     if (btnNhi) btnNhi.classList.toggle('tier-complete', counts.nhi >= 3);
     if (btnNhat) btnNhat.classList.toggle('tier-complete', counts.nhat >= 1);
+
+    // Also sync the Grand Active Prize Label
+    this.updateActivePrizeLabel();
   }
 
   filterTable(filterKey) {
