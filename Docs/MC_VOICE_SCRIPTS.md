@@ -53,39 +53,39 @@
 
 ---
 
-### 📋 ĐOẠN VĂN BẢN DUY NHẤT COPY VÀO ELEVENLABS (ĐÃ CÓ THẺ NGẮT QUÃNG 2.0S & CẢM XÚC)
-> *Mỗi đoạn được ngăn cách bằng `<break time="2.0s" />` tạo khoảng lặng 2 giây tĩnh tuyệt đối, giúp bạn dễ dàng tách thành 8 file từ `1.mp3` đến `8.mp3`.*
+### 📋 ĐOẠN VĂN BẢN DUY NHẤT COPY VÀO ELEVENLABS (DÙNG THẺ NATIVE [pause] & [excited])
+> *Mỗi đoạn được ngăn cách bằng `[pause] [pause] [pause]` tạo khoảng lặng tĩnh để bạn dễ dàng nhìn thấy trên sóng âm và cắt thành 8 file từ `1.mp3` đến `8.mp3`.*
 
 ```text
-[cheerful] Nhiệt liệt chào mừng toàn thể cán bộ nhân viên đến với đêm Gala Kỷ niệm ra mắt thương hiệu Công ty Cổ phần Tà Lùng Quang Minh! Chúc đại gia đình Tà Lùng Quang Minh một đêm tiệc rực rỡ, gắn kết và ngập tràn niềm vui!
+[excited] Nhiệt liệt chào mừng toàn thể cán bộ nhân viên đến với đêm Gala Kỷ niệm ra mắt thương hiệu Công ty Cổ phần Tà Lùng Quang Minh! Chúc đại gia đình Tà Lùng Quang Minh một đêm tiệc rực rỡ, gắn kết và ngập tràn niềm vui!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
 [excited] Ngay sau đây, xin kính mời toàn thể hội trường cùng đến với chương trình Bốc Thăm May Mắn! Những phần quà ý nghĩa đã sẵn sàng được Ban Lãnh đạo Tà Lùng Quang Minh trao tận tay các thành viên may mắn nhất đêm nay!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
-[enthusiastic] Thay lời tri ân sâu sắc, Công ty Cổ phần Tà Lùng Quang Minh trân trọng mang đến 29 phần quà may mắn với tỉ lệ trúng thưởng lên tới 44%! Hãy cùng hướng mắt lên màn hình để khám phá các giải thưởng của công ty chúng ta!
+[excited] Thay lời tri ân sâu sắc, Công ty Cổ phần Tà Lùng Quang Minh trân trọng mang đến 29 phần quà may mắn với tỉ lệ trúng thưởng lên tới 44%! Hãy cùng hướng mắt lên màn hình để khám phá các giải thưởng của công ty chúng ta!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
-[warm] Mở đầu là 12 Giải Đồng Hành với Pin sạc dự phòng 10.000 mAh, biểu trưng cho nguồn năng lượng bền bỉ luôn đồng hành cùng đại gia đình Tà Lùng Quang Minh trên mọi chặng đường. Xin chúc mừng 12 thành viên may mắn đầu tiên!
+[excited] Mở đầu là 12 Giải Đồng Hành với Pin sạc dự phòng 10.000 mAh, biểu trưng cho nguồn năng lượng bền bỉ luôn đồng hành cùng đại gia đình Tà Lùng Quang Minh trên mọi chặng đường. Xin chúc mừng 12 thành viên may mắn đầu tiên!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
-[warm] Tiếp theo là 08 Giải May Mắn với Bình đun siêu tốc Bear 1.5 lít. Món quà tiện ích mang hơi ấm yêu thương từ Ban Lãnh đạo Tà Lùng Quang Minh gửi tới từng mái ấm gia đình của cán bộ nhân viên!
+[playful] Tiếp theo là 08 Giải May Mắn với Bình đun siêu tốc Bear 1.5 lít. Món quà tiện ích mang hơi ấm yêu thương từ Ban Lãnh đạo Tà Lùng Quang Minh gửi tới từng mái ấm gia đình của cán bộ nhân viên!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
-[confident] 05 Giải Ba đầy ý nghĩa là Bàn ủi hơi nước Tefal cao cấp, tiếp thêm phong thái tự tin, chỉn chu và chuyên nghiệp cho đội ngũ nhân sự Tà Lùng Quang Minh mỗi ngày làm việc. Xin chúc mừng các chủ nhân Giải Ba!
+[excited] 05 Giải Ba đầy ý nghĩa là Bàn ủi hơi nước Tefal cao cấp, tiếp thêm phong thái tự tin, chỉn chu và chuyên nghiệp cho đội ngũ nhân sự Tà Lùng Quang Minh mỗi ngày làm việc. Xin chúc mừng các chủ nhân Giải Ba!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
-[bright] 03 Giải Nhì giá trị thuộc về Máy sấy tóc ion âm hiện đại, món quà chăm sóc chu đáo từ Công ty Cổ phần Tà Lùng Quang Minh giúp anh chị em luôn rạng rỡ và tràn đầy sức sống. Chúc mừng 03 thành viên may mắn tiếp theo!
+[excited] 03 Giải Nhì giá trị thuộc về Máy sấy tóc ion âm hiện đại, món quà chăm sóc chu đáo từ Công ty Cổ phần Tà Lùng Quang Minh giúp anh chị em luôn rạng rỡ và tràn đầy sức sống. Chúc mừng 03 thành viên may mắn tiếp theo!
 
-<break time="2.0s" />
+[pause] [pause] [pause]
 
-[triumphant] Và tâm điểm danh giá nhất đêm nay: 01 Giải Nhất Quạt sưởi gốm Kangaroo cao cấp! Món quà đỉnh cao trao trọn sự ấm áp và thịnh vượng từ Công ty Cổ phần Tà Lùng Quang Minh. Ai sẽ là người may mắn nhất của công ty chúng ta đêm nay?
+[excited] Và tâm điểm danh giá nhất đêm nay: 01 Giải Nhất Quạt sưởi gốm Kangaroo cao cấp! Món quà đỉnh cao trao trọn sự ấm áp và thịnh vượng từ Công ty Cổ phần Tà Lùng Quang Minh. Ai sẽ là người may mắn nhất của công ty chúng ta đêm nay? Cùng đón chờ nhé!
 ```
 
 ---
