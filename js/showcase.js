@@ -141,16 +141,9 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner prize-transition-layout">
-              <div class="prize-slide-brand-banner">
-                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
-                <div class="slide-brand-info">
-                  <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
-                  <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
-                </div>
-              </div>
               <span class="prize-badge-lg">${slide.content.badge}</span>
               <h2 class="prize-welcome-text">${slide.content.welcomeText}</h2>
-              <h1 class="prize-main-title gold-shimmer huge-gala-title">${slide.content.mainTitle}</h1>
+              <h1 class="prize-main-title huge-gala-title">${slide.content.mainTitle}</h1>
               <p class="prize-slogan-quote">${slide.content.quote}</p>
 
               <div class="welcome-features-grid">
@@ -178,14 +171,6 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner prize-stats-layout">
-              <div class="prize-slide-brand-banner">
-                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
-                <div class="slide-brand-info">
-                  <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
-                  <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
-                </div>
-              </div>
-
               <div class="prize-stats-header">
                 <div class="prize-counter-wrap">
                   <span class="prize-huge-counter count-up" id="prize-counter-${target}" data-target="${target}">0</span>
@@ -223,94 +208,54 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner prize-split-layout">
-              <!-- Cột Trái: Thông số Kỹ thuật & Giá trị Đẳng cấp (Quang Minh Smart Border Design) -->
+              <!-- Cột Trái: Thông tin Giải thưởng & Thông số Kỹ thuật Tinh tế -->
               <div class="prize-hero-info">
-                <div class="prize-slide-brand-banner">
-                  <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
-                  <div class="slide-brand-info">
-                    <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
-                    <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
-                  </div>
-                </div>
-
                 <div class="prize-category-row">
-                  <div class="live-status-chip">
-                    <span class="pulse-dot"></span>
-                    <span>LIVE GALA</span>
-                  </div>
                   <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
-                  <span class="prize-round-pill">${slide.roundTag || 'VÒNG BỐC THĂM'}</span>
-                  <span class="prize-status-badge"><i class="fas fa-circle-check"></i> CHÍNH HÃNG 100%</span>
+                  <span class="prize-round-pill"><i class="fas fa-gift"></i> ${slide.badgeCount || ''} PHẦN QUÀ</span>
+                  <span class="prize-status-badge"><i class="fas fa-circle-check"></i> CHÍNH HÃNG</span>
                 </div>
 
-                <h1 class="prize-product-name ${slide.goldShimmer ? 'gold-shimmer' : ''} ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
+                <h1 class="prize-product-name ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
                 
                 <div class="prize-specs-grid">
                   ${specsHtml}
                 </div>
 
-                <div class="prize-meta-box smart-border-meta-box">
+                <div class="prize-meta-box">
                   <div class="meta-item">
-                    <span class="meta-label"><i class="fas fa-hand-holding-heart"></i> HÌNH THỨC TRAO</span>
+                    <span class="meta-label">Hình thức trao</span>
                     <span class="meta-value">${slide.awardMethod || 'Bốc Thăm Sân Khấu'}</span>
                   </div>
                   <div class="meta-divider"></div>
                   <div class="meta-item">
-                    <span class="meta-label"><i class="fas fa-trophy"></i> SỐ LƯỢNG GIẢI</span>
+                    <span class="meta-label">Số lượng giải</span>
                     <span class="meta-value highlight-num">${slide.quantityLabel || slide.badgeCount}</span>
                   </div>
                   <div class="meta-divider"></div>
                   <div class="meta-item">
-                    <span class="meta-label"><i class="fas fa-users"></i> ĐỐI TƯỢNG NHẬN</span>
+                    <span class="meta-label">Đối tượng</span>
                     <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên TLQM'}</span>
                   </div>
-                  <div class="meta-divider"></div>
-                  <div class="meta-item">
-                    <span class="meta-label"><i class="fas fa-certificate"></i> CHẤT LƯỢNG</span>
-                    <span class="meta-value">${slide.qualityStandard || 'Chính Hãng Nguyên Seal'}</span>
-                  </div>
-                </div>
-
-                <div class="prize-callout-quote">
-                  <i class="fas fa-quote-left quote-icon"></i>
-                  <span>${slide.quote || slide.badgeSub}</span>
                 </div>
 
                 ${isGrand ? `
                   <div class="grand-next-cta">
                     <button type="button" class="btn-gala btn-gala-gold" onclick="window.app && window.app.switchSection('awards')">
-                      <i class="fas fa-trophy"></i> TIẾN HÀNH BỐC THĂM & TRAO QUÀ <span class="kbd-hint">F5</span> ➔
+                      <i class="fas fa-trophy"></i> BẮT ĐẦU BỐC THĂM & TRAO QUÀ <span class="kbd-hint">F5</span> ➔
                     </button>
                   </div>
                 ` : ''}
               </div>
 
-              <!-- Cột Phải: Bệ Đỡ 3D & Khung Kính Phát Sáng Trưng Bày -->
+              <!-- Cột Phải: Hình ảnh Sản phẩm nổi bật, thanh lịch -->
               <div class="prize-hero-visual">
-                <div class="prize-stage-pedestal ${isGrand ? 'grand-pedestal' : ''}">
-                  <div class="pedestal-ambient-halo ${slide.haloClass || ''}"></div>
-                  
-                  <div class="prize-float-badge-wrapper">
-                    <div class="prize-float-badge ${isGrand ? 'grand-float-badge' : ''}">
-                      <span class="float-badge-count">${slide.badgeCount}</span>
-                      <span class="float-badge-label">TRAO TẶNG</span>
-                    </div>
+                <div class="prize-product-showcase-card ${isGrand ? 'grand-showcase-card' : ''}">
+                  <div class="prize-float-badge">
+                    <span class="float-badge-count">${slide.badgeCount}</span>
+                    <span class="float-badge-label">GIẢI THƯỞNG</span>
                   </div>
-
-                  <div class="prize-showcase-frame ${isGrand ? 'grand-frame' : ''}">
-                    <img src="${slide.image}" alt="${slide.imageAlt || slide.name}" class="prize-product-img">
-                    <div class="frame-glass-shine"></div>
-                  </div>
-
-                  <div class="pedestal-base">
-                    <div class="pedestal-light-ring"></div>
-                  </div>
-
-                  <div class="pedestal-trust-chips">
-                    <span class="trust-chip"><i class="fas fa-shield-halved"></i> Bảo Hành Chính Hãng</span>
-                    <span class="trust-chip"><i class="fas fa-box-open"></i> Đóng Gói Sang Trọng</span>
-                    <span class="trust-chip"><i class="fas fa-handshake"></i> Trao Tận Tay CBCNV</span>
-                  </div>
+                  <img src="${slide.image}" alt="${slide.imageAlt || slide.name}" class="prize-product-img">
                 </div>
               </div>
             </div>
