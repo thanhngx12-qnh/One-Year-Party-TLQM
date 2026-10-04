@@ -35,8 +35,8 @@
     
     <!-- TLQM Logo on Umbrella -->
     <circle cx="300" cy="220" r="28" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
-    <text x="300" y="226" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900" fill="#223873" text-anchor="middle">TLQM</text>
+    <text x="300" y="226" font-family="'Inter', -apple-system, sans-serif" font-size="14" font-weight="900" fill="#223873" text-anchor="middle">TLQM</text>
   </g>
   
-  <text x="300" y="540" font-family="'Montserrat', sans-serif" font-size="18" font-weight="900" fill="#166534" text-anchor="middle">☂️ Ô CẦM TAY THƯƠNG HIỆU TLQM</text>
+  <text x="300" y="540" font-family="'Inter', -apple-system, sans-serif" font-size="18" font-weight="900" fill="#166534" text-anchor="middle">☂️ Ô CẦM TAY THƯƠNG HIỆU TLQM</text>
 </svg>

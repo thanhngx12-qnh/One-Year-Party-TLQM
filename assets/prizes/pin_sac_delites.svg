@@ -38,12 +38,12 @@
     
     <!-- Digital LED Display Circle -->
     <circle cx="300" cy="220" r="52" fill="#0f172a" stroke="url(#goldAccent)" stroke-width="3"/>
-    <text x="300" y="226" font-family="'Montserrat', sans-serif" font-size="34" font-weight="900" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">100%</text>
-    <text x="300" y="252" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">FAST CHARGE</text>
+    <text x="300" y="226" font-family="'Inter', -apple-system, sans-serif" font-size="34" font-weight="900" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">100%</text>
+    <text x="300" y="252" font-family="'Inter', -apple-system, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">FAST CHARGE</text>
     
     <!-- Brand Name -->
-    <text x="300" y="370" font-family="'Montserrat', sans-serif" font-size="24" font-weight="900" fill="#1e293b" letter-spacing="4" text-anchor="middle">DELITES</text>
-    <text x="300" y="398" font-family="'Montserrat', sans-serif" font-size="14" font-weight="600" fill="#64748b" letter-spacing="1" text-anchor="middle">10.000 mAh • Polymer</text>
+    <text x="300" y="370" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="900" fill="#1e293b" letter-spacing="4" text-anchor="middle">DELITES</text>
+    <text x="300" y="398" font-family="'Inter', -apple-system, sans-serif" font-size="14" font-weight="600" fill="#64748b" letter-spacing="1" text-anchor="middle">10.000 mAh • Polymer</text>
 
     <!-- Power button side notch -->
     <rect x="418" y="180" width="6" height="40" rx="3" fill="#94a3b8"/>
@@ -52,6 +52,6 @@
   <!-- Subtle Badge overlay -->
   <g transform="translate(300, 465)">
     <rect x="-90" y="-16" width="180" height="32" rx="16" fill="#0b9444" opacity="0.9"/>
-    <text x="0" y="4" font-family="'Montserrat', sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">GIẢI MAY MẮN</text>
+    <text x="0" y="4" font-family="'Inter', -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">GIẢI MAY MẮN</text>
   </g>
 </svg>
