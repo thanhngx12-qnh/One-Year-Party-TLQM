@@ -2055,6 +2055,12 @@ body {
   margin: 0 auto;
 }
 
+#section-king .game-container {
+  max-width: min(96vw, 1720px);
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
 .game-top-bar {
   display: flex;
   align-items: center;
@@ -2121,46 +2127,47 @@ body {
 .king-stage-card {
   position: relative;
   background: #ffffff;
-  border: 1.5px solid var(--border-light);
-  border-radius: 12px;
-  padding: 26px 32px;
+  border: 2px solid rgba(34, 56, 115, 0.16);
+  border-radius: 18px;
+  padding: clamp(20px, 3vh, 36px) clamp(20px, 2.5vw, 44px);
   text-align: center;
-  box-shadow: var(--shadow-md);
-  margin-bottom: 24px;
+  box-shadow: 0 10px 32px rgba(34, 56, 115, 0.1);
+  margin-bottom: 20px;
 }
 
 .king-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .question-round-tag {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 800;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-weight: 900;
   color: var(--tlqm-navy);
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   background: #eef3f9;
-  padding: 6px 16px;
-  border-radius: 8px;
-  border: 1.5px solid rgba(34, 56, 115, 0.25);
+  padding: 8px 22px;
+  border-radius: 10px;
+  border: 2px solid rgba(34, 56, 115, 0.25);
+  box-shadow: 0 2px 8px rgba(34, 56, 115, 0.08);
 }
 
 /* Circular SVG Timer (Enlarged for Stage Prominence) */
 .circular-timer-wrapper {
   position: relative;
-  width: 104px;
-  height: 104px;
+  width: 120px;
+  height: 120px;
   flex-shrink: 0;
 }
 
 .circular-timer-svg {
   transform: rotate(-90deg);
-  width: 104px;
-  height: 104px;
+  width: 120px;
+  height: 120px;
 }
 
 .timer-circle-bg {
@@ -2190,7 +2197,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 900;
   color: var(--text-heading);
   letter-spacing: -1px;
@@ -2207,10 +2214,10 @@ body {
 }
 
 .stage-instruction {
-  font-size: 1.25rem;
+  font-size: clamp(1.35rem, 1.6vw, 1.65rem);
   color: var(--text-secondary);
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* Scrambled Letter Tiles (Enlarged & Bold for High Visibility) */
@@ -2219,26 +2226,26 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px;
-  margin: 26px 0;
-  min-height: 96px;
+  gap: clamp(10px, 1.3vw, 18px);
+  margin: 22px 0 18px;
+  min-height: 110px;
 }
 
 .letter-tile {
-  min-width: 82px;
-  height: 90px;
-  padding: 0 12px;
+  min-width: clamp(94px, 7.8vw, 140px);
+  height: clamp(108px, 9.2vw, 155px);
+  padding: 0 10px;
   background: #ffffff;
-  border: 2.5px solid var(--tlqm-navy);
-  border-radius: 12px;
+  border: 3.5px solid var(--tlqm-navy);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 2.85rem;
+  font-size: clamp(3.8rem, 5.8vw, 5.4rem);
   font-weight: 900;
   color: var(--tlqm-navy);
-  box-shadow: 0 6px 16px rgba(34, 56, 115, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 24px rgba(34, 56, 115, 0.18), 0 3px 6px rgba(0, 0, 0, 0.08);
   user-select: none;
   animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -2246,7 +2253,7 @@ body {
 
 .letter-tile:hover {
   transform: translateY(-5px) scale(1.08);
-  box-shadow: 0 10px 22px rgba(34, 56, 115, 0.22);
+  box-shadow: 0 12px 28px rgba(34, 56, 115, 0.25);
   border-color: var(--tlqm-blue);
   color: var(--tlqm-blue);
 }
@@ -2259,17 +2266,18 @@ body {
 /* Hint Box (Enlarged & Clear) */
 .hint-display-box {
   display: none;
-  background: #fff8eb;
-  border: 2px dashed var(--tlqm-amber);
-  border-radius: 12px;
-  padding: 16px 26px;
+  background: #fffdf5;
+  border: 3px dashed var(--tlqm-amber);
+  border-radius: 16px;
+  padding: 18px 30px;
   margin: 18px auto;
-  max-width: 900px;
-  font-size: 1.35rem;
-  font-weight: 600;
+  max-width: 1400px;
+  width: 96%;
+  font-size: clamp(1.4rem, 1.8vw, 1.95rem);
+  font-weight: 700;
   color: #7c2d12;
-  box-shadow: 0 4px 16px rgba(232, 148, 19, 0.15);
-  line-height: 1.6;
+  box-shadow: 0 6px 20px rgba(232, 148, 19, 0.18);
+  line-height: 1.55;
   animation: fadeIn 0.3s ease;
 }
 
@@ -2279,16 +2287,16 @@ body {
 
 .hint-display-box strong {
   color: #c2410c;
-  font-size: 1.4rem;
+  font-size: clamp(1.5rem, 1.9vw, 2.05rem);
 }
 
 /* Answer Box (Revealed: Bright Brand Green, Extra Big) */
 .answer-display-box {
   display: none;
-  margin: 26px auto 14px;
+  margin: 22px auto 14px;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: clamp(16px, 2.5vw, 36px);
   flex-wrap: wrap;
 }
 
@@ -2304,24 +2312,24 @@ body {
 
 .answer-word-group {
   display: flex;
-  gap: 8px;
+  gap: clamp(8px, 1vw, 14px);
 }
 
 .answer-letter-tile {
-  min-width: 86px;
-  height: 94px;
-  padding: 0 12px;
+  min-width: clamp(96px, 8vw, 145px);
+  height: clamp(112px, 9.5vw, 158px);
+  padding: 0 10px;
   background: var(--green-gradient);
-  border: 2.5px solid #15803d;
-  border-radius: 12px;
+  border: 3.5px solid #15803d;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 2.9rem;
+  font-size: clamp(4rem, 6vw, 5.6rem);
   font-weight: 900;
   color: #ffffff;
-  box-shadow: 0 8px 22px rgba(11, 148, 68, 0.32);
+  box-shadow: 0 10px 28px rgba(11, 148, 68, 0.38), 0 4px 0 #15803d;
   animation: bounceLetter 0.5s ease;
 }
 
@@ -3910,9 +3918,9 @@ body.stage-fullscreen #section-showcase .showcase-footer-controls {
 
 /* Section 3: Vua Tiếng Việt in Stage Fullscreen */
 body.stage-fullscreen #section-king .game-container {
-  max-width: 1560px !important;
-  width: 100% !important;
-  height: calc(100vh - 70px) !important;
+  max-width: 96vw !important;
+  width: 96vw !important;
+  height: calc(100vh - 60px) !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
@@ -3920,78 +3928,79 @@ body.stage-fullscreen #section-king .game-container {
 }
 
 body.stage-fullscreen .king-stage-card {
-  padding: 20px 36px !important;
+  padding: clamp(16px, 2.5vh, 28px) clamp(20px, 3vw, 44px) !important;
   margin-bottom: 0 !important;
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-around !important;
-  border-width: 2.5px !important;
-  border-radius: 14px !important;
+  justify-content: space-evenly !important;
+  border-width: 3px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12) !important;
 }
 
 body.stage-fullscreen .circular-timer-wrapper,
 body.stage-fullscreen .circular-timer-svg {
-  width: 124px !important;
-  height: 124px !important;
+  width: 136px !important;
+  height: 136px !important;
 }
 
 body.stage-fullscreen .timer-number-display {
-  font-size: 3.4rem !important;
+  font-size: 3.8rem !important;
   font-weight: 900 !important;
 }
 
 body.stage-fullscreen #king-question-number {
-  font-size: 1.35rem !important;
-  padding: 8px 24px !important;
+  font-size: 1.55rem !important;
+  padding: 10px 28px !important;
   font-weight: 900 !important;
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   letter-spacing: 1.5px !important;
 }
 
 body.stage-fullscreen .letter-tiles-container {
-  gap: 16px !important;
-  margin: 28px 0 !important;
+  gap: clamp(12px, 1.5vw, 22px) !important;
+  margin: 16px 0 !important;
 }
 
 body.stage-fullscreen .letter-tile {
-  min-width: 105px !important;
-  height: 114px !important;
-  padding: 0 14px !important;
-  font-size: 3.6rem !important;
-  border-width: 3.5px !important;
-  border-radius: 14px !important;
-  box-shadow: 0 8px 0 rgba(23, 39, 84, 0.18), 0 12px 24px rgba(23, 39, 84, 0.12) !important;
+  min-width: clamp(112px, 8.8vw, 155px) !important;
+  height: clamp(126px, 10vw, 168px) !important;
+  padding: 0 12px !important;
+  font-size: clamp(4.4rem, 6.8vw, 6rem) !important;
+  border-width: 4px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 0 rgba(23, 39, 84, 0.2), 0 14px 28px rgba(23, 39, 84, 0.15) !important;
 }
 
 body.stage-fullscreen .answer-letter-tile {
-  min-width: 108px !important;
-  height: 116px !important;
-  padding: 0 14px !important;
-  font-size: 3.6rem !important;
-  border-width: 3.5px !important;
-  border-radius: 14px !important;
-  box-shadow: 0 8px 0 #15803d, 0 12px 24px rgba(11, 148, 68, 0.3) !important;
+  min-width: clamp(118px, 9.2vw, 160px) !important;
+  height: clamp(132px, 10.5vw, 172px) !important;
+  padding: 0 12px !important;
+  font-size: clamp(4.6rem, 7vw, 6.2rem) !important;
+  border-width: 4px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 0 #15803d, 0 14px 30px rgba(11, 148, 68, 0.35) !important;
 }
 
 body.stage-fullscreen .stage-instruction {
-  font-size: 1.45rem !important;
+  font-size: 1.65rem !important;
   font-weight: 700 !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 8px !important;
 }
 
 body.stage-fullscreen .hint-display-box {
-  font-size: 1.55rem !important;
+  font-size: clamp(1.75rem, 2.1vw, 2.25rem) !important;
   font-weight: 700 !important;
-  padding: 18px 30px !important;
-  border-width: 3px !important;
-  border-radius: 14px !important;
-  line-height: 1.6 !important;
-  max-width: 1100px !important;
+  padding: 18px 34px !important;
+  border-width: 3.5px !important;
+  border-radius: 16px !important;
+  line-height: 1.55 !important;
+  max-width: 96% !important;
 }
 
 body.stage-fullscreen .hint-display-box strong {
-  font-size: 1.65rem !important;
+  font-size: clamp(1.85rem, 2.2vw, 2.4rem) !important;
 }
 
 /* Section 4: Tạo Dáng Thần Tốc in Stage Fullscreen - Zero Scrolling 100vh */
@@ -4533,54 +4542,85 @@ body.stage-pure-led #section-king.active {
   top: 0 !important;
   height: 100vh !important;
   max-height: 100vh !important;
-  padding: 24px 40px !important;
+  padding: 16px 32px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
 body.stage-pure-led #section-king .game-container {
-  max-width: 1620px !important;
-  width: 100% !important;
-  height: calc(100vh - 48px) !important;
+  max-width: 96vw !important;
+  width: 96vw !important;
+  height: calc(100vh - 32px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+}
+
+body.stage-pure-led #section-king .king-stage-card {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+  padding: 20px 40px !important;
+  border-radius: 20px !important;
+  margin-bottom: 0 !important;
 }
 
 body.stage-pure-led .circular-timer-wrapper,
 body.stage-pure-led .circular-timer-svg {
-  width: 136px !important;
-  height: 136px !important;
+  width: 148px !important;
+  height: 148px !important;
 }
 
 body.stage-pure-led .timer-number-display {
-  font-size: 3.8rem !important;
+  font-size: 4.4rem !important;
   font-weight: 900 !important;
 }
 
+body.stage-pure-led #king-question-number {
+  font-size: 1.7rem !important;
+  padding: 12px 30px !important;
+}
+
+body.stage-pure-led .letter-tiles-container {
+  gap: clamp(14px, 1.8vw, 24px) !important;
+  margin: 16px 0 !important;
+}
+
 body.stage-pure-led .letter-tile {
-  min-width: 112px !important;
-  height: 122px !important;
-  font-size: 3.8rem !important;
-  border-width: 3.5px !important;
-  border-radius: 14px !important;
+  min-width: clamp(120px, 9.2vw, 165px) !important;
+  height: clamp(135px, 10.8vw, 180px) !important;
+  font-size: clamp(4.8rem, 7.5vw, 6.6rem) !important;
+  border-width: 4px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 0 rgba(23, 39, 84, 0.22), 0 16px 32px rgba(23, 39, 84, 0.18) !important;
 }
 
 body.stage-pure-led .answer-letter-tile {
-  min-width: 115px !important;
-  height: 125px !important;
-  font-size: 3.8rem !important;
-  border-width: 3.5px !important;
-  border-radius: 14px !important;
+  min-width: clamp(125px, 9.6vw, 170px) !important;
+  height: clamp(140px, 11.2vw, 185px) !important;
+  font-size: clamp(5rem, 7.8vw, 6.8rem) !important;
+  border-width: 4px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 0 #15803d, 0 16px 36px rgba(11, 148, 68, 0.4) !important;
 }
 
 body.stage-pure-led .stage-instruction {
-  font-size: 1.5rem !important;
+  font-size: 1.8rem !important;
   font-weight: 700 !important;
 }
 
 body.stage-pure-led .hint-display-box {
-  font-size: 1.7rem !important;
+  font-size: 2.2rem !important;
   font-weight: 700 !important;
-  padding: 20px 32px !important;
+  padding: 22px 38px !important;
+  max-width: 96% !important;
+  line-height: 1.55 !important;
+}
+
+body.stage-pure-led .hint-display-box strong {
+  font-size: 2.35rem !important;
 }
 
 /* ==============================================================================
