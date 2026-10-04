@@ -1724,6 +1724,23 @@ body.theme-light .prize-slide-brand-banner .slide-brand-logo {
   border-radius: 50%;
 }
 
+.prize-slide-brand-banner .slide-brand-logo-full {
+  height: 38px;
+  max-width: 140px;
+  object-fit: contain;
+  background: #FFFFFF;
+  border-radius: 6px;
+  padding: 3px 6px;
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-light .prize-slide-brand-banner .slide-brand-logo-full {
+  border: 1px solid #CBD5E1;
+  box-shadow: 0 1px 4px rgba(35, 56, 113, 0.08);
+}
+
 .prize-slide-brand-banner .slide-brand-info {
   display: flex;
   flex-direction: column;
@@ -2347,8 +2364,8 @@ body.theme-light .card-pill-note {
    ========================================================= */
 .prize-split-layout {
   display: grid;
-  grid-template-columns: 1.25fr 0.95fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
   align-items: center;
   text-align: left;
   width: 100%;
@@ -2536,6 +2553,154 @@ body.theme-light .prize-product-name {
 
 .grand-title {
   font-size: clamp(2.2rem, 3.2vw, 3rem);
+}
+
+/* Gala Highlight Card (Thay thế bảng thông số kỹ thuật) */
+.prize-gala-highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  background: rgba(15, 24, 51, 0.92);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-left: 5px solid #f59e0b;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-light .prize-gala-highlight-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-left: 5px solid var(--tlqm-navy);
+  box-shadow: 0 4px 16px rgba(35, 56, 113, 0.08);
+}
+
+.gala-highlight-qty {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.highlight-qty-number {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #f59e0b;
+  line-height: 1;
+  padding: 6px 14px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-radius: 6px;
+  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  flex-shrink: 0;
+}
+
+body.theme-light .highlight-qty-number {
+  color: var(--tlqm-navy);
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  text-shadow: none;
+}
+
+.highlight-qty-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qty-text-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+body.theme-light .qty-text-title {
+  color: #64748B;
+}
+
+.qty-text-desc {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.3px;
+}
+
+body.theme-light .qty-text-desc {
+  color: #0F172A;
+}
+
+.gala-highlight-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
+body.theme-light .gala-highlight-meta {
+  border-top-color: #E2E8F0;
+}
+
+.gala-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: #E2E8F0;
+}
+
+body.theme-light .gala-meta-row {
+  color: #334155;
+}
+
+.gala-meta-row i {
+  color: #f59e0b;
+  font-size: 0.95rem;
+  width: 18px;
+  text-align: center;
+}
+
+body.theme-light .gala-meta-row i {
+  color: var(--tlqm-navy);
+}
+
+.gala-highlight-quote {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  border-left: 2px solid rgba(245, 158, 11, 0.5);
+}
+
+body.theme-light .gala-highlight-quote {
+  background: #F8FAFC;
+  color: #475569;
+  border-left-color: var(--tlqm-navy);
+}
+
+.gala-highlight-quote .quote-icon {
+  color: #f59e0b;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+body.theme-light .gala-highlight-quote .quote-icon {
+  color: var(--tlqm-navy);
 }
 
 /* Tech Specs 2x2 Grid */
@@ -2768,17 +2933,17 @@ body.theme-light .grand-next-cta .btn-gala-gold:hover {
 .prize-product-showcase-card {
   position: relative;
   width: 100%;
-  max-width: 540px;
-  height: 440px;
+  max-width: 580px;
+  height: clamp(380px, 48vh, 480px);
   background: #0f1833;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 36px;
-  transition: transform 0.2s ease;
+  padding: 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 body.theme-light .prize-product-showcase-card {

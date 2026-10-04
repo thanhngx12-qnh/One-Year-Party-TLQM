@@ -210,53 +210,51 @@ class ShowcaseManager {
           const isGrand = slide.type === 'grand-prize';
           if (isGrand) slideDiv.classList.add('prize-slide-grand');
 
-          const specsHtml = (slide.specs || []).map((s, sIdx) => `
-            <div class="prize-spec-chip" style="animation-delay: ${0.1 + sIdx * 0.08}s">
-              <div class="spec-chip-icon"><i class="${s.icon}"></i></div>
-              <div class="spec-chip-content">
-                <div class="spec-chip-title">${s.title}</div>
-                <div class="spec-chip-desc">${s.desc}</div>
-              </div>
-            </div>
-          `).join('');
-
           html = `
             <div class="prize-slide-inner prize-split-layout">
-              <!-- Cột Trái: Thông tin Giải thưởng & Thông số Kỹ thuật Tinh tế -->
+              <!-- Cột Trái: Thông tin Giải thưởng & Nhận diện Công ty -->
               <div class="prize-hero-info">
                 <div class="prize-slide-brand-banner">
-                  <img src="assets/images/logo-official-emblem.png" alt="Tà Lùng Quang Minh" class="slide-brand-logo">
+                  <img src="assets/images/logo-official-full.png" alt="Tà Lùng Quang Minh" class="slide-brand-logo-full">
                   <div class="slide-brand-info">
                     <span class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</span>
-                    <span class="slide-brand-event">TÀ LÙNG QUANG MINH LOGISTICS</span>
+                    <span class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TÀ LÙNG QUANG MINH LOGISTICS</span>
                   </div>
                 </div>
 
                 <div class="prize-category-row">
                   <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
-                  <span class="prize-round-pill"><i class="fas fa-gift"></i> ${slide.badgeCount || ''} PHẦN QUÀ</span>
-                  <span class="prize-status-badge"><i class="fas fa-circle-check"></i> CHÍNH HÃNG</span>
+                  <span class="prize-round-pill"><i class="fas fa-gift"></i> ${slide.badgeCount || ''} SUẤT GIẢI</span>
+                  <span class="prize-status-badge"><i class="fas fa-shield-halved"></i> CHÍNH HÃNG</span>
                 </div>
 
                 <h1 class="prize-product-name ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
                 
-                <div class="prize-specs-grid">
-                  ${specsHtml}
-                </div>
-
-                <div class="prize-meta-box">
-                  <div class="meta-item">
-                    <span class="meta-label">Hình thức trao</span>
-                    <span class="meta-value">${slide.awardMethod || 'Bốc Thăm Sân Khấu'}</span>
+                <!-- Bảng Nổi Bật Số Lượng & Đối Tượng (Ẩn thông số kỹ thuật) -->
+                <div class="prize-gala-highlight-card">
+                  <div class="gala-highlight-qty">
+                    <div class="highlight-qty-number">${slide.badgeCount}</div>
+                    <div class="highlight-qty-text">
+                      <span class="qty-text-title">SỐ LƯỢNG GIẢI THƯỞNG</span>
+                      <span class="qty-text-desc">${slide.quantityLabel || (slide.badgeCount + ' Suất Quà Tặng May Mắn')}</span>
+                    </div>
                   </div>
-                  <div class="meta-item">
-                    <span class="meta-label">Số lượng giải</span>
-                    <span class="meta-value highlight-num">${slide.quantityLabel || slide.badgeCount}</span>
+                  <div class="gala-highlight-meta">
+                    <div class="gala-meta-row">
+                      <i class="fas fa-hand-holding-hand"></i>
+                      <span><strong>Hình thức trao:</strong> ${slide.awardMethod || 'Bốc Thăm Công Khai Sân Khấu'}</span>
+                    </div>
+                    <div class="gala-meta-row">
+                      <i class="fas fa-users"></i>
+                      <span><strong>Đối tượng:</strong> ${slide.targetNote || 'Toàn Thể Cán Bộ Nhân Viên Tà Lùng Quang Minh'}</span>
+                    </div>
                   </div>
-                  <div class="meta-item meta-item-target">
-                    <span class="meta-label">Đối tượng</span>
-                    <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên Tà Lùng Quang Minh'}</span>
-                  </div>
+                  ${slide.quote ? `
+                    <div class="gala-highlight-quote">
+                      <i class="fas fa-quote-left quote-icon"></i>
+                      <span>${slide.quote}</span>
+                    </div>
+                  ` : ''}
                 </div>
 
                 ${isGrand ? `
@@ -268,7 +266,7 @@ class ShowcaseManager {
                 ` : ''}
               </div>
 
-              <!-- Cột Phải: Hình ảnh Sản phẩm nổi bật, thanh lịch -->
+              <!-- Cột Phải: Hình ảnh Sản phẩm nổi bật, kích thước lớn -->
               <div class="prize-hero-visual">
                 <div class="prize-product-showcase-card ${isGrand ? 'grand-showcase-card' : ''}">
                   <div class="prize-float-badge">
@@ -403,9 +401,10 @@ class ShowcaseManager {
         b.classList.remove('active');
       });
 
-      this.auditionAudio.src = voicePath;
+      const sep = voicePath.includes('?') ? '&' : '?';
+      this.auditionAudio.src = `${voicePath}${sep}nocache=${Date.now()}`;
       this.auditionAudio.currentTime = 0;
-      this.auditionAudio.volume = 0.9;
+      this.auditionAudio.volume = 1.0;
       this.auditionAudio.play().then(() => {
         this.currentlyAuditioningIndex = index;
         btn.innerHTML = '<i class="fas fa-pause"></i> Dừng Lại';
@@ -770,7 +769,9 @@ class ShowcaseManager {
       return;
     }
 
-    this.voiceAudio.src = soundPath;
+    const sep = soundPath.includes('?') ? '&' : '?';
+    this.voiceAudio.src = `${soundPath}${sep}nocache=${Date.now()}`;
+    this.voiceAudio.volume = 1.0;
     setTimeout(() => {
       this.voiceAudio.play().catch(err => {
         console.warn('Voice play blocked or interrupted', err);
