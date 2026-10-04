@@ -83,7 +83,7 @@ window.GALA_PRIZES_CONFIG = {
     },
 
     // -------------------------------------------------------------
-    // SLIDE 4: 12 GIẢI MAY MẮN - PIN SẠC DỰ PHÒNG DELITES
+    // SLIDE 4: 12 GIẢI MAY MẮN - BÌNH GIỮ NHIỆT / PIN DỰ PHÒNG DELITES
     // -------------------------------------------------------------
     {
       id: 'prize-may-man-pin-sac',
@@ -93,68 +93,68 @@ window.GALA_PRIZES_CONFIG = {
       voice: 'assets/voices/4.mp3',
       category: 'GIẢI MAY MẮN (ĐỢT 1)',
       categoryClass: 'tag-bronze',
-      name: 'PIN SẠC DỰ PHÒNG DELITES 10.000 mAh',
+      name: 'BÌNH GIỮ NHIỆT INOX 500ML DELITES Z102 (HOẶC PIN DỰ PHÒNG)',
       image: 'assets/prizes/pin_sac_delites.svg',
-      imageAlt: 'Pin sạc dự phòng Delites',
+      imageAlt: 'Bình giữ nhiệt / Pin sạc dự phòng Delites',
       badgeCount: '12 GIẢI',
-      badgeSub: '(Mỗi giải 01 pin sạc dự phòng Delites Polymer sạc nhanh an toàn)',
+      badgeSub: '(Chất liệu Inox giữ nhiệt an toàn sức khỏe / Pin sạc dự phòng Delites Polymer sạc nhanh)',
       goldShimmer: false
     },
 
     // -------------------------------------------------------------
-    // SLIDE 5: 08 GIẢI BA - ẤM ĐUN SIÊU TỐC BEAR 1.5L
+    // SLIDE 5: 08 GIẢI BA - BÌNH ĐUN SIÊU TỐC BEAR 1.5L KE-5H15V35
     // -------------------------------------------------------------
     {
       id: 'prize-ba-am-bear',
       type: 'prize',
       tabTitle: '5. 8 Giải Ba',
       tabIcon: 'fas fa-mug-hot',
-      voice: 'assets/voices/6.mp3',
+      voice: 'assets/voices/5.mp3',
       category: 'GIẢI BA (ĐỢT 2)',
       categoryClass: 'tag-silver',
-      name: 'ẤM ĐUN NƯỚC SIÊU TỐC BEAR 1.5 LÍT',
+      name: 'BÌNH ĐUN SIÊU TỐC BEAR 1.5 LÍT KE-5H15V35',
       image: 'assets/prizes/am_sieu_toc_bear.jpg',
-      imageAlt: 'Ấm đun nước siêu tốc Bear',
+      imageAlt: 'Bình đun siêu tốc Bear 1.5L',
       badgeCount: '08 GIẢI',
-      badgeSub: '(Thiết kế phong cách Retro trang nhã, Inox 304 an toàn cho sức khỏe)',
+      badgeSub: '(Công suất 1500W đun sôi cực nhanh, ruột Inox 304 cao cấp an toàn, phong cách Retro)',
       goldShimmer: false
     },
 
     // -------------------------------------------------------------
-    // SLIDE 6: 05 GIẢI NHÌ - BÀN LÀ HƠI NƯỚC TEFAL EASY STEAM
+    // SLIDE 6: 05 GIẢI NHÌ - BÀN ỦI HƠI NƯỚC TEFAL EASY STEAM FV1955E0
     // -------------------------------------------------------------
     {
       id: 'prize-nhi-ban-la-tefal',
       type: 'prize',
       tabTitle: '6. 5 Giải Nhì',
       tabIcon: 'fas fa-shirt',
-      voice: 'assets/voices/7.mp3',
+      voice: 'assets/voices/6.mp3',
       category: 'GIẢI NHÌ (ĐỢT 2)',
       categoryClass: 'tag-gold',
-      name: 'BÀN LÀ HƠI NƯỚC TEFAL EASY STEAM',
+      name: 'BÀN ỦI HƠI NƯỚC TEFAL EASY STEAM FV1955E0',
       image: 'assets/prizes/ban_la_tefal.jpg',
-      imageAlt: 'Bàn là hơi nước Tefal',
+      imageAlt: 'Bàn ủi hơi nước Tefal Easy Steam',
       badgeCount: '05 GIẢI',
-      badgeSub: '(Công nghệ hơi nước siêu mạnh, mặt đế chống dính cao cấp chống nhăn tuyệt đối)',
+      badgeSub: '(Thương hiệu Pháp, công suất 1400W, mặt đế Ceramic chống dính lướt êm ái, phun hơi mạnh)',
       goldShimmer: true
     },
 
     // -------------------------------------------------------------
-    // SLIDE 7: 01 GIẢI NHẤT - QUẠT SƯỞI GỐM KANGAROO
+    // SLIDE 7: 01 GIẢI NHẤT - QUẠT SƯỞI GỐM KANGAROO KGAH06G CAO CẤP
     // -------------------------------------------------------------
     {
       id: 'prize-nhat-quat-suoi-kangaroo',
       type: 'grand-prize',
       tabTitle: '7. 1 Giải Nhất',
       tabIcon: 'fas fa-fire',
-      voice: 'assets/voices/8.mp3',
+      voice: 'assets/voices/7.mp3',
       category: '🏆 GIẢI NHẤT DANH GIÁ GALA TLQM 🏆',
       categoryClass: 'tag-special',
-      name: 'QUẠT SƯỞI GỐM KANGAROO CAO CẤP',
+      name: 'QUẠT SƯỞI GỐM KANGAROO KGAH06G CAO CẤP',
       image: 'assets/prizes/quat_suoi_kangaroo.jpg',
-      imageAlt: 'Quạt sưởi gốm Kangaroo KG-AH06G',
+      imageAlt: 'Quạt sưởi gốm Kangaroo KGAH06G',
       badgeCount: '01 GIẢI DUY NHẤT',
-      badgeSub: '(Công nghệ sưởi gốm PTC không khô da, cảm ứng điện tử thông minh, sang trọng)',
+      badgeSub: '(Công nghệ sưởi gốm PTC 2000W không khô da, điều khiển từ xa, hẹn giờ 12h, tự ngắt an toàn)',
       goldShimmer: true,
       triggerFlash: true,
       triggerConfetti: true,
