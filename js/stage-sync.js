@@ -123,7 +123,17 @@ class StageSync {
           break;
         case 'LUCKY_SHOW_WINNER':
           if (window.luckyDrawManager) {
-            window.luckyDrawManager.celebrateAndRecordWinner(msg.emp, msg.prizeKey, false);
+            window.luckyDrawManager.celebrateAndRecordWinner(msg.emp, msg.prizeKey, msg.customInfo, false);
+          }
+          break;
+        case 'LUCKY_SHOW_BATCH_MODAL':
+          if (window.luckyDrawManager) {
+            window.luckyDrawManager.displayBatchModal(msg.winners, msg.batchTitle, msg.batchBadge, false);
+          }
+          break;
+        case 'LUCKY_HIDE_BATCH_MODAL':
+          if (window.luckyDrawManager) {
+            window.luckyDrawManager.closeBatchModal(false);
           }
           break;
         case 'LUCKY_DELETE_WINNER':
@@ -135,6 +145,7 @@ class StageSync {
           if (window.luckyDrawManager) {
             window.luckyDrawManager.recordedWinners = [];
             window.luckyDrawManager.saveRecordedWinners();
+            window.luckyDrawManager.updateQuotaTrackers();
             window.luckyDrawManager.renderWinnersTable();
           }
           break;

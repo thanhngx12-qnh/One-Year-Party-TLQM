@@ -151,7 +151,7 @@ body {
 }
 
 .brand-logo-img {
-  height: 32px;
+  height: 38px;
   width: auto;
   object-fit: contain;
 }
@@ -1557,55 +1557,223 @@ body {
   50% { transform: scale(1.03); }
 }
 
-/* Slide 11: Backdrop Bốc Thăm VIP */
-.backdrop-brand-top {
+/* Grand Official Corporate Branding Hero Banner */
+.awards-brand-hero {
+  margin: 4px auto 14px;
+  max-width: 960px;
+  width: 100%;
+  text-align: center;
+}
+
+.awards-brand-crest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(35, 56, 114, 0.05) 0%, rgba(217, 119, 6, 0.08) 100%);
+  border: 1.5px solid rgba(217, 119, 6, 0.35);
+  border-radius: 14px;
+  padding: 12px 24px;
+  box-shadow: 0 4px 16px rgba(23, 37, 84, 0.06);
+}
+
+@media (max-width: 680px) {
+  .awards-brand-crest {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+}
+
+.awards-logo-badge {
+  background: #ffffff;
+  border: 2px solid var(--tlqm-gold);
+  border-radius: 12px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.awards-brand-logo {
+  height: 56px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+}
+
+.awards-brand-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 680px) {
+  .awards-brand-details {
+    align-items: center;
+  }
+}
+
+.awards-brand-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--tlqm-green);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 2px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.awards-brand-company-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2.6vw, 1.85rem);
+  font-weight: 900;
+  color: var(--tlqm-navy);
+  letter-spacing: 0.8px;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.awards-brand-event-name {
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  margin-top: 2px;
+}
+
+.awards-invitation-crest {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 10px;
+  background: rgba(34, 56, 115, 0.04);
+  border: 1.5px dashed rgba(34, 56, 115, 0.25);
+  border-radius: 10px;
+  padding: 10px 22px;
+  margin: 10px auto 12px;
+  max-width: 760px;
 }
 
-.backdrop-logo {
-  height: 48px;
-  object-fit: contain;
+.invitation-crown-icon {
+  font-size: 1.5rem;
+  color: var(--tlqm-gold);
 }
 
-.backdrop-company {
+.invitation-main-text {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: clamp(0.98rem, 1.8vw, 1.15rem);
   font-weight: 800;
   color: var(--tlqm-navy);
-  letter-spacing: 0.8px;
+  letter-spacing: 0.4px;
 }
 
-.backdrop-title {
-  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
-  margin-bottom: 16px;
-}
-
-.backdrop-invitation-box {
-  background: rgba(34, 56, 115, 0.05);
-  border: 1.5px dashed rgba(34, 56, 115, 0.25);
-  border-radius: 8px;
-  padding: 18px 28px;
-  margin: 14px auto 22px;
-  max-width: 680px;
-}
-
-.invitation-main {
-  font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-  font-weight: 900;
-  color: var(--tlqm-navy);
-}
-
-.invitation-sub {
-  font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
-  font-weight: 700;
+.invitation-sub-text {
+  font-size: 0.80rem;
+  font-weight: 600;
   color: var(--tlqm-green);
-  margin-top: 6px;
+  margin-top: 2px;
+}
+
+/* Interactive Tier Progress & Round Quota Tracker */
+.awards-tier-tracker {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 8px auto 14px;
+  max-width: 960px;
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .awards-tier-tracker {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .awards-tier-tracker {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tier-card {
+  background: #ffffff;
+  border: 1.8px solid var(--border-light);
+  border-radius: 10px;
+  padding: 8px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tier-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--tlqm-gold);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+}
+
+.tier-card.active {
+  border-color: var(--tlqm-gold);
+  background: linear-gradient(180deg, #fffdf5 0%, #ffffff 100%);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35), 0 4px 16px rgba(217, 119, 6, 0.2);
+}
+
+.tier-card.tier-complete {
+  border-color: #22c55e;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+}
+
+.tier-card-badge {
+  font-size: 0.66rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 2px;
+  align-self: center;
+}
+
+.tier-card-name {
+  font-size: 0.80rem;
+  font-weight: 800;
+  color: var(--tlqm-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tier-card-quota {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin: 2px 0;
+}
+
+.tier-card-quota strong {
+  font-size: 1.0rem;
+  font-weight: 900;
+  color: var(--tlqm-gold);
+}
+
+.tier-card-gift {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Digital Lucky Draw Arena */
@@ -1674,21 +1842,71 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #0b1536 0%, #172554 100%);
   color: #ffffff;
-  padding: 12px 20px;
-  border-radius: 12px;
-  border: 2px solid var(--tlqm-gold);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 160, 23, 0.3);
+  padding: 14px 24px;
+  border-radius: 14px;
+  border: 2.5px solid var(--tlqm-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 160, 23, 0.35);
   animation: winnerCardPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin-top: 4px;
   text-align: center;
-  max-width: 620px;
+  max-width: 640px;
   width: 95%;
 }
 
 .lucky-winner-card.hidden {
   display: none;
+}
+
+.winner-brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.winner-logo-badge {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--tlqm-gold);
+}
+
+.winner-brand-logo {
+  height: 36px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+}
+
+.winner-brand-titles {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.winner-brand-company {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #fde047;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+}
+
+.winner-brand-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #86efac;
+  letter-spacing: 0.6px;
 }
 
 .winner-trophy-badge {
@@ -1703,7 +1921,7 @@ body {
 
 .winner-number-highlight {
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 900;
   color: #fbbf24;
   text-shadow: 0 0 16px rgba(251, 191, 36, 0.6);
@@ -1779,6 +1997,39 @@ body {
   border-radius: 4px;
 }
 
+/* Mode Switcher: Single Draw vs Batch Awarding */
+.lucky-mode-switch-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.lucky-mode-tab {
+  background: #f8fafc;
+  border: 1.5px solid var(--border-light);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lucky-mode-tab:hover {
+  background: #f1f5f9;
+  color: var(--tlqm-navy);
+}
+
+.lucky-mode-tab.active {
+  background: var(--tlqm-navy);
+  color: #ffffff;
+  border-color: var(--tlqm-navy);
+  box-shadow: 0 2px 8px rgba(35, 56, 114, 0.25);
+}
+
 .lucky-record-inputs-grid {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -1798,6 +2049,10 @@ body {
   font-weight: 700;
   color: var(--text-heading);
   margin-bottom: 3px;
+}
+
+.lucky-field-col.hidden {
+  display: none !important;
 }
 
 .lucky-input-with-icon {
@@ -1835,6 +2090,81 @@ body {
   box-shadow: 0 0 0 3px rgba(232, 148, 19, 0.15);
 }
 
+/* Dynamic Container for Spontaneous Leadership Prizes */
+.lucky-custom-prize-wrap {
+  background: #fffdf5;
+  border: 1.5px dashed #f59e0b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.25s ease;
+}
+
+.lucky-custom-prize-wrap.hidden {
+  display: none !important;
+}
+
+.custom-prize-title {
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #b45309;
+  margin-bottom: 8px;
+}
+
+.custom-prize-fields-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .custom-prize-fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.custom-field label {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 3px;
+}
+
+.custom-field input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1.5px solid #fde68a;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: #ffffff;
+}
+
+.quick-chip-row {
+  display: flex;
+  gap: 4px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.quick-chip-btn {
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quick-chip-btn:hover {
+  background: #fde68a;
+}
+
 /* Live Employee Preview Card */
 .lucky-emp-preview {
   display: flex;
@@ -1849,7 +2179,7 @@ body {
 }
 
 .lucky-emp-preview.hidden {
-  display: none;
+  display: none !important;
 }
 
 .preview-avatar {
@@ -1892,6 +2222,66 @@ body {
   color: #475569;
 }
 
+/* Batch Preview Chips */
+.lucky-batch-preview {
+  background: #f8fafc;
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+.lucky-batch-preview.hidden {
+  display: none !important;
+}
+
+.batch-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.batch-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.batch-emp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.batch-emp-chip.chip-valid {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.batch-emp-chip.chip-warn {
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.batch-emp-chip.chip-invalid {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
 .lucky-record-actions-row {
   display: flex;
   gap: 8px;
@@ -1904,7 +2294,7 @@ body {
   background: #ffffff;
   border: 1.5px solid var(--border-light);
   border-radius: 12px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   width: 100%;
   max-width: 680px;
   margin-top: 8px;
@@ -1915,18 +2305,77 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .board-title {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--tlqm-navy);
 }
 
+.board-action-buttons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-stage-batch-trigger {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+  color: #ffffff !important;
+  border-color: #1e40af !important;
+  font-weight: 700 !important;
+  font-size: 0.74rem !important;
+  padding: 4px 10px !important;
+}
+
+.btn-stage-all-trigger {
+  background: linear-gradient(135deg, #b45309, #d97706) !important;
+  color: #ffffff !important;
+  border-color: #92400e !important;
+  font-weight: 700 !important;
+  font-size: 0.74rem !important;
+  padding: 4px 10px !important;
+}
+
+/* Table Filter Pills */
+.lucky-table-filter-pills {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0 10px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 3px 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: #f8fafc;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  background: #f1f5f9;
+  color: var(--tlqm-navy);
+}
+
+.filter-pill.active {
+  background: var(--tlqm-navy);
+  color: #ffffff;
+  border-color: var(--tlqm-navy);
+  box-shadow: 0 2px 6px rgba(35, 56, 114, 0.25);
+}
+
 .lucky-winners-table-container {
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
   border: 1px solid var(--border-light);
   border-radius: 6px;
@@ -1987,6 +2436,257 @@ body {
   font-size: 0.72rem !important;
   border-radius: 4px !important;
   box-shadow: 0 2px 8px rgba(185, 28, 28, 0.25) !important;
+}
+
+/* ==============================================================================
+   GRAND CEREMONIAL STAGE BOARD MODAL (MÀN LED SÂN KHẤU TRAO GIẢI THEO ĐỢT / TẤT CẢ)
+   ============================================================================== */
+.lucky-batch-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.lucky-batch-modal.hidden {
+  display: none !important;
+}
+
+.lucky-batch-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 12, 35, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.lucky-batch-modal-content {
+  position: relative;
+  z-index: 10;
+  width: 96vw;
+  max-width: 1480px;
+  max-height: 94vh;
+  overflow-y: auto;
+  background: linear-gradient(145deg, #0b1536 0%, #152554 50%, #08112d 100%);
+  border: 2.5px solid var(--tlqm-gold);
+  border-radius: 20px;
+  box-shadow: 0 0 60px rgba(212, 160, 23, 0.4), 0 20px 50px rgba(0, 0, 0, 0.7);
+  padding: 24px 32px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.batch-modal-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid rgba(212, 160, 23, 0.35);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.batch-brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.batch-logo-badge {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 6px 14px;
+  border: 2px solid var(--tlqm-gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.batch-brand-logo {
+  height: 48px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+}
+
+.batch-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.batch-brand-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #86efac;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.batch-brand-company {
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 900;
+  color: #fde047;
+  letter-spacing: 0.8px;
+  margin: 2px 0 0;
+  text-transform: uppercase;
+}
+
+.batch-modal-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-batch-action {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-batch-action:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-batch-close {
+  background: rgba(239, 68, 68, 0.85);
+  border: 1px solid #ef4444;
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-batch-close:hover {
+  background: #dc2626;
+}
+
+.batch-stage-headline-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.batch-stage-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.88rem;
+  padding: 4px 18px;
+  border-radius: 20px;
+  border: 1px solid #fde047;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.batch-stage-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 900;
+  margin: 4px 0;
+  letter-spacing: 1px;
+}
+
+.batch-stage-invitation {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 700;
+  color: #86efac;
+  margin: 4px 0 0;
+}
+
+.batch-winners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  padding: 4px 2px;
+}
+
+.batch-winner-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1.8px solid rgba(253, 224, 71, 0.35);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.batch-winner-card:hover {
+  transform: translateY(-2px);
+  border-color: #fde047;
+}
+
+.bcard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bcard-code-badge {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #fde047;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(253, 224, 71, 0.4);
+}
+
+.bcard-prize-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bcard-content {
+  margin: 2px 0;
+}
+
+.bcard-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 2px;
+  line-height: 1.2;
+}
+
+.bcard-pos {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.bcard-dept {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.bcard-gift-footer {
+  font-size: 0.74rem;
+  color: #fef08a;
+  background: rgba(253, 224, 71, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px dashed rgba(253, 224, 71, 0.3);
 }
 
 /* Dots and Footer Controls */
@@ -4979,11 +5679,48 @@ body.stage-pure-led #section-awards.active {
 }
 
 body.stage-pure-led .awards-header-bar,
+body.stage-pure-led .awards-tier-tracker,
 body.stage-pure-led .lucky-record-console,
 body.stage-pure-led .lucky-winners-board,
 body.stage-pure-led .gameshow-actions-grid,
 body.stage-pure-led .awards-control-actions {
   display: none !important;
+}
+
+body.stage-pure-led .awards-brand-hero {
+  margin: 0 auto 16px !important;
+  max-width: 1200px !important;
+}
+
+body.stage-pure-led .awards-logo-badge {
+  padding: 8px 20px !important;
+  border-width: 3px !important;
+}
+
+body.stage-pure-led .awards-brand-logo {
+  height: 76px !important;
+  max-width: 180px !important;
+}
+
+body.stage-pure-led .awards-brand-company-title {
+  font-size: 2.3rem !important;
+}
+
+body.stage-pure-led .awards-brand-event-name {
+  font-size: 1.55rem !important;
+}
+
+body.stage-pure-led .awards-invitation-crest {
+  padding: 12px 32px !important;
+  max-width: 960px !important;
+}
+
+body.stage-pure-led .invitation-main-text {
+  font-size: 1.4rem !important;
+}
+
+body.stage-pure-led .invitation-sub-text {
+  font-size: 1.1rem !important;
 }
 
 body.stage-pure-led #awards-panel-lucky.active {
@@ -5008,8 +5745,21 @@ body.stage-pure-led #awards-panel-lucky .lucky-slot-box {
 }
 
 body.stage-pure-led #awards-panel-lucky .lucky-winner-card {
-  max-width: 900px !important;
-  padding: 24px 32px !important;
+  max-width: 960px !important;
+  padding: 24px 36px !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-brand-logo {
+  height: 52px !important;
+  max-width: 130px !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-brand-company {
+  font-size: 1.35rem !important;
+}
+
+body.stage-pure-led #awards-panel-lucky .winner-brand-sub {
+  font-size: 0.95rem !important;
 }
 
 body.stage-pure-led #awards-panel-lucky .winner-number-highlight {

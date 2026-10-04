@@ -36,9 +36,9 @@
   <header class="gala-header">
     <div class="header-container">
       <a href="#" class="brand-wrapper" data-target-section="home">
-        <img src="assets/images/logo-tlqm.png" alt="Logo Tà Lùng Quang Minh" class="brand-logo-img">
+        <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="brand-logo-img">
         <div class="brand-text">
-          <span class="brand-title">TÀ LÙNG QUANG MINH</span>
+          <span class="brand-title">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</span>
           <span class="brand-subtitle">KỶ NIỆM RA MẮT THƯƠNG HIỆU</span>
         </div>
       </a>
@@ -763,10 +763,10 @@
         <div class="awards-title-group">
           <h2 class="section-headline">
             <i class="fas fa-trophy" style="color: var(--tlqm-gold); margin-right: 8px;"></i>
-            BỐC THĂM MAY MẮN & TRAO GIẢI GAMESHOW
+            BỐC THĂM MAY MẮN & TRAO GIẢI GALA DINNER
           </h2>
           <p class="section-subheadline">
-            Kỷ Niệm Ra Mắt Thương Hiệu TLQM • 26 Giải Bốc Thăm May Mắn & Trao Thưởng Đồng Đội Sân Khấu
+            CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH • Kỷ Niệm Ra Mắt Thương Hiệu TLQM • 26 Giải Bốc Thăm & Thưởng Phát Sinh
           </p>
         </div>
 
@@ -796,18 +796,69 @@
     </div>
 
     <!-- ==========================================
-         SUB-TAB 1: BỐC THĂM MAY MẮN (26 GIẢI)
+         SUB-TAB 1: BỐC THĂM MAY MẮN (26 GIẢI & BỔ SUNG)
          ========================================== -->
     <div id="awards-panel-lucky" class="awards-panel active">
-      <div class="backdrop-brand-top">
-        <img src="assets/images/logo-tlqm.png" alt="TLQM Logo" class="backdrop-logo">
-        <p class="backdrop-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</p>
+      <!-- Grand Official Corporate Branding Hero Banner -->
+      <div class="awards-brand-hero">
+        <div class="awards-brand-crest">
+          <div class="awards-logo-badge">
+            <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="awards-brand-logo">
+          </div>
+          <div class="awards-brand-details">
+            <div class="awards-brand-badge-pill">
+              <i class="fas fa-certificate"></i> KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM
+            </div>
+            <h1 class="awards-brand-company-title">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</h1>
+            <div class="awards-brand-event-name gold-shimmer">BỐC THĂM MAY MẮN • GALA DINNER</div>
+          </div>
+        </div>
+
+        <div class="awards-invitation-crest">
+          <div class="invitation-crown-icon"><i class="fas fa-crown"></i></div>
+          <div class="invitation-text-wrap">
+            <div class="invitation-main-text">TRÂN TRỌNG KÍNH MỜI BAN LÃNH ĐẠO TIẾN LÊN SÂN KHẤU</div>
+            <div class="invitation-sub-text">BỐC THĂM VÀ TRAO TẶNG CÁC PHẦN QUÀ GIÁ TRỊ ĐẾN CÁN BỘ NHÂN VIÊN</div>
+          </div>
+        </div>
       </div>
-      <h1 class="gold-shimmer backdrop-title">BỐC THĂM MAY MẮN • GALA TLQM</h1>
-      
-      <div class="backdrop-invitation-box">
-        <h2 class="invitation-main">KÍNH MỜI BAN LÃNH ĐẠO</h2>
-        <h3 class="invitation-sub">LÊN SÂN KHẤU TIẾN HÀNH BỐC THĂM</h3>
+
+      <!-- Interactive Tier Tracker & Round Progress (Trao theo đợt & Bổ sung) -->
+      <div class="awards-tier-tracker" id="awards-tier-tracker">
+        <button type="button" class="tier-card active" data-tier="mayman" id="tier-btn-mayman" title="Bấm để chọn Đợt 1: 12 Giải May Mắn">
+          <div class="tier-card-badge tag-bronze">ĐỢT 1</div>
+          <div class="tier-card-name">🎁 12 Giải May Mắn</div>
+          <div class="tier-card-quota"><strong id="quota-mayman">0/12</strong> đã trao</div>
+          <div class="tier-card-gift">Pin sạc dự phòng AVA+ 10.000 mAh</div>
+        </button>
+
+        <button type="button" class="tier-card" data-tier="ba" id="tier-btn-ba" title="Bấm để chọn Đợt 2: 08 Giải Ba">
+          <div class="tier-card-badge tag-silver">ĐỢT 2</div>
+          <div class="tier-card-name">🥉 08 Giải Ba</div>
+          <div class="tier-card-quota"><strong id="quota-ba">0/8</strong> đã trao</div>
+          <div class="tier-card-gift">Bình đun siêu tốc Bear 1.5L</div>
+        </button>
+
+        <button type="button" class="tier-card" data-tier="nhi" id="tier-btn-nhi" title="Bấm để chọn Đợt 3: 05 Giải Nhì">
+          <div class="tier-card-badge tag-gold">ĐỢT 3</div>
+          <div class="tier-card-name">🥈 05 Giải Nhì</div>
+          <div class="tier-card-quota"><strong id="quota-nhi">0/5</strong> đã trao</div>
+          <div class="tier-card-gift">Bàn là hơi nước Tefal</div>
+        </button>
+
+        <button type="button" class="tier-card" data-tier="nhat" id="tier-btn-nhat" title="Bấm để chọn Đợt 4: 01 Giải Nhất">
+          <div class="tier-card-badge tag-special">ĐỢT 4</div>
+          <div class="tier-card-name">🏆 01 Giải Nhất</div>
+          <div class="tier-card-quota"><strong id="quota-nhat">0/1</strong> đã trao</div>
+          <div class="tier-card-gift">Quạt sưởi Kangaroo 1.390k</div>
+        </button>
+
+        <button type="button" class="tier-card" data-tier="dacbiet" id="tier-btn-dacbiet" title="Bấm để chọn Giải Phát Sinh / Bổ Sung Ban Lãnh Đạo">
+          <div class="tier-card-badge tag-primary">PHÁT SINH</div>
+          <div class="tier-card-name">⭐ Thưởng Lãnh Đạo</div>
+          <div class="tier-card-quota"><strong id="quota-dacbiet">0</strong> giải</div>
+          <div class="tier-card-gift">Thưởng nóng & quà tặng thêm</div>
+        </button>
       </div>
 
       <!-- Digital Lucky Draw Arena -->
@@ -821,6 +872,15 @@
 
         <!-- Grand Winner Announcement Banner (High Impact for Stage LED) -->
         <div id="lucky-winner-announcement" class="lucky-winner-card hidden">
+          <div class="winner-brand-header">
+            <div class="winner-logo-badge">
+              <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="winner-brand-logo">
+            </div>
+            <div class="winner-brand-titles">
+              <div class="winner-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
+              <div class="winner-brand-sub">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM</div>
+            </div>
+          </div>
           <div class="winner-trophy-badge">🏆 CHÚC MỪNG VÉ MAY MẮN TRÚNG GIẢI!</div>
           <div id="lucky-winner-number" class="winner-number-highlight">MÃ SỐ 000</div>
           <div id="lucky-winner-name" class="winner-name-highlight">HỌ VÀ TÊN</div>
@@ -831,17 +891,28 @@
         <!-- Operator Recording Console (Ban Tổng Giám đốc bốc phiếu bên ngoài -> Ghi nhận vào hệ thống) -->
         <div class="lucky-record-console">
           <div class="lucky-record-header">
-            <span class="lucky-record-title">
+            <div class="lucky-record-title">
               <i class="fas fa-pen-to-square" style="color: var(--tlqm-amber); margin-right: 6px;"></i>
               Ghi Nhận Kết Quả Bốc Thăm (Ban Tổng Giám Đốc Bốc Phiếu Bên Ngoài):
-            </span>
+            </div>
             <span class="lucky-participants-tag" id="lucky-participants-badge">
               <i class="fas fa-users"></i> 65 Nhân sự dự tiệc / 111 CBCNV
             </span>
           </div>
 
+          <!-- Mode Switcher: Single vs Batch Entry -->
+          <div class="lucky-mode-switch-bar">
+            <button type="button" class="lucky-mode-tab active" id="mode-tab-single" onclick="window.luckyDrawManager && window.luckyDrawManager.setEntryMode('single')">
+              <i class="fas fa-user-tag"></i> 1. Bốc Từng Số (Quay Slot 3 Số)
+            </button>
+            <button type="button" class="lucky-mode-tab" id="mode-tab-batch" onclick="window.luckyDrawManager && window.luckyDrawManager.setEntryMode('batch')">
+              <i class="fas fa-users-viewfinder"></i> 2. Nhập Cả Đợt (Nhiều Mã Cùng Lúc)
+            </button>
+          </div>
+
           <div class="lucky-record-inputs-grid">
-            <div class="lucky-field-col">
+            <!-- Left Column: Input (Single or Batch) -->
+            <div class="lucky-field-col" id="col-entry-single">
               <label for="input-lucky-emp-code">Mã / Tên nhân viên trúng thăm:</label>
               <div class="lucky-input-with-icon">
                 <i class="fas fa-id-badge"></i>
@@ -850,22 +921,54 @@
               </div>
             </div>
 
+            <!-- Batch Multi-Code Input (Hidden by default, shown when mode is batch) -->
+            <div class="lucky-field-col hidden" id="col-entry-batch">
+              <label for="input-lucky-batch-codes">Nhập danh sách mã NV đợt này (cách nhau bằng dấu phẩy hoặc khoảng trắng):</label>
+              <div class="lucky-input-with-icon">
+                <i class="fas fa-list-ol"></i>
+                <input type="text" id="input-lucky-batch-codes" placeholder="VD: 038, 007, 015, 023, 045, 066..." autocomplete="off" />
+              </div>
+            </div>
+
+            <!-- Right Column: Prize Tier Selector -->
             <div class="lucky-field-col">
               <label for="select-lucky-prize">Hạng giải thưởng trao tặng:</label>
               <div class="lucky-input-with-icon">
                 <i class="fas fa-award"></i>
                 <select id="select-lucky-prize">
-                  <option value="nhat">🏆 01 Giải Nhất - Quạt Sưởi Gốm Kangaroo (1.390k)</option>
-                  <option value="nhi">🥈 05 Giải Nhì - Bàn Là Hơi Nước Tefal (442k)</option>
-                  <option value="ba">🥉 08 Giải Ba - Ấm Đun Siêu Tốc Bear 1.5L (430k)</option>
-                  <option value="mayman" selected>🎁 12 Giải May Mắn - Pin Sạc Dự Phòng Delites (240k)</option>
-                  <option value="dacbiet">⭐ Giải Đặc Biệt / Bổ Sung Ban Lãnh Đạo</option>
+                  <option value="mayman" selected>🎁 Đợt 1: 12 Giải May Mắn - Pin Sạc Dự Phòng AVA+ (240k)</option>
+                  <option value="ba">🥉 Đợt 2: 08 Giải Ba - Ấm Đun Siêu Tốc Bear 1.5L (430k)</option>
+                  <option value="nhi">🥈 Đợt 3: 05 Giải Nhì - Bàn Là Hơi Nước Tefal (442k)</option>
+                  <option value="nhat">🏆 Đợt 4: 01 Giải Nhất - Quạt Sưởi Gốm Kangaroo (1.390k)</option>
+                  <option value="dacbiet">⭐ Giải Phát Sinh / Bổ Sung Ban Lãnh Đạo</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <!-- Live Employee Info Card (Auto-populated when code is typed) -->
+          <!-- Dynamic Container for Spontaneous Leadership Prizes (Giải Phát Sinh / Bổ Sung) -->
+          <div id="lucky-custom-prize-wrap" class="lucky-custom-prize-wrap hidden">
+            <div class="custom-prize-title">
+              <i class="fas fa-sparkles" style="color: var(--tlqm-gold);"></i> Thiết lập Giải Phát Sinh Ban Lãnh Đạo:
+            </div>
+            <div class="custom-prize-fields-grid">
+              <div class="custom-field">
+                <label for="input-custom-prize-name">Tên giải thưởng phát sinh:</label>
+                <input type="text" id="input-custom-prize-name" placeholder="VD: Giải Thưởng Nóng Ban Tổng Giám Đốc" value="Giải Thưởng Nóng Ban Lãnh Đạo" />
+                <div class="quick-chip-row">
+                  <button type="button" class="quick-chip-btn" onclick="window.luckyDrawManager && window.luckyDrawManager.setQuickCustomPrize('Giải Thưởng Nóng Ban Lãnh Đạo', '1.000.000 VNĐ Tiền mặt')">Thưởng Nóng 1 Triệu</button>
+                  <button type="button" class="quick-chip-btn" onclick="window.luckyDrawManager && window.luckyDrawManager.setQuickCustomPrize('Giải Đặc Biệt Ban Tổng Giám Đốc', '2.000.000 VNĐ Tiền mặt')">Giải TGĐ 2 Triệu</button>
+                  <button type="button" class="quick-chip-btn" onclick="window.luckyDrawManager && window.luckyDrawManager.setQuickCustomPrize('Giải May Mắn Bổ Sung', 'Phần Quà Thêm')">May Mắn Bổ Sung</button>
+                </div>
+              </div>
+              <div class="custom-field">
+                <label for="input-custom-prize-value">Phần thưởng / Trị giá trao tặng:</label>
+                <input type="text" id="input-custom-prize-value" placeholder="VD: 1.000.000 VNĐ Tiền Mặt" value="1.000.000 VNĐ Tiền mặt" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Employee Info Card (Single Mode Preview) -->
           <div id="lucky-emp-preview" class="lucky-emp-preview hidden">
             <div class="preview-avatar"><i class="fas fa-user-check"></i></div>
             <div class="preview-details">
@@ -875,15 +978,29 @@
             <div class="preview-status" id="preview-emp-status">🟢 Có mặt tại Gala</div>
           </div>
 
+          <!-- Batch Preview Chips (Batch Mode Preview) -->
+          <div id="lucky-batch-preview" class="lucky-batch-preview hidden">
+            <div class="batch-preview-header">
+              <span class="batch-count-tag" id="batch-preview-count"><i class="fas fa-users"></i> 0 nhân sự hợp lệ</span>
+              <span class="batch-hint-tag">Kiểm tra thông tin trước khi vinh danh</span>
+            </div>
+            <div class="batch-chips-container" id="batch-chips-container">
+              <!-- Dynamically populated chips -->
+            </div>
+          </div>
+
           <!-- Action Buttons Row -->
           <div class="lucky-record-actions-row">
             <button type="button" id="btn-lucky-record-submit" class="btn-gala btn-gala-gold" title="Vinh danh mã số này lên màn hình LED và ghi vào danh sách">
               <i class="fas fa-bullhorn"></i> Vinh Danh Màn LED & Ghi Nhận
             </button>
+            <button type="button" id="btn-lucky-batch-submit" class="btn-gala btn-gala-gold hidden" title="Ghi nhận và chiếu danh sách đợt này lên màn hình LED">
+              <i class="fas fa-paper-plane"></i> Ghi Nhận Đợt & Chiếu Màn LED
+            </button>
             <button type="button" id="btn-lucky-random-pick" class="action-btn" title="Quay ngẫu nhiên 1 người tham dự Gala chưa trúng giải (Dự phòng)">
               <i class="fas fa-shuffle"></i> Quay Ngẫu Nhiên
             </button>
-            <button type="button" id="btn-backdrop-lucky" class="action-btn lucky-drum-btn" onclick="window.showcaseManager && window.showcaseManager.toggleLuckySound()" title="Âm thanh Trống Dồn (Phím L)">
+            <button type="button" class="action-btn lucky-drum-btn" onclick="window.showcaseManager && window.showcaseManager.toggleLuckySound()" title="Âm thanh Trống Dồn (Phím L)">
               <i class="fas fa-drum"></i> Trống Dồn <span class="kbd-hint">L</span>
             </button>
             <button type="button" class="action-btn" onclick="window.confettiEngine && window.confettiEngine.celebrate(); window.soundEngine && window.soundEngine.playCheer();" title="Bắn pháo hoa vỗ tay (Phím C)">
@@ -895,17 +1012,85 @@
         <!-- Live Recorded Winners Table (Danh sách đã trao thưởng) -->
         <div class="lucky-winners-board">
           <div class="lucky-winners-board-header">
-            <span class="board-title">
-              <i class="fas fa-list-check" style="color: var(--tlqm-gold); margin-right: 6px;"></i>
-              Bảng Kết Quả Bốc Thăm Đã Trao (<span id="lucky-winners-count">0</span> giải):
-            </span>
-            <button type="button" id="btn-lucky-reset-all" class="action-btn text-danger" title="Xóa toàn bộ lịch sử trúng thưởng">
-              <i class="fas fa-rotate-left"></i> Đặt Lại
-            </button>
+            <div class="board-title-group">
+              <span class="board-title">
+                <i class="fas fa-list-check" style="color: var(--tlqm-gold); margin-right: 6px;"></i>
+                Bảng Kết Quả Bốc Thăm Đã Trao (<span id="lucky-winners-count">0</span> giải):
+              </span>
+            </div>
+
+            <!-- Table Actions: Stage Display & Reset -->
+            <div class="board-action-buttons">
+              <button type="button" class="action-btn btn-stage-batch-trigger" id="btn-stage-show-batch" onclick="window.luckyDrawManager && window.luckyDrawManager.openBatchModalForCurrentFilter()" title="Chiếu danh sách đợt đang lọc lên màn hình LED sân khấu">
+                <i class="fas fa-tv"></i> Chiếu Màn LED Đợt Này
+              </button>
+              <button type="button" class="action-btn btn-stage-all-trigger" id="btn-stage-show-all" onclick="window.luckyDrawManager && window.luckyDrawManager.openBatchModalForAll()" title="Chiếu toàn bộ bảng vàng tất cả giải thưởng lên màn hình LED sân khấu">
+                <i class="fas fa-award"></i> Chiếu Toàn Bộ Bảng Vàng
+              </button>
+              <button type="button" class="action-btn" id="btn-copy-winners-list" onclick="window.luckyDrawManager && window.luckyDrawManager.copyWinnersSummary()" title="Sao chép báo cáo danh sách trúng giải">
+                <i class="fas fa-copy"></i> Sao Chép
+              </button>
+              <button type="button" id="btn-lucky-reset-all" class="action-btn text-danger" title="Xóa toàn bộ lịch sử trúng thưởng">
+                <i class="fas fa-rotate-left"></i> Đặt Lại
+              </button>
+            </div>
+          </div>
+
+          <!-- Table Filter Pills -->
+          <div class="lucky-table-filter-pills" id="lucky-table-filter-pills">
+            <button type="button" class="filter-pill active" data-filter="all">Tất Cả (<span id="pill-count-all">0</span>)</button>
+            <button type="button" class="filter-pill" data-filter="mayman">🎁 May Mắn (<span id="pill-count-mayman">0/12</span>)</button>
+            <button type="button" class="filter-pill" data-filter="ba">🥉 Giải Ba (<span id="pill-count-ba">0/8</span>)</button>
+            <button type="button" class="filter-pill" data-filter="nhi">🥈 Giải Nhì (<span id="pill-count-nhi">0/5</span>)</button>
+            <button type="button" class="filter-pill" data-filter="nhat">🏆 Giải Nhất (<span id="pill-count-nhat">0/1</span>)</button>
+            <button type="button" class="filter-pill" data-filter="dacbiet">⭐ Phát Sinh (<span id="pill-count-dacbiet">0</span>)</button>
           </div>
 
           <div id="lucky-winners-table-container" class="lucky-winners-table-container">
             <!-- Populated dynamically by luckyDrawManager -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Grand Ceremonial Stage Board Modal (Vinh Danh Đợt Hoặc Toàn Bộ Lên Màn LED Sân Khấu) -->
+      <div id="lucky-batch-modal" class="lucky-batch-modal hidden">
+        <div class="lucky-batch-modal-backdrop" onclick="window.luckyDrawManager && window.luckyDrawManager.closeBatchModal()"></div>
+        <div class="lucky-batch-modal-content">
+          <div class="batch-modal-top-bar">
+            <div class="batch-brand-block">
+              <div class="batch-logo-badge">
+                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="batch-brand-logo">
+              </div>
+              <div class="batch-brand-text">
+                <div class="batch-brand-tag"><i class="fas fa-certificate"></i> KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM</div>
+                <h2 class="batch-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</h2>
+              </div>
+            </div>
+            
+            <div class="batch-modal-actions">
+              <button type="button" class="btn-batch-action" onclick="window.confettiEngine && window.confettiEngine.celebrate(); window.soundEngine && window.soundEngine.playCheer();" title="Bắn pháo hoa (C)">
+                <i class="fas fa-sparkles"></i> Pháo Hoa <span class="kbd-hint">C</span>
+              </button>
+              <button type="button" class="btn-batch-action" onclick="window.showcaseManager && window.showcaseManager.toggleLuckySound()" title="Tiếng trống dồn (L)">
+                <i class="fas fa-drum"></i> Trống <span class="kbd-hint">L</span>
+              </button>
+              <button type="button" class="btn-batch-close" onclick="window.luckyDrawManager && window.luckyDrawManager.closeBatchModal()" title="Đóng màn hình (ESC)">
+                <i class="fas fa-xmark"></i> Đóng <span class="kbd-hint">ESC</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="batch-stage-headline-box">
+            <div class="batch-stage-badge" id="batch-stage-badge">🏆 DANH SÁCH TRÚNG GIẢI MAY MẮN</div>
+            <h1 class="gold-shimmer batch-stage-title" id="batch-stage-title">VINH DANH 12 CÁN BỘ NHÂN VIÊN MAY MẮN</h1>
+            <p class="batch-stage-invitation" id="batch-stage-invitation">
+              <i class="fas fa-bullhorn"></i> Kính mời các Cán bộ Nhân viên có tên dưới đây cùng tiến lên sân khấu nhận phần quà trao tặng!
+            </p>
+          </div>
+
+          <!-- Dynamic Cards Grid -->
+          <div class="batch-winners-grid" id="batch-winners-grid">
+            <!-- Populated dynamically -->
           </div>
         </div>
       </div>
