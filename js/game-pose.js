@@ -61,8 +61,11 @@ class PoseGame {
     this.poses = this.demoPoses;
 
     this.currentPoseIndex = 0;
-    this.totalSeconds = 15;
-    this.remainingSeconds = 15;
+    this.observeSeconds = 5;
+    this.poseSeconds = 10;
+    this.totalSeconds = 5;
+    this.remainingSeconds = 5;
+    this.phase = 'ready'; // 'ready' | 'observe' | 'pose' | 'voted'
     this.timerInterval = null;
     this.isRunning = false;
     this.isRevealed = false;
@@ -92,8 +95,8 @@ class PoseGame {
 
     if (desc) {
       desc.textContent = this.isOfficial
-        ? `${this.teamCount} Đội (mỗi đội 5 thành viên) có 15 giây quan sát & hoàn thành dáng chụp giống hình mẫu nhất`
-        : `Bản tập dượt thử nghiệm với 3 dáng vui nhộn. Toàn bộ 5 dáng chụp bí mật của Gala đang được bảo mật bằng mật khẩu!`;
+        ? `${this.teamCount} Đội có 5 giây nhìn LED, sau đó quay lưng 10 giây tạo dáng • Khán giả chấm điểm bằng tràng vỗ tay hoặc hô to (Vui là chính!)`
+        : `Bản tập dượt thử nghiệm với 3 dáng vui nhộn (5s nhìn LED + 10s quay lưng tạo dáng, khán giả vỗ tay chấm điểm). Toàn bộ 5 dáng Gala đang được bảo mật!`;
     }
 
     this.renderPoseSelector();
@@ -267,8 +270,7 @@ class PoseGame {
   loadPose(index, broadcast = true) {
     this.stopTimer();
     this.currentPoseIndex = index;
-    this.remainingSeconds = this.totalSeconds;
-    this.hidePose(false);
+    this.resetTimer(false);
 
     const p = this.poses[index];
 
@@ -290,19 +292,6 @@ class PoseGame {
     const pills = document.querySelectorAll('.pose-pill-btn');
     pills.forEach((btn, i) => btn.classList.toggle('active', i === index));
 
-    // Hide snapshot banner
-    const snapshotBanner = document.getElementById('pose-snapshot-banner');
-    if (snapshotBanner) snapshotBanner.classList.remove('show');
-
-    // Reset Start button
-    const btnStart = document.getElementById('pose-start-timer');
-    if (btnStart) {
-      btnStart.innerHTML = '<i class="fas fa-play"></i> Bắt Đầu 15 Giây <span class="kbd-hint">Space</span>';
-      btnStart.classList.remove('running');
-    }
-
-    this.updateTimerDisplay();
-
     if (broadcast && window.stageSync) {
       window.stageSync.broadcast('POSE_SELECT', { poseIndex: index });
     }
@@ -311,11 +300,6 @@ class PoseGame {
   revealPose(startCountdown = true, broadcast = true) {
     if (this.isRevealed) return;
     this.isRevealed = true;
-
-    // Ensure timer reset if was 0
-    if (this.remainingSeconds <= 0) {
-      this.remainingSeconds = this.totalSeconds;
-    }
 
     const cover = document.getElementById('pose-cover-overlay');
     if (cover) cover.classList.add('hidden');
@@ -338,7 +322,7 @@ class PoseGame {
     }
 
     if (window.app && window.app.showToast) {
-      window.app.showToast('📸 Đã mở dáng chụp & Bắt đầu 15 giây!', 'Space / Enter');
+      window.app.showToast('👀 Pha 1: 5 giây quan sát hình mẫu trên LED!', '5s');
     }
   }
 
@@ -347,7 +331,10 @@ class PoseGame {
     this.stopTimer();
 
     const cover = document.getElementById('pose-cover-overlay');
-    if (cover) cover.classList.remove('hidden');
+    if (cover) {
+      cover.classList.remove('hidden');
+      cover.classList.remove('phase-pose-active');
+    }
 
     const toggleBtn = document.getElementById('pose-reveal-toggle-btn');
     if (toggleBtn) {
@@ -359,7 +346,7 @@ class PoseGame {
     const snapshotBanner = document.getElementById('pose-snapshot-banner');
     if (snapshotBanner) snapshotBanner.classList.remove('show');
 
-    if (window.app && window.app.showToast) {
+    if (window.app && window.app.showToast && showToast) {
       window.app.showToast('🔒 Đã che lại ảnh dáng chụp bí mật', 'O');
     }
   }
@@ -381,23 +368,49 @@ class PoseGame {
   }
 
   startTimer(broadcast = true) {
-    if (this.remainingSeconds <= 0) {
-      this.remainingSeconds = this.totalSeconds;
+    if (this.phase === 'voted') {
+      this.resetTimer(false);
     }
+
+    // Start Phase 1 (Observe)
+    if (this.phase === 'ready') {
+      this.phase = 'observe';
+      this.totalSeconds = this.observeSeconds;
+      this.remainingSeconds = this.observeSeconds;
+      this.isRevealed = true;
+
+      const cover = document.getElementById('pose-cover-overlay');
+      if (cover) {
+        cover.classList.add('hidden');
+        cover.classList.remove('phase-pose-active');
+      }
+
+      const toggleBtn = document.getElementById('pose-reveal-toggle-btn');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Che Dáng Chụp <span class="kbd-hint">O</span>';
+        toggleBtn.classList.remove('btn-gala-amber');
+        toggleBtn.classList.add('btn-gala-outline');
+      }
+
+      if (window.soundEngine) window.soundEngine.playHint();
+      if (window.app && window.app.showToast) {
+        window.app.showToast('👀 Pha 1: 5 giây quan sát hình mẫu trên LED!', '5s');
+      }
+    }
+
     this.isRunning = true;
     const btnStart = document.getElementById('pose-start-timer');
     if (btnStart) {
-      btnStart.innerHTML = '<i class="fas fa-pause"></i> Tạm Dừng <span class="kbd-hint">Space</span>';
+      const label = this.phase === 'observe' ? 'Đang Quan Sát' : 'Đang Tạo Dáng';
+      btnStart.innerHTML = `<i class="fas fa-pause"></i> Tạm Dừng (${label}) <span class="kbd-hint">Space</span>`;
       btnStart.classList.add('running');
     }
 
     const snapshotBanner = document.getElementById('pose-snapshot-banner');
     if (snapshotBanner) snapshotBanner.classList.remove('show');
 
-    if (window.soundEngine) window.soundEngine.playTick();
-
     if (broadcast && window.stageSync) {
-      window.stageSync.broadcast('POSE_START_TIMER');
+      window.stageSync.broadcast('POSE_START_TIMER', { phase: this.phase, seconds: this.remainingSeconds });
     }
 
     clearInterval(this.timerInterval);
@@ -405,16 +418,55 @@ class PoseGame {
       this.remainingSeconds--;
       this.updateTimerDisplay();
 
-      if (this.remainingSeconds <= 3 && this.remainingSeconds > 0) {
-        if (window.soundEngine) window.soundEngine.playWarningTick();
-        const vignette = document.getElementById('stage-urgent-vignette');
-        if (vignette) vignette.classList.add('active');
-      } else if (this.remainingSeconds > 3) {
+      if (this.phase === 'observe') {
         if (window.soundEngine) window.soundEngine.playTick();
-      }
 
-      if (this.remainingSeconds <= 0) {
-        this.triggerSnapshot();
+        if (this.remainingSeconds <= 0) {
+          // Transition to Phase 2: Pose (10s)
+          this.phase = 'pose';
+          this.totalSeconds = this.poseSeconds;
+          this.remainingSeconds = this.poseSeconds;
+
+          // Cover reference image on LED screen so teams cannot see it anymore
+          const cover = document.getElementById('pose-cover-overlay');
+          const coverTitle = document.getElementById('pose-cover-title');
+          const coverSub = document.getElementById('pose-lock-subtitle');
+          const coverIcon = document.getElementById('pose-cover-icon');
+          const coverBtn = document.getElementById('pose-reveal-btn');
+
+          if (cover) {
+            cover.classList.remove('hidden');
+            cover.classList.add('phase-pose-active');
+          }
+          if (coverTitle) coverTitle.textContent = '🔄 QUAY LƯNG LẠI MÀN LED! 10S BẮT ĐẦU!';
+          if (coverSub) coverSub.textContent = '2 Đội không nhìn màn hình nữa • Khán giả được phép hỗ trợ reo hò hướng dẫn!';
+          if (coverIcon) coverIcon.innerHTML = '<i class="fas fa-arrows-rotate fa-spin" style="--fa-animation-duration: 4s;"></i>';
+          if (coverBtn) coverBtn.style.display = 'none';
+
+          if (btnStart) {
+            btnStart.innerHTML = `<i class="fas fa-pause"></i> Tạm Dừng (Tạo Dáng) <span class="kbd-hint">Space</span>`;
+          }
+
+          if (window.soundEngine) window.soundEngine.playWarningTick();
+
+          if (window.app && window.app.showToast) {
+            window.app.showToast('🔄 Hết 5s nhìn! 2 đội quay lưng lại LED, 10s tạo dáng bắt đầu!', '10s');
+          }
+
+          this.updateTimerDisplay();
+        }
+      } else if (this.phase === 'pose') {
+        if (this.remainingSeconds <= 3 && this.remainingSeconds > 0) {
+          if (window.soundEngine) window.soundEngine.playWarningTick();
+          const vignette = document.getElementById('stage-urgent-vignette');
+          if (vignette) vignette.classList.add('active');
+        } else if (this.remainingSeconds > 3) {
+          if (window.soundEngine) window.soundEngine.playTick();
+        }
+
+        if (this.remainingSeconds <= 0) {
+          this.triggerSnapshot();
+        }
       }
     }, 1000);
   }
@@ -438,17 +490,53 @@ class PoseGame {
     if (vignette) vignette.classList.remove('active');
     const btnStart = document.getElementById('pose-start-timer');
     if (btnStart) {
-      btnStart.innerHTML = '<i class="fas fa-redo"></i> Đếm Lại <span class="kbd-hint">Space</span>';
+      btnStart.innerHTML = '<i class="fas fa-play"></i> Bắt Đầu (5s Nhìn + 10s Dáng) <span class="kbd-hint">Space</span>';
       btnStart.classList.remove('running');
     }
   }
 
   resetTimer(broadcast = true) {
     this.stopTimer();
-    this.remainingSeconds = this.totalSeconds;
-    this.updateTimerDisplay();
+    this.phase = 'ready';
+    this.totalSeconds = this.observeSeconds;
+    this.remainingSeconds = this.observeSeconds;
+    this.isRevealed = false;
+
+    const cover = document.getElementById('pose-cover-overlay');
+    const coverTitle = document.getElementById('pose-cover-title');
+    const coverSub = document.getElementById('pose-lock-subtitle');
+    const coverIcon = document.getElementById('pose-cover-icon');
+    const coverBtn = document.getElementById('pose-reveal-btn');
+
+    if (cover) {
+      cover.classList.remove('hidden');
+      cover.classList.remove('phase-pose-active');
+    }
+    if (coverTitle) coverTitle.textContent = 'DÁNG CHỤP ĐANG ĐƯỢC GIẤU KÍN';
+    if (coverSub) coverSub.textContent = `${this.teamCount} Đội chuẩn bị sẵn sàng • Bấm Bắt Đầu để có 5 giây nhìn LED, sau đó quay lưng 10 giây tạo dáng!`;
+    if (coverIcon) coverIcon.innerHTML = '<i class="fas fa-lock"></i>';
+    if (coverBtn) {
+      coverBtn.style.display = 'inline-block';
+      coverBtn.innerHTML = '<i class="fas fa-play"></i> BẮT ĐẦU VÒNG THI (5s Nhìn + 10s Dáng) <span class="kbd-hint">Space / Enter</span>';
+    }
+
+    const toggleBtn = document.getElementById('pose-reveal-toggle-btn');
+    if (toggleBtn) {
+      toggleBtn.innerHTML = '<i class="fas fa-eye"></i> Mở Dáng Chụp <span class="kbd-hint">O / Enter</span>';
+      toggleBtn.classList.add('btn-gala-amber');
+      toggleBtn.classList.remove('btn-gala-outline');
+    }
+
     const snapshotBanner = document.getElementById('pose-snapshot-banner');
     if (snapshotBanner) snapshotBanner.classList.remove('show');
+
+    const btnStart = document.getElementById('pose-start-timer');
+    if (btnStart) {
+      btnStart.innerHTML = '<i class="fas fa-play"></i> Bắt Đầu (5s Nhìn + 10s Dáng) <span class="kbd-hint">Space</span>';
+      btnStart.classList.remove('running');
+    }
+
+    this.updateTimerDisplay();
 
     if (broadcast && window.stageSync) {
       window.stageSync.broadcast('POSE_RESET');
@@ -457,6 +545,7 @@ class PoseGame {
 
   triggerSnapshot() {
     this.stopTimer();
+    this.phase = 'voted';
 
     // 1. Play Camera Shutter
     if (window.soundEngine) {
@@ -471,21 +560,48 @@ class PoseGame {
       setTimeout(() => flashElem.classList.remove('flash'), 600);
     }
 
-    // 3. Show "GIỮ NGUYÊN DÁNG! TÁCH TÁCH!" banner
+    // 3. Uncover reference image so audience can compare original with poses
+    const cover = document.getElementById('pose-cover-overlay');
+    if (cover) {
+      cover.classList.add('hidden');
+      cover.classList.remove('phase-pose-active');
+    }
+
+    // 4. Show Snapshot banner with Audience Applause voting prompt!
     const snapshotBanner = document.getElementById('pose-snapshot-banner');
     if (snapshotBanner) {
       snapshotBanner.classList.add('show');
     }
 
-    // 4. Confetti burst
+    // 5. Update start button
+    const btnStart = document.getElementById('pose-start-timer');
+    if (btnStart) {
+      btnStart.innerHTML = '<i class="fas fa-check-double"></i> Khán Giả Chấm Điểm • Tiếp Tục <span class="kbd-hint">Space</span>';
+      btnStart.classList.remove('running');
+    }
+
+    // 6. Confetti burst
     if (window.confettiEngine) {
       window.confettiEngine.burst(80);
+    }
+
+    this.updateTimerDisplay();
+  }
+
+  voteBothTeams() {
+    this.addScore(1, 1);
+    this.addScore(2, 1);
+    if (window.soundEngine) window.soundEngine.playCheer();
+    if (window.confettiEngine) window.confettiEngine.burst(40);
+    if (window.app && window.app.showToast) {
+      window.app.showToast('🤝 Khán giả bình chọn hòa: +1 điểm cho cả 2 đội!', 'Vui là chính');
     }
   }
 
   updateTimerDisplay() {
     const timerText = document.getElementById('pose-timer-text');
     const timerBar = document.getElementById('pose-timer-bar');
+    const phaseBadge = document.getElementById('pose-phase-badge');
 
     if (timerText) {
       timerText.textContent = `${this.remainingSeconds}s`;
@@ -496,6 +612,22 @@ class PoseGame {
       const percentage = (this.remainingSeconds / this.totalSeconds) * 100;
       timerBar.style.width = `${percentage}%`;
       timerBar.classList.toggle('urgent', this.remainingSeconds <= 3);
+    }
+
+    if (phaseBadge) {
+      if (this.phase === 'observe') {
+        phaseBadge.textContent = `👀 PHA 1: QUAN SÁT LED (${this.remainingSeconds}s)`;
+        phaseBadge.className = 'pose-phase-tag phase-observe';
+      } else if (this.phase === 'pose') {
+        phaseBadge.textContent = `🔄 PHA 2: QUAY LƯNG TẠO DÁNG (${this.remainingSeconds}s)`;
+        phaseBadge.className = 'pose-phase-tag phase-pose';
+      } else if (this.phase === 'voted') {
+        phaseBadge.textContent = `👏 KHÁN GIẢ CHẤM ĐIỂM (VỖ TAY / HÔ TO)`;
+        phaseBadge.className = 'pose-phase-tag';
+      } else {
+        phaseBadge.textContent = `SẴN SÀNG: 5S NHÌN + 10S DÁNG`;
+        phaseBadge.className = 'pose-phase-tag';
+      }
     }
   }
 

@@ -29,41 +29,51 @@ class LuckyDrawManager {
 
     // Active state
     this.entryMode = 'single'; // 'single' | 'batch'
-    this.activeFilter = 'all'; // 'all' | 'mayman' | 'ba' | 'nhi' | 'nhat' | 'dacbiet'
-    this.activeTier = 'mayman';
+    this.activeFilter = 'all'; // 'all' | 'donghanh' | 'mayman' | 'ba' | 'nhi' | 'nhat' | 'dacbiet'
+    this.activeTier = 'donghanh';
     this.parsedBatchEmployees = [];
 
-    // Official Prize definition mapping
+    // Official Prize definition mapping (29 Prizes Total)
     this.prizeDefs = {
-      mayman: {
-        id: 'mayman',
-        name: '12 Giải May Mắn: Pin Sạc Dự Phòng AVA+ 10.000 mAh (240k)',
-        short: 'Giải May Mắn',
+      donghanh: {
+        id: 'donghanh',
+        name: '12 Giải Đồng Hành: Pin Sạc Dự Phòng AVA+ 10.000 mAh (240k)',
+        short: 'Giải Đồng Hành',
         tagClass: 'tag-bronze',
-        badge: '🎁 GIẢI MAY MẮN',
+        badge: '🎁 GIẢI ĐỒNG HÀNH',
         total: 12,
         gift: 'Pin sạc dự phòng AVA+ 10.000 mAh',
         round: 'ĐỢT 1'
       },
-      ba: {
-        id: 'ba',
-        name: '08 Giải Ba: Bình Đun Siêu Tốc Bear 1.5L KE-5H15V35 (430k)',
-        short: 'Giải Ba',
-        tagClass: 'tag-silver',
-        badge: '🥉 GIẢI BA',
+      mayman: {
+        id: 'mayman',
+        name: '08 Giải May Mắn: Bình Đun Siêu Tốc Bear 1.5L KE-5H15V35 (430k)',
+        short: 'Giải May Mắn',
+        tagClass: 'tag-bronze',
+        badge: '☕ GIẢI MAY MẮN',
         total: 8,
         gift: 'Bình đun siêu tốc Bear 1.5L',
         round: 'ĐỢT 2'
       },
+      ba: {
+        id: 'ba',
+        name: '05 Giải Ba: Bàn Là Hơi Nước Tefal Easy Steam FV1955E0 (442k)',
+        short: 'Giải Ba',
+        tagClass: 'tag-silver',
+        badge: '🥉 GIẢI BA',
+        total: 5,
+        gift: 'Bàn là hơi nước Tefal Easy Steam',
+        round: 'ĐỢT 3'
+      },
       nhi: {
         id: 'nhi',
-        name: '05 Giải Nhì: Bàn Là Hơi Nước Tefal Easy Steam FV1955E0 (442k)',
+        name: '03 Giải Nhì: Máy Sấy Tóc Ion Âm Cao Cấp (460k)',
         short: 'Giải Nhì',
         tagClass: 'tag-gold',
         badge: '🥈 GIẢI NHÌ',
-        total: 5,
-        gift: 'Bàn là hơi nước Tefal',
-        round: 'ĐỢT 3'
+        total: 3,
+        gift: 'Máy sấy tóc ion âm cao cấp',
+        round: 'ĐỢT 4'
       },
       nhat: {
         id: 'nhat',
@@ -73,7 +83,7 @@ class LuckyDrawManager {
         badge: '🏆 GIẢI NHẤT',
         total: 1,
         gift: 'Quạt sưởi gốm Kangaroo 1.390k',
-        round: 'ĐỢT 4'
+        round: 'ĐỢT 5'
       },
       dacbiet: {
         id: 'dacbiet',
@@ -473,11 +483,11 @@ class LuckyDrawManager {
     this.celebrateAndRecordWinner(emp, prizeKey, customInfo, true);
   }
 
-  celebrateAndRecordWinner(emp, prizeKey = 'mayman', customInfo = null, broadcast = true) {
+  celebrateAndRecordWinner(emp, prizeKey = 'donghanh', customInfo = null, broadcast = true) {
     if (this.isSpinning) return;
     this.isSpinning = true;
 
-    const prize = this.prizeDefs[prizeKey] || this.prizeDefs.mayman;
+    const prize = this.prizeDefs[prizeKey] || this.prizeDefs.donghanh;
     const targetCode = String(emp.code).padStart(3, '0');
 
     // 1. Hide announcement card while rolling
@@ -633,7 +643,7 @@ class LuckyDrawManager {
     }
 
     const prizeKey = this.selectPrize ? this.selectPrize.value : this.activeTier;
-    const prize = this.prizeDefs[prizeKey] || this.prizeDefs.mayman;
+    const prize = this.prizeDefs[prizeKey] || this.prizeDefs.donghanh;
     const customInfo = prizeKey === 'dacbiet' ? this.getCustomPrizeInfo() : null;
 
     const prizeDisplayName = customInfo ? `${customInfo.name} (${customInfo.value})` : prize.name;
@@ -801,6 +811,7 @@ class LuckyDrawManager {
 
   updateQuotaTrackers() {
     const counts = {
+      donghanh: 0,
       mayman: 0,
       ba: 0,
       nhi: 0,
@@ -816,20 +827,23 @@ class LuckyDrawManager {
       }
     });
 
+    const elDonghanh = document.getElementById('quota-donghanh');
     const elMayman = document.getElementById('quota-mayman');
     const elBa = document.getElementById('quota-ba');
     const elNhi = document.getElementById('quota-nhi');
     const elNhat = document.getElementById('quota-nhat');
     const elDacbiet = document.getElementById('quota-dacbiet');
 
-    if (elMayman) elMayman.textContent = `${counts.mayman}/12`;
-    if (elBa) elBa.textContent = `${counts.ba}/8`;
-    if (elNhi) elNhi.textContent = `${counts.nhi}/5`;
+    if (elDonghanh) elDonghanh.textContent = `${counts.donghanh}/12`;
+    if (elMayman) elMayman.textContent = `${counts.mayman}/8`;
+    if (elBa) elBa.textContent = `${counts.ba}/5`;
+    if (elNhi) elNhi.textContent = `${counts.nhi}/3`;
     if (elNhat) elNhat.textContent = `${counts.nhat}/1`;
     if (elDacbiet) elDacbiet.textContent = `${counts.dacbiet}`;
 
     // Update filter pill counts
     const pAll = document.getElementById('pill-count-all');
+    const pDonghanh = document.getElementById('pill-count-donghanh');
     const pMayman = document.getElementById('pill-count-mayman');
     const pBa = document.getElementById('pill-count-ba');
     const pNhi = document.getElementById('pill-count-nhi');
@@ -837,21 +851,24 @@ class LuckyDrawManager {
     const pDacbiet = document.getElementById('pill-count-dacbiet');
 
     if (pAll) pAll.textContent = this.recordedWinners.length;
-    if (pMayman) pMayman.textContent = `${counts.mayman}/12`;
-    if (pBa) pBa.textContent = `${counts.ba}/8`;
-    if (pNhi) pNhi.textContent = `${counts.nhi}/5`;
+    if (pDonghanh) pDonghanh.textContent = `${counts.donghanh}/12`;
+    if (pMayman) pMayman.textContent = `${counts.mayman}/8`;
+    if (pBa) pBa.textContent = `${counts.ba}/5`;
+    if (pNhi) pNhi.textContent = `${counts.nhi}/3`;
     if (pNhat) pNhat.textContent = `${counts.nhat}/1`;
     if (pDacbiet) pDacbiet.textContent = counts.dacbiet;
 
     // Check completion indicators on tier buttons
+    const btnDonghanh = document.getElementById('tier-btn-donghanh');
     const btnMayman = document.getElementById('tier-btn-mayman');
     const btnBa = document.getElementById('tier-btn-ba');
     const btnNhi = document.getElementById('tier-btn-nhi');
     const btnNhat = document.getElementById('tier-btn-nhat');
 
-    if (btnMayman) btnMayman.classList.toggle('tier-complete', counts.mayman >= 12);
-    if (btnBa) btnBa.classList.toggle('tier-complete', counts.ba >= 8);
-    if (btnNhi) btnNhi.classList.toggle('tier-complete', counts.nhi >= 5);
+    if (btnDonghanh) btnDonghanh.classList.toggle('tier-complete', counts.donghanh >= 12);
+    if (btnMayman) btnMayman.classList.toggle('tier-complete', counts.mayman >= 8);
+    if (btnBa) btnBa.classList.toggle('tier-complete', counts.ba >= 5);
+    if (btnNhi) btnNhi.classList.toggle('tier-complete', counts.nhi >= 3);
     if (btnNhat) btnNhat.classList.toggle('tier-complete', counts.nhat >= 1);
   }
 

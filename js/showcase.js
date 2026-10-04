@@ -130,7 +130,7 @@ class ShowcaseManager {
           break;
 
         case 'stats':
-          const target = slide.content.totalTarget || 17;
+          const target = slide.content.totalTarget || 29;
           const badgesHtml = (slide.content.summaryBadges || []).map(b => `
             <div class="prize-card-pill ${b.highlight ? 'highlight-gold' : ''}">
               <span class="card-pill-tag ${b.tagClass}">${b.tag}</span>
@@ -140,6 +140,13 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner">
+              <div class="prize-slide-brand-banner">
+                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
+                <div class="slide-brand-info">
+                  <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
+                  <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
+                </div>
+              </div>
               <div class="prize-stats-header">
                 <span class="prize-huge-counter count-up" id="prize-counter-${target}" data-target="${target}">0</span>
                 <h2 class="prize-stats-label">${slide.content.label}</h2>
@@ -158,6 +165,13 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner">
+              <div class="prize-slide-brand-banner">
+                <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
+                <div class="slide-brand-info">
+                  <div class="slide-brand-company">CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH</div>
+                  <div class="slide-brand-event">KỶ NIỆM RA MẮT THƯƠNG HIỆU TLQM • GALA DINNER</div>
+                </div>
+              </div>
               <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
               <h1 class="prize-product-name ${slide.goldShimmer ? 'gold-shimmer' : ''} ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
               <div class="prize-showcase-frame ${isGrand ? 'grand-frame' : ''}">

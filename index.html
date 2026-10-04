@@ -585,7 +585,7 @@
             <h2 id="pose-main-title">📸 TẠO DÁNG THẦN TỐC • ĐỐI ĐẦU <span id="pose-team-count-display">2</span> ĐỘI</h2>
             <span id="pose-mode-badge" class="game-data-badge demo"><i class="fas fa-flask"></i> BẢN TẬP DƯỢT DEMO (3 DÁNG)</span>
           </div>
-          <p class="game-subtitle" id="pose-main-desc">Bản tập dượt thử nghiệm với 3 dáng vui nhộn. Toàn bộ 5 dáng chụp bí mật của Gala đang được bảo mật bằng mật khẩu!</p>
+          <p class="game-subtitle" id="pose-main-desc">2 Đội có 5 giây nhìn LED, sau đó quay lưng 10 giây tạo dáng • Khán giả chấm điểm bằng cách vỗ tay hoặc hô to theo hiệu lệnh MC (Vui là chính!)</p>
         </div>
         <div style="display: flex; gap: 10px;">
           <button id="pose-prev-btn" class="action-btn" title="Dáng trước (← / P)"><i class="fas fa-chevron-left"></i> Dáng Trước <span class="kbd-hint">← / P</span></button>
@@ -618,26 +618,42 @@
             <div class="viewfinder-corner corner-bl"></div>
             <div class="viewfinder-corner corner-br"></div>
 
-            <!-- In-frame timer badge -->
-            <div class="pose-timer-overlay">
-              <i class="fas fa-stopwatch" style="color: var(--gold-light); font-size: 1.6rem;"></i>
-              <span id="pose-timer-text" class="pose-timer-text">15s</span>
+            <!-- In-frame timer badge with dual-phase status -->
+            <div class="pose-timer-overlay" id="pose-timer-overlay">
+              <i class="fas fa-stopwatch" id="pose-timer-icon" style="color: var(--gold-light); font-size: 1.5rem;"></i>
+              <span id="pose-timer-text" class="pose-timer-text">5s</span>
+              <span id="pose-phase-badge" class="pose-phase-tag">SẴN SÀNG: 5S NHÌN + 10S DÁNG</span>
             </div>
 
-            <!-- Snapshot Banner on 0s -->
+            <!-- Snapshot Banner on 0s & Audience Applause Voting -->
             <div id="pose-snapshot-banner" class="snapshot-banner">
-              <h3>📸 GIỮ NGUYÊN DÁNG! TÁCH TÁCH!</h3>
-              <p>Hết giờ! Khán giả hãy chuẩn bị vỗ tay bình chọn đội tạo dáng chuẩn nhất!</p>
+              <h3>📸 HẾT GIỜ! GIỮ NGUYÊN DÁNG! TÁCH TÁCH!</h3>
+              <p class="snapshot-applause-title">👏 KHÁN GIẢ CHẤM ĐIỂM: VỖ TAY HOẶC HÔ TO THEO HIỆU LỆNH MC!</p>
+              <p class="snapshot-applause-sub">"Vui là chính! Đội nào nhận được tiếng reo hò, tràng vỗ tay to hơn sẽ chiến thắng!"</p>
+              <div class="snapshot-vote-actions">
+                <button type="button" class="btn-vote-choice vote-team1" id="btn-vote-team1" onclick="window.gamePose && window.gamePose.addScore(1, 1)" title="Cộng 1 điểm cho Đội 1 (Phím 1)">
+                  <i class="fas fa-hand-sparkles"></i> +1 Đội 1 (Áo Đỏ)
+                </button>
+                <button type="button" class="btn-vote-choice vote-team2" id="btn-vote-team2" onclick="window.gamePose && window.gamePose.addScore(2, 1)" title="Cộng 1 điểm cho Đội 2 (Phím 2)">
+                  <i class="fas fa-hand-sparkles"></i> +1 Đội 2 (Áo Xanh)
+                </button>
+                <button type="button" class="btn-vote-choice vote-both" id="btn-vote-both" onclick="window.gamePose && window.gamePose.voteBothTeams()" title="Cộng 1 điểm cho cả 2 đội (Hòa)">
+                  <i class="fas fa-handshake"></i> +1 Cả 2 Đội (Hòa)
+                </button>
+                <button type="button" class="btn-vote-choice vote-cheer" id="btn-vote-cheer" onclick="window.soundEngine && window.soundEngine.playCheer()" title="Phát âm thanh vỗ tay reo hò (Phím C)">
+                  <i class="fas fa-volume-high"></i> Reo Hò Khán Giả
+                </button>
+              </div>
             </div>
 
-            <!-- Mystery Cover Card (Khi chưa mở dáng chụp) -->
+            <!-- Mystery / Turn-Back Cover Card -->
             <div id="pose-cover-overlay" class="pose-cover-overlay">
               <div class="pose-cover-content">
-                <div class="pose-lock-icon"><i class="fas fa-lock"></i></div>
-                <h4 class="pose-lock-title">DÁNG CHỤP ĐANG ĐƯỢC GIẤU KÍN</h4>
+                <div class="pose-lock-icon" id="pose-cover-icon"><i class="fas fa-lock"></i></div>
+                <h4 class="pose-lock-title" id="pose-cover-title">DÁNG CHỤP ĐANG ĐƯỢC GIẤU KÍN</h4>
                 <p class="pose-lock-subtitle" id="pose-lock-subtitle">2 Đội hãy chuẩn bị sẵn sàng vị trí trên sân khấu!</p>
-                <button id="pose-reveal-btn" class="btn-gala btn-gala-gold" style="margin-top: 8px; font-size: 0.78rem; padding: 5px 14px; border-radius: 4px;">
-                  <i class="fas fa-eye"></i> MỞ DÁNG CHỤP & BẮT ĐẦU <span class="kbd-hint">Space / Enter</span>
+                <button id="pose-reveal-btn" class="btn-gala btn-gala-gold" style="margin-top: 8px; font-size: 0.85rem; padding: 7px 18px; border-radius: 4px;">
+                  <i class="fas fa-play"></i> BẮT ĐẦU VÒNG THI (5s Nhìn + 10s Dáng) <span class="kbd-hint">Space / Enter</span>
                 </button>
               </div>
             </div>
@@ -657,7 +673,7 @@
               <i class="fas fa-eye"></i> Mở Dáng Chụp <span class="kbd-hint">O / Enter</span>
             </button>
             <button id="pose-start-timer" class="btn-gala btn-gala-gold">
-              <i class="fas fa-play"></i> Bắt Đầu 15 Giây <span class="kbd-hint">Space</span>
+              <i class="fas fa-play"></i> Bắt Đầu (5s Nhìn + 10s Dáng) <span class="kbd-hint">Space</span>
             </button>
             <button id="pose-reset-timer" class="action-btn">
               <i class="fas fa-rotate-right"></i> Đặt Lại <span class="kbd-hint">R</span>
@@ -766,14 +782,14 @@
             BỐC THĂM MAY MẮN & TRAO GIẢI GALA DINNER
           </h2>
           <p class="section-subheadline">
-            CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH • Kỷ Niệm Ra Mắt Thương Hiệu TLQM • 26 Giải Bốc Thăm & Thưởng Phát Sinh
+            CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH • Kỷ Niệm Ra Mắt Thương Hiệu TLQM • 29 Giải Bốc Thăm & Thưởng Phát Sinh
           </p>
         </div>
 
         <!-- Sub-Tabs Switcher -->
         <div class="awards-sub-tabs">
           <button type="button" class="awards-tab-btn active" id="tab-btn-lucky" data-awards-tab="lucky">
-            <i class="fas fa-dice"></i> 1. Bốc Thăm May Mắn (26 Giải)
+            <i class="fas fa-dice"></i> 1. Bốc Thăm May Mắn (29 Giải)
           </button>
           <button type="button" class="awards-tab-btn" id="tab-btn-gameshow" data-awards-tab="gameshow">
             <i class="fas fa-trophy"></i> 2. Trao Quà Gameshow & Bổ Sung
@@ -796,7 +812,7 @@
     </div>
 
     <!-- ==========================================
-         SUB-TAB 1: BỐC THĂM MAY MẮN (26 GIẢI & BỔ SUNG)
+         SUB-TAB 1: BỐC THĂM MAY MẮN (29 GIẢI & BỔ SUNG)
          ========================================== -->
     <div id="awards-panel-lucky" class="awards-panel active">
       <!-- Grand Official Corporate Branding Hero Banner -->
@@ -825,29 +841,36 @@
 
       <!-- Interactive Tier Tracker & Round Progress (Trao theo đợt & Bổ sung) -->
       <div class="awards-tier-tracker" id="awards-tier-tracker">
-        <button type="button" class="tier-card active" data-tier="mayman" id="tier-btn-mayman" title="Bấm để chọn Đợt 1: 12 Giải May Mắn">
+        <button type="button" class="tier-card active" data-tier="donghanh" id="tier-btn-donghanh" title="Bấm để chọn Đợt 1: 12 Giải Đồng Hành">
           <div class="tier-card-badge tag-bronze">ĐỢT 1</div>
-          <div class="tier-card-name">🎁 12 Giải May Mắn</div>
-          <div class="tier-card-quota"><strong id="quota-mayman">0/12</strong> đã trao</div>
+          <div class="tier-card-name">🎁 12 Đồng Hành</div>
+          <div class="tier-card-quota"><strong id="quota-donghanh">0/12</strong> đã trao</div>
           <div class="tier-card-gift">Pin sạc dự phòng AVA+ 10.000 mAh</div>
         </button>
 
-        <button type="button" class="tier-card" data-tier="ba" id="tier-btn-ba" title="Bấm để chọn Đợt 2: 08 Giải Ba">
-          <div class="tier-card-badge tag-silver">ĐỢT 2</div>
-          <div class="tier-card-name">🥉 08 Giải Ba</div>
-          <div class="tier-card-quota"><strong id="quota-ba">0/8</strong> đã trao</div>
-          <div class="tier-card-gift">Bình đun siêu tốc Bear 1.5L</div>
+        <button type="button" class="tier-card" data-tier="mayman" id="tier-btn-mayman" title="Bấm để chọn Đợt 2: 08 Giải May Mắn">
+          <div class="tier-card-badge tag-bronze">ĐỢT 2</div>
+          <div class="tier-card-name">☕ 08 May Mắn</div>
+          <div class="tier-card-quota"><strong id="quota-mayman">0/8</strong> đã trao</div>
+          <div class="tier-card-gift">Ấm đun siêu tốc Bear 1.5L</div>
         </button>
 
-        <button type="button" class="tier-card" data-tier="nhi" id="tier-btn-nhi" title="Bấm để chọn Đợt 3: 05 Giải Nhì">
-          <div class="tier-card-badge tag-gold">ĐỢT 3</div>
-          <div class="tier-card-name">🥈 05 Giải Nhì</div>
-          <div class="tier-card-quota"><strong id="quota-nhi">0/5</strong> đã trao</div>
+        <button type="button" class="tier-card" data-tier="ba" id="tier-btn-ba" title="Bấm để chọn Đợt 3: 05 Giải Ba">
+          <div class="tier-card-badge tag-silver">ĐỢT 3</div>
+          <div class="tier-card-name">🥉 05 Giải Ba</div>
+          <div class="tier-card-quota"><strong id="quota-ba">0/5</strong> đã trao</div>
           <div class="tier-card-gift">Bàn là hơi nước Tefal</div>
         </button>
 
-        <button type="button" class="tier-card" data-tier="nhat" id="tier-btn-nhat" title="Bấm để chọn Đợt 4: 01 Giải Nhất">
-          <div class="tier-card-badge tag-special">ĐỢT 4</div>
+        <button type="button" class="tier-card" data-tier="nhi" id="tier-btn-nhi" title="Bấm để chọn Đợt 4: 03 Giải Nhì">
+          <div class="tier-card-badge tag-gold">ĐỢT 4</div>
+          <div class="tier-card-name">🥈 03 Giải Nhì</div>
+          <div class="tier-card-quota"><strong id="quota-nhi">0/3</strong> đã trao</div>
+          <div class="tier-card-gift">Máy sấy tóc ion âm cao cấp</div>
+        </button>
+
+        <button type="button" class="tier-card" data-tier="nhat" id="tier-btn-nhat" title="Bấm để chọn Đợt 5: 01 Giải Nhất">
+          <div class="tier-card-badge tag-special">ĐỢT 5</div>
           <div class="tier-card-name">🏆 01 Giải Nhất</div>
           <div class="tier-card-quota"><strong id="quota-nhat">0/1</strong> đã trao</div>
           <div class="tier-card-gift">Quạt sưởi Kangaroo 1.390k</div>
@@ -936,10 +959,11 @@
               <div class="lucky-input-with-icon">
                 <i class="fas fa-award"></i>
                 <select id="select-lucky-prize">
-                  <option value="mayman" selected>🎁 Đợt 1: 12 Giải May Mắn - Pin Sạc Dự Phòng AVA+ (240k)</option>
-                  <option value="ba">🥉 Đợt 2: 08 Giải Ba - Ấm Đun Siêu Tốc Bear 1.5L (430k)</option>
-                  <option value="nhi">🥈 Đợt 3: 05 Giải Nhì - Bàn Là Hơi Nước Tefal (442k)</option>
-                  <option value="nhat">🏆 Đợt 4: 01 Giải Nhất - Quạt Sưởi Gốm Kangaroo (1.390k)</option>
+                  <option value="donghanh" selected>🎁 Đợt 1: 12 Giải Đồng Hành - Pin Sạc Dự Phòng AVA+ (240k)</option>
+                  <option value="mayman">☕ Đợt 2: 08 Giải May Mắn - Ấm Đun Siêu Tốc Bear 1.5L (430k)</option>
+                  <option value="ba">🥉 Đợt 3: 05 Giải Ba - Bàn Là Hơi Nước Tefal (442k)</option>
+                  <option value="nhi">🥈 Đợt 4: 03 Giải Nhì - Máy Sấy Tóc Cao Cấp (460k)</option>
+                  <option value="nhat">🏆 Đợt 5: 01 Giải Nhất - Quạt Sưởi Gốm Kangaroo (1.390k)</option>
                   <option value="dacbiet">⭐ Giải Phát Sinh / Bổ Sung Ban Lãnh Đạo</option>
                 </select>
               </div>
@@ -1039,9 +1063,10 @@
           <!-- Table Filter Pills -->
           <div class="lucky-table-filter-pills" id="lucky-table-filter-pills">
             <button type="button" class="filter-pill active" data-filter="all">Tất Cả (<span id="pill-count-all">0</span>)</button>
-            <button type="button" class="filter-pill" data-filter="mayman">🎁 May Mắn (<span id="pill-count-mayman">0/12</span>)</button>
-            <button type="button" class="filter-pill" data-filter="ba">🥉 Giải Ba (<span id="pill-count-ba">0/8</span>)</button>
-            <button type="button" class="filter-pill" data-filter="nhi">🥈 Giải Nhì (<span id="pill-count-nhi">0/5</span>)</button>
+            <button type="button" class="filter-pill" data-filter="donghanh">🎁 Đồng Hành (<span id="pill-count-donghanh">0/12</span>)</button>
+            <button type="button" class="filter-pill" data-filter="mayman">☕ May Mắn (<span id="pill-count-mayman">0/8</span>)</button>
+            <button type="button" class="filter-pill" data-filter="ba">🥉 Giải Ba (<span id="pill-count-ba">0/5</span>)</button>
+            <button type="button" class="filter-pill" data-filter="nhi">🥈 Giải Nhì (<span id="pill-count-nhi">0/3</span>)</button>
             <button type="button" class="filter-pill" data-filter="nhat">🏆 Giải Nhất (<span id="pill-count-nhat">0/1</span>)</button>
             <button type="button" class="filter-pill" data-filter="dacbiet">⭐ Phát Sinh (<span id="pill-count-dacbiet">0</span>)</button>
           </div>

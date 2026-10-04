@@ -1228,6 +1228,61 @@ body {
   to { background-position: 200% center; }
 }
 
+/* =========================================================
+   Official Corporate Branding Banner on All Prize Slides
+   (CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH • Màn LED & Trình Chiếu)
+   ========================================================= */
+.prize-slide-brand-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid rgba(212, 160, 23, 0.5);
+  border-radius: 40px;
+  padding: 5px 18px 5px 7px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 0 10px rgba(212, 160, 23, 0.15);
+  backdrop-filter: blur(8px);
+  max-width: 90%;
+  animation: fadeInDown 0.4s ease;
+}
+
+.prize-slide-brand-banner .slide-brand-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 3px;
+  border: 1.5px solid var(--tlqm-gold);
+  box-shadow: 0 2px 6px rgba(212, 160, 23, 0.25);
+  flex-shrink: 0;
+}
+
+.prize-slide-brand-banner .slide-brand-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.prize-slide-brand-banner .slide-brand-company {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--tlqm-navy);
+  letter-spacing: 0.8px;
+}
+
+.prize-slide-brand-banner .slide-brand-event {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #B8860B;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 /* Slide 1: Brand Opening */
 .prize-brand-header {
   display: flex;
@@ -3290,6 +3345,104 @@ body {
   margin-bottom: 4px;
 }
 
+.snapshot-applause-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #fef08a;
+  margin: 6px 0 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.snapshot-applause-sub {
+  font-size: 0.86rem;
+  color: #e2e8f0;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.snapshot-vote-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.btn-vote-choice {
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-vote-choice:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.btn-vote-choice.vote-team1 {
+  background: #dc2626;
+  color: #ffffff;
+  border: 1px solid #ef4444;
+}
+
+.btn-vote-choice.vote-team2 {
+  background: #2563eb;
+  color: #ffffff;
+  border: 1px solid #3b82f6;
+}
+
+.btn-vote-choice.vote-both {
+  background: #059669;
+  color: #ffffff;
+  border: 1px solid #10b981;
+}
+
+.btn-vote-choice.vote-cheer {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #fef08a;
+  border: 1px solid #f59e0b;
+}
+
+.pose-phase-tag {
+  display: inline-block;
+  background: rgba(212, 160, 23, 0.2);
+  color: #fef08a;
+  border: 1px solid rgba(212, 160, 23, 0.6);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pose-phase-tag.phase-observe {
+  background: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  border-color: #60a5fa;
+}
+
+.pose-phase-tag.phase-pose {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-color: #f87171;
+  animation: pulseBadge 1s infinite alternate;
+}
+
+.pose-cover-overlay.phase-pose-active {
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.96) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+  border: 2px dashed #f59e0b !important;
+}
+
 /* Pose Selector Bar */
 .pose-selector-bar {
   display: flex;
@@ -5220,6 +5373,24 @@ body.stage-pure-led #section-showcase .prize-stage-wrapper {
 
 body.stage-pure-led #section-showcase .prize-showcase-frame {
   height: min(48vh, 390px) !important;
+}
+
+body.stage-pure-led #section-showcase .prize-slide-brand-banner {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border: 1.5px solid rgba(212, 160, 23, 0.75) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(212, 160, 23, 0.3) !important;
+  margin-bottom: 8px !important;
+}
+
+body.stage-pure-led #section-showcase .prize-slide-brand-banner .slide-brand-company {
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+body.stage-pure-led #section-showcase .prize-slide-brand-banner .slide-brand-event {
+  color: var(--tlqm-gold) !important;
+  font-size: 0.78rem !important;
 }
 
 body.stage-pure-led #section-pose.active {
