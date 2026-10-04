@@ -249,13 +249,11 @@ class ShowcaseManager {
                     <span class="meta-label">Hình thức trao</span>
                     <span class="meta-value">${slide.awardMethod || 'Bốc Thăm Sân Khấu'}</span>
                   </div>
-                  <div class="meta-divider"></div>
                   <div class="meta-item">
                     <span class="meta-label">Số lượng giải</span>
                     <span class="meta-value highlight-num">${slide.quantityLabel || slide.badgeCount}</span>
                   </div>
-                  <div class="meta-divider"></div>
-                  <div class="meta-item">
+                  <div class="meta-item meta-item-target">
                     <span class="meta-label">Đối tượng</span>
                     <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên Tà Lùng Quang Minh'}</span>
                   </div>
