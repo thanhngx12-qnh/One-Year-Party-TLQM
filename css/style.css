@@ -3239,12 +3239,12 @@ body.theme-light .invitation-main-text {
   display: none;
 }
 
-/* Interactive Tier Progress & Round Quota Tracker (6 Đợt Cân Đối 1 Hàng) */
+/* Interactive Tier Progress & Round Quota Tracker (6 Đợt Siêu Gọn Gàng - Single-Line Slim Chips) */
 .awards-tier-tracker {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  margin: 0 auto 10px;
+  gap: 6px;
+  margin: 0 auto 8px;
   max-width: 1540px;
   width: 100%;
 }
@@ -3262,17 +3262,21 @@ body.theme-light .invitation-main-text {
 }
 
 .tier-card {
-  background: #0f1833;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 24, 51, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 6px;
-  padding: 6px 5px;
-  text-align: center;
+  padding: 4px 6px;
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  backdrop-filter: blur(6px);
+  min-height: 30px;
+  white-space: nowrap;
 }
 
 body.theme-light .tier-card {
@@ -3284,19 +3288,19 @@ body.theme-light .tier-card {
 
 .tier-card:hover {
   transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
 body.theme-light .tier-card:hover {
   border-color: var(--tlqm-gold);
-  box-shadow: 0 3px 10px rgba(217, 119, 6, 0.2);
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.2);
 }
 
 .tier-card.active {
   border-color: #0b9444;
-  background: #132247;
-  box-shadow: 0 3px 12px rgba(11, 148, 68, 0.35);
+  background: rgba(19, 34, 71, 0.95);
+  box-shadow: 0 2px 10px rgba(11, 148, 68, 0.4);
 }
 
 body.theme-light .tier-card.active {
@@ -3306,8 +3310,8 @@ body.theme-light .tier-card.active {
 }
 
 .tier-card.tier-complete {
-  border-color: rgba(11, 148, 68, 0.5);
-  background: #0f1833;
+  border-color: rgba(11, 148, 68, 0.6);
+  background: rgba(11, 40, 26, 0.85);
 }
 
 body.theme-light .tier-card.tier-complete {
@@ -3316,22 +3320,25 @@ body.theme-light .tier-card.tier-complete {
 }
 
 .tier-card-badge {
+  font-family: var(--font-heading);
   font-size: 0.58rem;
   font-weight: 800;
   padding: 1px 4px;
   border-radius: 3px;
-  display: inline-block;
-  margin-bottom: 2px;
-  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
 }
 
 .tier-card-name {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 1;
 }
 
 body.theme-light .tier-card-name {
@@ -3339,9 +3346,11 @@ body.theme-light .tier-card-name {
 }
 
 .tier-card-quota {
-  font-size: 0.68rem;
+  font-size: 0.70rem;
   color: #94a3b8;
-  margin: 1px 0;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 body.theme-light .tier-card-quota {
@@ -3349,25 +3358,13 @@ body.theme-light .tier-card-quota {
 }
 
 .tier-card-quota strong {
-  font-size: 0.88rem;
+  font-size: 0.76rem;
   font-weight: 900;
   color: #f59e0b;
 }
 
 body.theme-light .tier-card-quota strong {
   color: var(--tlqm-gold);
-}
-
-.tier-card-gift {
-  font-size: 0.62rem;
-  color: #cbd5e1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-body.theme-light .tier-card-gift {
-  color: var(--text-muted);
 }
 
 /* Digital Lucky Draw Arena */
@@ -7315,8 +7312,9 @@ body.stage-fullscreen .awards-tier-tracker {
 }
 
 body.stage-fullscreen .tier-card {
-  padding: 6px 8px !important;
-  border-radius: 8px !important;
+  padding: 4px 6px !important;
+  border-radius: 6px !important;
+  min-height: 30px !important;
 }
 
 body.stage-fullscreen .tier-card.active {

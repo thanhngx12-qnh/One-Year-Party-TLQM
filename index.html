@@ -840,47 +840,42 @@
       </div>
 
       <!-- Interactive Tier Tracker & Round Progress (Trao theo đợt & Bổ sung) -->
-      <div class="awards-tier-tracker" id="awards-tier-tracker">
-        <button type="button" class="tier-card active" data-tier="donghanh" id="tier-btn-donghanh" title="Bấm để chọn Đợt 1: 12 Giải Đồng Hành">
-          <div class="tier-card-badge tag-bronze">ĐỢT 1</div>
-          <div class="tier-card-name">🎁 12 Đồng Hành</div>
-          <div class="tier-card-quota"><strong id="quota-donghanh">0/12</strong> đã trao</div>
-          <div class="tier-card-gift">Pin sạc dự phòng AVA+ 10.000 mAh</div>
+      <!-- Interactive Tier Tracker & Round Progress (6 Đợt Siêu Gọn Gàng - Compact Chips) -->
+      <div class="awards-tier-tracker compact-tier-tracker" id="awards-tier-tracker">
+        <button type="button" class="tier-card active" data-tier="donghanh" id="tier-btn-donghanh" title="Đợt 1: 12 Giải Đồng Hành (Pin sạc dự phòng AVA+ 10.000 mAh)">
+          <span class="tier-card-badge tag-bronze">ĐỢT 1</span>
+          <span class="tier-card-name">🎁 12 Đồng Hành</span>
+          <span class="tier-card-quota">(<strong id="quota-donghanh">0/12</strong>)</span>
         </button>
 
-        <button type="button" class="tier-card" data-tier="mayman" id="tier-btn-mayman" title="Bấm để chọn Đợt 2: 08 Giải May Mắn">
-          <div class="tier-card-badge tag-bronze">ĐỢT 2</div>
-          <div class="tier-card-name">☕ 08 May Mắn</div>
-          <div class="tier-card-quota"><strong id="quota-mayman">0/8</strong> đã trao</div>
-          <div class="tier-card-gift">Ấm đun siêu tốc Bear 1.5L</div>
+        <button type="button" class="tier-card" data-tier="mayman" id="tier-btn-mayman" title="Đợt 2: 08 Giải May Mắn (Ấm đun siêu tốc Bear 1.5L)">
+          <span class="tier-card-badge tag-bronze">ĐỢT 2</span>
+          <span class="tier-card-name">☕ 08 May Mắn</span>
+          <span class="tier-card-quota">(<strong id="quota-mayman">0/8</strong>)</span>
         </button>
 
-        <button type="button" class="tier-card" data-tier="ba" id="tier-btn-ba" title="Bấm để chọn Đợt 3: 05 Giải Ba">
-          <div class="tier-card-badge tag-silver">ĐỢT 3</div>
-          <div class="tier-card-name">🥉 05 Giải Ba</div>
-          <div class="tier-card-quota"><strong id="quota-ba">0/5</strong> đã trao</div>
-          <div class="tier-card-gift">Bàn là hơi nước Tefal</div>
+        <button type="button" class="tier-card" data-tier="ba" id="tier-btn-ba" title="Đợt 3: 05 Giải Ba (Bàn là hơi nước Tefal)">
+          <span class="tier-card-badge tag-silver">ĐỢT 3</span>
+          <span class="tier-card-name">🥉 05 Giải Ba</span>
+          <span class="tier-card-quota">(<strong id="quota-ba">0/5</strong>)</span>
         </button>
 
-        <button type="button" class="tier-card" data-tier="nhi" id="tier-btn-nhi" title="Bấm để chọn Đợt 4: 03 Giải Nhì">
-          <div class="tier-card-badge tag-gold">ĐỢT 4</div>
-          <div class="tier-card-name">🥈 03 Giải Nhì</div>
-          <div class="tier-card-quota"><strong id="quota-nhi">0/3</strong> đã trao</div>
-          <div class="tier-card-gift">Máy sấy tóc ion âm cao cấp</div>
+        <button type="button" class="tier-card" data-tier="nhi" id="tier-btn-nhi" title="Đợt 4: 03 Giải Nhì (Máy sấy tóc ion âm cao cấp)">
+          <span class="tier-card-badge tag-gold">ĐỢT 4</span>
+          <span class="tier-card-name">🥈 03 Giải Nhì</span>
+          <span class="tier-card-quota">(<strong id="quota-nhi">0/3</strong>)</span>
         </button>
 
-        <button type="button" class="tier-card" data-tier="nhat" id="tier-btn-nhat" title="Bấm để chọn Đợt 5: 01 Giải Nhất">
-          <div class="tier-card-badge tag-special">ĐỢT 5</div>
-          <div class="tier-card-name">🏆 01 Giải Nhất</div>
-          <div class="tier-card-quota"><strong id="quota-nhat">0/1</strong> đã trao</div>
-          <div class="tier-card-gift">Quạt sưởi Kangaroo cao cấp</div>
+        <button type="button" class="tier-card" data-tier="nhat" id="tier-btn-nhat" title="Đợt 5: 01 Giải Nhất (Quạt sưởi Kangaroo cao cấp)">
+          <span class="tier-card-badge tag-special">ĐỢT 5</span>
+          <span class="tier-card-name">🏆 01 Giải Nhất</span>
+          <span class="tier-card-quota">(<strong id="quota-nhat">0/1</strong>)</span>
         </button>
 
-        <button type="button" class="tier-card" data-tier="dacbiet" id="tier-btn-dacbiet" title="Bấm để chọn Giải Phát Sinh / Bổ Sung Ban Lãnh Đạo">
-          <div class="tier-card-badge tag-primary">PHÁT SINH</div>
-          <div class="tier-card-name">⭐ Thưởng Lãnh Đạo</div>
-          <div class="tier-card-quota"><strong id="quota-dacbiet">0</strong> giải</div>
-          <div class="tier-card-gift">Thưởng nóng & quà tặng thêm</div>
+        <button type="button" class="tier-card" data-tier="dacbiet" id="tier-btn-dacbiet" title="Giải Phát Sinh / Bổ Sung Ban Lãnh Đạo (Thưởng nóng & quà tặng thêm)">
+          <span class="tier-card-badge tag-primary">PHÁT SINH</span>
+          <span class="tier-card-name">⭐ Thưởng Lãnh Đạo</span>
+          <span class="tier-card-quota">(<strong id="quota-dacbiet">0</strong>)</span>
         </button>
       </div>
 
