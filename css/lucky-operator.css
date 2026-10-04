@@ -1,0 +1,61 @@
+/* Laptop controls use their own proportions; the LED retains stage.css. */
+body:not(.stage-pure-led) #awards-panel-lucky .awards-invitation-crest,
+body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-badge-pill { display: none; }
+body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-hero { padding: 8px 12px; }
+body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-crest { border: 0; padding: 0; box-shadow: none; background: transparent; }
+body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-logo { height: 32px !important; }
+body:not(.stage-pure-led) #awards-panel-lucky .awards-logo-badge { padding: 4px 8px; }
+body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-company-title { font-size: 18px !important; }
+body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-event-name { font-size: 13px !important; }
+body:not(.stage-pure-led) .awards-stage-grid-169:not(.console-collapsed) {
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);
+}
+body:not(.stage-pure-led) .lucky-record-console { padding: 16px; }
+body:not(.stage-pure-led) .lucky-record-title { font-size: 16px; color: var(--text-heading); }
+body:not(.stage-pure-led) .lucky-record-console label,
+body:not(.stage-pure-led) .lucky-mode-tab { font-size: 13px; }
+body:not(.stage-pure-led) .lucky-record-console input,
+body:not(.stage-pure-led) .lucky-record-console select { font-size: 14px; min-height: 40px; }
+body:not(.stage-pure-led) .lucky-record-actions-row button,
+body:not(.stage-pure-led) .board-action-buttons button { min-height: 36px; font-size: 13px !important; height: auto !important; padding: 8px !important; }
+body:not(.stage-pure-led) .awards-col-stage:has(.lucky-winner-card:not(.hidden)) .lucky-slot-display { display: none; }
+body:not(.stage-pure-led) .active-prize-name { white-space: normal; overflow-wrap: anywhere; }
+.lucky-edit-actions .btn-gala { font-size: 14px; }
+.lucky-entry-feedback { margin: 12px 0; color: #4ade80; font-size: 13px; line-height: 1.5; }
+.lucky-entry-feedback.is-error { color: #fca5a5; }
+body.theme-light .lucky-entry-feedback { color: #166534; }
+body.theme-light .lucky-entry-feedback.is-error { color: #b91c1c; }
+.lucky-random-tools { margin-top: 12px; font-size: 13px; color: var(--text-secondary); }
+.lucky-random-tools summary { cursor: pointer; padding: 8px 0; }
+.lucky-random-tools button { min-height: 36px; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+.lucky-edit-dialog {
+  width: min(600px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  margin: auto;
+  padding: 24px;
+  border: 1px solid #64748b;
+  border-radius: 12px;
+  background: #0f1833;
+  color: #f8fafc;
+}
+.lucky-edit-dialog::backdrop { background: rgba(0, 0, 0, .7); }
+.lucky-edit-dialog h2 { font-size: 22px; margin: 0 0 8px; }
+.lucky-edit-dialog p { font-size: 14px; line-height: 1.5; }
+.lucky-edit-dialog label { display: block; font-size: 14px; margin: 14px 0 6px; }
+.lucky-edit-dialog input,
+.lucky-edit-dialog select,
+.lucky-edit-dialog textarea {
+  width: 100%; padding: 10px; border: 1px solid #64748b; border-radius: 6px;
+  background: #070d1e; color: #fff; font: inherit; font-size: 14px;
+}
+#edit-lucky-feedback { color: #fca5a5; }
+.lucky-edit-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px; }
+.lucky-edit-actions button { min-height: 40px; }
+body.stage-pure-led .lucky-entry-feedback,
+body.stage-pure-led .lucky-random-tools,
+body.stage-pure-led #lucky-edit-dialog { display: none !important; }
+@media (max-width: 1000px) {
+  body:not(.stage-pure-led) .awards-stage-grid-169:not(.console-collapsed) { grid-template-columns: minmax(0, 1fr); }
+}

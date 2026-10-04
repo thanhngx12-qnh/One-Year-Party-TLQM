@@ -35,6 +35,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/stage.css" />
+    <link rel="stylesheet" href="css/lucky-operator.css" />
   </head>
   <body>
     <!-- Stage Ambient Particles Canvas -->
@@ -1734,8 +1735,7 @@
                       window.luckyDrawManager.setEntryMode('single')
                   "
                 >
-                  <i class="fas fa-user-tag"></i> 1. Bốc Từng Số (Quay Slot 3
-                  Số)
+                  <i class="fas fa-user-tag"></i> 1. Nhập phiếu đã bốc
                 </button>
                 <button
                   type="button"
@@ -1746,8 +1746,7 @@
                       window.luckyDrawManager.setEntryMode('batch')
                   "
                 >
-                  <i class="fas fa-users-viewfinder"></i> 2. Nhập Cả Đợt (Nhiều
-                  Mã Cùng Lúc)
+                  <i class="fas fa-users-viewfinder"></i> 2. Nhập cả đợt
                 </button>
               </div>
 
@@ -1755,7 +1754,7 @@
                 <!-- Left Column: Input (Single or Batch) -->
                 <div class="lucky-field-col" id="col-entry-single">
                   <label for="input-lucky-emp-code"
-                    >Mã / Tên nhân viên trúng thăm:</label
+                    >Mã phiếu / Họ tên đầy đủ:</label
                   >
                   <div class="lucky-input-with-icon">
                     <i class="fas fa-id-badge"></i>
@@ -1839,7 +1838,7 @@
                       type="text"
                       id="input-custom-prize-name"
                       placeholder="VD: Giải Thưởng Nóng Ban Tổng Giám Đốc"
-                      value="Giải Thưởng Nóng Ban Lãnh Đạo"
+                      maxlength="100"
                     />
                     <div class="quick-chip-row">
                       <button
@@ -1849,7 +1848,7 @@
                           window.luckyDrawManager &&
                             window.luckyDrawManager.setQuickCustomPrize(
                               'Giải Thưởng Nóng Ban Lãnh Đạo',
-                              'Phần Quà Vinh Danh Sân Khấu',
+                              '',
                             )
                         "
                       >
@@ -1862,7 +1861,7 @@
                           window.luckyDrawManager &&
                             window.luckyDrawManager.setQuickCustomPrize(
                               'Giải Đặc Biệt Ban Tổng Giám Đốc',
-                              'Phần Quà Đặc Biệt TGĐ',
+                              '',
                             )
                         "
                       >
@@ -1875,7 +1874,7 @@
                           window.luckyDrawManager &&
                             window.luckyDrawManager.setQuickCustomPrize(
                               'Giải May Mắn Bổ Sung',
-                              'Phần Quà Bổ Sung',
+                              '',
                             )
                         "
                       >
@@ -1891,7 +1890,7 @@
                       type="text"
                       id="input-custom-prize-value"
                       placeholder="VD: Hiện vật / Khen thưởng sân khấu"
-                      value="Phần Quà Vinh Danh Sân Khấu"
+                      maxlength="160"
                     />
                   </div>
                 </div>
@@ -1930,6 +1929,8 @@
                 </div>
               </div>
 
+              <p id="lucky-entry-feedback" class="lucky-entry-feedback" role="status" aria-live="polite"></p>
+
               <!-- Action Buttons Row -->
               <div class="lucky-record-actions-row">
                 <button
@@ -1938,7 +1939,7 @@
                   class="btn-gala btn-gala-gold"
                   title="Vinh danh mã số này lên màn hình LED và ghi vào danh sách"
                 >
-                  <i class="fas fa-bullhorn"></i> Vinh Danh Màn LED
+                  <i class="fas fa-bullhorn"></i> Kiểm tra & Công bố
                 </button>
                 <button
                   type="button"
@@ -1946,16 +1947,9 @@
                   class="btn-gala btn-gala-gold hidden"
                   title="Ghi nhận và chiếu danh sách đợt này lên màn hình LED"
                 >
-                  <i class="fas fa-paper-plane"></i> Ghi Nhận & Chiếu Màn LED
+                  <i class="fas fa-paper-plane"></i> Kiểm tra & Công bố cả đợt
                 </button>
-                <button
-                  type="button"
-                  id="btn-lucky-random-pick"
-                  class="action-btn"
-                  title="Quay ngẫu nhiên 1 người tham dự Gala chưa trúng giải (Dự phòng)"
-                >
-                  <i class="fas fa-shuffle"></i> Quay Ngẫu Nhiên
-                </button>
+
                 <button
                   type="button"
                   class="action-btn lucky-drum-btn"
@@ -1981,6 +1975,17 @@
                   <span class="kbd-hint">C</span>
                 </button>
               </div>
+              <details class="lucky-random-tools">
+                <summary>Quay ngẫu nhiên bằng máy (dự phòng)</summary>
+                <button
+                  type="button"
+                  id="btn-lucky-random-pick"
+                  class="action-btn"
+                  title="Quay ngẫu nhiên 1 người tham dự Gala chưa trúng giải (Dự phòng)"
+                >
+                  <i class="fas fa-shuffle"></i> Chọn ngẫu nhiên & Kiểm tra
+                </button>
+              </details>
             </div>
 
             <!-- Live Recorded Winners Table (Danh sách đã trao thưởng) -->
@@ -2034,11 +2039,14 @@
                   >
                     <i class="fas fa-copy"></i>
                   </button>
+                  <button type="button" id="btn-export-lucky-results" class="action-btn" title="Xuất kết quả và lịch sử sửa, hủy để đối chiếu">
+                    <i class="fas fa-file-export"></i> Xuất báo cáo
+                  </button>
                   <button
                     type="button"
                     id="btn-lucky-reset-all"
                     class="action-btn text-danger"
-                    title="Xóa toàn bộ lịch sử trúng thưởng"
+                    title="Hủy toàn bộ kết quả, trả lại suất giải; vẫn giữ lịch sử đối chiếu"
                   >
                     <i class="fas fa-rotate-left"></i>
                   </button>
@@ -3149,6 +3157,30 @@
         </div>
       </div>
     </div>
+
+    <dialog id="lucky-edit-dialog" class="lucky-edit-dialog" aria-labelledby="lucky-edit-title">
+      <form id="lucky-edit-form">
+        <h2 id="lucky-edit-title">Sửa kết quả trao quà</h2>
+        <p>Kiểm tra đúng người, đúng giải. Bản gốc và lý do sửa được giữ trong báo cáo.</p>
+        <label for="edit-lucky-code">Mã phiếu / Họ tên đầy đủ</label>
+        <input id="edit-lucky-code" type="text" required autocomplete="off" list="lucky-emp-datalist" />
+        <label for="edit-lucky-prize">Hạng giải</label>
+        <select id="edit-lucky-prize" required></select>
+        <div id="edit-custom-fields" hidden>
+          <label for="edit-custom-name">Tên giải phát sinh</label>
+          <input id="edit-custom-name" type="text" maxlength="100" />
+          <label for="edit-custom-value">Phần quà cụ thể</label>
+          <input id="edit-custom-value" type="text" maxlength="160" />
+        </div>
+        <label for="edit-lucky-reason">Lý do sửa (bắt buộc)</label>
+        <textarea id="edit-lucky-reason" rows="2" required maxlength="500"></textarea>
+        <p id="edit-lucky-feedback" role="status" aria-live="polite"></p>
+        <div class="lucky-edit-actions">
+          <button type="button" id="lucky-edit-cancel" class="action-btn">Đóng</button>
+          <button type="submit" class="btn-gala btn-gala-gold">Kiểm tra & Lưu sửa</button>
+        </div>
+      </form>
+    </dialog>
 
     <!-- Stage HUD Toast Notification Container -->
     <div id="gala-hud-toast" class="gala-hud-toast"></div>

@@ -334,6 +334,7 @@ class App {
         }
         return;
       }
+      if (document.querySelector('dialog[open]')) return;
       // Ignore if typing inside an editable field or input
       if (['INPUT', 'TEXTAREA'].includes(e.target.tagName) || e.target.isContentEditable) {
         return;

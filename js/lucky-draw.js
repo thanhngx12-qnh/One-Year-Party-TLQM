@@ -5,13 +5,13 @@
  * 1. Ban Tổng Giám đốc bốc thăm phiếu may mắn bên ngoài sân khấu.
  * 2. MC / Kỹ thuật viên ghi nhận Mã nhân viên vào hệ thống:
  *    - Hỗ trợ quay số từng người (hồi hộp với hiệu ứng 3 số dial).
- *    - Hỗ trợ nhập hàng loạt cả đợt (VD: 12 Giải May Mắn, 08 Giải Ba bốc 1 lượt).
+ *    - Hỗ trợ nhập hàng loạt cả đợt (VD: 12 Giải Đồng Hành, 08 Giải May Mắn).
  * 3. Hỗ trợ đầy đủ Giải Phát Sinh / Bổ Sung Ban Lãnh Đạo (thưởng nóng, quà thêm).
- * 4. Hệ thống Quota Tracker theo dõi tiến độ từng đợt giải thưởng (12/8/5/1/Phát sinh).
+ * 4. Hệ thống Quota Tracker theo dõi tiến độ từng đợt giải thưởng (12/8/5/3/1/Phát sinh).
  * 5. Bảng Vinh Danh Sân Khấu Grand Ceremonial Stage Board (Màn LED):
- *    - Vinh danh cả đợt (12 giải May mắn cùng lúc) hoặc toàn bộ bảng vàng.
+ *    - Vinh danh cả đợt (12 giải Đồng Hành) hoặc toàn bộ bảng vàng.
  *    - Hiển thị logo Tà Lùng Quang Minh & CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH nổi bật trang trọng.
- * 6. Tự động đồng bộ thời gian thực 0ms sang Màn LED sân khấu qua BroadcastChannel.
+ * 6. Tự động đồng bộ giữa hai cửa sổ cùng trình duyệt sang Màn LED sân khấu qua BroadcastChannel.
  */
 
 class LuckyDrawManager {
@@ -28,7 +28,13 @@ class LuckyDrawManager {
     this.galaAttendees = this.employees.filter((e) => e.isGala);
 
     // Recorded Lucky Winners List
-    this.recordedWinners = this.loadRecordedWinners();
+    this.storageKey = "tlqm_lucky_recorded_winners";
+    const stored = this.readState();
+    this.recordedWinners = stored.winners;
+    this.auditHistory = stored.history;
+    this.presentation = stored.presentation;
+    this.isBusy = false;
+    this.spinTimeouts = [];
 
     // Active state
     this.entryMode = "single"; // 'single' | 'batch'
@@ -99,7 +105,7 @@ class LuckyDrawManager {
         short: "Giải Phát Sinh",
         tagClass: "tag-primary",
         badge: "⭐ PHÁT SINH",
-        total: 99,
+        total: null,
         gift: "Thưởng nóng & quà tặng bất ngờ",
         round: "PHÁT SINH",
         image: "assets/images/logo-official-full.png",
@@ -107,36 +113,156 @@ class LuckyDrawManager {
     };
   }
 
-  loadRecordedWinners() {
+  readState() {
+    const empty = { version: 1, winners: [], history: [], presentation: null };
     try {
-      const saved = localStorage.getItem("tlqm_lucky_recorded_winners");
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      console.warn("Error loading recorded winners", e);
+      const raw = localStorage.getItem(this.storageKey);
+      if (!raw) {
+        this.storageError = false;
+        return empty;
+      }
+      const value = JSON.parse(raw);
+      // Existing array results remain readable; migrate on the first successful write.
+      const state = Array.isArray(value) ? { ...empty, winners: value } : value;
+      if (state.version !== 1 || !Array.isArray(state.winners) || !Array.isArray(state.history) ||
+          state.winners.some(w => !w || typeof w.id !== "string" || typeof w.code !== "string" || typeof w.prizeId !== "string")) {
+        throw new Error("Invalid result storage");
+      }
+      this.storageError = false;
+      return state;
+    } catch (error) {
+      this.storageError = true;
+      console.warn("Cannot read lucky draw results", error);
+      return empty;
     }
-    return [];
   }
 
-  saveRecordedWinners() {
-    // The LED presents results; only the operator persists the official list.
-    if (window.stageSync?.isStageScreen) return;
+  showFeedback(message, error = true) {
+    const el = document.getElementById("lucky-entry-feedback");
+    if (el) {
+      el.textContent = message;
+      el.classList.toggle("is-error", error);
+    }
+    return false;
+  }
+
+  broadcastResults(settled = true) {
+    if (window.stageSync?.isStageScreen || !this.channel) return;
+    this.channel.postMessage({ type: "LUCKY_RECORDS_UPDATE", winners: this.recordedWinners, presentation: this.presentation, settled });
+  }
+
+  async changeResults(change, settled = true) {
+    if (window.stageSync?.isStageScreen || this.isBusy || this.isSpinning) return null;
+    if (!navigator.locks) {
+      this.showFeedback("Hãy mở ứng dụng bằng Chrome/Edge qua localhost hoặc HTTPS để ghi nhận kết quả an toàn.");
+      return null;
+    }
+    this.isBusy = true;
+    this.refreshEntryFeedback();
     try {
-      localStorage.setItem(
-        "tlqm_lucky_recorded_winners",
-        JSON.stringify(this.recordedWinners),
-      );
-    } catch (e) {
-      console.warn("Error saving recorded winners", e);
-    }
-    if (this.channel && this.winnerCard) {
-      this.channel.postMessage({
-        type: "LUCKY_RECORDS_UPDATE",
-        winners: this.recordedWinners,
-        winnerHtml: this.winnerCard.innerHTML,
-        winnerClass: this.winnerCard.className,
-        digits: [this.slotD1, this.slotD2, this.slotD3].map(el => el.querySelector('.slot-digit-val').textContent),
+      return await navigator.locks.request("tlqm-lucky-results", () => {
+        const state = this.readState();
+        if (this.storageError) {
+          this.showFeedback("Không đọc được kết quả đã lưu. Dừng ghi nhận và kiểm tra dữ liệu trình duyệt; không xóa lịch sử.");
+          return null;
+        }
+        const result = change(state);
+        if (!result) return null;
+        // One storage write contains results, presentation and correction history.
+        localStorage.setItem(this.storageKey, JSON.stringify(state));
+        this.recordedWinners = state.winners;
+        this.auditHistory = state.history;
+        this.presentation = state.presentation;
+        this.updateQuotaTrackers();
+        this.renderWinnersTable();
+        this.broadcastResults(settled);
+        return result;
       });
+    } catch (error) {
+      console.warn("Cannot save lucky draw results", error);
+      this.showFeedback("Không lưu được kết quả. Chưa công bố lên LED; kiểm tra dung lượng và quyền lưu của trình duyệt.");
+      return null;
+    } finally {
+      this.isBusy = false;
+      this.refreshEntryFeedback(true);
     }
+  }
+
+  remainingQuota(prizeKey, winners = this.recordedWinners) {
+    const def = this.prizeDefs[prizeKey];
+    if (!def) return 0;
+    return def.total === null ? Infinity : def.total - winners.filter(w => w.prizeId === prizeKey).length;
+  }
+
+  validateRecipients(employees, prizeKey, customInfo, winners = this.recordedWinners) {
+    employees = employees.map(e => this.employees.find(x => x.code === e?.code));
+    if (!this.prizeDefs[prizeKey]) return "Hãy chọn một hạng giải hợp lệ.";
+    if (!employees.length || employees.some(e => !e || !this.employees.some(x => x.code === e.code))) return "Mã nhân viên không hợp lệ hoặc tên chưa xác định duy nhất.";
+    const codes = employees.map(e => e.code);
+    if (new Set(codes).size !== codes.length) return "Danh sách có mã nhân viên lặp lại. Mỗi mã chỉ nhập một lần trong đợt.";
+    if (employees.length > this.remainingQuota(prizeKey, winners)) return `Đợt này chỉ còn ${Math.max(0, this.remainingQuota(prizeKey, winners))} suất. Không thể trao vượt số lượng.`;
+    if (prizeKey === "dacbiet") {
+      if (!customInfo?.name?.trim() || !customInfo?.value?.trim()) return "Nhập tên giải phát sinh và phần quà cụ thể trước khi công bố.";
+      if (customInfo.name.length > 100 || customInfo.value.length > 160) return "Tên giải tối đa 100 ký tự; phần quà tối đa 160 ký tự để chiếu rõ trên LED.";
+    } else {
+      if (employees.some(e => !e.isGala)) return "Có người chưa xác nhận dự Gala. Chưa thể nhận giải chính; hãy kiểm tra danh sách hoặc chọn giải phát sinh theo quyết định Ban Lãnh đạo.";
+      if (employees.some(e => winners.some(w => w.code === e.code))) return "Có người đã trúng thưởng. Không trao lặp trong 29 giải chính; giải phát sinh cần xác nhận riêng.";
+    }
+    return null;
+  }
+
+  createRecord(emp, prizeKey, customInfo, operationId, source) {
+    const prize = this.prizeDefs[prizeKey];
+    return {
+      id: crypto.randomUUID(), operationId, source,
+      code: emp.code, name: emp.name, dept: emp.dept, pos: emp.pos || "Nhân viên",
+      company: emp.company || "Tà Lùng Quang Minh", prizeId: prizeKey,
+      prizeName: customInfo ? `${customInfo.name} (${customInfo.value})` : prize.name,
+      prizeShort: customInfo ? customInfo.name : prize.short,
+      prizeBadge: customInfo ? `⭐ ${customInfo.name}` : prize.badge,
+      prizeTagClass: prize.tagClass, customInfo,
+      createdAt: new Date().toISOString(),
+      time: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }),
+      isGala: !!emp.isGala,
+    };
+  }
+
+  confirmationText(employees, prizeKey, customInfo, winners, source = "manual") {
+    const prize = this.prizeDefs[prizeKey];
+    const warnings = [];
+    if (prizeKey === "dacbiet") {
+      warnings.push("GIẢI PHÁT SINH: xác nhận theo quyết định Ban Lãnh đạo.");
+      if (employees.some(e => !e.isGala)) warnings.push("Có người chưa xác nhận dự Gala.");
+      if (employees.some(e => winners.some(w => w.code === e.code))) warnings.push("Có người đã nhận giải trước đó.");
+    }
+    return [source === "random" ? "QUAY NGẪU NHIÊN BẰNG MÁY" : "CÔNG BỐ KẾT QUẢ PHIẾU BỐC",
+      `${prize.round} • ${customInfo ? customInfo.name + " — " + customInfo.value : prize.gift}`,
+      ...employees.map(e => `${e.code} — ${e.name} — ${e.dept}`), ...warnings,
+      "Kiểm tra đúng người, đúng giải. Xác nhận để lưu kết quả và công bố lên LED?"].join("\n\n");
+  }
+
+  async commitWinners(employees, prizeKey, customInfo, source = "manual") {
+    // Re-resolve canonical directory entries at the shared recording boundary.
+    employees = employees.map(e => this.employees.find(x => x.code === e?.code));
+    return this.changeResults(state => {
+      const error = this.validateRecipients(employees, prizeKey, customInfo, state.winners);
+      if (error) return this.showFeedback(error);
+      if (source === "random" && employees.some(e => !e.isGala || state.winners.some(w => w.code === e.code))) {
+        return this.showFeedback("Người được máy chọn đã nhận giải hoặc chưa xác nhận dự Gala. Hãy chọn lại từ danh sách mới nhất.");
+      }
+      if (!confirm(this.confirmationText(employees, prizeKey, customInfo, state.winners, source))) {
+        this.showFeedback("Chưa công bố: đã hủy xác nhận.", false);
+        return null;
+      }
+      const operationId = crypto.randomUUID();
+      const added = employees.map(e => this.createRecord(e, prizeKey, customInfo, operationId, source));
+      state.winners.unshift(...added);
+      state.history.push({ action: "RECORD", at: new Date().toISOString(), operationId, records: added });
+      state.presentation = added.length === 1 ? { type: "single", id: added[0].id } : {
+        type: "batch", ids: added.map(w => w.id), title: `VINH DANH ${added.length} NGƯỜI TRÚNG GIẢI`, badge: added[0].prizeBadge,
+      };
+      return added;
+    }, false);
   }
 
   init() {
@@ -179,6 +305,19 @@ class LuckyDrawManager {
     this.updateActivePrizeLabel();
     this.renderWinnersTable();
     this.setupBroadcastReceiver();
+    this.setupResultEditor();
+    this.restorePresentation();
+    this.refreshEntryFeedback();
+    window.addEventListener("storage", event => {
+      if (event.key !== this.storageKey || this.isBusy || window.stageSync?.isStageScreen) return;
+      const state = this.readState();
+      this.recordedWinners = state.winners;
+      this.auditHistory = state.history;
+      this.presentation = state.presentation;
+      this.updateQuotaTrackers();
+      this.renderWinnersTable();
+      this.refreshEntryFeedback();
+    });
   }
 
   cacheWinnerElements() {
@@ -215,7 +354,7 @@ class LuckyDrawManager {
       this.inputCode.addEventListener("input", () => this.handleCodeInput());
       this.inputCode.addEventListener("change", () => this.handleCodeInput());
       this.inputCode.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && !e.repeat) {
           e.preventDefault();
           this.recordWinnerFromInput();
         }
@@ -227,7 +366,7 @@ class LuckyDrawManager {
         this.handleBatchInput(),
       );
       this.inputBatchCodes.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && !e.repeat) {
           e.preventDefault();
           this.recordBatchFromInput();
         }
@@ -266,6 +405,7 @@ class LuckyDrawManager {
     // Keyboard ESC to close batch modal
     window.addEventListener("keydown", (e) => {
       if (window.stageSync?.isStageScreen) return;
+      if (document.querySelector("dialog[open]")) return;
       if (
         e.key === "Escape" &&
         this.batchModal &&
@@ -332,6 +472,7 @@ class LuckyDrawManager {
       });
     }
 
+    this.refreshEntryFeedback();
     if (window.soundEngine) window.soundEngine.playClick();
   }
 
@@ -355,7 +496,7 @@ class LuckyDrawManager {
     ).length;
     const total = def.total;
     const pct =
-      total === 99 ? 100 : Math.min(100, Math.round((awarded / total) * 100));
+      total === null ? 100 : Math.min(100, Math.round((awarded / total) * 100));
 
     if (imgEl) {
       imgEl.src = def.image || "assets/images/logo-official-full.png";
@@ -367,13 +508,16 @@ class LuckyDrawManager {
       tierBadgeEl.className = `active-prize-tier-badge ${def.tagClass || "tag-gold"}`;
     }
     if (roundPillEl) {
-      roundPillEl.innerHTML = `<i class="fas fa-gift"></i> ${def.total === 99 ? "TÙY CHỌN" : def.total + " SUẤT QUÀ"}`;
+      roundPillEl.innerHTML = `<i class="fas fa-gift"></i> ${def.total === null ? "TÙY CHỌN" : def.total + " SUẤT QUÀ"}`;
     }
-    if (nameEl) nameEl.textContent = def.gift || def.name;
+    if (nameEl) {
+      nameEl.textContent = def.gift || def.name;
+      nameEl.classList.remove("long-prize-label");
+    }
     if (fillEl) fillEl.style.width = `${pct}%`;
     if (quotaEl) {
       quotaEl.innerHTML =
-        def.total === 99
+        def.total === null
           ? `Đã trao: <strong>${awarded}</strong> giải phát sinh`
           : `Đã trao: <strong>${awarded} / ${total}</strong> giải (${pct}%)`;
     }
@@ -403,12 +547,14 @@ class LuckyDrawManager {
       if (this.inputBatchCodes) this.inputBatchCodes.focus();
     }
 
+    this.refreshEntryFeedback();
     if (window.soundEngine) window.soundEngine.playClick();
   }
 
   setQuickCustomPrize(name, value) {
     if (this.inputCustomName) this.inputCustomName.value = name;
     if (this.inputCustomValue) this.inputCustomValue.value = value;
+    this.refreshEntryFeedback();
     if (window.soundEngine) window.soundEngine.playClick();
   }
 
@@ -421,25 +567,14 @@ class LuckyDrawManager {
 
       if (msg.type === "LUCKY_RECORDS_UPDATE") {
         this.recordedWinners = msg.winners;
-        this.winnerCard.innerHTML = msg.winnerHtml;
-        this.winnerCard.className = msg.winnerClass;
-        // Restored markup also needs fresh references for the next presentation.
-        this.cacheWinnerElements();
-        [this.slotD1, this.slotD2, this.slotD3].forEach((el, i) => {
-          el.querySelector('.slot-digit-val').textContent = msg.digits[i];
-        });
+        this.presentation = msg.presentation;
         this.updateQuotaTrackers();
-        this.updateActivePrizeLabel();
+        if (msg.settled) this.restorePresentation();
       } else if (msg.type === "LUCKY_BATCH_PAGE") {
         this.batchPage = msg.page;
         this.renderBatchPage();
       } else if (msg.type === "LUCKY_SHOW_WINNER") {
-        this.celebrateAndRecordWinner(
-          msg.emp,
-          msg.prizeKey,
-          msg.customInfo,
-          false,
-        );
+        this.startWinnerPresentation(msg.record);
       } else if (msg.type === "LUCKY_SHOW_BATCH_MODAL") {
         this.displayBatchModal(
           msg.winners,
@@ -453,48 +588,54 @@ class LuckyDrawManager {
         if (msg.tierKey) {
           this.selectTier(msg.tierKey, true, false);
         }
-      } else if (msg.type === "LUCKY_DELETE_WINNER") {
-        this.deleteWinner(msg.id, false);
-      } else if (msg.type === "LUCKY_RESET_WINNERS") {
-        this.recordedWinners = [];
-        this.saveRecordedWinners();
-        this.updateQuotaTrackers();
-        this.renderWinnersTable();
-        this.winnerCard.classList.add("hidden");
       }
+
     });
   }
 
   findEmployee(rawQuery) {
-    if (!rawQuery) return null;
-    const q = String(rawQuery).trim().toLowerCase();
-
-    // 1. Try exact 3-digit padded code (e.g., "5" -> "005", "66" -> "066")
-    const num = parseInt(q, 10);
-    let codeStr = q;
-    if (!isNaN(num)) {
-      codeStr = String(num).padStart(3, "0");
-      const byCode = this.employees.find((e) => e.code === codeStr);
-      if (byCode) return byCode;
+    const query = String(rawQuery || "").trim();
+    if (/^\d{1,3}$/.test(query)) {
+      return this.employees.find(e => e.code === query.padStart(3, "0")) || null;
     }
+    const exact = this.employees.filter(e => e.name.toLocaleLowerCase("vi") === query.toLocaleLowerCase("vi"));
+    return exact.length === 1 ? exact[0] : null;
+  }
 
-    // 2. Try raw code match
-    const byRawCode = this.employees.find((e) => e.code.toLowerCase() === q);
-    if (byRawCode) return byRawCode;
+  batchEmployees() {
+    const tokens = (this.inputBatchCodes?.value || "").trim().split(/[\s,;]+/).filter(Boolean);
+    return tokens.map(token => this.findEmployee(token));
+  }
 
-    // 3. Try exact or partial name match
-    const byName = this.employees.find((e) => e.name.toLowerCase() === q);
-    if (byName) return byName;
-
-    const byPartialName = this.employees.find((e) =>
-      e.name.toLowerCase().includes(q),
-    );
-    if (byPartialName) return byPartialName;
-
-    return null;
+  refreshEntryFeedback(preserveMessage = false) {
+    if (!this.btnSubmit) return;
+    const employees = this.entryMode === "batch" ? this.batchEmployees() : [this.findEmployee(this.inputCode?.value)];
+    const error = this.validateRecipients(employees, this.activeTier, this.getCustomPrizeInfo());
+    const disabled = this.isBusy || this.isSpinning || this.storageError;
+    this.btnSubmit.disabled = disabled || !!error;
+    this.btnBatchSubmit.disabled = disabled || !!error;
+    this.btnRandom.disabled = disabled || this.remainingQuota(this.activeTier) <= 0;
+    this.selectPrize.disabled = disabled;
+    this.inputCode.disabled = disabled;
+    this.inputBatchCodes.disabled = disabled;
+    this.inputCustomName.disabled = disabled;
+    this.inputCustomValue.disabled = disabled;
+    document.querySelectorAll(".tier-card").forEach(button => { button.disabled = disabled; });
+    document.querySelectorAll(".lucky-mode-tab, .quick-chip-btn, .board-action-buttons button, [data-result-action]").forEach(button => { button.disabled = disabled; });
+    if (preserveMessage) return;
+    if (disabled) {
+      this.showFeedback(this.storageError ? "Không đọc được kết quả đã lưu. Dừng ghi nhận và kiểm tra dữ liệu trình duyệt." : "Đang lưu hoặc công bố kết quả. Vui lòng đợi.", !!this.storageError);
+    } else if (error) {
+      const blank = !(this.entryMode === "batch" ? this.inputBatchCodes.value : this.inputCode.value).trim();
+      this.showFeedback(blank ? "Nhập mã phiếu đã bốc để kiểm tra người nhận và suất giải." : error, !blank);
+    } else {
+      const remaining = this.remainingQuota(this.activeTier);
+      this.showFeedback(`${employees.length} người đã kiểm tra • ${Number.isFinite(remaining) ? "Còn " + remaining + " suất" : "Giải phát sinh"}. Xác nhận thông tin trước khi công bố.`, false);
+    }
   }
 
   handleCodeInput() {
+    this.refreshEntryFeedback();
     if (!this.inputCode || !this.previewCard) return;
     const val = this.inputCode.value.trim();
 
@@ -532,6 +673,7 @@ class LuckyDrawManager {
   }
 
   handleBatchInput() {
+    this.refreshEntryFeedback();
     if (
       !this.inputBatchCodes ||
       !this.batchPreviewCard ||
@@ -564,11 +706,11 @@ class LuckyDrawManager {
         resolved.push({ emp, token: tok, alreadyWon });
 
         chipsHtml += `
-          <div class="batch-emp-chip ${alreadyWon ? "chip-warn" : "chip-valid"}">
+          <div class="batch-emp-chip ${alreadyWon || !emp.isGala ? "chip-warn" : "chip-valid"}">
             <span class="chip-code">${emp.code}</span>
-            <span class="chip-name">${emp.name}</span>
-            <span class="chip-sub">(${emp.dept})</span>
-            ${alreadyWon ? `<span class="chip-tag-warn">⚠️ Đã trúng ${alreadyWon.prizeShort}</span>` : ""}
+            <span class="chip-name">${this.escapeHtml(emp.name)}</span>
+            <span class="chip-sub">(${this.escapeHtml(emp.dept)})</span>
+            ${alreadyWon ? `<span class="chip-tag-warn">⚠️ Đã trúng ${this.escapeHtml(alreadyWon.prizeShort)}</span>` : ""}
           </div>
         `;
       } else {
@@ -584,141 +726,114 @@ class LuckyDrawManager {
     this.parsedBatchEmployees = resolved;
     this.batchChipsContainer.innerHTML = chipsHtml;
     if (this.batchPreviewCount) {
-      this.batchPreviewCount.innerHTML = `<i class="fas fa-users"></i> ${validCount} nhân sự hợp lệ / ${tokens.length} mã đã nhập`;
+      this.batchPreviewCount.innerHTML = `<i class="fas fa-users"></i> ${validCount} mã đã nhận diện / ${tokens.length} mã đã nhập`;
     }
     this.batchPreviewCard.classList.remove("hidden");
   }
 
   getCustomPrizeInfo() {
-    const customName = this.inputCustomName
-      ? this.inputCustomName.value.trim()
-      : "Giải Thưởng Nóng Ban Lãnh Đạo";
-    const customVal = this.inputCustomValue
-      ? this.inputCustomValue.value.trim()
-      : "Phần Quà Vinh Danh Sân Khấu";
-    return {
-      name: customName || "Giải Thưởng Nóng Ban Lãnh Đạo",
-      value: customVal || "Phần Quà Vinh Danh Sân Khấu",
-    };
+    if (this.activeTier !== "dacbiet") return null;
+    return { name: this.inputCustomName?.value.trim() || "", value: this.inputCustomValue?.value.trim() || "" };
   }
 
-  recordWinnerFromInput() {
-    if (this.isSpinning) return;
-
-    const val = this.inputCode ? this.inputCode.value.trim() : "";
-    if (!val) {
-      if (window.app)
-        window.app.showToast(
-          "⚠️ Vui lòng nhập Mã nhân viên (VD: 066, 005...)!",
-        );
-      if (this.inputCode) this.inputCode.focus();
-      return;
-    }
-
-    const emp = this.findEmployee(val);
-    if (!emp) {
-      if (window.app)
-        window.app.showToast(
-          `❌ Không tìm thấy nhân viên với mã "${val}"! Vui lòng kiểm tra lại.`,
-        );
-      if (this.inputCode) this.inputCode.focus();
-      return;
-    }
-
-    const prizeKey = this.selectPrize
-      ? this.selectPrize.value
-      : this.activeTier;
-    const customInfo =
-      prizeKey === "dacbiet" ? this.getCustomPrizeInfo() : null;
-
-    // Duplicate check warning
-    const alreadyWon = this.recordedWinners.find((w) => w.code === emp.code);
-    if (alreadyWon) {
-      const confirmContinue = confirm(
-        `⚠️ CẢNH BÁO TRÙNG THƯỞNG:\n\nNhân viên ${emp.name} (Mã số ${emp.code}) đã được ghi nhận trúng "${alreadyWon.prizeShort}" trước đó!\n\nBạn có chắc chắn Ban Giám đốc muốn trao thêm giải "${this.prizeDefs[prizeKey]?.short || "này"}" không?`,
-      );
-      if (!confirmContinue) return;
-    }
-
-    this.celebrateAndRecordWinner(emp, prizeKey, customInfo, true);
+  async recordWinnerFromInput() {
+    const employee = this.findEmployee(this.inputCode?.value);
+    return this.celebrateAndRecordWinner(employee, this.activeTier, this.getCustomPrizeInfo());
   }
 
-  celebrateAndRecordWinner(
-    emp,
-    prizeKey = "donghanh",
-    customInfo = null,
-    broadcast = true,
-  ) {
-    if (this.isSpinning) return;
+  async celebrateAndRecordWinner(emp, prizeKey = "donghanh", customInfo = null, broadcast = true, source = "manual") {
+    if (window.stageSync?.isStageScreen) return null;
+    const added = await this.commitWinners([emp], prizeKey, customInfo, source);
+    if (!added) return null;
+    this.inputCode.value = "";
+    this.handleCodeInput();
+    this.startWinnerPresentation(added[0]);
+    if (this.channel) this.channel.postMessage({ type: "LUCKY_SHOW_WINNER", record: added[0] });
+    return added[0];
+  }
+
+  stopPresentation() {
+    this.spinTimeouts.forEach(clearTimeout);
+    this.spinTimeouts = [];
+    this.spinIntervals.forEach(clearInterval);
+    this.spinIntervals = [null, null, null];
+    this.isSpinning = false;
+    [this.slotD1, this.slotD2, this.slotD3].forEach(el => el.classList.remove("rolling", "locked"));
+  }
+
+  startWinnerPresentation(record) {
+    this.stopPresentation();
+    this.closeBatchModal(false);
     this.isSpinning = true;
-    this.selectTier(prizeKey, true, false);
-
-    const prize = this.prizeDefs[prizeKey] || this.prizeDefs.donghanh;
-    const targetCode = String(emp.code).padStart(3, "0");
-
-    // 1. Hide announcement card while rolling
-    if (this.winnerCard) {
-      this.winnerCard.classList.add("hidden");
-    }
-
-    if (this.btnSubmit) {
-      this.btnSubmit.disabled = true;
-      this.btnSubmit.innerHTML =
-        '<i class="fas fa-spinner fa-spin"></i> ĐANG VINH DANH...';
-    }
-
-    // 2. Broadcast immediately if operator
-    if (broadcast && this.channel) {
-      this.channel.postMessage({
-        type: "LUCKY_SHOW_WINNER",
-        emp,
-        prizeKey,
-        customInfo,
-      });
-    }
-
-    // 3. Fast rolling slot animation on the 3 boxes
+    this.selectTier(record.prizeId, true, false);
+    if (record.customInfo) this.showCustomPrizeLabel(record.customInfo);
+    this.winnerCard.classList.add("hidden");
+    this.refreshEntryFeedback();
     const digits = [this.slotD1, this.slotD2, this.slotD3];
-    const targetDigits = [
-      parseInt(targetCode[0], 10) || 0,
-      parseInt(targetCode[1], 10) || 0,
-      parseInt(targetCode[2], 10) || 0,
-    ];
-
-    digits.forEach((el, idx) => {
-      if (el) {
-        el.classList.add("rolling");
-        this.spinIntervals[idx] = setInterval(() => {
-          const valEl = el.querySelector(".slot-digit-val") || el;
-          valEl.textContent = Math.floor(Math.random() * 10);
-          if (idx === 0 && Math.random() > 0.6 && window.soundEngine) {
-            window.soundEngine.playSlotSpinTick();
+    digits.forEach((el, index) => {
+      el.classList.add("rolling");
+      this.spinIntervals[index] = setInterval(() => {
+        el.querySelector(".slot-digit-val").textContent = Math.floor(Math.random() * 10);
+        if (index === 0 && window.soundEngine) window.soundEngine.playSlotSpinTick();
+      }, 50);
+      this.spinTimeouts.push(setTimeout(() => {
+        this.stopDigit(index, Number(record.code[index]));
+        if (window.soundEngine) window.soundEngine.playSlotStop(index);
+        if (index === 2) {
+          this.isSpinning = false;
+          if (this.presentation?.type !== "single" || this.presentation.id !== record.id) {
+            this.restorePresentation();
+            this.refreshEntryFeedback();
+            return;
           }
-        }, 50);
-      }
+          this.showWinnerRecord(record);
+          this.refreshEntryFeedback();
+          if (window.soundEngine) { window.soundEngine.playJackpot(); window.soundEngine.playCheer(); }
+          if (window.confettiEngine) window.confettiEngine.celebrate();
+          this.broadcastResults();
+        }
+      }, [1200, 2000, 2900][index]));
     });
+  }
 
-    // Staggered stop for dramatic effect
-    setTimeout(() => {
-      this.stopDigit(0, targetDigits[0]);
-      if (window.soundEngine) window.soundEngine.playSlotStop(0);
-    }, 1200);
+  showWinnerRecord(record) {
+    this.cacheWinnerElements();
+    this.winnerNumEl.textContent = `MÃ SỐ ${record.code}`;
+    this.winnerNameEl.textContent = record.name;
+    this.winnerDeptEl.textContent = `${record.pos} • Phòng ${record.dept}`;
+    this.winnerPrizeEl.textContent = record.prizeName;
+    this.winnerPrizeEl.className = `winner-prize-badge ${record.prizeTagClass}`;
+    this.winnerPrizeEl.classList.toggle("long-prize-label", record.prizeName.length > 140);
+    this.winnerCard.classList.remove("hidden");
+    this.selectTier(record.prizeId, true, false);
+    // Selecting another tier can hide the old winner; the record is now current.
+    this.winnerCard.classList.remove("hidden");
+    [this.slotD1, this.slotD2, this.slotD3].forEach((el, i) => { el.querySelector(".slot-digit-val").textContent = record.code[i]; });
+    if (record.customInfo) {
+      this.showCustomPrizeLabel(record.customInfo);
+      this.inputCustomName.value = record.customInfo.name;
+      this.inputCustomValue.value = record.customInfo.value;
+    }
+  }
 
-    setTimeout(() => {
-      this.stopDigit(1, targetDigits[1]);
-      if (window.soundEngine) window.soundEngine.playSlotStop(1);
-    }, 2000);
+  showCustomPrizeLabel(customInfo) {
+    const label = document.getElementById("active-prize-name");
+    label.textContent = `${customInfo.name} — ${customInfo.value}`;
+    label.classList.toggle("long-prize-label", label.textContent.length > 90);
+  }
 
-    setTimeout(() => {
-      this.stopDigit(2, targetDigits[2]);
-      this.finishWinnerPresentation(
-        emp,
-        prize,
-        targetCode,
-        customInfo,
-        broadcast,
-      );
-    }, 2900);
+  restorePresentation() {
+    this.stopPresentation();
+    this.winnerCard.classList.add("hidden");
+    this.closeBatchModal(false);
+    [this.slotD1, this.slotD2, this.slotD3].forEach(el => { el.querySelector(".slot-digit-val").textContent = "0"; });
+    if (this.presentation?.type === "single") {
+      const record = this.recordedWinners.find(w => w.id === this.presentation.id);
+      if (record) this.showWinnerRecord(record);
+    } else if (this.presentation?.type === "batch") {
+      const winners = this.presentation.ids.map(id => this.recordedWinners.find(w => w.id === id)).filter(Boolean);
+      if (winners.length) this.displayBatchModal(winners, this.presentation.title, this.presentation.badge, false);
+    }
   }
 
   stopDigit(index, finalValue) {
@@ -737,182 +852,19 @@ class LuckyDrawManager {
     }
   }
 
-  finishWinnerPresentation(emp, prize, targetCode, customInfo, broadcast) {
-    this.isSpinning = false;
-
-    if (this.btnSubmit) {
-      this.btnSubmit.disabled = false;
-      this.btnSubmit.innerHTML =
-        '<i class="fas fa-bullhorn"></i> Vinh Danh Màn LED & Ghi Nhận';
+  async recordBatchFromInput() {
+    const employees = this.batchEmployees();
+    const added = await this.commitWinners(employees, this.activeTier, this.getCustomPrizeInfo());
+    if (!added) return null;
+    this.inputBatchCodes.value = "";
+    this.handleBatchInput();
+    this.restorePresentation();
+    if (this.presentation.type === "single") {
+      this.broadcastResults();
+    } else {
+      this.displayBatchModal(added, this.presentation.title, this.presentation.badge, true);
     }
-
-    const prizeDisplayName = customInfo
-      ? `${customInfo.name} (${customInfo.value})`
-      : prize.name;
-    const prizeShort = customInfo ? customInfo.name : prize.short;
-    const prizeBadge = customInfo ? `⭐ ${customInfo.name}` : prize.badge;
-
-    // Populate Grand Winner Card
-    if (this.winnerNumEl) this.winnerNumEl.textContent = `MÃ SỐ ${targetCode}`;
-    if (this.winnerNameEl) this.winnerNameEl.textContent = emp.name;
-    if (this.winnerDeptEl) {
-      this.winnerDeptEl.textContent = `${emp.pos || "Nhân viên"} • Phòng ${emp.dept}`;
-    }
-    if (this.winnerPrizeEl) {
-      this.winnerPrizeEl.textContent = `${prizeBadge}: ${prizeDisplayName}`;
-      this.winnerPrizeEl.className = `winner-prize-badge ${prize.tagClass}`;
-    }
-    if (this.winnerCard) {
-      this.winnerCard.classList.remove("hidden");
-    }
-
-    // Confetti & Audio
-    if (window.soundEngine) {
-      window.soundEngine.playJackpot();
-      setTimeout(() => window.soundEngine.playCheer(), 500);
-    }
-    if (window.confettiEngine) {
-      window.confettiEngine.celebrate();
-      setTimeout(() => window.confettiEngine.celebrate(), 800);
-    }
-
-    // Save to Recorded Winners list
-    if (window.stageSync?.isStageScreen) return;
-    const newRecord = {
-      id: "win-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
-      code: targetCode,
-      name: emp.name,
-      dept: emp.dept,
-      pos: emp.pos || "Nhân viên",
-      company: emp.company || "Tà Lùng Quang Minh",
-      prizeId: prize.id,
-      prizeName: prizeDisplayName,
-      prizeShort: prizeShort,
-      prizeBadge: prizeBadge,
-      prizeTagClass: prize.tagClass,
-      time: new Date().toLocaleTimeString("vi-VN", {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-      isGala: !!emp.isGala,
-    };
-
-    this.recordedWinners.unshift(newRecord);
-    this.saveRecordedWinners();
-    this.updateQuotaTrackers();
-    this.renderWinnersTable();
-
-    // Reset input
-    if (this.inputCode) {
-      this.inputCode.value = "";
-    }
-    if (this.previewCard) {
-      this.previewCard.classList.add("hidden");
-    }
-
-    if (window.app) {
-      window.app.showToast(
-        `🎉 Chúc mừng ${emp.name} (Mã ${targetCode}) trúng ${prizeShort}!`,
-        "🏆",
-      );
-    }
-  }
-
-  recordBatchFromInput() {
-    if (!this.parsedBatchEmployees || this.parsedBatchEmployees.length === 0) {
-      alert(
-        "⚠️ Vui lòng nhập ít nhất 1 mã nhân viên hợp lệ vào ô danh sách đợt!",
-      );
-      if (this.inputBatchCodes) this.inputBatchCodes.focus();
-      return;
-    }
-
-    const prizeKey = this.selectPrize
-      ? this.selectPrize.value
-      : this.activeTier;
-    const prize = this.prizeDefs[prizeKey] || this.prizeDefs.donghanh;
-    const customInfo =
-      prizeKey === "dacbiet" ? this.getCustomPrizeInfo() : null;
-
-    const prizeDisplayName = customInfo
-      ? `${customInfo.name} (${customInfo.value})`
-      : prize.name;
-    const prizeShort = customInfo ? customInfo.name : prize.short;
-    const prizeBadge = customInfo ? `⭐ ${customInfo.name}` : prize.badge;
-
-    // Check if any in the batch already won
-    const duplicates = this.parsedBatchEmployees.filter(
-      (item) => item.alreadyWon,
-    );
-    if (duplicates.length > 0) {
-      const names = duplicates
-        .map((d) => `${d.emp.name} (${d.emp.code})`)
-        .join(", ");
-      const confirmBatch = confirm(
-        `⚠️ CÓ ${duplicates.length} NHÂN VIÊN ĐÃ TRÚNG THƯỞNG TRƯỚC ĐÓ:\n\n${names}\n\nBan Giám đốc có chắc chắn muốn trao thêm đợt "${prizeShort}" cho những người này không?`,
-      );
-      if (!confirmBatch) return;
-    }
-
-    const nowStr = new Date().toLocaleTimeString("vi-VN", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    const newlyAdded = [];
-
-    // Add each employee to recordedWinners
-    this.parsedBatchEmployees.forEach((item) => {
-      const emp = item.emp;
-      const targetCode = String(emp.code).padStart(3, "0");
-      const rec = {
-        id: "win-" + Date.now() + "-" + Math.floor(Math.random() * 10000),
-        code: targetCode,
-        name: emp.name,
-        dept: emp.dept,
-        pos: emp.pos || "Nhân viên",
-        company: emp.company || "Tà Lùng Quang Minh",
-        prizeId: prize.id,
-        prizeName: prizeDisplayName,
-        prizeShort: prizeShort,
-        prizeBadge: prizeBadge,
-        prizeTagClass: prize.tagClass,
-        time: nowStr,
-        isGala: !!emp.isGala,
-      };
-      this.recordedWinners.unshift(rec);
-      newlyAdded.push(rec);
-    });
-
-    this.saveRecordedWinners();
-    this.updateQuotaTrackers();
-    this.renderWinnersTable();
-
-    // Clear batch input
-    if (this.inputBatchCodes) this.inputBatchCodes.value = "";
-    if (this.batchPreviewCard) this.batchPreviewCard.classList.add("hidden");
-    this.parsedBatchEmployees = [];
-
-    // Sound & Confetti
-    if (window.soundEngine) {
-      window.soundEngine.playJackpot();
-      setTimeout(() => window.soundEngine.playCheer(), 500);
-    }
-    if (window.confettiEngine) {
-      window.confettiEngine.celebrate();
-      setTimeout(() => window.confettiEngine.celebrate(), 800);
-    }
-
-    if (window.app) {
-      window.app.showToast(
-        `🎉 Đã ghi nhận đợt ${newlyAdded.length} nhân viên trúng ${prizeShort}!`,
-        "🏆",
-      );
-    }
-
-    // Immediately open the Grand Batch Stage Board to honor all newly added winners
-    const batchTitle = `VINH DANH ${newlyAdded.length} CÁN BỘ NHÂN VIÊN TRÚNG GIẢI`;
-    const batchBadge = prizeBadge;
-    this.displayBatchModal(newlyAdded, batchTitle, batchBadge, true);
+    return added;
   }
 
   openBatchModalForCurrentFilter() {
@@ -1112,78 +1064,128 @@ class LuckyDrawManager {
     this.renderWinnersTable();
   }
 
-  spinRandomFromGalaList() {
-    if (this.isSpinning) return;
-
-    // Filter Gala participants who have not won yet
-    const alreadyWonCodes = new Set(this.recordedWinners.map((w) => w.code));
-    let eligible = this.galaAttendees.filter(
-      (e) => !alreadyWonCodes.has(e.code),
-    );
-
-    if (eligible.length === 0) {
-      eligible = this.employees.filter((e) => !alreadyWonCodes.has(e.code));
-    }
-
-    if (eligible.length === 0) {
-      alert(
-        "⚠️ Toàn bộ danh sách nhân viên đều đã trúng giải! Bạn có thể xóa bớt lịch sử hoặc tiếp tục trao giải trùng.",
-      );
-      return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * eligible.length);
-    const chosenEmp = eligible[randomIndex];
-
-    if (this.inputCode) {
-      this.inputCode.value = chosenEmp.code;
-      this.handleCodeInput();
-    }
-
-    const prizeKey = this.selectPrize
-      ? this.selectPrize.value
-      : this.activeTier;
-    const customInfo =
-      prizeKey === "dacbiet" ? this.getCustomPrizeInfo() : null;
-    this.celebrateAndRecordWinner(chosenEmp, prizeKey, customInfo, true);
+  async spinRandomFromGalaList() {
+    if (this.isBusy || this.isSpinning || window.stageSync?.isStageScreen) return null;
+    const latest = this.readState();
+    if (this.storageError) return this.showFeedback("Không đọc được kết quả đã lưu. Chưa thể quay ngẫu nhiên.");
+    const eligible = this.galaAttendees.filter(e => !latest.winners.some(w => w.code === e.code));
+    if (!eligible.length) return this.showFeedback("Không còn người dự Gala chưa trúng giải. Không tự chuyển sang người vắng mặt.");
+    // Native secure randomness with rejection sampling, avoiding modulo bias.
+    const buffer = new Uint32Array(1);
+    const limit = Math.floor(0x100000000 / eligible.length) * eligible.length;
+    do { crypto.getRandomValues(buffer); } while (buffer[0] >= limit);
+    const chosen = eligible[buffer[0] % eligible.length];
+    this.inputCode.value = chosen.code;
+    this.handleCodeInput();
+    return this.celebrateAndRecordWinner(chosen, this.activeTier, this.getCustomPrizeInfo(), true, "random");
   }
 
-  deleteWinner(id, broadcast = true) {
-    this.recordedWinners = this.recordedWinners.filter((w) => w.id !== id);
-    this.saveRecordedWinners();
-    this.updateQuotaTrackers();
-    this.renderWinnersTable();
-
-    if (window.soundEngine) window.soundEngine.playClick();
-    if (window.app) window.app.showToast("🗑️ Đã xóa 1 mục trúng thưởng");
-
-    if (broadcast && this.channel) {
-      this.channel.postMessage({ type: "LUCKY_DELETE_WINNER", id });
-    }
+  async deleteWinner(id) {
+    return this.changeResults(state => {
+      const record = state.winners.find(w => w.id === id);
+      if (!record) return null;
+      if (!confirm(`HỦY KẾT QUẢ\n\n${record.code} — ${record.name}\n${record.prizeName}\n\nHủy kết quả này và trả lại suất giải?`)) return null;
+      const reason = prompt("Lý do hủy kết quả (bắt buộc):")?.trim();
+      if (!reason) return this.showFeedback("Chưa hủy: cần ghi rõ lý do.");
+      state.history.push({ action: "CANCEL", at: new Date().toISOString(), reason, before: record });
+      state.winners = state.winners.filter(w => w.id !== id);
+      state.presentation = null;
+      return true;
+    }).then(result => { if (result) this.restorePresentation(); return result; });
   }
 
-  resetAllWinners(broadcast = true) {
-    if (this.recordedWinners.length === 0) return;
-    const confirmReset = confirm(
-      "Bạn có chắc chắn muốn xóa toàn bộ danh sách kết quả bốc thăm đã ghi nhận không?",
-    );
-    if (!confirmReset) return;
+  async resetAllWinners() {
+    return this.changeResults(state => {
+      if (!state.winners.length) return null;
+      if (!confirm(`HỦY TOÀN BỘ ${state.winners.length} KẾT QUẢ ĐANG CÓ?\n\nCác suất giải sẽ được trả lại; lịch sử hủy vẫn được giữ.`)) return null;
+      const reason = prompt("Lý do hủy toàn bộ kết quả (bắt buộc):")?.trim();
+      if (!reason) return this.showFeedback("Chưa hủy: cần ghi rõ lý do.");
+      state.history.push({ action: "RESET", at: new Date().toISOString(), reason, before: state.winners });
+      state.winners = [];
+      state.presentation = null;
+      return true;
+    }).then(result => { if (result) this.restorePresentation(); return result; });
+  }
 
-    this.recordedWinners = [];
-    if (this.winnerCard) this.winnerCard.classList.add("hidden");
-    this.saveRecordedWinners();
-    this.updateQuotaTrackers();
-    this.renderWinnersTable();
+  setupResultEditor() {
+    this.editDialog = document.getElementById("lucky-edit-dialog");
+    const select = document.getElementById("edit-lucky-prize");
+    Object.values(this.prizeDefs).forEach(prize => {
+      const option = document.createElement("option");
+      option.value = prize.id;
+      option.textContent = `${prize.round} • ${prize.short}`;
+      select.appendChild(option);
+    });
+    document.getElementById("lucky-winners-table-container").addEventListener("click", event => {
+      const button = event.target.closest("button[data-result-action]");
+      if (!button) return;
+      if (button.dataset.resultAction === "edit") this.openResultEditor(button.dataset.resultId);
+      else this.deleteWinner(button.dataset.resultId);
+    });
+    select.addEventListener("change", () => { document.getElementById("edit-custom-fields").hidden = select.value !== "dacbiet"; });
+    document.getElementById("lucky-edit-cancel").addEventListener("click", () => this.editDialog.close());
+    document.getElementById("lucky-edit-form").addEventListener("submit", async event => {
+      event.preventDefault();
+      const result = await this.editWinner(this.editingId, {
+        employee: this.findEmployee(document.getElementById("edit-lucky-code").value),
+        prizeKey: select.value,
+        customInfo: select.value === "dacbiet" ? { name: document.getElementById("edit-custom-name").value.trim(), value: document.getElementById("edit-custom-value").value.trim() } : null,
+        reason: document.getElementById("edit-lucky-reason").value.trim(),
+      });
+      if (result) this.editDialog.close();
+    });
+    document.getElementById("btn-export-lucky-results").addEventListener("click", () => this.exportResults());
+    [this.inputCustomName, this.inputCustomValue].forEach(el => el.addEventListener("input", () => this.refreshEntryFeedback()));
+  }
 
-    if (this.winnerCard) {
-      this.winnerCard.classList.add("hidden");
-    }
+  openResultEditor(id) {
+    if (this.isBusy || this.isSpinning) return this.showFeedback("Đợi công bố xong trước khi sửa kết quả.");
+    const record = this.recordedWinners.find(w => w.id === id);
+    if (!record) return;
+    this.editingId = id;
+    document.getElementById("edit-lucky-code").value = record.code;
+    document.getElementById("edit-lucky-prize").value = record.prizeId;
+    document.getElementById("edit-custom-fields").hidden = record.prizeId !== "dacbiet";
+    document.getElementById("edit-custom-name").value = record.customInfo?.name || "";
+    document.getElementById("edit-custom-value").value = record.customInfo?.value || "";
+    document.getElementById("edit-lucky-reason").value = "";
+    document.getElementById("edit-lucky-feedback").textContent = "";
+    this.editDialog.showModal();
+  }
 
-    if (window.app) window.app.showToast("🔄 Đã xóa toàn bộ lịch sử bốc thăm");
+  async editWinner(id, { employee, prizeKey, customInfo, reason }) {
+    reason = String(reason || "").trim();
+    const result = await this.changeResults(state => {
+      const before = state.winners.find(w => w.id === id);
+      if (!before) return null;
+      employee = this.employees.find(e => e.code === employee?.code);
+      const others = state.winners.filter(w => w.id !== id);
+      const error = !reason ? "Ghi rõ lý do sửa kết quả." : this.validateRecipients([employee], prizeKey, customInfo, others);
+      if (error) {
+        document.getElementById("edit-lucky-feedback").textContent = error;
+        return this.showFeedback(error);
+      }
+      const canonical = this.employees.find(e => e.code === employee.code);
+      if (!confirm(`SỬA KẾT QUẢ\n\nTừ: ${before.code} — ${before.name} — ${before.prizeName}\n\nSang:\n${this.confirmationText([canonical], prizeKey, customInfo, others)}\n\nLý do: ${reason}`)) return null;
+      const after = { ...this.createRecord(canonical, prizeKey, customInfo, before.operationId, before.source), id: before.id, createdAt: before.createdAt, updatedAt: new Date().toISOString() };
+      state.winners = state.winners.map(w => w.id === id ? after : w);
+      state.history.push({ action: "EDIT", at: after.updatedAt, reason, before, after });
+      state.presentation = { type: "single", id };
+      return true;
+    });
+    if (result) this.restorePresentation();
+    return result;
+  }
 
-    if (broadcast && this.channel) {
-      this.channel.postMessage({ type: "LUCKY_RESET_WINNERS" });
-    }
+  exportResults() {
+    const state = this.readState();
+    if (this.storageError) return this.showFeedback("Không đọc được dữ liệu để xuất báo cáo.");
+    const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: "application/json" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `tlqm-ket-qua-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   copyWinnersSummary() {
@@ -1249,7 +1251,7 @@ class LuckyDrawManager {
           <td style="font-weight: 700; width: 35px; text-align: center;">${index + 1}</td>
           <td><span class="badge-winner-code">${this.escapeHtml(w.code)}</span></td>
           <td>
-            <strong style="color: var(--tlqm-navy); font-size: 0.90rem;">${this.escapeHtml(w.name)}</strong>
+            <strong style="color: var(--text-heading); font-size: 0.90rem;">${this.escapeHtml(w.name)}</strong>
             ${w.isGala ? '<span style="font-size: 0.70rem; color: #16a34a; margin-left: 4px;">● Gala</span>' : ""}
           </td>
           <td>
@@ -1262,9 +1264,8 @@ class LuckyDrawManager {
           </td>
           <td style="font-size: 0.74rem; color: var(--text-muted);">${w.time || ""}</td>
           <td style="text-align: center;">
-            <button type="button" class="btn-delete-award" title="Xóa kết quả này" onclick="window.luckyDrawManager.deleteWinner('${w.id}')">
-              <i class="fas fa-trash-can"></i>
-            </button>
+            <button type="button" class="btn-delete-award" title="Sửa kết quả" data-result-action="edit" data-result-id="${this.escapeHtml(w.id)}"><i class="fas fa-pen"></i></button>
+            <button type="button" class="btn-delete-award" title="Hủy kết quả" data-result-action="cancel" data-result-id="${this.escapeHtml(w.id)}"><i class="fas fa-trash-can"></i></button>
           </td>
         </tr>
       `;
@@ -1280,7 +1281,7 @@ class LuckyDrawManager {
             <th>Phòng Ban - Vị Trí</th>
             <th>Hạng Giải Thưởng & Chi Tiết</th>
             <th style="width: 65px;">Giờ</th>
-            <th style="width: 45px; text-align: center;">Xóa</th>
+            <th style="width: 45px; text-align: center;">Sửa / Hủy</th>
           </tr>
         </thead>
         <tbody>
@@ -1303,11 +1304,13 @@ class LuckyDrawManager {
   }
 
   handleSpaceKey() {
+    if (this.isBusy || this.isSpinning) return;
     if (this.entryMode === "single") {
       if (this.inputCode && this.inputCode.value.trim()) {
         this.recordWinnerFromInput();
       } else {
-        this.spinRandomFromGalaList();
+        this.showFeedback("Nhập mã phiếu đã bốc trước khi công bố. Quay bằng máy dùng nút riêng.");
+        this.inputCode.focus();
       }
     } else {
       this.recordBatchFromInput();

@@ -33,6 +33,7 @@ const server = http.createServer(async (req, res) => {
     await operator.setViewportSize({ width: 1366, height: 768 });
     const errors = [];
     operator.on('pageerror', e => errors.push(e.message));
+    operator.on('dialog', dialog => dialog.accept(dialog.type() === 'prompt' ? 'Kiểm tra tự động bằng dữ liệu thử nghiệm' : undefined));
     await operator.goto(url);
     await operator.evaluate(() => {
       window.app.switchSection('awards');
@@ -129,9 +130,10 @@ const server = http.createServer(async (req, res) => {
 
     await operator.evaluate(() => {
       window.app.switchSection('awards');
+      window.luckyDrawManager.employees.push({ code: '999', name: 'NGƯỜI THỬ GIAO DIỆN SÂN KHẤU', dept: 'Bộ phận thử nghiệm', isGala: true }, { code: '998', name: 'NGƯỜI THỬ GIAO DIỆN THỨ HAI', dept: 'Bộ phận thử nghiệm', isGala: true });
       window.luckyDrawManager.celebrateAndRecordWinner({ code: '999', name: 'NGƯỜI THỬ GIAO DIỆN SÂN KHẤU', dept: 'Bộ phận thử nghiệm', pos: 'Nhân viên thử nghiệm', isGala: true }, 'nhat');
     });
-    await check(() => window.luckyDrawManager.recordedWinners.length === 1);
+    await check(() => window.luckyDrawManager.recordedWinners.length === 1 && !document.getElementById('lucky-winner-announcement').classList.contains('hidden'));
     await frame('#lucky-active-prize-card', '#lucky-winner-announcement');
     await shot('single-winner');
     await led.reload();
@@ -139,7 +141,7 @@ const server = http.createServer(async (req, res) => {
     await operator.evaluate(() => window.luckyDrawManager.celebrateAndRecordWinner({ code: '998', name: 'NGƯỜI THỬ GIAO DIỆN THỨ HAI', dept: 'Bộ phận thử nghiệm', pos: 'Nhân viên thử nghiệm', isGala: true }, 'mayman'));
     await check(() => window.luckyDrawManager.recordedWinners.length === 2 && document.getElementById('lucky-winner-name').textContent.includes('THỨ HAI'));
     assert.deepEqual(await led.evaluate(() => window.luckyDrawManager.recordedWinners.map(w => w.id)), await operator.evaluate(() => window.luckyDrawManager.recordedWinners.map(w => w.id)));
-    assert.equal(await operator.evaluate(() => JSON.parse(localStorage.getItem('tlqm_lucky_recorded_winners')).length), 2);
+    assert.equal(await operator.evaluate(() => JSON.parse(localStorage.getItem('tlqm_lucky_recorded_winners')).winners.length), 2);
     console.log('PASS two winner presentations, reload, shared record IDs and no duplicate storage');
 
     await operator.evaluate(() => {
@@ -178,13 +180,13 @@ const server = http.createServer(async (req, res) => {
     await frame('#lucky-active-prize-card', '#lucky-winner-announcement');
     await led.keyboard.press('F1');
     assert.equal(await led.evaluate(() => window.app.currentSection), 'awards', 'LED cannot accidentally navigate with operator shortcuts');
-    operator.once('dialog', dialog => dialog.accept());
     await operator.evaluate(() => window.luckyDrawManager.resetAllWinners());
     await check(() => window.luckyDrawManager.recordedWinners.length === 0 && document.getElementById('lucky-winner-announcement').classList.contains('hidden'));
     await led.close();
     await operator.waitForFunction(() => !document.getElementById('stage-connection-status').classList.contains('connected'), { timeout: 10000 });
     assert.deepEqual(errors, []);
     console.log('PASS 12/29-person pages, reload, controls, dark theme, fullscreen, reset and disconnect status');
+    await require('./lucky-scenarios.cjs')(browser, url, output);
     console.log('Screenshots:', output);
   } finally {
     if (browser) await browser.close();

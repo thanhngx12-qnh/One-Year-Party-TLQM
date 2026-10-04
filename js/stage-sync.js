@@ -31,7 +31,7 @@ class StageSync {
     const king = window.kingGame;
     const pose = window.poseGame;
     const lucky = window.luckyDrawManager;
-    const presentations = ['pose-cover-overlay', 'pose-snapshot-banner', 'winner-modal', 'lucky-winner-announcement', 'lucky-batch-modal'].map(id => {
+    const presentations = ['pose-cover-overlay', 'pose-snapshot-banner', 'winner-modal', 'lucky-active-prize-card', 'lucky-winner-announcement', 'lucky-batch-modal'].map(id => {
       const el = document.getElementById(id);
       return { id, html: el.innerHTML, className: el.className };
     });
@@ -44,6 +44,8 @@ class StageSync {
       pose: { index: pose.currentPoseIndex, teamCount: pose.teamCount, scores: pose.scores, teamNames: pose.teamNames, customAwards: pose.customAwards, phase: pose.phase, totalSeconds: pose.totalSeconds, remainingSeconds: pose.remainingSeconds, isRevealed: pose.isRevealed, isRunning: pose.isRunning },
       tier: lucky.activeTier,
       winners: lucky.recordedWinners,
+      luckyPresentation: lucky.presentation,
+      luckySpinning: lucky.isSpinning,
       batchWinners: lucky.batchWinners || [],
       batchPage: lucky.batchPage || 0,
       digits: [lucky.slotD1, lucky.slotD2, lucky.slotD3].map(el => el.querySelector('.slot-digit-val').textContent),
@@ -71,6 +73,7 @@ class StageSync {
     if (msg.pose.isRunning) pose.startTimer(false);
     const lucky = window.luckyDrawManager;
     lucky.recordedWinners = msg.winners;
+    lucky.presentation = msg.luckyPresentation;
     lucky.batchWinners = msg.batchWinners;
     lucky.batchPage = msg.batchPage;
     lucky.selectTier(msg.tier, true, false);
@@ -82,6 +85,7 @@ class StageSync {
       el.className = className;
     });
     lucky.cacheWinnerElements();
+    if (msg.luckySpinning) lucky.restorePresentation();
     window.app.switchSection(msg.sectionId, false);
   }
 

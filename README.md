@@ -68,10 +68,10 @@
 
 Dự án là ứng dụng Web tĩnh thuần túy (Vanilla HTML5, CSS3, Modern JavaScript), không cần cài đặt backend phức tạp:
 
-1. **Chạy trực tiếp**:
-   Mở file `index.html` bằng trình duyệt web hiện đại (Google Chrome, Microsoft Edge khuyến nghị).
+1. **Xem giao diện**:
+   Có thể mở `index.html` trực tiếp để xem. Khi vận hành bốc thăm và đồng bộ LED, dùng máy chủ local bên dưới hoặc HTTPS với Chrome/Edge.
 
-2. **Chạy qua Local Server** (Khuyến nghị để đồng bộ BroadcastChannel và âm thanh tốt nhất):
+2. **Chạy qua Local Server** (dùng khi vận hành bốc thăm và màn LED):
    ```bash
    # Sử dụng Python HTTP Server
    python3 -m http.server 3000

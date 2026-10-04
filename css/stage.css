@@ -108,7 +108,9 @@ body.stage-pure-led .active-prize-name {
   white-space: normal;
   overflow: visible;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
+body.stage-pure-led .active-prize-name.long-prize-label { font-size: 2vw !important; }
 body.stage-pure-led .active-prize-tier-badge,
 body.stage-pure-led .active-prize-round-pill { font-size: 1.65vw !important; }
 body.stage-pure-led .active-prize-progress-text { font-size: 1.35vw; }
@@ -127,6 +129,7 @@ body.stage-pure-led #awards-panel-lucky .winner-number-highlight { font-size: 3.
 body.stage-pure-led #awards-panel-lucky .winner-name-highlight { font-size: 5vw !important; line-height: 1.1; }
 body.stage-pure-led #awards-panel-lucky .winner-dept-text { font-size: 2vw !important; color: #e2e8f0; }
 body.stage-pure-led #awards-panel-lucky .winner-prize-badge { font-size: 1.7vw !important; }
+body.stage-pure-led #awards-panel-lucky .winner-prize-badge.long-prize-label { font-size: 1.4vw !important; overflow-wrap: anywhere; }
 
 /* Word game: clear instructions and wrapping letters within the LED frame. */
 body.stage-pure-led #section-king .game-container { width: 100%; max-width: none !important; height: 100%; padding: 0 !important; }

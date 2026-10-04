@@ -23,7 +23,7 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
 - **Styling**: Vanilla CSS3 với hệ thống Design Tokens đồng bộ, hiệu ứng kính mờ (Glassmorphism), chuyển màu Gradients cao cấp, thiết kế tối ưu tuyệt đối cho tỷ lệ khung hình chuẩn sân khấu **16:9**.
 - **Không Cần Build Step**: Không sử dụng bundler nặng, chạy trực tiếp trên trình duyệt hoặc máy chủ tĩnh cục bộ (Python HTTP Server / Node serve / GitHub Pages).
 - **Đồng Bộ Hai Màn Hình Thời Gian Thực (Dual-Screen Sync)**:
-  - Tích hợp `BroadcastChannel('tlqm_stage_channel')` với độ trễ 0ms giữa **Màn hình Kỹ thuật viên (Laptop)** và **Màn LED Sân Khấu (Projector / Stage Display)**.
+  - Tích hợp `BroadcastChannel('tlqm_stage_channel')` để đồng bộ giữa **Màn hình Kỹ thuật viên (Laptop)** và **Màn LED Sân Khấu (Projector / Stage Display)**.
   - Chế độ Màn LED Sân Khấu độc lập mở qua đường dẫn `?screen=stage` hoặc phím tắt `F8`.
   - Tự động phát hiện và áp dụng lớp giao diện `body.stage-pure-led` để ẩn toàn bộ nút bấm kỹ thuật viên nhạy cảm, chỉ phóng to nội dung sân khấu rực rỡ cho khán giả.
 - **Audio & Visual Engines**:
@@ -108,10 +108,11 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
    - 3 ô số dial cuộn mượt mà với âm thanh dồn dập, pháo hoa nổ khi chốt số may mắn.
 4. **Thẻ Vinh Danh Người Trúng Thưởng (`#lucky-winner-announcement`)**:
    - Hiển thị logo Tà Lùng Quang Minh, số báo danh, họ và tên, chức vụ, phòng ban và giải thưởng đạt được.
-5. **Góc Kỹ Thuật Viên Gọn Gàng (Backstage Console - Chiếm 30%)**:
-   - Tinh gọn tối đa cỡ chữ (0.58rem - 0.65rem) và độ cao nút bấm để không làm phân tâm khán giả.
-   - Hỗ trợ 2 chế độ: _1. Bốc Từng Số_ (Quay slot 3 số) hoặc _2. Nhập Cả Đợt_ (Ghi nhận hàng loạt mã NV cùng lúc).
-   - Hỗ trợ giải thưởng phát sinh / thưởng nóng của Ban Tổng Giám Đốc.
+5. **Bảng Điều Phối Riêng Trên Laptop**:
+   - Chữ và nút đủ lớn để thao tác; cửa sổ LED riêng 1920×1080 chỉ chiếu giải, số và người trúng. Hướng dẫn: [LED_OPERATOR_GUIDE.md](Docs/LED_OPERATOR_GUIDE.md).
+   - Hỗ trợ 2 chế độ: _1. Nhập Phiếu Đã Bốc_ (Kiểm tra, xác nhận rồi quay slot 3 số) hoặc _2. Nhập Cả Đợt_ (Ghi nhận hàng loạt mã NV cùng lúc).
+   - 29 suất chính (12/8/5/3/1), chỉ người dự Gala, mỗi người tối đa một giải. Nhập cả đợt hợp lệ toàn bộ mới lưu. Giải phát sinh yêu cầu tên và phần quà cụ thể; xác nhận riêng các ngoại lệ.
+   - Kết quả được lưu trước hiệu ứng, chặn ghi lặp/vượt suất giữa các cửa sổ. Sửa/hủy cần lý do và giữ lịch sử; xuất JSON để đối chiếu.
    - Bảng kết quả đã trao gọn gàng với bộ lọc theo đợt, nút xuất báo cáo và nút vinh danh cả đợt lên màn hình LED.
    - **Nút Bật/Tắt [Bảng Kỹ Thuật]**: Cho phép ẩn hoàn toàn cột điều khiển bên phải để phóng to Sân Khấu đạt **100% độ rộng màn hình 16:9** khi trình diễn trước toàn thể hội trường.
 
@@ -205,7 +206,7 @@ One-Year-Party-TLQM/
 
 ### Bốc Thăm May Mắn (Lucky Draw)
 
-- `Space`: Bắt đầu quay ngẫu nhiên hoặc ghi nhận mã số đang nhập.
+- `Space`: Kiểm tra và xác nhận mã phiếu đang nhập; ô trống chỉ nhắc nhập mã. Quay ngẫu nhiên dự phòng có nút riêng.
 - `ESC`: Đóng Modal danh sách trúng thưởng trên màn LED sân khấu.
 
 ---
