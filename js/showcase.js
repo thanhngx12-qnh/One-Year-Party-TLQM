@@ -164,17 +164,15 @@ class ShowcaseManager {
           const target = slide.content.totalTarget || 29;
           const badgesHtml = (slide.content.summaryBadges || []).map((b, idx) => `
             <div class="prize-card-pill ${b.highlight ? 'highlight-gold' : ''}" style="animation-delay: ${0.1 + idx * 0.08}s">
+              <div class="card-pill-top-row">
+                <span class="card-pill-tag ${b.tagClass}">${b.tag}</span>
+                <span class="card-pill-count-chip"><i class="fas fa-gift"></i> ${b.count || 'Trao Tặng'}</span>
+              </div>
               <div class="card-pill-icon-wrap ${b.tagClass}">
                 <i class="${b.icon || 'fas fa-gift'}"></i>
               </div>
-              <div class="card-pill-details">
-                <div class="card-pill-top">
-                  <span class="card-pill-tag ${b.tagClass}">${b.tag}</span>
-                  <span class="card-pill-price">${b.singlePrice || ''}</span>
-                </div>
-                <div class="card-pill-desc">${b.desc}</div>
-                <div class="card-pill-val"><i class="fas fa-coins"></i> Tổng đợt: <strong>${b.value || ''}</strong></div>
-              </div>
+              <div class="card-pill-desc">${b.desc}</div>
+              <div class="card-pill-note"><i class="fas fa-circle-check"></i> ${b.note || 'Chính Hãng'}</div>
             </div>
           `).join('');
 
@@ -225,7 +223,7 @@ class ShowcaseManager {
 
           html = `
             <div class="prize-slide-inner prize-split-layout">
-              <!-- Cột Trái: Thông số Kỹ thuật & Giá trị Đẳng cấp -->
+              <!-- Cột Trái: Thông số Kỹ thuật & Giá trị Đẳng cấp (Quang Minh Smart Border Design) -->
               <div class="prize-hero-info">
                 <div class="prize-slide-brand-banner">
                   <img src="assets/images/logo-tlqm.png" alt="Logo CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH" class="slide-brand-logo">
@@ -238,6 +236,7 @@ class ShowcaseManager {
                 <div class="prize-category-row">
                   <span class="prize-category-tag ${slide.categoryClass || 'tag-gold'}">${slide.category}</span>
                   <span class="prize-round-pill">${slide.roundTag || 'VÒNG BỐC THĂM'}</span>
+                  <span class="prize-status-badge"><i class="fas fa-circle-check"></i> CHÍNH HÃNG 100%</span>
                 </div>
 
                 <h1 class="prize-product-name ${slide.goldShimmer ? 'gold-shimmer' : ''} ${isGrand ? 'grand-title' : ''}">${slide.name}</h1>
@@ -246,20 +245,25 @@ class ShowcaseManager {
                   ${specsHtml}
                 </div>
 
-                <div class="prize-meta-box">
-                  <div class="meta-item meta-price">
-                    <span class="meta-label"><i class="fas fa-tag"></i> ĐƠN GIÁ THỰC TẾ</span>
-                    <span class="meta-value">${slide.priceTag || 'Quà Tặng Cao Cấp'}</span>
+                <div class="prize-meta-box smart-border-meta-box">
+                  <div class="meta-item">
+                    <span class="meta-label"><i class="fas fa-hand-holding-heart"></i> HÌNH THỨC TRAO</span>
+                    <span class="meta-value">${slide.awardMethod || 'Bốc Thăm Sân Khấu'}</span>
                   </div>
                   <div class="meta-divider"></div>
-                  <div class="meta-item meta-total">
-                    <span class="meta-label"><i class="fas fa-coins"></i> TỔNG GIÁ TRỊ ĐỢT</span>
-                    <span class="meta-value">${slide.totalValue || ''}</span>
+                  <div class="meta-item">
+                    <span class="meta-label"><i class="fas fa-trophy"></i> SỐ LƯỢNG GIẢI</span>
+                    <span class="meta-value highlight-num">${slide.quantityLabel || slide.badgeCount}</span>
                   </div>
                   <div class="meta-divider"></div>
-                  <div class="meta-item meta-target">
-                    <span class="meta-label"><i class="fas fa-users"></i> ĐỐI TƯỢNG TRAO TẶNG</span>
-                    <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên May Mắn'}</span>
+                  <div class="meta-item">
+                    <span class="meta-label"><i class="fas fa-users"></i> ĐỐI TƯỢNG NHẬN</span>
+                    <span class="meta-value">${slide.targetNote || 'Cán Bộ Nhân Viên TLQM'}</span>
+                  </div>
+                  <div class="meta-divider"></div>
+                  <div class="meta-item">
+                    <span class="meta-label"><i class="fas fa-certificate"></i> CHẤT LƯỢNG</span>
+                    <span class="meta-value">${slide.qualityStandard || 'Chính Hãng Nguyên Seal'}</span>
                   </div>
                 </div>
 
@@ -296,6 +300,12 @@ class ShowcaseManager {
 
                   <div class="pedestal-base">
                     <div class="pedestal-light-ring"></div>
+                  </div>
+
+                  <div class="pedestal-trust-chips">
+                    <span class="trust-chip"><i class="fas fa-shield-halved"></i> Bảo Hành Chính Hãng</span>
+                    <span class="trust-chip"><i class="fas fa-box-open"></i> Đóng Gói Sang Trọng</span>
+                    <span class="trust-chip"><i class="fas fa-handshake"></i> Trao Tận Tay CBCNV</span>
                   </div>
                 </div>
               </div>

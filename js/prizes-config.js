@@ -1,15 +1,7 @@
 /**
  * ==============================================================================
  * CẤU HÌNH QUÀ TẶNG & GHÉP GIỌNG MC BỐC THĂM MAY MẮN (GALA TLQM)
- * DỮ LIỆU ĐỒNG BỘ CHÍNH THỨC TỪ DANH SÁCH MỚI NHẤT BTC GALA TLQM
- * ==============================================================================
- * Cơ cấu 29 Giải Thưởng Bốc Thăm May Mắn (Tỉ lệ trúng 43.94% ~ 44%):
- * - 01 Giải Nhất: Quạt sưởi gốm Kangaroo cao cấp KGAH06G (1.390.000đ)
- * - 03 Giải Nhì: Máy sấy tóc ion âm cao cấp (460.000đ/cái)
- * - 05 Giải Ba: Bàn là hơi nước Tefal Easy Steam FV1955E0 (442.000đ/cái)
- * - 08 Giải May Mắn: Ấm đun nước siêu tốc Bear 1.5L KE-5H15V35 (430.000đ/cái)
- * - 12 Giải Đồng Hành: Pin sạc dự phòng AVA+ / Delites 10.000 mAh (240.000đ/cái)
- * - Quà Gameshow: 02 Thùng quà bí mật bánh kẹo (Nhất 200k, Nhì 100k) + Ô cầm tay TLQM
+ * CÔNG TY CỔ PHẦN TÀ LÙNG QUANG MINH - KỶ NIỆM RA MẮT THƯƠNG HIỆU
  * ==============================================================================
  */
 
@@ -43,7 +35,7 @@ window.GALA_PRIZES_CONFIG = {
         mainTitle: 'TÀ LÙNG QUANG MINH LOGISTICS',
         caption: 'Kết Nối Biên Giới - Vươn Tới Toàn Cầu • Đồng Hành Cùng Phát Triển',
         milestones: [
-          { icon: 'fas fa-calendar-check', num: '1 NĂM', label: 'Xây Dựng & Bứt Phá Vững Vàng' },
+          { icon: 'fas fa-shield-halved', num: 'TLQM', label: 'Thương Hiệu Tiên Phong Cửa Khẩu' },
           { icon: 'fas fa-users-gear', num: '111', label: 'Cán Bộ Nhân Viên Chung Sức' },
           { icon: 'fas fa-truck-ramp-box', num: '24/7', label: 'Chuỗi Vận Hành Cửa Khẩu Thông Suốt' },
           { icon: 'fas fa-award', num: '2026', label: 'Khát Vọng Vươn Tầm Quốc Tế' }
@@ -66,9 +58,9 @@ window.GALA_PRIZES_CONFIG = {
         mainTitle: 'BỐC THĂM MAY MẮN',
         quote: '“MAY MẮN ĐANG CHỜ ĐÓN BẠN”',
         features: [
-          { icon: 'fas fa-boxes-stacked', title: '29 Phần Quà', desc: '5 Hạng giải thưởng cao cấp và thiết thực' },
-          { icon: 'fas fa-chart-pie', title: 'Tỉ Lệ Trúng ~44%', desc: 'Gần một nửa khán phòng đều có cơ hội rinh quà' },
-          { icon: 'fas fa-shield-halved', title: 'Minh Bạch 100%', desc: 'Ban Lãnh đạo bốc thăm công khai trực tiếp tại sân khấu' }
+          { icon: 'fas fa-boxes-stacked', title: '29 Phần Quà May Mắn', desc: '5 Hạng giải thưởng cao cấp và thiết thực trao tận tay CBCNV' },
+          { icon: 'fas fa-chart-pie', title: 'Tỉ Lệ Trúng Cao ~44%', desc: 'Gần một nửa khán phòng đêm nay đều sẽ có cơ hội rinh quà' },
+          { icon: 'fas fa-shield-halved', title: 'Minh Bạch Tuyệt Đối 100%', desc: 'Ban Lãnh đạo bốc thăm công khai trực tiếp tại sân khấu' }
         ]
       }
     },
@@ -84,14 +76,14 @@ window.GALA_PRIZES_CONFIG = {
       voice: 'assets/voices/3.mp3',
       content: {
         totalTarget: 29,
-        label: 'PHẦN QUÀ GIÁ TRỊ (TỈ LỆ TRÚNG 44%)',
+        label: 'PHẦN QUÀ MAY MẮN (TỈ LỆ TRÚNG ~44%)',
         oddsText: '29 Giải Thưởng / 66 Khách Tham Dự = 43.94% Cơ Hội Rinh Quà Đêm Nay',
         summaryBadges: [
-          { tag: '12 Giải Đồng Hành', tagClass: 'tag-bronze', icon: 'fas fa-battery-three-quarters', desc: 'Pin Sạc Dự Phòng AVA+ 10.000 mAh', value: '2.880.000đ', singlePrice: '240.000đ/cái' },
-          { tag: '08 Giải May Mắn', tagClass: 'tag-bronze', icon: 'fas fa-mug-hot', desc: 'Ấm Đun Nước Siêu Tốc Bear 1.5L', value: '3.440.000đ', singlePrice: '430.000đ/cái' },
-          { tag: '05 Giải Ba', tagClass: 'tag-silver', icon: 'fas fa-shirt', desc: 'Bàn Là Hơi Nước Tefal Easy Steam', value: '2.210.000đ', singlePrice: '442.000đ/cái' },
-          { tag: '03 Giải Nhì', tagClass: 'tag-gold', icon: 'fas fa-wind', desc: 'Máy Sấy Tóc Ion Âm Cao Cấp', value: '1.380.000đ', singlePrice: '460.000đ/cái' },
-          { tag: '01 Giải Nhất', tagClass: 'tag-special', icon: 'fas fa-fire', desc: 'Quạt Sưởi Gốm Kangaroo Cao Cấp', value: '1.390.000đ', singlePrice: '1.390.000đ', highlight: true }
+          { tag: '12 Giải Đồng Hành', tagClass: 'tag-bronze', icon: 'fas fa-battery-three-quarters', desc: 'Pin Sạc Dự Phòng AVA+ 10.000 mAh', count: '12 Suất Quà Tặng', note: 'Chính Hãng Nguyên Seal' },
+          { tag: '08 Giải May Mắn', tagClass: 'tag-bronze', icon: 'fas fa-mug-hot', desc: 'Ấm Đun Nước Siêu Tốc Bear 1.5L', count: '08 Suất Quà Tặng', note: 'Ruột Inox 304 An Toàn' },
+          { tag: '05 Giải Ba', tagClass: 'tag-silver', icon: 'fas fa-shirt', desc: 'Bàn Là Hơi Nước Tefal Easy Steam', count: '05 Suất Quà Tặng', note: 'Thương Hiệu Pháp' },
+          { tag: '03 Giải Nhì', tagClass: 'tag-gold', icon: 'fas fa-wind', desc: 'Máy Sấy Tóc Ion Âm Cao Cấp', count: '03 Suất Quà Tặng', note: 'Công Nghệ Khóa Ẩm' },
+          { tag: '01 Giải Nhất', tagClass: 'tag-special', icon: 'fas fa-fire', desc: 'Quạt Sưởi Gốm Kangaroo Cao Cấp', count: '01 Giải Tâm Điểm', note: 'Sưởi Gốm PTC 2000W', highlight: true }
         ]
       }
     },
@@ -113,9 +105,11 @@ window.GALA_PRIZES_CONFIG = {
       imageAlt: 'Pin sạc dự phòng AVA+ 10.000 mAh',
       badgeCount: '12 GIẢI',
       badgeSub: 'Lõi Polymer bền bỉ, công suất 12W, 2 cổng ra USB tiện lợi',
-      priceTag: '240.000 VNĐ / Chiếc',
-      totalValue: '2.880.000 VNĐ (12 Giải)',
-      targetNote: 'Cán Bộ Nhân Viên Bốc Thăm Đợt 1',
+      awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
+      quantityLabel: '12 Suất Quà Tặng May Mắn',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      qualityStandard: 'Chính Hãng Nguyên Seal 100%',
+      trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Nguồn năng lượng bền bỉ đồng hành cùng bạn trên mọi hành trình công tác và cuộc sống!”',
       haloClass: 'halo-bronze',
       goldShimmer: false,
@@ -144,9 +138,11 @@ window.GALA_PRIZES_CONFIG = {
       imageAlt: 'Bình đun siêu tốc Bear 1.5L',
       badgeCount: '08 GIẢI',
       badgeSub: 'Công suất 1500W đun sôi cực nhanh, ruột Inox 304 cao cấp an toàn, phong cách Retro',
-      priceTag: '430.000 VNĐ / Chiếc',
-      totalValue: '3.440.000 VNĐ (08 Giải)',
-      targetNote: 'Cán Bộ Nhân Viên Bốc Thăm Đợt 2',
+      awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
+      quantityLabel: '08 Suất Quà Tặng May Mắn',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      qualityStandard: 'Chính Hãng Nguyên Seal 100%',
+      trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Ấm áp mỗi ngày cùng những tách trà và cà phê thơm nồng bên gia đình!”',
       haloClass: 'halo-amber',
       goldShimmer: false,
@@ -175,9 +171,11 @@ window.GALA_PRIZES_CONFIG = {
       imageAlt: 'Bàn ủi hơi nước Tefal Easy Steam',
       badgeCount: '05 GIẢI',
       badgeSub: 'Thương hiệu Pháp, công suất 1400W, mặt đế Ceramic chống dính lướt êm ái, phun hơi mạnh',
-      priceTag: '442.000 VNĐ / Chiếc',
-      totalValue: '2.210.000 VNĐ (05 Giải)',
-      targetNote: 'Cán Bộ Nhân Viên Bốc Thăm Đợt 3',
+      awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
+      quantityLabel: '05 Suất Quà Tặng May Mắn',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      qualityStandard: 'Chính Hãng Nguyên Seal 100%',
+      trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Cho diện mạo luôn phẳng phiu tinh tươm, tự tin đón nhận những thành công mới!”',
       haloClass: 'halo-silver',
       goldShimmer: false,
@@ -206,9 +204,11 @@ window.GALA_PRIZES_CONFIG = {
       imageAlt: 'Máy sấy tóc ion âm cao cấp',
       badgeCount: '03 GIẢI',
       badgeSub: 'Động cơ mạnh mẽ, luồng gió ion âm bảo vệ tóc bóng mượt, đa cấp độ nhiệt thông minh',
-      priceTag: '460.000 VNĐ / Chiếc',
-      totalValue: '1.380.000 VNĐ (03 Giải)',
-      targetNote: 'Cán Bộ Nhân Viên Bốc Thăm Đợt 4',
+      awardMethod: 'Bốc Thăm Công Khai Sân Khấu',
+      quantityLabel: '03 Suất Quà Tặng May Mắn',
+      targetNote: 'Toàn Thể Cán Bộ Nhân Viên TLQM',
+      qualityStandard: 'Chính Hãng Nguyên Seal 100%',
+      trustHighlights: ['Bảo Hành Chính Hãng', 'Đóng Gói Sang Trọng', 'Trao Thưởng Tận Tay'],
       quote: '“Chăm sóc mái tóc bồng bềnh khỏe đẹp, rạng rỡ phong thái mỗi sớm mai!”',
       haloClass: 'halo-gold',
       goldShimmer: true,
@@ -237,9 +237,11 @@ window.GALA_PRIZES_CONFIG = {
       imageAlt: 'Quạt sưởi gốm Kangaroo KGAH06G',
       badgeCount: '01 GIẢI DUY NHẤT',
       badgeSub: 'Công nghệ sưởi gốm PTC 2000W không khô da, điều khiển từ xa, hẹn giờ 12h, tự ngắt an toàn',
-      priceTag: '1.390.000 VNĐ / Chiếc',
-      totalValue: '1.390.000 VNĐ (Giải Thưởng Lớn)',
+      awardMethod: 'Bốc Thăm Tâm Điểm Đêm Gala',
+      quantityLabel: '01 Giải Nhất Danh Giá Duy Nhất',
       targetNote: 'Tâm Điểm May Mắn Nhất Đêm Gala TLQM',
+      qualityStandard: 'Chính Hãng Kangaroo Nguyên Seal',
+      trustHighlights: ['Bảo Hành Chính Hãng 12T', 'Đóng Gói Sang Trọng', 'Vinh Danh Sân Khấu'],
       quote: '“Món quà đỉnh cao trao trọn sự ấm áp, thịnh vượng và an lành cho gia đình bạn!”',
       haloClass: 'halo-special',
       goldShimmer: true,
