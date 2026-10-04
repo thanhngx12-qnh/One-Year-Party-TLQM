@@ -3567,14 +3567,15 @@ body.theme-light .lucky-slot-box .slot-digit-val {
 }
 
 /* Lucky Draw Recording Console (Ban Tổng Giám Đốc Bốc Thăm Bên Ngoài) */
+/* Lucky Draw Recording Console (Gọn Gàng Dành Riêng Cho Kỹ Thuật Viên) */
 .lucky-record-console {
-  background: rgba(15, 24, 51, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 12px 16px;
+  background: rgba(10, 16, 36, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px 10px;
   width: 100%;
   max-width: 100%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   margin-top: 0;
   text-align: left;
   backdrop-filter: blur(8px);
@@ -3583,24 +3584,25 @@ body.theme-light .lucky-slot-box .slot-digit-val {
 body.theme-light .lucky-record-console {
   background: #ffffff;
   border: 1px solid #d6e1e8;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(23, 39, 84, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(23, 39, 84, 0.06);
 }
 
 .lucky-record-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .lucky-record-title {
   font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.92rem;
-  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  letter-spacing: 0.3px;
 }
 
 body.theme-light .lucky-record-title {
@@ -3608,13 +3610,13 @@ body.theme-light .lucky-record-title {
 }
 
 .lucky-participants-tag {
-  font-size: 0.78rem;
-  font-weight: 700;
-  background: #0a1124;
+  font-size: 0.64rem;
+  font-weight: 600;
+  background: #070d1e;
   color: #60a5fa;
-  border: 1px solid rgba(96, 165, 250, 0.3);
-  padding: 2px 8px;
-  border-radius: 4px;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  padding: 1px 6px;
+  border-radius: 3px;
 }
 
 body.theme-light .lucky-participants-tag {
@@ -3626,10 +3628,10 @@ body.theme-light .lucky-participants-tag {
 /* Mode Switcher: Single Draw vs Batch Awarding */
 .lucky-mode-switch-bar {
   display: flex;
-  gap: 6px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 8px;
+  gap: 4px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 5px;
 }
 
 body.theme-light .lucky-mode-switch-bar {
@@ -3637,12 +3639,12 @@ body.theme-light .lucky-mode-switch-bar {
 }
 
 .lucky-mode-tab {
-  background: #0a1124;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #070d1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 3px;
-  padding: 3px 8px;
-  font-size: 0.68rem;
-  font-weight: 700;
+  padding: 2px 6px;
+  font-size: 0.62rem;
+  font-weight: 600;
   color: #94a3b8;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -3657,7 +3659,7 @@ body.theme-light .lucky-mode-switch-bar {
   background: #0b9444;
   color: #ffffff;
   border-color: #0b9444;
-  box-shadow: 0 2px 8px rgba(11, 148, 68, 0.35);
+  box-shadow: 0 1px 6px rgba(11, 148, 68, 0.3);
 }
 
 body.theme-light .lucky-mode-tab {
@@ -3674,9 +3676,9 @@ body.theme-light .lucky-mode-tab.active {
 
 .lucky-record-inputs-grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 10px;
-  margin-bottom: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 @media (max-width: 640px) {
@@ -3687,10 +3689,10 @@ body.theme-light .lucky-mode-tab.active {
 
 .lucky-field-col label {
   display: block;
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.66rem;
+  font-weight: 600;
   color: #94a3b8;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 body.theme-light .lucky-field-col label {
@@ -3709,22 +3711,23 @@ body.theme-light .lucky-field-col label {
 
 .lucky-input-with-icon i {
   position: absolute;
-  left: 10px;
-  color: #94a3b8;
-  font-size: 0.85rem;
+  left: 8px;
+  color: #64748b;
+  font-size: 0.72rem;
   pointer-events: none;
 }
 
 .lucky-input-with-icon input,
 .lucky-input-with-icon select {
   width: 100%;
-  padding: 8px 10px 8px 32px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  font-size: 0.85rem;
+  padding: 4px 6px 4px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  font-size: 0.74rem;
   font-weight: 600;
   color: #ffffff;
-  background: #0a1124;
+  background: #070d1e;
+  height: 28px;
   transition: border-color 0.2s, background 0.2s;
 }
 
@@ -3738,9 +3741,9 @@ body.theme-light .lucky-input-with-icon select {
 .lucky-input-with-icon input:focus,
 .lucky-input-with-icon select:focus {
   border-color: #0b9444;
-  background: #0f1c3a;
+  background: #0c1630;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(11, 148, 68, 0.25);
+  box-shadow: 0 0 0 2px rgba(11, 148, 68, 0.2);
 }
 
 /* Dynamic Container for Spontaneous Leadership Prizes */
@@ -3942,58 +3945,61 @@ body.theme-light .lucky-custom-prize-wrap {
 
 .lucky-record-actions-row {
   display: flex;
-  gap: 5px;
+  gap: 4px;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .lucky-record-actions-row .btn-gala {
-  padding: 4px 10px !important;
-  font-size: 0.70rem !important;
+  padding: 3px 8px !important;
+  font-size: 0.65rem !important;
   border-radius: 4px !important;
+  height: 26px !important;
+  font-weight: 700 !important;
 }
 
 .lucky-record-actions-row .action-btn {
-  padding: 2.5px 6px !important;
-  font-size: 0.64rem !important;
-  border-radius: 4px !important;
+  padding: 2px 5px !important;
+  font-size: 0.60rem !important;
+  border-radius: 3px !important;
+  height: 26px !important;
 }
 
-/* Live Recorded Winners Board Table */
+/* Live Recorded Winners Board Table (Gọn Gàng Backstage Log) */
 .lucky-winners-board {
-  background: rgba(15, 24, 51, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 10px 14px;
+  background: rgba(10, 16, 36, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
   width: 100%;
   max-width: 100%;
   margin-top: 0;
   text-align: left;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
 }
 
 body.theme-light .lucky-winners-board {
   background: #ffffff;
   border: 1px solid #d6e1e8;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(23, 39, 84, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(23, 39, 84, 0.06);
 }
 
 .lucky-winners-board-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 4px;
 }
 
 .board-title {
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 0.85rem;
-  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #94a3b8;
 }
 
 body.theme-light .board-title {
@@ -4002,15 +4008,16 @@ body.theme-light .board-title {
 
 .board-action-buttons {
   display: flex;
-  gap: 3px;
+  gap: 2.5px;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .board-action-buttons .action-btn {
-  padding: 2px 5px !important;
-  font-size: 0.62rem !important;
+  padding: 1.5px 5px !important;
+  font-size: 0.58rem !important;
   border-radius: 3px !important;
+  height: 22px !important;
 }
 
 .btn-stage-batch-trigger {
@@ -4019,42 +4026,44 @@ body.theme-light .board-title {
   border: 1px solid #3b82f6 !important;
   border-radius: 3px !important;
   font-weight: 700 !important;
-  font-size: 0.63rem !important;
-  padding: 2px 6px !important;
+  font-size: 0.58rem !important;
+  padding: 1.5px 5px !important;
+  height: 22px !important;
 }
 
 .btn-stage-all-trigger {
   background: #172754 !important;
   color: #fde047 !important;
-  border: 1px solid rgba(245, 158, 11, 0.5) !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
   border-radius: 3px !important;
   font-weight: 700 !important;
-  font-size: 0.63rem !important;
-  padding: 2px 6px !important;
+  font-size: 0.58rem !important;
+  padding: 1.5px 5px !important;
+  height: 22px !important;
 }
 
-/* Table Filter Pills */
+/* Table Filter Pills (Siêu Gọn) */
 .lucky-table-filter-pills {
   display: flex;
-  gap: 2.5px;
-  margin: 4px 0 8px;
+  gap: 2px;
+  margin: 3px 0 5px;
   flex-wrap: wrap;
 }
 
 .filter-pill {
-  padding: 2px 6px;
-  font-size: 0.64rem;
-  font-weight: 700;
+  padding: 1.5px 5px;
+  font-size: 0.58rem;
+  font-weight: 600;
   border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #0a1124;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #070d1e;
   color: #94a3b8;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .filter-pill:hover {
-  background: #172754;
+  background: #132247;
   color: #ffffff;
 }
 
@@ -4062,7 +4071,7 @@ body.theme-light .board-title {
   background: #0b9444;
   color: #ffffff;
   border-color: #0b9444;
-  box-shadow: 0 2px 6px rgba(11, 148, 68, 0.3);
+  box-shadow: 0 1px 6px rgba(11, 148, 68, 0.3);
 }
 
 body.theme-light .filter-pill {
@@ -4078,10 +4087,10 @@ body.theme-light .filter-pill.active {
 }
 
 .lucky-winners-table-container {
-  max-height: 220px;
+  max-height: 155px;
   overflow-y: auto;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
 }
 
 body.theme-light .lucky-winners-table-container {
@@ -4091,20 +4100,20 @@ body.theme-light .lucky-winners-table-container {
 .lucky-winners-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.80rem;
+  font-size: 0.70rem;
 }
 
 .lucky-winners-table th {
-  background: #0a1124;
-  color: #94a3b8;
+  background: #070d1e;
+  color: #64748b;
   font-weight: 700;
-  padding: 6px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
   position: sticky;
   top: 0;
   z-index: 2;
-  font-size: 0.74rem;
+  font-size: 0.64rem;
   text-transform: uppercase;
 }
 
@@ -4115,8 +4124,8 @@ body.theme-light .lucky-winners-table th {
 }
 
 .lucky-winners-table td {
-  padding: 6px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   color: #ffffff;
 }
 
@@ -4136,11 +4145,12 @@ body.theme-light .lucky-winners-table tr:hover {
 .badge-winner-code {
   font-family: monospace;
   font-weight: 800;
-  background: #eff6ff;
-  color: #1d4ed8;
-  padding: 1px 5px;
+  background: #0f1c3a;
+  color: #60a5fa;
+  padding: 0 4px;
   border-radius: 3px;
-  border: 1px solid #bfdbfe;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  font-size: 0.68rem;
 }
 
 .backdrop-lucky-controls {
@@ -7649,11 +7659,21 @@ body.theme-light #section-awards::before {
    ============================================================================== */
 .awards-stage-grid-169 {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 18px;
+  grid-template-columns: 1.55fr 0.65fr;
+  gap: 14px;
   max-width: 1540px;
   margin: 0 auto;
   align-items: start;
+  transition: all 0.25s ease;
+}
+
+.awards-stage-grid-169.console-collapsed {
+  grid-template-columns: 1fr;
+  max-width: 1050px;
+}
+
+.awards-stage-grid-169.console-collapsed .awards-col-console {
+  display: none !important;
 }
 
 @media (max-width: 1080px) {
@@ -7672,7 +7692,7 @@ body.theme-light #section-awards::before {
 .awards-col-console {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
@@ -7890,26 +7910,26 @@ body.theme-light .active-prize-progress-text strong {
 }
 
 .awards-header-bar {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(10, 16, 36, 0.90);
   backdrop-filter: blur(8px);
-  border-bottom: 1.5px solid var(--border-light);
-  padding: 8px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 14px;
   position: relative;
   z-index: 40;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 body.theme-light .awards-header-bar {
   background: #ffffff;
-  border-bottom: 1.5px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .awards-header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  max-width: 1400px;
+  gap: 8px;
+  max-width: 1540px;
   margin: 0 auto;
   flex-wrap: wrap;
 }
@@ -7917,37 +7937,48 @@ body.theme-light .awards-header-bar {
 .awards-nav-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.6px;
+  background: rgba(30, 58, 138, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+body.theme-light .awards-nav-badge {
   color: var(--tlqm-navy);
-  letter-spacing: 0.8px;
   background: rgba(30, 58, 138, 0.08);
-  border: 1px solid rgba(30, 58, 138, 0.2);
-  padding: 4px 12px;
-  border-radius: 20px;
+  border-color: rgba(30, 58, 138, 0.2);
 }
 
 /* Awards Sub-Tabs Switcher */
 .awards-sub-tabs {
   display: flex;
-  gap: 6px;
+  gap: 3px;
+  background: rgba(7, 13, 30, 0.6);
+  padding: 2px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.theme-light .awards-sub-tabs {
   background: #f1f5f9;
-  padding: 4px;
-  border-radius: 8px;
   border: 1px solid var(--border-light);
 }
 
 .awards-tab-btn {
   background: transparent;
   border: none;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 2px 6px;
+  border-radius: 3px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--text-secondary);
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: #94a3b8;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -7956,6 +7987,11 @@ body.theme-light .awards-header-bar {
 }
 
 .awards-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.theme-light .awards-tab-btn:hover {
   color: var(--tlqm-navy);
   background: rgba(255, 255, 255, 0.6);
 }
@@ -7963,7 +7999,7 @@ body.theme-light .awards-header-bar {
 .awards-tab-btn.active {
   background: linear-gradient(135deg, var(--tlqm-navy) 0%, #1e3a8a 100%);
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.25);
+  box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
 }
 
 .awards-tab-btn.active i {
@@ -7972,8 +8008,20 @@ body.theme-light .awards-header-bar {
 
 .awards-control-actions {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
+}
+
+.awards-control-actions .action-btn {
+  padding: 2px 6px !important;
+  font-size: 0.62rem !important;
+  border-radius: 4px !important;
+}
+
+.btn-toggle-operator-active {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  color: #34d399 !important;
 }
 
 /* Awards Panels */

@@ -798,6 +798,9 @@
 
         <!-- Controls & Cheer Actions -->
         <div class="awards-control-actions">
+          <button type="button" class="action-btn" id="btn-toggle-operator-console" onclick="const g = document.querySelector('.awards-stage-grid-169'); if(g){ g.classList.toggle('console-collapsed'); this.classList.toggle('btn-toggle-operator-active'); }" title="Ẩn/Hiện Bảng Kỹ Thuật bên phải để ưu tiên toàn màn hình sân khấu">
+            <i class="fas fa-sliders"></i> Bảng Kỹ Thuật
+          </button>
           <button type="button" class="action-btn lucky-drum-btn" id="btn-awards-drum" onclick="window.showcaseManager && window.showcaseManager.toggleLuckySound()" title="Bật/Tắt Âm thanh Trống dồn (Phím L)">
             <i class="fas fa-drum"></i> Trống <span class="kbd-hint">L</span>
           </button>
@@ -940,12 +943,17 @@
           <div class="lucky-record-console compact-console">
             <div class="lucky-record-header">
               <div class="lucky-record-title">
-                <i class="fas fa-pen-to-square" style="color: var(--tlqm-amber); margin-right: 6px;"></i>
-                Ghi Nhận Kết Quả Bốc Thăm (Bốc Phiếu Sân Khấu):
+                <i class="fas fa-pen-to-square" style="color: var(--tlqm-amber); margin-right: 4px;"></i>
+                Ghi Nhận Kết Quả:
               </div>
-              <span class="lucky-participants-tag" id="lucky-participants-badge">
-                <i class="fas fa-users"></i> 65 Nhân sự dự tiệc / 111 CBCNV
-              </span>
+              <div style="display: flex; gap: 4px; align-items: center;">
+                <span class="lucky-participants-tag" id="lucky-participants-badge">
+                  <i class="fas fa-users"></i> 65/111 Gala
+                </span>
+                <button type="button" class="action-btn" onclick="document.querySelector('.awards-stage-grid-169')?.classList.add('console-collapsed'); document.getElementById('btn-toggle-operator-console')?.classList.add('btn-toggle-operator-active');" title="Thu gọn bảng điều khiển (Bấm 'Bảng Kỹ Thuật' trên thanh công cụ để mở lại)" style="padding: 1px 5px !important; font-size: 0.60rem !important;">
+                  <i class="fas fa-xmark"></i>
+                </button>
+              </div>
             </div>
 
             <!-- Mode Switcher: Single vs Batch Entry -->
