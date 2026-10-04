@@ -1,6 +1,6 @@
-# 🎙️ KỊCH BẢN GIỌNG ĐỌC MC (BẢN RÚT GỌN TINH GỌN, SÔI NỔI) - GALA TLQM
-> **Phiên bản rút gọn 10 - 15 giây/slide**: Ngắn gọn, súc tích, dứt khoát, phong cách MC Gala sân khấu năng động.  
-> *Thông số bám sát chuẩn xác các link sản phẩm Điện Máy Xanh từ file Excel dự trù.*
+# 🎙️ KỊCH BẢN GIỌNG ĐỌC MC (CHÍNH THỨC 7 SLIDE) - GALA TLQM
+> **Chỉ gồm 7 file âm thanh (`1.mp3` ➔ `7.mp3`) cho phần trình chiếu quà tặng trên màn hình.**  
+> *(Các phần điều phối sân khấu như Gameshow, mời Ban Lãnh đạo bốc thăm và chúc mừng sẽ do MC người thật dẫn trực tiếp).*
 
 ---
 
@@ -26,7 +26,7 @@
 *(Thời lượng ~12 giây - Bình giữ nhiệt Inox Delites Z102)*
 > "Mở đầu là 12 Giải May Mắn với Bình giữ nhiệt Inox Delites Z102 cao cấp, giữ nhiệt suốt ngày dài, an toàn cho sức khỏe và tiện lợi mang theo. Xin chúc mừng 12 chủ nhân may mắn!"
 
-*(Nếu dùng Pin sạc dự phòng Delites 10.000mAh):*
+*(Nếu dùng Pin sạc dự phòng Delites 10.000mAh)*:
 > "Mở đầu là 12 Giải May Mắn với Pin sạc dự phòng Delites 10.000 mAh siêu bền, sạc nhanh an toàn trên mọi hành trình. Xin chúc mừng 12 chủ nhân may mắn!"
 
 ---
@@ -46,16 +46,3 @@
 ### 🟢 SLIDE 7: 01 Giải Nhất Danh Giá (`7.mp3`)
 *(Thời lượng ~15 giây - Quạt sưởi gốm Kangaroo KGAH06G)*
 > "Và tâm điểm đêm nay là Giải Nhất danh giá: Quạt sưởi gốm Kangaroo cao cấp KGAH06G trị giá 1 triệu 390 nghìn đồng! Công nghệ sưởi gốm 2000W không khô da, điều khiển từ xa thông minh. Ai sẽ là người may mắn nhất đêm nay?"
-
----
-
-### 🎁 Lời Thoại Phụ Trợ Sân Khấu (Tùy chọn):
-
-- **Quà Gameshow (`8.mp3`):**
-  > "Quà tặng Gameshow gồm 02 Thùng quà bí mật bánh kẹo hấp dẫn và Ô cầm tay thương hiệu Tà Lùng Quang Minh cho những đội thi xuất sắc nhất!"
-
-- **Mời Ban Lãnh Đạo (`9.mp3`):**
-  > "Xin trân trọng kính mời Ban Lãnh Đạo tiến lên sân khấu để bốc những lá thăm may mắn đầu tiên!"
-
-- **Chúc mừng trúng thưởng (`10.mp3`):**
-  > "Xin nhiệt liệt chúc mừng các cán bộ nhân viên may mắn đã rinh về những phần quà giá trị đêm nay!"
