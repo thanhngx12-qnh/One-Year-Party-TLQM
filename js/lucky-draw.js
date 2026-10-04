@@ -37,7 +37,7 @@ class LuckyDrawManager {
     this.prizeDefs = {
       donghanh: {
         id: 'donghanh',
-        name: '12 Giải Đồng Hành: Pin Sạc Dự Phòng AVA+ 10.000 mAh (240k)',
+        name: '12 Giải Đồng Hành: Pin Sạc Dự Phòng AVA+ 10.000 mAh',
         short: 'Giải Đồng Hành',
         tagClass: 'tag-bronze',
         badge: '🎁 GIẢI ĐỒNG HÀNH',
@@ -47,7 +47,7 @@ class LuckyDrawManager {
       },
       mayman: {
         id: 'mayman',
-        name: '08 Giải May Mắn: Bình Đun Siêu Tốc Bear 1.5L KE-5H15V35 (430k)',
+        name: '08 Giải May Mắn: Bình Đun Siêu Tốc Bear 1.5L KE-5H15V35',
         short: 'Giải May Mắn',
         tagClass: 'tag-bronze',
         badge: '☕ GIẢI MAY MẮN',
@@ -57,7 +57,7 @@ class LuckyDrawManager {
       },
       ba: {
         id: 'ba',
-        name: '05 Giải Ba: Bàn Là Hơi Nước Tefal Easy Steam FV1955E0 (442k)',
+        name: '05 Giải Ba: Bàn Là Hơi Nước Tefal Easy Steam FV1955E0',
         short: 'Giải Ba',
         tagClass: 'tag-silver',
         badge: '🥉 GIẢI BA',
@@ -67,7 +67,7 @@ class LuckyDrawManager {
       },
       nhi: {
         id: 'nhi',
-        name: '03 Giải Nhì: Máy Sấy Tóc Ion Âm Cao Cấp (460k)',
+        name: '03 Giải Nhì: Máy Sấy Tóc Ion Âm Cao Cấp',
         short: 'Giải Nhì',
         tagClass: 'tag-gold',
         badge: '🥈 GIẢI NHÌ',
@@ -77,12 +77,12 @@ class LuckyDrawManager {
       },
       nhat: {
         id: 'nhat',
-        name: '01 Giải Nhất: Quạt Sưởi Gốm Kangaroo Cao Cấp KGAH06G (1.390k)',
+        name: '01 Giải Nhất: Quạt Sưởi Gốm Kangaroo Cao Cấp KGAH06G',
         short: 'Giải Nhất',
         tagClass: 'tag-special',
         badge: '🏆 GIẢI NHẤT',
         total: 1,
-        gift: 'Quạt sưởi gốm Kangaroo 1.390k',
+        gift: 'Quạt sưởi gốm Kangaroo cao cấp',
         round: 'ĐỢT 5'
       },
       dacbiet: {
