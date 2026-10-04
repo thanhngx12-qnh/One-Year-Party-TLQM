@@ -93,11 +93,11 @@ window.GALA_PRIZES_CONFIG = {
       voice: 'assets/voices/4.mp3',
       category: 'GIẢI MAY MẮN (ĐỢT 1)',
       categoryClass: 'tag-bronze',
-      name: 'BÌNH GIỮ NHIỆT INOX 500ML DELITES Z102 (HOẶC PIN DỰ PHÒNG)',
-      image: 'assets/prizes/pin_sac_delites.svg',
-      imageAlt: 'Bình giữ nhiệt / Pin sạc dự phòng Delites',
+      name: 'PIN SẠC DỰ PHÒNG AVA+ 10.000 mAh',
+      image: 'assets/prizes/pin_sac_ava.jpg',
+      imageAlt: 'Pin sạc dự phòng AVA+ 10.000 mAh',
       badgeCount: '12 GIẢI',
-      badgeSub: '(Chất liệu Inox giữ nhiệt an toàn sức khỏe / Pin sạc dự phòng Delites Polymer sạc nhanh)',
+      badgeSub: '(Lõi pin Polymer bền bỉ, công suất 12W, 2 cổng ra USB tiện lợi)',
       goldShimmer: false
     },
 

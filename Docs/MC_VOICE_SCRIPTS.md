@@ -23,11 +23,8 @@
 ---
 
 ### 🟢 SLIDE 4: 12 Giải May Mắn (`4.mp3`)
-*(Thời lượng ~12 giây - Bình giữ nhiệt Inox Delites Z102)*
-> "Mở đầu là 12 Giải May Mắn với Bình giữ nhiệt Inox Delites Z102 cao cấp, giữ nhiệt suốt ngày dài, an toàn cho sức khỏe và tiện lợi mang theo. Xin chúc mừng 12 chủ nhân may mắn!"
-
-*(Nếu dùng Pin sạc dự phòng Delites 10.000mAh)*:
-> "Mở đầu là 12 Giải May Mắn với Pin sạc dự phòng Delites 10.000 mAh siêu bền, sạc nhanh an toàn trên mọi hành trình. Xin chúc mừng 12 chủ nhân may mắn!"
+*(Thời lượng ~11 giây - Pin sạc dự phòng AVA+ 10.000 mAh)*
+> "Mở đầu là 12 Giải May Mắn với Pin sạc dự phòng AVA+ 10.000 mAh siêu bền! Lõi pin Polymer an toàn, công suất 12W cùng 2 cổng ra USB tiện lợi trên mọi hành trình. Xin chúc mừng 12 chủ nhân may mắn!"
 
 ---
 
