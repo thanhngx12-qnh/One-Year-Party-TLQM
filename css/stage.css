@@ -27,8 +27,6 @@ body.stage-pure-led .batch-modal-actions,
 body.stage-pure-led .prize-tab-nav,
 body.stage-pure-led .awards-invitation-crest,
 body.stage-pure-led .awards-brand-badge-pill,
-body.stage-pure-led .active-prize-status-badge,
-body.stage-pure-led .active-prize-company-note,
 body.stage-pure-led .winner-brand-header { display: none !important; }
 body.stage-pure-led #section-pose .game-top-bar,
 body.stage-pure-led #section-pose .pose-selector-bar,
@@ -96,24 +94,34 @@ body.stage-pure-led .awards-col-stage { height: 100%; justify-content: center; g
 body.stage-pure-led .lucky-active-prize-card {
   max-width: none !important;
   width: 100% !important;
-  gap: 2vw;
-  padding: 2vh 2vw !important;
+  gap: 2.5vw;
+  padding: 2.5vh 2vw !important;
 }
+body.stage-pure-led .active-prize-right-info { gap: 1vh; }
 body.stage-pure-led .active-prize-left-visual {
-  width: 16vh !important;
-  height: 16vh !important;
+  width: 21vh !important;
+  height: 21vh !important;
 }
 body.stage-pure-led .active-prize-name {
-  font-size: 3vw !important;
+  font-size: 3.8vw !important;
   white-space: normal;
   overflow: visible;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
-body.stage-pure-led .active-prize-name.long-prize-label { font-size: 2vw !important; }
+body.stage-pure-led .active-prize-name.long-prize-label { font-size: 1.8vw !important; }
 body.stage-pure-led .active-prize-tier-badge,
-body.stage-pure-led .active-prize-round-pill { font-size: 1.65vw !important; }
-body.stage-pure-led .active-prize-progress-text { font-size: 1.35vw; }
+body.stage-pure-led .active-prize-round-pill { font-size: 2.15vw !important; }
+body.stage-pure-led .active-prize-status-badge { font-size: 1.9vw; }
+body.stage-pure-led .active-prize-progress-text { font-size: 1.75vw; flex-wrap: wrap; gap: .6vh 1vw; }
+body.stage-pure-led .active-prize-company-note { font-size: 1.5vw; opacity: 1; }
+body.stage-pure-led .active-prize-progress-bar { height: 1vh; }
+/* Keep lengthy spontaneous gifts within the frame beside the winner. */
+body.stage-pure-led .lucky-active-prize-card:has(.long-prize-label) { padding: 2vh 2vw !important; }
+body.stage-pure-led .lucky-active-prize-card:has(.long-prize-label) .active-prize-right-info { gap: 5px; }
+body.stage-pure-led .lucky-active-prize-card:has(.long-prize-label) .active-prize-meta-row > span { font-size: 1.65vw !important; }
+body.stage-pure-led .lucky-active-prize-card:has(.long-prize-label) .active-prize-progress-text { font-size: 1.35vw; }
+body.stage-pure-led .lucky-active-prize-card:has(.long-prize-label) .active-prize-company-note { font-size: 1.1vw; }
 body.stage-pure-led #awards-panel-lucky .lucky-slot-display { gap: 2vw !important; margin: 2vh 0 !important; }
 body.stage-pure-led #awards-panel-lucky .lucky-slot-box { width: 12vw !important; height: 22vh !important; }
 body.stage-pure-led #awards-panel-lucky .lucky-slot-box .slot-digit-val { font-size: 10vw !important; }
