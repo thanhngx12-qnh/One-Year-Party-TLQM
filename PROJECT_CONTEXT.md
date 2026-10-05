@@ -21,6 +21,7 @@ Hệ thống được phát triển theo triết lý **Zero-Dependency & Pure Va
 
 - **Core**: HTML5 Semantic, Modern Vanilla JavaScript (ES6+ Class-based Modules).
 - **Styling**: Vanilla CSS3 với hệ thống Design Tokens đồng bộ, hiệu ứng kính mờ (Glassmorphism), chuyển màu Gradients cao cấp, thiết kế tối ưu tuyệt đối cho tỷ lệ khung hình chuẩn sân khấu **16:9**.
+- **Giao diện duy nhất**: Nền sáng, chữ navy, điểm nhấn xanh/vàng TLQM trên cả laptop và LED; không có chế độ dark hay nút đổi theme.
 - **Không Cần Build Step**: Không sử dụng bundler nặng, chạy trực tiếp trên trình duyệt hoặc máy chủ tĩnh cục bộ (Python HTTP Server / Node serve / GitHub Pages).
 - **Đồng Bộ Hai Màn Hình Thời Gian Thực (Dual-Screen Sync)**:
   - Tích hợp `BroadcastChannel('tlqm_stage_channel')` để đồng bộ giữa **Màn hình Kỹ thuật viên (Laptop)** và **Màn LED Sân Khấu (Projector / Stage Display)**.
@@ -126,7 +127,7 @@ One-Year-Party-TLQM/
 ├── README.md                    # Hướng dẫn nhanh và phím tắt điều khiển
 ├── PROJECT_CONTEXT.md           # Tài liệu ngữ cảnh toàn diện của dự án (Tài liệu này)
 ├── css/
-│   └── style.css                # Toàn bộ Design System, animations, layout 16:9, Dark/Light modes
+│   └── style.css                # Toàn bộ Design System, animations, layout 16:9, giao diện sáng cho laptop và LED
 ├── js/
 │   ├── app.js                   # Điều phối ứng dụng chính, chuyển tab, phím tắt toàn cục
 │   ├── lucky-draw.js            # Quản lý bốc thăm 29 giải, quay số 3 số, danh bạ nhân sự, Label lớn

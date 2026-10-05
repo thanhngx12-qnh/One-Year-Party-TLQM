@@ -33,7 +33,7 @@ Không mở một cửa sổ bằng `localhost` và cửa sổ còn lại bằng
 | Chọn dáng, bắt đầu/tạm dừng, cộng/trừ điểm, chọn 2–4 đội | Ảnh dáng, hiệu lệnh, đồng hồ và bảng điểm |
 | Mở danh sách vinh danh, bấm **Trang trước / Trang sau**, đóng danh sách | Tối đa 6 người mỗi trang, số trang rõ ràng |
 
-LED dùng nền tối độc lập với lựa chọn giao diện sáng/tối trên laptop. Nút kỹ thuật, ô nhập, phím tắt và thông báo thao tác không xuất hiện trên LED. Khi công bố người trúng, ba ô quay số nhường chỗ cho thẻ tên lớn.
+Laptop và LED đều dùng giao diện sáng với nền trắng, chữ navy và điểm nhấn xanh/vàng TLQM. Không có chế độ dark hay nút đổi giao diện; lựa chọn dark đã lưu từ bản cũ được chuyển sang sáng. Nút kỹ thuật, ô nhập, phím tắt và thông báo thao tác không xuất hiện trên LED. Khi công bố người trúng, ba ô quay số nhường chỗ cho thẻ tên lớn.
 
 Nếu tải lại hoặc mở lại cửa sổ LED, nó nhận nội dung hiện tại từ laptop, gồm câu/đáp án, đồng hồ, điểm đội và trang vinh danh. Kết quả bốc thăm do laptop ghi nhận; LED chỉ trình diễn.
 

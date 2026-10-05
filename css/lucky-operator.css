@@ -44,52 +44,52 @@ button:disabled { cursor: not-allowed; opacity: .5; }
   overflow: auto;
   margin: auto;
   padding: 24px;
-  border: 1px solid #64748b;
+  border: 1px solid #cbd5e1;
   border-radius: 12px;
-  background: #0f1833;
-  color: #f8fafc;
+  background: #ffffff;
+  color: #223873;
 }
-.lucky-edit-dialog::backdrop { background: rgba(0, 0, 0, .7); }
+.lucky-edit-dialog::backdrop { background: rgba(71, 85, 105, .45); }
 .lucky-edit-dialog h2 { font-size: 22px; margin: 0 0 8px; }
 .lucky-edit-dialog p { font-size: 14px; line-height: 1.5; }
 .lucky-edit-dialog label { display: block; font-size: 14px; margin: 14px 0 6px; }
 .lucky-edit-dialog input,
 .lucky-edit-dialog select,
 .lucky-edit-dialog textarea {
-  width: 100%; padding: 10px; border: 1px solid #64748b; border-radius: 6px;
-  background: #070d1e; color: #fff; font: inherit; font-size: 14px;
+  width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;
+  background: #f8fafc; color: #223873; font: inherit; font-size: 14px;
 }
-#edit-lucky-feedback { color: #fca5a5; }
+#edit-lucky-feedback { color: #b91c1c; }
 .lucky-edit-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px; }
 .lucky-edit-actions button { min-height: 40px; }
 body.stage-pure-led .lucky-entry-feedback,
 body.stage-pure-led .lucky-random-tools,
 body.stage-pure-led #lucky-edit-dialog { display: none !important; }
-/* The laptop's ceremony board follows its selected theme. */
-body.theme-light:not(.stage-pure-led) .lucky-batch-modal-backdrop { background: rgba(71, 85, 105, .45); }
-body.theme-light:not(.stage-pure-led) .lucky-batch-modal-content {
+/* Light ceremony board on both the laptop and the audience LED. */
+body.theme-light .lucky-batch-modal-backdrop { background: rgba(71, 85, 105, .45); }
+body.theme-light .lucky-batch-modal-content {
   background: #f8fafc; color: #223873; border-color: #cbd5e1;
   box-shadow: 0 16px 48px rgba(15, 23, 42, .2);
 }
-body.theme-light:not(.stage-pure-led) .batch-modal-top-bar { border-color: #cbd5e1; }
-body.theme-light:not(.stage-pure-led) .batch-brand-company,
-body.theme-light:not(.stage-pure-led) .batch-stage-title,
-body.theme-light:not(.stage-pure-led) .bcard-name { color: #223873; }
-body.theme-light:not(.stage-pure-led) .batch-brand-tag,
-body.theme-light:not(.stage-pure-led) .batch-stage-invitation { color: #166534; }
-body.theme-light:not(.stage-pure-led) .batch-stage-badge,
-body.theme-light:not(.stage-pure-led) .bcard-code-badge,
-body.theme-light:not(.stage-pure-led) .bcard-gift-footer {
+body.theme-light .batch-modal-top-bar { border-color: #cbd5e1; }
+body.theme-light .batch-brand-company,
+body.theme-light .batch-stage-title,
+body.theme-light .bcard-name { color: #223873; }
+body.theme-light .batch-brand-tag,
+body.theme-light .batch-stage-invitation { color: #166534; }
+body.theme-light .batch-stage-badge,
+body.theme-light .bcard-code-badge,
+body.theme-light .bcard-gift-footer {
   background: #fff7ed; color: #92400e; border-color: #fcd34d;
 }
-body.theme-light:not(.stage-pure-led) .batch-winner-card {
+body.theme-light .batch-winner-card {
   background: #fff; border-color: #cbd5e1; box-shadow: 0 4px 14px rgba(15, 23, 42, .08);
 }
-body.theme-light:not(.stage-pure-led) .bcard-pos,
-body.theme-light:not(.stage-pure-led) .batch-page-indicator { color: #334155; }
-body.theme-light:not(.stage-pure-led) .bcard-dept { color: #475569; }
-body.theme-light:not(.stage-pure-led) .btn-batch-action { background: #e2e8f0; border-color: #cbd5e1; color: #223873; }
-body.theme-light:not(.stage-pure-led) .btn-batch-action:hover { background: #cbd5e1; border-color: #94a3b8; }
+body.theme-light .bcard-pos,
+body.theme-light .batch-page-indicator { color: #334155; }
+body.theme-light .bcard-dept { color: #475569; }
+body.theme-light .btn-batch-action { background: #e2e8f0; border-color: #cbd5e1; color: #223873; }
+body.theme-light .btn-batch-action:hover { background: #cbd5e1; border-color: #94a3b8; }
 @media (max-width: 1000px) {
   body:not(.stage-pure-led) .awards-stage-grid-169:not(.console-collapsed) { grid-template-columns: minmax(0, 1fr); }
 }

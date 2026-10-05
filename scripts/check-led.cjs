@@ -35,6 +35,10 @@ const server = http.createServer(async (req, res) => {
     operator.on('pageerror', e => errors.push(e.message));
     operator.on('dialog', dialog => dialog.accept(dialog.type() === 'prompt' ? 'Kiểm tra tự động bằng dữ liệu thử nghiệm' : undefined));
     await operator.goto(url);
+    await operator.evaluate(() => localStorage.setItem('tlqm_app_theme', 'gala-luxury'));
+    await operator.reload();
+    assert.equal(await operator.locator('#btn-theme-toggle').count(), 0);
+    assert.equal(await operator.evaluate(() => document.body.classList.contains('theme-light')), true, 'Old dark preference migrates to light');
     await operator.evaluate(() => {
       window.app.switchSection('awards');
       window.luckyDrawManager.selectTier('nhat');
@@ -172,7 +176,9 @@ const server = http.createServer(async (req, res) => {
     await operator.waitForFunction(() => document.getElementById('stage-connection-status').classList.contains('connected'));
     await operator.evaluate(() => window.app.applyTheme('light'));
     await settle();
-    assert.equal(await led.evaluate(() => document.body.classList.contains('theme-light')), false, 'LED keeps its dark theme');
+    assert.equal(await led.evaluate(() => document.body.classList.contains('theme-light')), true, 'LED uses the light appearance');
+    await operator.evaluate(() => window.app.applyTheme('gala-luxury'));
+    assert.equal(await operator.evaluate(() => document.body.classList.contains('theme-light')), true, 'Legacy theme requests cannot restore dark');
     await led.keyboard.press('f');
     await led.waitForFunction(() => !!document.fullscreenElement);
     await led.keyboard.press('f');
@@ -185,7 +191,7 @@ const server = http.createServer(async (req, res) => {
     await led.close();
     await operator.waitForFunction(() => !document.getElementById('stage-connection-status').classList.contains('connected'), { timeout: 10000 });
     assert.deepEqual(errors, []);
-    console.log('PASS 12/29-person pages, reload, controls, dark theme, fullscreen, reset and disconnect status');
+    console.log('PASS 12/29-person pages, reload, controls, light appearance, fullscreen, reset and disconnect status');
     await require('./lucky-scenarios.cjs')(browser, url, output);
     console.log('Screenshots:', output);
   } finally {

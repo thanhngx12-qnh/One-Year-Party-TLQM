@@ -1,6 +1,6 @@
 /* ===================================================================
    TÀ LÙNG QUANG MINH (TLQM) - GALA KỶ NIỆM RA MẮT THƯƠNG HIỆU & GAMESHOW
-   STYLE CHUẨN: TLQM MIDNIGHT LUXURY (SẠCH - SANG TRỌNG - SIÊU MƯỢT)
+   STYLE CHUẨN: TLQM LIGHT (SẠCH - SANG TRỌNG - SIÊU MƯỢT)
    DỰA TRÊN BỘ MÀU CHÍNH THỨC: Docs/color-design.md
    =================================================================== */
 
@@ -16,48 +16,48 @@
   --tlqm-gold: #f59e0b;        /* Hoàng kim sân khấu */
   --white: #ffffff;
 
-  /* Theme Mặc định: TLQM MIDNIGHT STAGE (Tối ưu 60fps, loại bỏ blur nặng) */
-  --bg-primary: #0a1124;
-  --bg-secondary: #0f1833;
-  --bg-card: #0f1833;
-  --bg-card-hover: #132247;
-  --bg-surface-elevated: #0f1833;
+  /* Giao diện sáng mặc định cho laptop và LED */
+  --bg-primary: #f2f6f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-surface-elevated: #ffffff;
 
   --brand-green: #0b9444;
-  --brand-green-light: #10b981;
-  --brand-green-bg: rgba(11, 148, 68, 0.15);
-  --brand-green-glow: 0 4px 16px rgba(11, 148, 68, 0.3);
+  --brand-green-light: #10b453;
+  --brand-green-bg: #eaf7ef;
+  --brand-green-glow: 0 4px 16px rgba(11, 148, 68, 0.25);
 
   --brand-navy: #223873;
   --brand-navy-dark: #172754;
-  --brand-navy-bg: rgba(34, 56, 115, 0.25);
+  --brand-navy-bg: #eef3f9;
 
   --gold-primary: #e89413;
-  --gold-light: #fbbf24;
-  --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #e89413 100%);
-  --gold-bg: rgba(232, 148, 19, 0.12);
-  --gold-glow: 0 4px 16px rgba(232, 148, 19, 0.3);
+  --gold-light: #ffba3b;
+  --gold-gradient: linear-gradient(135deg, #ffba3b 0%, #e89413 100%);
+  --gold-bg: #fef7ec;
+  --gold-glow: 0 4px 16px rgba(232, 148, 19, 0.25);
 
-  --green-gradient: linear-gradient(135deg, #10b981 0%, #0b9444 100%);
+  --green-gradient: linear-gradient(135deg, #10b453 0%, #0b9444 100%);
   --navy-gradient: linear-gradient(135deg, #31589b 0%, #223873 100%);
 
-  --text-primary: #f1f5f9;
-  --text-heading: #ffffff;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #243848;
+  --text-heading: #172754;
+  --text-secondary: #607486;
+  --text-muted: #8c9dae;
 
   --accent-red: #ef4444;
   --accent-teal: #109b9a;
 
-  --border-light: rgba(255, 255, 255, 0.1);
-  --border-card: rgba(255, 255, 255, 0.12);
+  --border-light: #d6e1e8;
+  --border-card: #dbe4ea;
   --border-brand: rgba(11, 148, 68, 0.4);
-  --border-navy: rgba(49, 88, 155, 0.35);
-  --border-gold: rgba(232, 148, 19, 0.45);
+  --border-navy: rgba(34, 56, 115, 0.3);
+  --border-gold: rgba(232, 148, 19, 0.5);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(23, 39, 84, 0.06);
+  --shadow-md: 0 6px 20px rgba(23, 39, 84, 0.08);
+  --shadow-lg: 0 12px 36px rgba(23, 39, 84, 0.12);
 
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -66,7 +66,7 @@
 }
 
 /* ===================================================================
-   ALTERNATIVE THEME: SMART BORDER LIGHT (BẢN SÁNG CỬA KHẨU)
+   SMART BORDER LIGHT (BẢN SÁNG CỬA KHẨU)
    =================================================================== */
 body.theme-light {
   --bg-primary: #f2f6f8;
@@ -7488,16 +7488,16 @@ body.stage-pure-led #section-showcase .prize-showcase-frame {
 }
 
 body.stage-pure-led #section-showcase .prize-slide-brand-banner {
-  background: rgba(15, 23, 42, 0.88) !important;
+  background: #ffffff !important;
   border: 1.5px solid rgba(212, 160, 23, 0.75) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(212, 160, 23, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
   margin-bottom: 8px !important;
 }
 
 body.stage-pure-led #section-showcase .prize-slide-brand-banner .slide-brand-company {
-  color: #ffffff !important;
+  color: #223873 !important;
   font-size: 1.05rem !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow: none;
 }
 
 body.stage-pure-led #section-showcase .prize-slide-brand-banner .slide-brand-event {
@@ -7586,7 +7586,7 @@ body.stage-pure-led .letter-tile {
   font-size: clamp(3rem, 4.8vw, 5.4rem) !important;
   border-width: 4px !important;
   border-radius: 14px !important;
-  box-shadow: 0 8px 0 rgba(23, 39, 84, 0.22), 0 14px 28px rgba(23, 39, 84, 0.18) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.stage-pure-led .answer-letter-tile {
@@ -7598,14 +7598,14 @@ body.stage-pure-led .answer-letter-tile {
   font-size: clamp(3rem, 5vw, 5.6rem) !important;
   border-width: 4px !important;
   border-radius: 14px !important;
-  box-shadow: 0 8px 0 #15803d, 0 14px 30px rgba(11, 148, 68, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.stage-pure-led .stage-instruction {
   font-size: clamp(1.9rem, 2.3vw, 2.4rem) !important;
   font-weight: 900 !important;
   color: #000000 !important;
-  text-shadow: none !important;
+  text-shadow: none;
 }
 
 body.stage-pure-led .hint-display-box {
@@ -7706,7 +7706,7 @@ body.theme-light #section-awards::before {
   border-left: 6px solid #f59e0b;
   border-radius: 12px;
   padding: 14px 18px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
   width: 100%;
@@ -7716,7 +7716,7 @@ body.theme-light .lucky-active-prize-card {
   background: #ffffff;
   border: 1.5px solid #cbd5e1;
   border-left: 6px solid var(--tlqm-navy);
-  box-shadow: 0 6px 20px rgba(35, 56, 113, 0.08);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 .active-prize-left-visual {
@@ -7731,13 +7731,13 @@ body.theme-light .lucky-active-prize-card {
   align-items: center;
   justify-content: center;
   padding: 6px;
-  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.theme-light .active-prize-left-visual {
   background: #f8fafc;
   border-color: #e2e8f0;
-  box-shadow: none;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 .active-prize-img {
@@ -7843,7 +7843,7 @@ body.theme-light .active-prize-status-badge {
   color: #ffffff;
   line-height: 1.25;
   letter-spacing: 0.3px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -7916,7 +7916,7 @@ body.theme-light .active-prize-progress-text strong {
   padding: 4px 14px;
   position: relative;
   z-index: 40;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.theme-light .awards-header-bar {
@@ -7999,7 +7999,7 @@ body.theme-light .awards-tab-btn:hover {
 .awards-tab-btn.active {
   background: linear-gradient(135deg, var(--tlqm-navy) 0%, #1e3a8a 100%);
   color: #ffffff;
-  box-shadow: 0 1px 6px rgba(30, 58, 138, 0.3);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 .awards-tab-btn.active i {
@@ -8067,7 +8067,7 @@ body.theme-light .awards-tab-btn:hover {
   border-radius: 8px;
   padding: 20px 18px;
   text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -8080,12 +8080,12 @@ body.theme-light .gameshow-prize-card {
   background: #ffffff;
   border: 1.5px solid var(--border-light);
   border-radius: 8px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 .gameshow-prize-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
   border-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -8096,7 +8096,7 @@ body.theme-light .gameshow-prize-card:hover {
 .gameshow-prize-card.highlight-champion {
   background: #132247;
   border: 1.5px solid #f59e0b;
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.theme-light .gameshow-prize-card.highlight-champion {
@@ -8172,7 +8172,7 @@ body.theme-light .gameshow-prize-sub {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   padding: 16px 18px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.theme-light .gameshow-standings-card,
@@ -8180,7 +8180,7 @@ body.theme-light .gameshow-lead-awards-card {
   background: #ffffff;
   border: 1.5px solid var(--border-light);
   border-radius: 8px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 .standings-header {
@@ -8229,7 +8229,7 @@ body.theme-light .standing-team-item {
 .standing-team-item:hover {
   background: #132247;
   border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.theme-light .standing-team-item:hover {
@@ -8322,14 +8322,14 @@ body.theme-light .standing-team-item.rank-runnerup {
 /* Call to action button on Slide 7 to leap into Awards */
 .prize-next-to-awards {
   background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
-  color: #ffffff !important;
+  color: #223873 !important;
   font-weight: 800 !important;
   animation: pulseGoldGlow 1.8s infinite !important;
 }
 
 @keyframes pulseGoldGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.5); }
-  50% { box-shadow: 0 0 0 8px rgba(217, 119, 6, 0); }
+  0%, 100% { box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important; }
+  50% { box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important; }
 }
 
 /* ==============================================================================
@@ -8423,7 +8423,7 @@ body.stage-pure-led .lucky-active-prize-card {
   max-width: 920px !important;
   padding: 16px 24px !important;
   border-width: 2.5px !important;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 28px rgba(245, 158, 11, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.stage-pure-led .active-prize-left-visual {
@@ -8575,85 +8575,85 @@ body.stage-pure-led #section-showcase .prize-split-layout {
 
 body.stage-pure-led #section-showcase .prize-product-name {
   font-size: clamp(2.2rem, 3.4vw, 3.4rem) !important;
-  color: #ffffff !important;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+  color: #223873 !important;
+  text-shadow: none;
 }
 
 body.stage-pure-led #section-showcase .prize-spec-chip {
-  background: rgba(15, 23, 42, 0.85) !important;
+  background: #ffffff !important;
   border-color: rgba(35, 56, 113, 0.45) !important;
   border-radius: 4px !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.stage-pure-led #section-showcase .spec-chip-title {
-  color: #cbd5e1 !important;
+  color: #475569 !important;
 }
 
 body.stage-pure-led #section-showcase .spec-chip-desc {
-  color: #ffffff !important;
+  color: #223873 !important;
 }
 
 body.stage-pure-led #section-showcase .smart-border-meta-box {
-  background: rgba(15, 23, 42, 0.9) !important;
+  background: #ffffff !important;
   border-color: rgba(12, 147, 68, 0.4) !important;
   border-left: 4px solid var(--tlqm-green) !important;
   border-radius: 4px !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.stage-pure-led #section-showcase .meta-value {
-  color: #ffffff !important;
+  color: #223873 !important;
 }
 
 body.stage-pure-led #section-showcase .meta-label {
-  color: #4ade80 !important;
+  color: #166534 !important;
 }
 
 body.stage-pure-led #section-showcase .prize-callout-quote {
-  background: rgba(15, 23, 42, 0.7) !important;
-  color: #cbd5e1 !important;
+  background: #ffffff !important;
+  color: #475569 !important;
   border-left-color: var(--tlqm-green) !important;
   border-radius: 4px !important;
 }
 
 body.stage-pure-led #section-showcase .milestone-card,
 body.stage-pure-led #section-showcase .welcome-feature-card {
-  background: rgba(15, 23, 42, 0.85) !important;
+  background: #ffffff !important;
   border-color: rgba(35, 56, 113, 0.4) !important;
   border-radius: 4px !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 4px 16px rgba(34, 56, 115, .12) !important;
 }
 
 body.stage-pure-led #section-showcase .milestone-num,
 body.stage-pure-led #section-showcase .feature-card-title {
-  color: #ffffff !important;
+  color: #223873 !important;
 }
 
 body.stage-pure-led #section-showcase .milestone-label,
 body.stage-pure-led #section-showcase .feature-card-desc {
-  color: #cbd5e1 !important;
+  color: #475569 !important;
 }
 
 body.stage-pure-led #section-showcase .prize-card-pill {
-  background: rgba(15, 23, 42, 0.9) !important;
+  background: #ffffff !important;
   border-color: rgba(35, 56, 113, 0.45) !important;
   border-radius: 4px !important;
 }
 
 body.stage-pure-led #section-showcase .card-pill-desc {
-  color: #ffffff !important;
+  color: #223873 !important;
 }
 
 body.stage-pure-led #section-showcase .card-pill-note {
-  color: #4ade80 !important;
+  color: #166534 !important;
   border-top-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 body.stage-pure-led #section-showcase .trust-chip {
-  background: rgba(15, 23, 42, 0.85) !important;
+  background: #ffffff !important;
   border-color: rgba(35, 56, 113, 0.45) !important;
-  color: #ffffff !important;
+  color: #223873 !important;
   border-radius: 4px !important;
 }
 
@@ -8662,3 +8662,62 @@ body.stage-pure-led #section-showcase .trust-chip {
 
 
 
+
+/* Light surfaces shared by the operator and audience. */
+:root { color-scheme: light; }
+body.theme-light .hero-gala-banner { background-color: #f8fafc; }
+body.theme-light .hero-overlay { background: linear-gradient(90deg, rgba(255, 255, 255, .97), rgba(248, 250, 252, .92)); }
+body.theme-light .hero-title { color: #223873; text-shadow: none; }
+body.theme-light .hero-desc { color: #475569; }
+body.theme-light .prize-badge-lg,
+body.theme-light .prize-float-badge { background: #fff7ed; color: #92400e; border-color: #fcd34d; }
+body.theme-light .float-badge-count { color: #223873; }
+body.theme-light .float-badge-label { color: #166534; }
+body.theme-light .shortcuts-category-header { background: #eef3f9; color: #223873; border-color: #d6e1e8; }
+body.theme-light .gala-modal { background: rgba(71, 85, 105, .45); }
+body.theme-light .gala-hud-toast { background: #fff; color: #223873; border-color: #cbd5e1; }
+body.theme-light .lucky-winner-card,
+body.theme-light .award-rank-card,
+body.theme-light .award-gift-box,
+body.theme-light .award-gift-img,
+body.theme-light .custom-awards-section,
+body.theme-light .custom-award-item,
+body.theme-light .add-award-form-wrapper,
+body.theme-light .form-group-field input,
+body.theme-light .form-group-field select,
+body.theme-light .pose-camera-frame,
+body.theme-light .pose-camera-img { background: #fff; color: #223873; border-color: #cbd5e1; box-shadow: 0 4px 16px rgba(34, 56, 115, .12); }
+body.theme-light .winner-brand-header { border-color: #d6e1e8; }
+body.theme-light .winner-brand-company,
+body.theme-light .winner-name-highlight,
+body.theme-light .award-team-name,
+body.theme-light .award-gift-name,
+body.theme-light .custom-awards-title,
+body.theme-light .pose-lock-title { color: #223873; }
+body.theme-light .winner-number-highlight,
+body.theme-light .winner-trophy-badge { color: #b45309; }
+body.theme-light .winner-dept-text,
+body.theme-light .modal-subheadline,
+body.theme-light .award-modal-subheadline,
+body.theme-light .award-gift-sub,
+body.theme-light .custom-award-prize,
+body.theme-light .form-group-field label,
+body.theme-light .pose-lock-subtitle,
+body.theme-light .shortcuts-table td { color: #475569; border-color: #d6e1e8; }
+body.theme-light .award-team-score,
+body.theme-light .custom-award-recipient { color: #166534; }
+body.theme-light .award-rank-card.rank-1 { background: #fffbeb; border-color: #f59e0b; }
+body.theme-light .award-trophy-badge,
+body.theme-light .award-subtitle-tag,
+body.theme-light .custom-award-title-tag,
+body.theme-light .unlock-icon-circle { background: #fff7ed; color: #92400e; border-color: #fcd34d; }
+body.theme-light .pose-cover-overlay { background: linear-gradient(135deg, #f8fafc, #eaf7ef); }
+body.theme-light .pose-cover-overlay.phase-pose-active { background: linear-gradient(135deg, #fff7ed, #fff) !important; }
+body.theme-light .pose-phase-tag { background: #fff7ed; color: #92400e; }
+body.theme-light .pose-phase-tag.phase-observe { background: #eff6ff; color: #1d4ed8; }
+body.theme-light .pose-phase-tag.phase-pose { background: #fef2f2; color: #b91c1c; }
+body.theme-light .snapshot-banner { background: #ecfdf5; color: #166534; }
+body.theme-light .snapshot-applause-title { color: #92400e; text-shadow: none; }
+body.theme-light .snapshot-applause-sub { color: #475569; }
+body.theme-light.stage-fullscreen .awards-sub-tabs { background: #f1f5f9 !important; }
+body.theme-light.stage-fullscreen .awards-tab-btn { color: #223873 !important; }

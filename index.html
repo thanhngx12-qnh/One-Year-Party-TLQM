@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="css/stage.css" />
     <link rel="stylesheet" href="css/lucky-operator.css" />
   </head>
-  <body>
+  <body class="theme-light">
     <!-- Stage Ambient Particles Canvas -->
     <canvas id="stage-ambient-canvas" class="stage-ambient-canvas"></canvas>
 
@@ -100,15 +100,6 @@
             <i class="fas fa-lock" id="mode-status-icon"></i>
             <span class="btn-label" id="mode-status-label">Bản Demo</span>
             <span class="kbd-hint" id="mode-status-hint">Mở F9</span>
-          </button>
-          <!-- Theme Style Toggle (Gala Luxury LED vs Smart Border Light) -->
-          <button
-            id="btn-theme-toggle"
-            class="action-btn theme-toggle-btn"
-            title="Đổi Style Giao Diện: Gala Luxury LED ⇄ Cửa Khẩu Sáng"
-          >
-            <i class="fas fa-moon" id="theme-toggle-icon"></i>
-            <span class="btn-label" id="theme-toggle-label">Gala LED</span>
           </button>
           <button
             id="btn-shortcuts-help"
@@ -2706,13 +2697,6 @@
               </td>
             </tr>
             <tr>
-              <td><span class="kbd-key">T</span></td>
-              <td>
-                Đổi Style giao diện: <strong>Gala Luxury LED Sân Khấu</strong> ⇄
-                <strong>Cửa Khẩu Sáng</strong>
-              </td>
-            </tr>
-            <tr>
               <td><span class="kbd-key">B</span></td>
               <td>
                 Bật / Tắt <strong>Nhạc Nền Hội Nghị Gala</strong> (Festive Gala
@@ -3010,7 +2994,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid var(--border-light);
             padding-bottom: 12px;
           "
         >
@@ -3022,7 +3006,7 @@
                 font-size: 1.4rem;
                 font-weight: 800;
                 margin: 0;
-                color: #ffffff;
+                color: var(--text-heading);
               "
             >
               <i
@@ -3031,7 +3015,7 @@
               ></i>
               CẤU HÌNH QUÀ TẶNG & GHÉP GIỌNG MC
             </h3>
-            <p style="font-size: 0.88rem; color: #94a3b8; margin: 4px 0 0">
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 4px 0 0">
               Kiểm tra và nghe thử giọng đọc cho từng slide quà tặng. Để
               thêm/sửa sản phẩm chỉ cần chỉnh sửa file
               <code>js/prizes-config.js</code>.
@@ -3053,15 +3037,15 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
-            background: #0a1124;
+            background: var(--bg-card-hover);
             padding: 10px 16px;
             border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid var(--border-light);
           "
         >
           <span
             id="prize-config-total-info"
-            style="font-weight: 700; color: #4ade80; font-size: 0.95rem"
+            style="font-weight: 700; color: var(--tlqm-green); font-size: 0.95rem"
           >
             Đang tải danh sách slide...
           </span>
@@ -3082,9 +3066,9 @@
             <thead>
               <tr
                 style="
-                  background: #0a1124;
-                  color: #94a3b8;
-                  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+                  background: var(--bg-card-hover);
+                  color: var(--text-secondary);
+                  border-bottom: 1px solid var(--border-light);
                 "
               >
                 <th style="padding: 10px 14px; text-align: center; width: 70px">
