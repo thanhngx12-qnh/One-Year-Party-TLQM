@@ -68,6 +68,27 @@ module.exports = async function checkLucky(browser, url, output) {
     await call('closeBatchModal');
     await call('setEntryMode', 'single');
     console.log('PASS batch all-or-nothing, duplicate detection, quota and one shared operation');
+    await call('filterTable', 'all');
+    await operator.click('#btn-stage-show-all');
+    await led.waitForFunction(() => window.luckyDrawManager.batchWinners.length === 2 && window.luckyDrawManager.batchWinners.every(w => w.prizeId === 'mayman'));
+    assert.equal(await operator.evaluate(() => getComputedStyle(document.querySelector('.lucky-batch-modal-content')).backgroundColor), 'rgb(248, 250, 252)');
+    assert.equal(await led.evaluate(() => getComputedStyle(document.querySelector('.lucky-batch-modal-content')).backgroundColor), 'rgb(248, 250, 252)');
+    await led.reload();
+    await led.waitForFunction(() => window.luckyDrawManager.batchWinners.length === 2 && window.luckyDrawManager.batchWinners.every(w => w.prizeId === 'mayman'));
+    await led.screenshot({ path: path.join(output, 'selected-prize-board-light.png') });
+    await call('closeBatchModal');
+    await call('filterTable', 'nhat');
+    await operator.click('#btn-stage-show-batch');
+    await led.waitForFunction(() => window.luckyDrawManager.batchWinners.length === 1 && window.luckyDrawManager.batchWinners[0].prizeId === 'nhat');
+    await call('closeBatchModal');
+    const notices = dialogs.length;
+    await call('selectTier', 'ba');
+    await operator.click('#btn-stage-show-all');
+    assert.equal(dialogs.length, notices + 1);
+    assert.equal(await operator.locator('#lucky-batch-modal').isVisible(), false);
+    await call('selectTier', 'mayman');
+    console.log('PASS both board actions show only the selected prize, light appearance, reload and empty-tier notice');
+
 
     await call('filterTable', 'all');
     await operator.click(`[data-result-action="edit"][data-result-id="${firstId}"]`);

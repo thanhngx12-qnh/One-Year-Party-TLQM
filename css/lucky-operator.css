@@ -8,7 +8,7 @@ body:not(.stage-pure-led) #awards-panel-lucky .awards-logo-badge { padding: 4px 
 body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-company-title { font-size: 18px !important; }
 body:not(.stage-pure-led) #awards-panel-lucky .awards-brand-event-name { font-size: 13px !important; }
 body:not(.stage-pure-led) .awards-stage-grid-169:not(.console-collapsed) {
-  grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);
+  grid-template-columns: minmax(0, 1.6fr) minmax(400px, 1fr);
 }
 body:not(.stage-pure-led) .lucky-record-console { padding: 16px; }
 body:not(.stage-pure-led) .lucky-record-title { font-size: 16px; color: var(--text-heading); }
@@ -19,15 +19,15 @@ body:not(.stage-pure-led) .lucky-record-console select { font-size: 14px; min-he
 body:not(.stage-pure-led) .lucky-record-actions-row button,
 body:not(.stage-pure-led) .board-action-buttons button { min-height: 36px; font-size: 13px !important; height: auto !important; padding: 8px !important; }
 body:not(.stage-pure-led) .awards-col-stage:has(.lucky-winner-card:not(.hidden)) .lucky-slot-display { display: none; }
-body:not(.stage-pure-led) .lucky-active-prize-card { padding: 20px; gap: 20px; }
-body:not(.stage-pure-led) .active-prize-left-visual { width: 130px; height: 130px; }
-body:not(.stage-pure-led) .active-prize-right-info { gap: 10px; }
+body:not(.stage-pure-led) .lucky-active-prize-card { padding: 24px; gap: 24px; }
+body:not(.stage-pure-led) .active-prize-left-visual { width: 180px; height: 180px; }
+body:not(.stage-pure-led) .active-prize-right-info { gap: 12px; }
 body:not(.stage-pure-led) .active-prize-tier-badge,
-body:not(.stage-pure-led) .active-prize-round-pill { font-size: 19px; padding: 6px 10px; }
-body:not(.stage-pure-led) .active-prize-status-badge { font-size: 17px; padding: 6px 10px; }
-body:not(.stage-pure-led) .active-prize-name { font-size: clamp(28px, 2.4vw, 42px); white-space: normal; overflow-wrap: anywhere; }
-body:not(.stage-pure-led) .active-prize-progress-text { font-size: 18px; flex-wrap: wrap; gap: 8px; }
-body:not(.stage-pure-led) .active-prize-company-note { font-size: 15px; opacity: 1; }
+body:not(.stage-pure-led) .active-prize-round-pill { font-size: 26px; padding: 6px 10px; }
+body:not(.stage-pure-led) .active-prize-status-badge { font-size: 23px; padding: 6px 10px; }
+body:not(.stage-pure-led) .active-prize-name { font-size: clamp(38px, 3.8vw, 64px); white-space: normal; overflow-wrap: anywhere; }
+body:not(.stage-pure-led) .active-prize-progress-text { font-size: 23px; flex-wrap: wrap; gap: 8px; }
+body:not(.stage-pure-led) .active-prize-company-note { font-size: 19px; opacity: 1; }
 body:not(.stage-pure-led) .active-prize-progress-bar { height: 9px; }
 .lucky-edit-actions .btn-gala { font-size: 14px; }
 .lucky-entry-feedback { margin: 12px 0; color: #4ade80; font-size: 13px; line-height: 1.5; }
@@ -92,4 +92,8 @@ body.theme-light .btn-batch-action { background: #e2e8f0; border-color: #cbd5e1;
 body.theme-light .btn-batch-action:hover { background: #cbd5e1; border-color: #94a3b8; }
 @media (max-width: 1000px) {
   body:not(.stage-pure-led) .awards-stage-grid-169:not(.console-collapsed) { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  body:not(.stage-pure-led) .lucky-active-prize-card { flex-direction: column; padding: 16px; }
+  body:not(.stage-pure-led) .active-prize-name { font-size: 32px; }
 }

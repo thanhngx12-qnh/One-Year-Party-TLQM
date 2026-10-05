@@ -44,6 +44,7 @@ Nếu tải lại hoặc mở lại cửa sổ LED, nó nhận nội dung hiện
 3. Kiểm tra tên, phòng ban, tình trạng dự tiệc và số suất còn lại. Bấm **Kiểm tra & Công bố** hoặc Enter trong ô mã.
 4. Đọc hộp xác nhận đúng người, đúng giải. **Hủy** không ghi nhận và không công bố. **OK** lưu kết quả trước, sau đó chạy ba số và vinh danh trên LED.
 5. Với **Nhập cả đợt**, nhập các mã cách nhau bằng dấu phẩy, dấu chấm phẩy hoặc khoảng trắng. Cả danh sách phải hợp lệ; một mã sai, lặp hoặc vượt suất sẽ chặn toàn đợt. Sau xác nhận, danh sách được lưu cùng một lượt và chiếu tối đa 6 người mỗi trang.
+6. Chọn hạng giải hoặc bộ lọc của một đợt, rồi bấm **Bảng Vàng Đợt** / **Chiếu Màn LED**. Chỉ người nhận giải đó được chiếu. Bộ lọc **Tất Cả** trên bảng điều phối vẫn phục vụ đối chiếu; khi mở vinh danh, hệ thống dùng hạng giải đang chọn thay vì gom toàn bộ giải. Giải chưa có kết quả sẽ thông báo, không chiếu danh sách của đợt khác.
 
 **Quy tắc giải chính:** 12 Đồng Hành + 8 May Mắn + 5 Giải Ba + 3 Giải Nhì + 1 Giải Nhất = **29 giải**. Chỉ nhân sự đã xác nhận dự Gala; mỗi người nhận tối đa một giải. Đợt đủ suất sẽ chặn ghi thêm. Khi hủy kết quả, suất tương ứng được trả lại.
 

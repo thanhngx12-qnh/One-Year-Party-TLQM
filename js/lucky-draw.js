@@ -868,41 +868,18 @@ class LuckyDrawManager {
   }
 
   openBatchModalForCurrentFilter() {
-    let list = [];
-    let title = "VINH DANH CÁN BỘ NHÂN VIÊN TRÚNG GIẢI";
-    let badge = "🏆 BẢNG VÀNG GALA DINNER";
-
-    if (this.activeFilter === "all") {
-      list = [...this.recordedWinners];
-      title = `BẢNG VÀNG TOÀN BỘ KẾT QUẢ BỐC THĂM (${list.length} GIẢI)`;
-      badge = "🌟 TẤT CẢ GIẢI THƯỞNG GALA TÀ LÙNG QUANG MINH";
-    } else {
-      list = this.recordedWinners.filter(
-        (w) => w.prizeId === this.activeFilter,
-      );
-      const pDef = this.prizeDefs[this.activeFilter];
-      title = `DANH SÁCH TRÚNG THƯỞNG: ${pDef?.short || "ĐỢT TRAO GIẢI"}`;
-      badge = pDef?.badge || "🏆 GIẢI THƯỞNG";
-    }
-
-    if (list.length === 0) {
-      alert(
-        "⚠️ Chưa có cán bộ nhân viên nào trong danh mục này để vinh danh lên màn hình LED!",
-      );
+    const prizeKey = this.activeFilter === "all" ? this.activeTier : this.activeFilter;
+    const prize = this.prizeDefs[prizeKey];
+    const winners = this.recordedWinners.filter(w => w.prizeId === prizeKey);
+    if (!winners.length) {
+      alert(`Chưa có người nhận ${prize.short} để vinh danh. Hãy chọn một giải đã có kết quả.`);
       return;
     }
-
-    this.displayBatchModal(list, title, badge, true);
+    this.displayBatchModal(winners, `BẢNG VÀNG: ${prize.short.toLocaleUpperCase("vi-VN")}`, `${prize.badge} • ${winners.length} NGƯỜI NHẬN GIẢI`, true);
   }
 
   openBatchModalForAll() {
-    if (this.recordedWinners.length === 0) {
-      alert("⚠️ Chưa có kết quả bốc thăm nào được ghi nhận!");
-      return;
-    }
-    const title = `BẢNG VÀNG KẾT QUẢ BỐC THĂM MAY MẮN GALA TÀ LÙNG QUANG MINH`;
-    const badge = `🌟 TOÀN BỘ ${this.recordedWinners.length} GIẢI THƯỞNG`;
-    this.displayBatchModal(this.recordedWinners, title, badge, true);
+    this.openBatchModalForCurrentFilter();
   }
 
   displayBatchModal(winnersList, title, badge, broadcast = true) {
