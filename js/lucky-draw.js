@@ -911,7 +911,7 @@ class LuckyDrawManager {
   }
 
   changeBatchPage(offset) {
-    const pages = Math.ceil((this.batchWinners?.length || 0) / 6);
+    const pages = Math.max(1, Math.ceil((this.batchWinners?.length || 0) / 12));
     this.batchPage = Math.max(0, Math.min(pages - 1, this.batchPage + offset));
     this.renderBatchPage();
     if (this.channel) this.channel.postMessage({ type: "LUCKY_BATCH_PAGE", page: this.batchPage });
@@ -919,12 +919,26 @@ class LuckyDrawManager {
 
   renderBatchPage() {
     const gridEl = document.getElementById("batch-winners-grid");
-    const winnersList = (this.batchWinners || []).slice(this.batchPage * 6, (this.batchPage + 1) * 6);
-    const pages = Math.max(1, Math.ceil((this.batchWinners?.length || 0) / 6));
-    document.getElementById("batch-page-indicator").textContent = `Trang ${this.batchPage + 1} / ${pages}`;
+    const pages = Math.max(1, Math.ceil((this.batchWinners?.length || 0) / 12));
+    this.batchPage = Math.max(0, Math.min(pages - 1, this.batchPage || 0));
+    const winnersList = (this.batchWinners || []).slice(this.batchPage * 12, (this.batchPage + 1) * 12);
+    const indicator = document.getElementById("batch-page-indicator");
+    indicator.textContent = `Trang ${this.batchPage + 1} / ${pages}`;
+    indicator.hidden = pages === 1;
     document.getElementById("batch-page-prev").disabled = this.batchPage === 0;
     document.getElementById("batch-page-next").disabled = this.batchPage >= pages - 1;
+    document.getElementById("batch-page-prev").hidden = pages === 1;
+    document.getElementById("batch-page-next").hidden = pages === 1;
+    const sharedGift = winnersList.length && winnersList.every(w => w.prizeName === winnersList[0].prizeName);
+    const gift = document.getElementById("batch-stage-gift");
+    gift.textContent = sharedGift ? winnersList[0].prizeName : "";
+    gift.hidden = !sharedGift;
     if (gridEl) {
+      const columns = winnersList.length <= 3 ? Math.max(1, winnersList.length) : winnersList.length <= 4 ? 2 : winnersList.length <= 6 ? 3 : 4;
+      gridEl.style.setProperty("--batch-columns", columns);
+      gridEl.style.setProperty("--batch-rows", Math.ceil(winnersList.length / columns) || 1);
+      gridEl.dataset.density = winnersList.length > 8 ? "compact" : winnersList.length > 4 ? "medium" : "large";
+      gridEl.dataset.sharedGift = Boolean(sharedGift);
       let cardsHtml = "";
       winnersList.forEach((w) => {
         cardsHtml += `
@@ -936,7 +950,7 @@ class LuckyDrawManager {
             <div class="bcard-content">
               <h3 class="bcard-name">${this.escapeHtml(w.name)}</h3>
               <div class="bcard-pos">${this.escapeHtml(w.pos)}</div>
-              <div class="bcard-dept"><i class="fas fa-building"></i> Phòng ${this.escapeHtml(w.dept)}</div>
+              <div class="bcard-dept"><i class="fas fa-building"></i> ${this.escapeHtml(w.dept)}</div>
             </div>
             <div class="bcard-gift-footer">
               <i class="fas fa-gift"></i> ${this.escapeHtml(w.prizeName)}

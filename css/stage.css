@@ -236,26 +236,38 @@ body.stage-pure-led .lucky-batch-modal-content {
   display: flex;
   flex-direction: column;
 }
+body.stage-pure-led .batch-modal-top-bar { flex: 0 0 auto; padding-bottom: 1vh; margin-bottom: .5vh; }
+body.stage-pure-led .batch-brand-block,
+body.stage-pure-led .batch-brand-text { min-width: 0; }
+body.stage-pure-led .batch-brand-logo { height: 4vh; }
 body.stage-pure-led .batch-brand-company { font-size: 1.6vw; }
 body.stage-pure-led .batch-brand-tag { display: none; }
-body.stage-pure-led .batch-stage-headline-box { padding: 1vh 0; margin: 0; }
-body.stage-pure-led .batch-stage-title { font-size: 2.5vw; }
+body.stage-pure-led .batch-stage-headline-box { flex: 0 0 auto; padding: .6vh 0 1.2vh; margin: 0; }
+body.stage-pure-led .batch-stage-title { font-size: 2.4vw; line-height: 1.15; margin: .5vh 0; }
 body.stage-pure-led .batch-stage-badge,
-body.stage-pure-led .batch-stage-invitation { font-size: 1.5vw; }
+body.stage-pure-led .batch-stage-invitation { font-size: 1.2vw; line-height: 1.25; }
+body.stage-pure-led .batch-stage-gift { font-size: 1.4vw; line-height: 1.25; color: #92400e; font-weight: 700; }
 body.stage-pure-led .batch-page-indicator { font-size: 1.3vw; }
 body.stage-pure-led .batch-winners-grid {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 1.2vw;
-  overflow: hidden;
+  grid-template-columns: repeat(var(--batch-columns, 3), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--batch-rows, 1), minmax(0, 1fr));
+  gap: 1vh 1vw;
+  --batch-name-size: 2.6vw;
+  --batch-detail-size: 1.45vw;
 }
-body.stage-pure-led .batch-winner-card { padding: 1.4vh 1vw; min-height: 0; }
-body.stage-pure-led .bcard-name { font-size: 2vw; line-height: 1.2; }
-body.stage-pure-led .bcard-code-badge { font-size: 1.6vw; }
+body.stage-pure-led .batch-winners-grid[data-density="medium"] { --batch-name-size: 2vw; --batch-detail-size: 1.25vw; }
+body.stage-pure-led .batch-winners-grid[data-density="compact"] { --batch-name-size: 1.65vw; --batch-detail-size: 1.05vw; }
+body.stage-pure-led .batch-winner-card { padding: 1vh .8vw; min-height: 0; min-width: 0; justify-content: center; gap: .6vh; }
+body.stage-pure-led .bcard-top { flex: 0 0 auto; gap: .5vw; flex-wrap: wrap; }
+body.stage-pure-led .bcard-content { min-width: 0; margin: 0; }
+body.stage-pure-led .bcard-name { font-size: var(--batch-name-size); line-height: 1.15; overflow-wrap: anywhere; margin-bottom: .4vh; }
+body.stage-pure-led .bcard-code-badge { font-size: 1.4vw; }
 body.stage-pure-led .bcard-prize-tag,
 body.stage-pure-led .bcard-pos,
-body.stage-pure-led .bcard-dept { font-size: 1.3vw; }
-body.stage-pure-led .bcard-gift-footer { display: none; }
+body.stage-pure-led .bcard-dept { font-size: var(--batch-detail-size); line-height: 1.2; overflow-wrap: anywhere; }
+body.stage-pure-led .batch-winners-grid[data-shared-gift="true"] .bcard-prize-tag { display: none; }
+body.stage-pure-led .batch-winners-grid[data-shared-gift="true"] .bcard-gift-footer { display: none; }
+body.stage-pure-led .bcard-gift-footer { font-size: 1vw; line-height: 1.2; overflow-wrap: anywhere; }

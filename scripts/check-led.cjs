@@ -148,28 +148,60 @@ const server = http.createServer(async (req, res) => {
     assert.equal(await operator.evaluate(() => JSON.parse(localStorage.getItem('tlqm_lucky_recorded_winners')).winners.length), 2);
     console.log('PASS two winner presentations, reload, shared record IDs and no duplicate storage');
 
-    await operator.evaluate(() => {
-      const sample = window.luckyDrawManager.recordedWinners[0];
-      const winners = Array.from({ length: 12 }, (_, i) => ({ ...sample, code: String(900 + i), name: `NHÂN VIÊN THỬ NGHIỆM SỐ ${i + 1}` }));
-      window.luckyDrawManager.displayBatchModal(winners, 'VINH DANH 12 NHÂN VIÊN THỬ NGHIỆM', 'GIẢI THỬ NGHIỆM');
-    });
-    await check(() => document.querySelectorAll('#batch-winners-grid .batch-winner-card').length === 6);
-    await frame('.lucky-batch-modal-content', '#batch-winners-grid', '#batch-winners-grid .batch-winner-card:last-child');
-    await shot('batch-page-one');
-    await operator.click('#batch-page-next');
-    await check(() => window.luckyDrawManager.batchPage === 1);
-    await led.reload();
-    await check(() => document.getElementById('batch-page-indicator').textContent === 'Trang 2 / 2');
-    await operator.click('#batch-page-prev');
-    await check(() => window.luckyDrawManager.batchPage === 0);
+    const boardFits = async count => {
+      await check(() => !document.getElementById('lucky-batch-modal').classList.contains('hidden'));
+      assert.equal(await led.locator('#batch-winners-grid .batch-winner-card').count(), count);
+      const overflow = await led.evaluate(() => {
+        const board = document.querySelector('.lucky-batch-modal-content');
+        const grid = document.getElementById('batch-winners-grid');
+        const bounds = grid.getBoundingClientRect();
+        return [document.documentElement, board, grid, ...grid.querySelectorAll('*')].filter(el => {
+          if (!el.getBoundingClientRect().width || !el.getBoundingClientRect().height) return false;
+          const r = el.getBoundingClientRect();
+          return el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1 ||
+            (grid.contains(el) && (r.left < bounds.left - 1 || r.right > bounds.right + 1 || r.top < bounds.top - 1 || r.bottom > bounds.bottom + 1));
+        }).map(el => `${el.className || el.tagName}: ${el.scrollWidth}x${el.scrollHeight} / ${el.clientWidth}x${el.clientHeight}`);
+      });
+      assert.deepEqual(overflow, [], 'Every visible card and text must fit without clipping or scrolling');
+      assert.equal(await led.locator('.batch-modal-actions').isVisible(), false);
+    };
+    for (const viewport of [{ width: 1920, height: 1080 }, { width: 1280, height: 720 }]) {
+      await led.setViewportSize(viewport);
+      for (const count of [1, 3, 4, 5, 8, 12]) {
+        await operator.evaluate(count => {
+          const sample = window.luckyDrawManager.recordedWinners[0];
+          const winners = Array.from({ length: count }, (_, i) => ({ ...sample, code: String(900 + i),
+            name: i % 2 ? `NHÂN VIÊN THỬ NGHIỆM SỐ ${i + 1}` : 'NGUYỄN THỊ THANH HUYỀN THỬ NGHIỆM',
+            pos: 'Quyền Phó phòng Vận hành', dept: 'Phòng Hành chính - Nhân sự',
+            prizeName: '12 Giải Đồng Hành: Pin Sạc Dự Phòng AVA+ 10.000 mAh' }));
+          window.luckyDrawManager.displayBatchModal(winners, 'BẢNG VÀNG: GIẢI ĐỒNG HÀNH', `GIẢI ĐỒNG HÀNH • ${count} NGƯỜI NHẬN GIẢI`);
+        }, count);
+        await check(count => document.querySelectorAll('#batch-winners-grid .batch-winner-card').length === count, count);
+        await boardFits(count);
+        assert.equal(await led.locator('#batch-page-indicator').isVisible(), false, 'One page needs no page label');
+        if (viewport.width === 1920 && [3, 8, 12].includes(count)) await shot(`batch-${count}-one-page`);
+      }
+      await led.reload();
+      await check(() => window.luckyDrawManager.batchWinners.length === 12);
+      await boardFits(12);
+    }
+    await led.setViewportSize({ width: 1920, height: 1080 });
     await operator.evaluate(() => {
       const sample = window.luckyDrawManager.recordedWinners[0];
       window.luckyDrawManager.displayBatchModal(Array.from({ length: 29 }, (_, i) => ({ ...sample, code: String(900 + i), name: `NHÂN VIÊN THỬ NGHIỆM SỐ ${i + 1}` })), 'BẢNG VÀNG 29 GIẢI THỬ NGHIỆM', 'BẢNG VÀNG');
-      for (let i = 0; i < 4; i++) window.luckyDrawManager.changeBatchPage(1);
     });
-    await check(() => document.getElementById('batch-page-indicator').textContent === 'Trang 5 / 5');
-    assert.equal(await led.locator('#batch-winners-grid .batch-winner-card').count(), 5);
-    await frame('#batch-winners-grid .batch-winner-card:last-child');
+    await check(() => document.getElementById('batch-page-indicator').textContent === 'Trang 1 / 3');
+    await boardFits(12);
+    await operator.click('#batch-page-next');
+    await check(() => window.luckyDrawManager.batchPage === 1);
+    await led.reload();
+    await check(() => document.getElementById('batch-page-indicator').textContent === 'Trang 2 / 3');
+    await boardFits(12);
+    await operator.click('#batch-page-next');
+    await check(() => document.getElementById('batch-page-indicator').textContent === 'Trang 3 / 3');
+    await boardFits(5);
+    await operator.click('#batch-page-prev');
+    await check(() => window.luckyDrawManager.batchPage === 1);
     await operator.evaluate(() => window.luckyDrawManager.closeBatchModal());
     await check(() => document.getElementById('lucky-batch-modal').classList.contains('hidden'));
     assert.equal(await operator.locator('.nav-btn:visible').count(), 5);
@@ -191,7 +223,7 @@ const server = http.createServer(async (req, res) => {
     await led.close();
     await operator.waitForFunction(() => !document.getElementById('stage-connection-status').classList.contains('connected'), { timeout: 10000 });
     assert.deepEqual(errors, []);
-    console.log('PASS 12/29-person pages, reload, controls, light appearance, fullscreen, reset and disconnect status');
+    console.log('PASS 1/3/4/5/8/12-person single-page boards at 1080p/720p, no text overflow, 29-person pagination, reload, controls, light appearance, fullscreen, reset and disconnect status');
     await require('./lucky-scenarios.cjs')(browser, url, output);
     console.log('Screenshots:', output);
   } finally {

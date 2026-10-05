@@ -85,6 +85,7 @@ class StageSync {
       el.className = className;
     });
     lucky.cacheWinnerElements();
+    lucky.renderBatchPage();
     if (msg.luckySpinning) lucky.restorePresentation();
     window.app.switchSection(msg.sectionId, false);
   }

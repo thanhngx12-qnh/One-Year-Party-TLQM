@@ -31,7 +31,7 @@ Không mở một cửa sổ bằng `localhost` và cửa sổ còn lại bằng
 | Chọn mục F1–F5, chọn đợt, nhập mã nhân viên, quay số | Quà đang trao, ba số may mắn, tên và mã người trúng |
 | Chọn câu, bắt đầu/tạm dừng, mở gợi ý/đáp án | Chữ cái, đồng hồ, gợi ý và đáp án đã công bố |
 | Chọn dáng, bắt đầu/tạm dừng, cộng/trừ điểm, chọn 2–4 đội | Ảnh dáng, hiệu lệnh, đồng hồ và bảng điểm |
-| Mở danh sách vinh danh, bấm **Trang trước / Trang sau**, đóng danh sách | Tối đa 6 người mỗi trang, số trang rõ ràng |
+| Mở danh sách vinh danh, bấm **Trang trước / Trang sau**, đóng danh sách | Một trang cho cả đợt tối đa 12 người; tự chia cột/hàng, không cuộn ngang/dọc |
 
 Laptop và LED đều dùng giao diện sáng với nền trắng, chữ navy và điểm nhấn xanh/vàng TLQM. Không có chế độ dark hay nút đổi giao diện; lựa chọn dark đã lưu từ bản cũ được chuyển sang sáng. Nút kỹ thuật, ô nhập, phím tắt và thông báo thao tác không xuất hiện trên LED. Khi công bố người trúng, ba ô quay số nhường chỗ cho thẻ tên lớn.
 
@@ -43,7 +43,7 @@ Nếu tải lại hoặc mở lại cửa sổ LED, nó nhận nội dung hiện
 2. Ban Lãnh đạo bốc phiếu ngoài sân khấu. Nhập **mã phiếu** (1–3 chữ số, tự thêm số 0) hoặc **họ tên đầy đủ, duy nhất**. Hệ thống không đoán tên gần đúng.
 3. Kiểm tra tên, phòng ban, tình trạng dự tiệc và số suất còn lại. Bấm **Kiểm tra & Công bố** hoặc Enter trong ô mã.
 4. Đọc hộp xác nhận đúng người, đúng giải. **Hủy** không ghi nhận và không công bố. **OK** lưu kết quả trước, sau đó chạy ba số và vinh danh trên LED.
-5. Với **Nhập cả đợt**, nhập các mã cách nhau bằng dấu phẩy, dấu chấm phẩy hoặc khoảng trắng. Cả danh sách phải hợp lệ; một mã sai, lặp hoặc vượt suất sẽ chặn toàn đợt. Sau xác nhận, danh sách được lưu cùng một lượt và chiếu tối đa 6 người mỗi trang.
+5. Với **Nhập cả đợt**, nhập các mã cách nhau bằng dấu phẩy, dấu chấm phẩy hoặc khoảng trắng. Cả danh sách phải hợp lệ; một mã sai, lặp hoặc vượt suất sẽ chặn toàn đợt. Sau xác nhận, danh sách được lưu cùng một lượt và chiếu tối đa 12 người trên một trang (3 người: 3×1; 8 người: 4×2; 12 người: 4×3). Tên quà hiển thị chung phía trên, giữ tên/mã/chức vụ/phòng ban trên từng thẻ.
 6. Chọn hạng giải hoặc bộ lọc của một đợt, rồi bấm **Bảng Vàng Đợt** / **Chiếu Màn LED**. Chỉ người nhận giải đó được chiếu. Bộ lọc **Tất Cả** trên bảng điều phối vẫn phục vụ đối chiếu; khi mở vinh danh, hệ thống dùng hạng giải đang chọn thay vì gom toàn bộ giải. Giải chưa có kết quả sẽ thông báo, không chiếu danh sách của đợt khác.
 
 **Quy tắc giải chính:** 12 Đồng Hành + 8 May Mắn + 5 Giải Ba + 3 Giải Nhì + 1 Giải Nhất = **29 giải**. Chỉ nhân sự đã xác nhận dự Gala; mỗi người nhận tối đa một giải. Đợt đủ suất sẽ chặn ghi thêm. Khi hủy kết quả, suất tương ứng được trả lại.
@@ -66,7 +66,7 @@ Nếu trình duyệt báo không đọc hoặc không lưu được dữ liệu,
 - Thử 2 và 4 đội; kiểm tra pha nhìn ảnh, pha quay lưng và hiệu lệnh hết giờ.
 - Dùng dữ liệu thử nghiệm để thử mã sai, mã lặp, người vắng, hết suất, hủy xác nhận; LED không được công bố.
 - Thử sửa/hủy có lý do và xuất báo cáo; kiểm tra suất giải và nội dung LED cập nhật.
-- Thử danh sách 12 người: chuyển đủ hai trang từ laptop, sau đó đóng.
+- Thử danh sách 3, 8 và 12 người: tất cả tên nằm trong một trang, không tràn hoặc cuộn ngang/dọc; sau đó đóng. Danh sách phát sinh vượt 12 người vẫn lật trang từ laptop.
 - Tải lại cửa sổ LED khi đang hiển thị một đáp án hoặc trang vinh danh; kiểm tra nội dung được khôi phục.
 - Bấm thử `F` trên cửa sổ LED để vào/thoát toàn màn hình; các phím F1–F5 chỉ dùng trên laptop.
 - Kiểm tra âm thanh với dàn loa thực tế và chọn đầu ra âm thanh trên máy tính.

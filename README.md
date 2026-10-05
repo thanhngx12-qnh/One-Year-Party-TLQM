@@ -31,7 +31,7 @@
 - Sử dụng `BroadcastChannel` đồng bộ giữa **Màn hình Điều phối Laptop** và **Màn LED Sân Khấu Chiếu Khán Giả** trong cùng trình duyệt, cùng địa chỉ web.
 - Mở màn LED chuyên dụng chỉ với 1 click hoặc phím `F8` (đường dẫn: `?screen=stage`).
 - Màn LED tự động ẩn toàn bộ các thanh điều khiển nhạy cảm của MC/Kỹ thuật viên.
-- Giao diện LED riêng tối ưu 1920×1080: chữ/số lớn, nền sáng, vinh danh 6 người mỗi trang; tự nhận trạng thái hiện tại khi mở hoặc tải lại cửa sổ.
+- Giao diện LED riêng tối ưu 1920×1080: chữ/số lớn, nền sáng, vinh danh cả đợt tối đa 12 người trên một trang, không cuộn ngang/dọc; tự nhận trạng thái hiện tại khi mở hoặc tải lại cửa sổ.
 - Xem [hướng dẫn mở hai màn hình riêng](Docs/LED_OPERATOR_GUIDE.md).
 
 ### 6. 🔒 Chế Độ Bảo Mật Dữ Liệu Gala Thật
